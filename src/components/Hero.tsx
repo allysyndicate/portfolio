@@ -45,7 +45,7 @@ export default function Hero() {
               />
               <span
                 aria-hidden
-                className="pointer-events-none absolute right-2 top-8 h-1.5 w-8 rounded-full bg-[var(--accent)]/25"
+                className="pointer-events-none absolute -right-6 top-8 h-1.5 w-8 rounded-full bg-[var(--accent)]/25"
               />
             </div>
             <div className="mt-4 flex w-full flex-wrap gap-2">
