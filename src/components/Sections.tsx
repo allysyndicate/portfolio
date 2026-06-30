@@ -493,21 +493,6 @@ const teaching = [
   },
 ];
 
-const skills = [
-  "Python",
-  "PostgreSQL",
-  "Snowflake",
-  "NumPy",
-  "Pandas",
-  "Scikit-Learn",
-  "NetworkX",
-  "Figma",
-  "Excel",
-  "Plotly",
-  "Matplotlib",
-  "GitHub",
-];
-
 /**
  * Deliberately distinct zone: a LIGHT/inverted résumé panel with a vertical
  * timeline, set against the dark-navy page so it reads as its own section.
@@ -518,7 +503,7 @@ export function Resume() {
     <Section id="resume" label="The Full Record" centeredHeading>
       <div className="overflow-hidden rounded-xl bg-[#eef3ff] text-[#0e1830] shadow-2xl shadow-black/40 ring-1 ring-white/10 sm:rounded-2xl">
         <div className="p-5 sm:p-8 md:p-12">
-          {/* Single column — experience, teaching timeline, then skills */}
+          {/* Single column — experience, then teaching timeline */}
           <div className="space-y-10 sm:space-y-12">
             <div>
               <p className="mb-6 text-xs font-bold uppercase tracking-[0.25em] text-[var(--accent-strong)]">
@@ -585,22 +570,6 @@ export function Resume() {
                   </li>
                 ))}
               </ol>
-            </div>
-
-            <div>
-              <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-[var(--accent-strong)]">
-                Skills &amp; Proficiencies
-              </p>
-              <div className="flex flex-wrap gap-2.5">
-                {skills.map((s) => (
-                  <span
-                    key={s}
-                    className="cursor-default rounded-lg border border-[var(--accent)]/30 bg-[var(--accent)]/[0.08] px-3.5 py-2 text-xs font-semibold text-[var(--accent-strong)] shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-[var(--accent)]/60 hover:bg-[var(--accent)]/[0.16] hover:shadow-md hover:shadow-[var(--accent)]/25"
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
         </div>
