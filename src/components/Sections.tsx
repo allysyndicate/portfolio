@@ -268,10 +268,10 @@ export function SideProjects() {
             <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(18rem,0.9fr)] md:items-center">
               <blockquote className="space-y-3 rounded-xl border-l-2 border-[var(--accent)]/50 border-y border-r border-y-[var(--accent)]/15 border-r-[var(--accent)]/15 bg-[var(--accent)]/[0.06] px-5 py-4 text-[var(--slate)] shadow-sm shadow-black/10">
                 <span className="block">
-                  I&apos;m the technical cofounder and sole engineer of Syndicate.
+                  I&apos;m the technical cofounder and engineer of Syndicate.
                 </span>
                 <span className="block">
-                  I&apos;m the technical cofounder and sole engineer behind Syndicate,
+                  I&apos;m the technical cofounder and engineer behind Syndicate,
                   building the product in close partnership with my cofounder, who
                   leads the business side.
                 </span>
