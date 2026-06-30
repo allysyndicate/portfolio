@@ -16,6 +16,9 @@ export default function Hero() {
           <h1 className="text-3xl font-bold leading-[1.05] tracking-tight text-[var(--slate-lightest)] sm:text-4xl lg:text-5xl">
             Ally Zach
           </h1>
+          <div className="mt-3 text-xs font-bold uppercase tracking-[0.25em] text-[var(--accent)]">
+            ABOUT ME
+          </div>
           <p className="mt-6 max-w-2xl leading-relaxed text-[var(--slate)]">
             I started as a{" "}
             <strong className="font-semibold text-[var(--slate-lightest)]">
