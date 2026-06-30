@@ -271,8 +271,9 @@ export function SideProjects() {
                   I&apos;m the technical cofounder and sole engineer of Syndicate.
                 </span>
                 <span className="block">
-                  My cofounder runs the business; I run the build, pairing my own
-                  engineering with Opus and Codex.
+                  I&apos;m the technical cofounder and sole engineer behind Syndicate,
+                  building the product in close partnership with my cofounder, who
+                  leads the business side.
                 </span>
                 <span className="block">
                   We made it because we wanted a product we could use every day,
