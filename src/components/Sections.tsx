@@ -57,95 +57,6 @@ function Section({
   );
 }
 
-export function About() {
-  return (
-    <Section id="about" label="About me">
-      <div className="grid gap-12 md:grid-cols-2 md:items-start">
-        <div className="space-y-4 text-[var(--slate)]">
-          <p>
-            I&apos;m an engineer who keeps changing the medium but
-            not the method: find a hard system, model it, and ship tools that
-            make it tractable. My career reads as three acts — scroll down to
-            walk through each one.
-          </p>
-          <p>
-            Today that&apos;s{" "}
-            <span className="font-medium text-[var(--slate-lightest)]">
-              research engineering &amp; AI products
-            </span>{" "}
-            (Pantera, plus cofounding Syndicate); before that{" "}
-            <span className="font-medium text-[var(--slate-lightest)]">
-              crypto research
-            </span>{" "}
-            at Messari; and before that{" "}
-            <span className="font-medium text-[var(--slate-lightest)]">
-              high-rise towers
-            </span>{" "}
-            (design + internal tooling). Scroll down — most recent first.
-          </p>
-          <div className="flex items-center gap-4 pt-2">
-            {socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${s.label} — ${s.handle}`}
-                title={`${s.label} · ${s.handle}`}
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--accent)]/40 bg-[var(--accent-tint)] text-[var(--accent)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white hover:shadow-lg hover:shadow-[var(--accent)]/30"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden
-                  className="h-5 w-5"
-                >
-                  {s.icon}
-                </svg>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Education — same card design as "The Full Record" section */}
-        <div>
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-[var(--accent)]">
-            Education
-          </p>
-          <div className="rounded-xl border border-[var(--bg-elev-2)] bg-[var(--bg-elev)] p-5">
-            <h3 className="text-base font-bold tracking-tight text-[var(--slate-lightest)]">
-              University of Illinois at Urbana-Champaign
-            </h3>
-            <p className="mt-1 text-sm text-[var(--slate-light)]">
-              Civil &amp; Environmental Engineering, Minor in Business
-            </p>
-            <div className="mt-4 space-y-2 border-t border-[var(--bg-elev-2)] pt-4 text-sm">
-              <div className="flex items-baseline justify-between gap-3">
-                <span className="font-semibold text-[var(--slate-lightest)]">M.S.</span>
-                <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--slate)]">
-                  May 2018
-                </span>
-              </div>
-              <div className="flex items-baseline justify-between gap-3">
-                <span className="font-semibold text-[var(--slate-lightest)]">B.S.</span>
-                <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--slate)]">
-                  May 2017
-                </span>
-              </div>
-            </div>
-            <p className="mt-4 text-xs leading-relaxed text-[var(--slate)]">
-              Emphasis: Structural Engineering &amp; Construction Management.
-              James Scholar Honors Program · Dean&apos;s List · Engineering
-              Visionary Scholar · C.S. &amp; Ruth Monnier Scholarship ·
-              Corsetti Scholarship Fund.
-            </p>
-          </div>
-        </div>
-      </div>
-    </Section>
-  );
-}
-
 export function Chapters() {
   return (
     <>
@@ -380,7 +291,7 @@ export function Education() {
               University of Illinois at Urbana-Champaign
             </h3>
             <p className="mt-1 text-sm text-[var(--slate-light)]">
-              Structural Engineering, minor in Business
+              Civil & Environmental Engineering, minor in Business
             </p>
           </div>
         </div>

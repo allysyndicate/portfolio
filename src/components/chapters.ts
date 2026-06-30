@@ -135,7 +135,7 @@ export const chapters: Chapter[] = [
       },
       {
         title: "Sybil Account Detection in L2 Ecosystems",
-        descriptor: "Sybil-detection framework across L2s, finding active addresses surged from 27% to 157% of Ethereum's and flagging Base/zkSync's airdrop-farming risk.",
+        descriptor: "Sybil-detection framework across L2s, finding L2 active addresses grew from 27% to 157% of Ethereum's and flagging Base/zkSync's airdrop-farming risk.",
         href: "https://messari.io/report/sybil-account-detection-in-l2-ecosystems",
         img: "/messari-sybil-account-detection-in-l2-ecosystems.png",
         thumb: "from-[#0c4a73] to-[#070d1f]",
