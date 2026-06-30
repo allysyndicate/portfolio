@@ -11,15 +11,63 @@ export default function Hero() {
         aria-hidden
         className="grid-texture pointer-events-none absolute inset-0 -z-10"
       />
-      <div className="grid items-center gap-10 md:grid-cols-[minmax(0,1.5fr)_minmax(15rem,0.7fr)] lg:gap-14">
-        <div className="order-last md:order-none">
+      <div className="grid grid-cols-1 gap-x-10 gap-y-8 md:items-start md:gap-x-12 md:grid-cols-[minmax(0,1.6fr)_minmax(14rem,0.8fr)] md:[grid-template-areas:'head_photo'_'body_photo'_'body_tags'] lg:gap-x-16">
+        {/* A — heading */}
+        <div className="md:[grid-area:head]">
           <h1 className="text-3xl font-bold leading-[1.05] tracking-tight text-[var(--slate-lightest)] sm:text-4xl lg:text-5xl">
             Ally Zach
           </h1>
           <div className="mt-3 text-xs font-bold uppercase tracking-[0.25em] text-[var(--accent)]">
             About
           </div>
-          <p className="mt-5 max-w-2xl leading-relaxed text-[var(--slate)] sm:mt-6">
+        </div>
+
+        {/* B — photo card + social links */}
+        <div className="mx-auto w-full max-w-[17rem] md:mx-0 md:[grid-area:photo]">
+          <div className="rounded-2xl border border-[var(--accent)]/20 bg-[var(--bg-elev)]/60 p-3 shadow-sm shadow-black/20">
+            <div className="relative overflow-hidden rounded-xl ring-1 ring-white/5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/twitter%20pro.jpg"
+                alt="Ally Zach"
+                className="aspect-[4/5] w-full object-cover object-center grayscale"
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-[var(--accent)]/15"
+              />
+            </div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${s.label} - ${s.handle}`}
+                  title={`${s.label} - ${s.handle}`}
+                  className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-[var(--accent)]/25 bg-[var(--bg-elev)]/80 px-2.5 py-1.5 text-xs font-medium text-[var(--slate-light)] shadow-sm shadow-black/10 transition-all hover:border-[var(--accent)]/60 hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden
+                    className="h-3.5 w-3.5 shrink-0"
+                  >
+                    {s.icon}
+                  </svg>
+                  <span className="whitespace-nowrap">
+                    {s.label === "Twitter / X" ? "X / Twitter" : s.label}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* C — narrative body */}
+        <div className="max-w-[33rem] text-[15px] leading-[1.7] text-[var(--slate)] md:[grid-area:body]">
+          <p className="mt-2 md:mt-0">
             I started my career as a{" "}
             <strong className="font-semibold text-[var(--slate-lightest)]">
               structural engineer
@@ -29,23 +77,21 @@ export default function Hero() {
             It was technical, rigorous work, and it taught me how to reason
             through complex systems with real constraints.
           </p>
-          <p className="mt-4 max-w-2xl leading-relaxed text-[var(--slate)]">
+          <p className="mt-4">
             But the more time I spent inside that world, the more I found myself
             pulled toward a different kind of building. At MKA, I started writing
             tools to automate repeatable design processes: small scripts and
             workflows that made engineering work faster, cleaner, and less
             manual.
           </p>
-          <p className="mt-4 max-w-2xl leading-relaxed text-[var(--slate)]">
-            That was the opening.
-          </p>
-          <p className="mt-4 max-w-2xl leading-relaxed text-[var(--slate)]">
+          <p className="mt-4">That was the opening.</p>
+          <p className="mt-4">
             I kept teaching myself to code, starting with Python, then
             JavaScript, then full-stack development. Eventually, that curiosity
             moved beyond engineering workflows and into algorithmic trading,
             where software, data, markets, and fast feedback loops all collided.
           </p>
-          <p className="mt-4 max-w-2xl leading-relaxed text-[var(--slate)]">
+          <p className="mt-4">
             That path pulled me into{" "}
             <strong className="font-semibold text-[var(--slate-lightest)]">
               crypto and startup land
@@ -53,7 +99,7 @@ export default function Hero() {
             , where the learning curve was steeper and the work sat closer to
             data science, research, and product.
           </p>
-          <p className="mt-4 max-w-2xl leading-relaxed text-[var(--slate)]">
+          <p className="mt-4">
             Today, I&apos;m the second member of{" "}
             <strong className="font-semibold text-[var(--slate-lightest)]">
               Pantera&apos;s in-house research team
@@ -61,12 +107,12 @@ export default function Hero() {
             , where I work across research, data products, technical writing,
             portfolio support, mechanism design, and full-stack development.
           </p>
-          <p className="mt-4 max-w-2xl leading-relaxed text-[var(--slate)]">
+          <p className="mt-4">
             The thread through all of it is that I like learning messy systems
             from the inside out, finding the real workflow underneath the noise,
             and building tools that make the work sharper, faster, or clearer.
           </p>
-          <p className="mt-4 max-w-2xl leading-relaxed text-[var(--slate)]">
+          <p className="mt-4">
             <strong className="font-semibold text-[var(--slate-lightest)]">
               AI
             </strong>{" "}
@@ -79,76 +125,27 @@ export default function Hero() {
             , an AI agent orchestration app for coordinating specialized agents
             across messy, multi-step workflows.
           </p>
-          <div className="mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
-            {socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${s.label} - ${s.handle}`}
-                title={`${s.label} - ${s.handle}`}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--accent)]/25 bg-[var(--bg-elev)]/80 text-[var(--slate-light)] shadow-sm shadow-black/10 transition-all hover:-translate-y-0.5 hover:border-[var(--accent)]/60 hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden
-                  className="h-5 w-5"
-                >
-                  {s.icon}
-                </svg>
-              </a>
-            ))}
-          </div>
         </div>
 
-        <div className="order-first mx-auto w-full max-w-[18rem] md:order-none">
-          <div className="relative mx-auto aspect-square w-full max-w-[16.5rem] lg:max-w-[17.5rem]">
-            <div
-              aria-hidden
-              className="absolute inset-0 rounded-full border-2 border-[var(--accent)]/70"
-              style={{ clipPath: "inset(0 0 0 35%)" }}
-            />
-            <div className="absolute inset-6 overflow-hidden rounded-full ring-1 ring-white/5">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/twitter%20pro.jpg"
-                alt="Ally Zach"
-                className="h-full w-full object-cover grayscale"
-              />
-            </div>
-            <span
-              aria-hidden
-              className="absolute -left-1 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-[var(--accent)]/45"
+        {/* D — focus tags */}
+        <ul className="mx-auto flex w-full max-w-[17rem] flex-wrap gap-2 md:mx-0 md:max-w-none md:[grid-area:tags]">
+          {[
+            "Structural Engineering",
+            "Self-Taught Developer",
+            "Crypto Research",
+            "Data Products",
+            "Mechanism Design",
+            "AI Agent Orchestration",
+          ].map((k) => (
+            <li
+              key={k}
+              className="whitespace-nowrap rounded-lg border border-[var(--accent)]/40 bg-[var(--accent-tint)] px-2.5 py-1 text-xs font-semibold tracking-wide text-[var(--slate-lightest)] transition-colors hover:border-[var(--accent)]"
             >
-            </span>
-            <span
-              aria-hidden
-              className="absolute right-2 top-8 h-1.5 w-8 rounded-full bg-[var(--accent)]/25"
-            >
-            </span>
-          </div>
-        </div>
+              {k}
+            </li>
+          ))}
+        </ul>
       </div>
-
-      <ul className="mt-12 flex flex-wrap items-center gap-2 border-t border-white/5 pt-6 sm:mt-16 sm:gap-2.5 sm:pt-7">
-        {[
-          "Structural Engineering",
-          "Self-Taught Developer",
-          "Crypto Research",
-          "Data Products",
-          "Mechanism Design",
-          "AI Agent Orchestration",
-        ].map((k) => (
-          <li
-            key={k}
-            className="whitespace-nowrap rounded-lg border border-[var(--accent)]/40 bg-[var(--accent-tint)] px-3 py-1.5 text-xs font-semibold tracking-wide text-[var(--slate-lightest)] transition-colors hover:border-[var(--accent)] sm:text-sm"
-          >
-            {k}
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }
