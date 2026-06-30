@@ -61,29 +61,51 @@ const paragraphs: ReactNode[] = [
   </>,
 ];
 
-function PhotoCard() {
+function PhotoCard({ progress = 0 }: { progress?: number }) {
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[11rem] sm:max-w-[13rem] md:max-w-[15rem]">
+    <div
+      className="relative mx-auto aspect-square w-full max-w-[12rem] sm:max-w-[14rem] md:max-w-[17rem]"
+      style={{
+        transform: `scale(${1 + progress * 0.06}) translateY(${progress * -10}px)`,
+        transition: "transform 120ms linear",
+      }}
+    >
+      {/* Breathing accent glow behind the photo. */}
       <div
         aria-hidden
-        className="absolute inset-0 rounded-full border-2 border-[var(--accent)]/70"
+        className="about-glow pointer-events-none absolute -inset-6 -z-10 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.45),transparent_70%)] blur-2xl"
+      />
+      {/* Slowly rotating dashed accent ring. */}
+      <div
+        aria-hidden
+        className="about-ring-spin pointer-events-none absolute -inset-2 rounded-full border-2 border-dashed border-[var(--accent)]/30"
+      />
+      {/* Bold open arc sweeping the circle. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 rounded-full border-[3px] border-[var(--accent)]"
         style={{ clipPath: "inset(0 0 0 35%)" }}
       />
-      <div className="absolute inset-5 overflow-hidden rounded-full ring-1 ring-white/5 sm:inset-6">
+      <div className="absolute inset-4 overflow-hidden rounded-full shadow-2xl shadow-[var(--accent)]/20 ring-1 ring-white/10 sm:inset-5">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/twitter%20pro.jpg"
           alt="Ally Zach"
-          className="h-full w-full object-cover object-center grayscale"
+          className="h-full w-full object-cover object-center grayscale transition-all duration-700 hover:grayscale-0"
+        />
+        {/* Subtle blue duotone wash over the grayscale photo. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 rounded-full bg-[var(--accent)]/10 mix-blend-overlay"
         />
       </div>
       <span
         aria-hidden
-        className="pointer-events-none absolute -left-1 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-[var(--accent)]/45"
+        className="pointer-events-none absolute -left-2 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-[var(--accent)] shadow-[0_0_12px_2px_var(--accent)]"
       />
       <span
         aria-hidden
-        className="pointer-events-none absolute -right-6 top-8 h-1.5 w-8 rounded-full bg-[var(--accent)]/25"
+        className="pointer-events-none absolute -right-8 top-8 h-1.5 w-10 rounded-full bg-[var(--accent)]/40"
       />
     </div>
   );
@@ -134,6 +156,7 @@ const STEP_SVH = 62;
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
+  const [progress, setProgress] = useState(0);
   const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
@@ -155,12 +178,13 @@ export default function Hero() {
       const rect = el.getBoundingClientRect();
       const total = el.offsetHeight - window.innerHeight;
       const scrolled = Math.min(Math.max(-rect.top, 0), Math.max(total, 1));
-      const progress = total > 0 ? scrolled / total : 0;
+      const prog = total > 0 ? scrolled / total : 0;
       const idx = Math.min(
         paragraphs.length - 1,
-        Math.floor(progress * paragraphs.length)
+        Math.floor(prog * paragraphs.length)
       );
       setActive((prev) => (prev === idx ? prev : idx));
+      setProgress(prog);
     };
     const onScroll = () => {
       if (raf) return;
@@ -223,7 +247,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 gap-x-12 gap-y-7 md:grid-cols-[minmax(0,1.6fr)_minmax(13rem,0.8fr)] md:items-center md:[grid-template-areas:'head_aside'_'body_aside'_'prog_aside']">
           {/* aside — photo + social (sticky/static across the sequence) */}
           <div className="order-1 md:order-none md:[grid-area:aside]">
-            <PhotoCard />
+            <PhotoCard progress={progress} />
             <SocialLinks />
           </div>
 
@@ -232,35 +256,42 @@ export default function Hero() {
             <Heading />
           </div>
 
-          {/* active paragraph — only one visible at a time */}
-          <div className="order-3 flex min-h-[15rem] items-start md:order-none md:min-h-[14rem] md:[grid-area:body]">
+          {/* active paragraph — only one visible at a time, the hero of the
+              section, so it's big, bold, and high-contrast. */}
+          <div className="order-3 flex min-h-[16rem] items-start md:order-none md:min-h-[17rem] md:[grid-area:body]">
             <p
               key={active}
-              className="about-step-in max-w-[34rem] text-lg leading-[1.65] text-[var(--slate)] sm:text-xl sm:leading-[1.6]"
+              className="about-step-in max-w-[36rem] text-2xl font-medium leading-[1.32] tracking-tight text-[var(--slate-light)] sm:text-3xl sm:leading-[1.3] lg:text-[2.6rem] lg:leading-[1.22]"
             >
               {paragraphs[active]}
             </p>
           </div>
 
-          {/* progress indicator */}
+          {/* progress indicator — a designed element, not an afterthought */}
           <div
             aria-hidden
-            className="order-4 flex items-center gap-3 md:order-none md:[grid-area:prog]"
+            className="order-4 flex items-center gap-4 md:order-none md:[grid-area:prog]"
           >
-            <div className="flex gap-1.5">
+            <div className="flex items-center gap-2">
               {paragraphs.map((_, i) => (
                 <span
                   key={i}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                  className={`h-2 rounded-full transition-all duration-500 ease-out ${
                     i === active
-                      ? "w-5 bg-[var(--accent)]"
-                      : "w-1.5 bg-[var(--accent)]/25"
+                      ? "w-10 bg-[var(--accent)] shadow-[0_0_14px_2px_var(--accent)]"
+                      : i < active
+                        ? "w-2 bg-[var(--accent)]/60"
+                        : "w-2 bg-[var(--accent)]/20"
                   }`}
                 />
               ))}
             </div>
-            <span className="text-xs font-medium tabular-nums text-[var(--slate)]">
-              {active + 1} / {paragraphs.length}
+            <span className="text-sm font-semibold tabular-nums tracking-tight text-[var(--slate)]">
+              <span className="text-[var(--accent)]">
+                {String(active + 1).padStart(2, "0")}
+              </span>
+              <span className="mx-1 text-[var(--slate)]/50">/</span>
+              {String(paragraphs.length).padStart(2, "0")}
             </span>
           </div>
         </div>

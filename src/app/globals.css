@@ -71,22 +71,58 @@ body {
   mask-image: radial-gradient(circle at 70% 30%, black, transparent 70%);
 }
 
-/* About scrollytelling: subtle fade + lift when the active paragraph changes. */
+/* About scrollytelling: bold blur-in + slide-up + scale when the active
+   paragraph changes. The incoming paragraph should arrive with impact. */
 @keyframes about-step-in {
-  from {
+  0% {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(44px) scale(0.94);
+    filter: blur(14px);
   }
-  to {
+  55% {
+    filter: blur(0);
+  }
+  100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
   }
 }
 .about-step-in {
-  animation: about-step-in 0.5s ease-out both;
+  animation: about-step-in 0.66s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity, filter;
 }
+
+/* Pinned-photo accent glow that breathes behind the circle. */
+@keyframes about-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.08);
+  }
+}
+.about-glow {
+  animation: about-glow-pulse 5s ease-in-out infinite;
+}
+
+/* Slowly rotating accent ring around the pinned photo. */
+@keyframes about-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.about-ring-spin {
+  animation: about-ring-spin 22s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .about-step-in {
+  .about-step-in,
+  .about-glow,
+  .about-ring-spin {
     animation: none;
   }
 }
