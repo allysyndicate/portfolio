@@ -23,21 +23,21 @@ export default function Hero() {
         </div>
 
         {/* B — photo card + social links */}
-        <div className="mx-auto w-full max-w-[17rem] md:mx-0 md:[grid-area:photo]">
-          <div className="rounded-2xl border border-[var(--accent)]/20 bg-[var(--bg-elev)]/60 p-3 shadow-sm shadow-black/20">
-            <div className="relative overflow-hidden rounded-xl ring-1 ring-white/5">
+        <div className="mx-auto w-full max-w-[15rem] md:mx-0 md:[grid-area:photo]">
+          <div className="flex flex-col items-center">
+            <div className="relative mx-auto aspect-square w-44 overflow-hidden rounded-full border-2 border-[var(--accent)]/70 shadow-sm shadow-black/20 sm:w-48">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/twitter%20pro.jpg"
                 alt="Ally Zach"
-                className="aspect-[4/5] w-full object-cover object-center grayscale"
+                className="h-full w-full object-cover object-center grayscale"
               />
               <span
                 aria-hidden
-                className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-[var(--accent)]/15"
+                className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-[var(--accent)]/20"
               />
             </div>
-            <div className="mt-3 flex flex-wrap gap-2">
+            <div className="mt-4 flex w-full flex-wrap gap-2">
               {socials.map((s) => (
                 <a
                   key={s.label}
