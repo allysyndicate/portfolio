@@ -11,7 +11,7 @@ export default function Hero() {
         aria-hidden
         className="grid-texture pointer-events-none absolute inset-0 -z-10"
       />
-      <div className="grid grid-cols-1 gap-x-10 gap-y-8 md:items-start md:gap-x-12 md:grid-cols-[minmax(0,1.6fr)_minmax(14rem,0.8fr)] md:[grid-template-areas:'head_photo'_'body_photo'_'body_tags'] lg:gap-x-16">
+      <div className="grid grid-cols-1 gap-x-10 gap-y-8 md:items-start md:gap-x-12 md:grid-cols-[minmax(0,1.6fr)_minmax(14rem,0.8fr)] md:[grid-template-areas:'head_photo'_'body_photo'] lg:gap-x-16">
         {/* A — heading */}
         <div className="md:[grid-area:head]">
           <h1 className="text-3xl font-bold leading-[1.05] tracking-tight text-[var(--slate-lightest)] sm:text-4xl lg:text-5xl">
@@ -137,25 +137,6 @@ export default function Hero() {
             across messy, multi-step workflows.
           </p>
         </div>
-
-        {/* D — focus tags */}
-        <ul className="mx-auto flex w-full max-w-[17rem] flex-wrap gap-2 md:mx-0 md:max-w-none md:[grid-area:tags]">
-          {[
-            "Structural Engineering",
-            "Self-Taught Developer",
-            "Crypto Research",
-            "Data Products",
-            "Mechanism Design",
-            "AI Agent Orchestration",
-          ].map((k) => (
-            <li
-              key={k}
-              className="whitespace-nowrap rounded-lg border border-[var(--accent)]/40 bg-[var(--accent-tint)] px-2.5 py-1 text-xs font-semibold tracking-wide text-[var(--slate-lightest)] transition-colors hover:border-[var(--accent)]"
-            >
-              {k}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );
