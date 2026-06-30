@@ -1,23 +1,57 @@
+"use client";
+
+import { useState } from "react";
 import { socials } from "./Sections";
 
 const supporting =
-  "I started as a structural engineer, then taught myself software by automating repeatable design work at MKA. That thread pulled me into algorithmic trading, crypto research, data products, and now AI agent orchestration.";
+  "I started as a structural engineer, taught myself software by automating real design workflows at MKA, then followed that thread into algorithmic trading, crypto research, data products, and AI agent orchestration.";
 
 const currently =
   "Currently on Pantera's in-house research team and technical cofounder of Syndicate.";
 
-const proof = [
+type Journey = {
+  id: string;
+  title: string;
+  teaser: string;
+  body: string;
+};
+
+const journey: Journey[] = [
   {
+    id: "structures",
     title: "Started in structures",
-    body: "Nearly five years designing and analyzing complex buildings and infrastructure, where real constraints mattered.",
+    teaser: "Designed real buildings with real constraints.",
+    body: "I earned degrees in civil engineering and spent nearly five years as a structural engineer, designing and analyzing complex buildings and infrastructure. That work taught me how to reason through technical systems where the math matters, the constraints are real, and mistakes are expensive.",
   },
   {
-    title: "Built my way into software",
-    body: "Self-taught through Python, JavaScript, full-stack projects, MKA automation tools, and algorithmic trading systems.",
+    id: "mka",
+    title: "Found code at MKA",
+    teaser: "Automation was the first crack in the wall.",
+    body: "At MKA, I started writing scripts and workflows to automate repeatable structural design processes. The more I built, the more I realized I was drawn to the tools shaping the work, not just the drawings those tools produced.",
   },
   {
-    title: "Now building research + agent systems",
-    body: "Data products, technical research, full-stack tools, mechanism design, and AI agent workflows at Pantera and Syndicate.",
+    id: "software",
+    title: "Taught myself software",
+    teaser: "Python became JavaScript, then full-stack.",
+    body: "I kept teaching myself by building: Python scripts, JavaScript projects, full-stack apps, and whatever else helped me move from one problem to the next. I learned software by following the mess and building my way through it.",
+  },
+  {
+    id: "markets",
+    title: "Followed data into markets",
+    teaser: "Algorithmic trading made feedback loops addictive.",
+    body: "Algorithmic trading pulled software, data, probability, and markets into one live system. It gave me a faster learning loop and eventually pulled me toward crypto, where research, product, and code blur together in useful ways.",
+  },
+  {
+    id: "research",
+    title: "Built research systems",
+    teaser: "Crypto research turned into products and tools.",
+    body: "At Pantera, I'm the second member of the in-house research team, working across technical writing, data products, portfolio support, mechanism design, and full-stack tools. The work sits in the middle of research, product, and systems-building.",
+  },
+  {
+    id: "agents",
+    title: "Now building agents",
+    teaser: "Syndicate is where the threads converge.",
+    body: "Syndicate came from using AI constantly and wanting a better way to coordinate specialized agents across real workflows. It is an AI agent orchestration app for turning fuzzy requests into teams, plans, tools, and shipped output.",
   },
 ];
 
@@ -72,22 +106,85 @@ function SocialLinks() {
   );
 }
 
-function ProofStrip() {
+function JourneyCard({
+  item,
+  active,
+  onActivate,
+}: {
+  item: Journey;
+  active: boolean;
+  onActivate: () => void;
+}) {
   return (
-    <ul className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-      {proof.map((p) => (
-        <li
-          key={p.title}
-          className="group rounded-2xl border border-white/10 bg-[var(--bg-elev)]/70 p-5 transition-colors hover:border-[var(--accent)]/40"
+    <button
+      type="button"
+      aria-expanded={active}
+      onMouseEnter={onActivate}
+      onFocus={onActivate}
+      onClick={onActivate}
+      className={`group flex h-full flex-col rounded-2xl border p-5 text-left transition-all duration-300 motion-reduce:transition-none sm:p-6 ${
+        active
+          ? "border-[var(--accent)]/55 bg-[var(--bg-elev-2)]/80 shadow-lg shadow-[var(--accent)]/15"
+          : "border-white/10 bg-[var(--bg-elev)]/60 hover:border-[var(--accent)]/35 hover:bg-[var(--bg-elev)]/90"
+      }`}
+    >
+      <div className="flex items-baseline gap-2">
+        <span
+          aria-hidden
+          className={`text-base leading-none transition-colors duration-300 ${
+            active ? "text-[var(--accent)]" : "text-[var(--accent)]/50"
+          }`}
         >
-          <h3 className="text-sm font-semibold tracking-tight text-[var(--slate-lightest)]">
-            <span className="text-[var(--accent)]">→ </span>
-            {p.title}
-          </h3>
-          <p className="mt-2 text-sm leading-[1.6] text-[var(--slate)]">{p.body}</p>
-        </li>
-      ))}
-    </ul>
+          →
+        </span>
+        <h3 className="text-base font-semibold tracking-tight text-[var(--slate-lightest)] sm:text-lg">
+          {item.title}
+        </h3>
+      </div>
+
+      <p className="mt-2 text-sm leading-[1.55] text-[var(--slate-light)]">
+        {item.teaser}
+      </p>
+
+      {/* Expanded story — animates open via a 0fr→1fr grid row, no height measuring. */}
+      <div
+        className={`grid transition-[grid-template-rows] duration-500 ease-out motion-reduce:transition-none ${
+          active ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <p
+            className={`mt-3 border-t border-white/10 pt-3 text-sm leading-[1.65] text-[var(--slate)] transition-opacity duration-300 motion-reduce:transition-none ${
+              active ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            {item.body}
+          </p>
+        </div>
+      </div>
+    </button>
+  );
+}
+
+function JourneyCards() {
+  const [active, setActive] = useState("mka");
+
+  return (
+    <div>
+      <div className="text-xs font-bold uppercase tracking-[0.28em] text-[var(--accent)]">
+        How I got here
+      </div>
+      <div className="mt-6 grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {journey.map((item) => (
+          <JourneyCard
+            key={item.id}
+            item={item}
+            active={active === item.id}
+            onActivate={() => setActive(item.id)}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -123,9 +220,12 @@ export default function Hero() {
         </div>
 
         {/* Headline */}
-        <h1 className="order-3 max-w-[15ch] text-4xl font-bold leading-[1.04] tracking-tight text-[var(--slate-lightest)] sm:text-5xl lg:text-[3.75rem] md:col-start-1 md:row-start-2">
-          I used to design buildings.{" "}
-          <span className="text-[var(--accent)]">Now I build tools for messy systems.</span>
+        <h1 className="order-3 text-4xl font-bold leading-[1.06] tracking-tight text-[var(--slate-lightest)] sm:text-5xl lg:text-[3.6rem] md:col-start-1 md:row-start-2">
+          <span className="block">From buildings to AI agents,</span>
+          <span className="block">
+            I build tools for{" "}
+            <span className="text-[var(--accent)]">messy systems</span>.
+          </span>
         </h1>
 
         {/* Supporting paragraph */}
@@ -164,9 +264,9 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Three-card proof strip below the hero. */}
-      <div className="mt-12 md:mt-16">
-        <ProofStrip />
+      {/* Six expandable journey cards below the hero. */}
+      <div className="mt-14 md:mt-20">
+        <JourneyCards />
       </div>
     </section>
   );
