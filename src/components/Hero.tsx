@@ -20,48 +20,63 @@ export default function Hero() {
             ABOUT ME
           </div>
           <p className="mt-5 max-w-2xl leading-relaxed text-[var(--slate)] sm:mt-6">
-            I started as a{" "}
+            I started my career as a{" "}
             <strong className="font-semibold text-[var(--slate-lightest)]">
               structural engineer
             </strong>
-            , then taught myself to code and moved into{" "}
-            <strong className="font-semibold text-[var(--slate-lightest)]">
-              crypto and startup land
-            </strong>{" "}
-            because I wanted to get closer to data science.
+            , earning degrees in civil engineering and spending nearly five
+            years designing and analyzing complex buildings and infrastructure.
+            It was technical, rigorous work, and it taught me how to reason
+            through complex systems with real constraints.
           </p>
           <p className="mt-4 max-w-2xl leading-relaxed text-[var(--slate)]">
-            That path has changed shape a few times. Today, I&apos;m the second
-            member of{" "}
+            But the more time I spent inside that world, the more I found myself
+            pulled toward a different kind of building. At MKA, I started writing
+            tools to automate repeatable design processes: small scripts and
+            workflows that made engineering work faster, cleaner, and less
+            manual.
+          </p>
+          <p className="mt-4 max-w-2xl leading-relaxed text-[var(--slate)]">
+            That was the opening.
+          </p>
+          <p className="mt-4 max-w-2xl leading-relaxed text-[var(--slate)]">
+            I kept teaching myself to code, starting with Python, then
+            JavaScript, then full-stack development. Eventually, that curiosity
+            moved beyond engineering workflows and into algorithmic trading,
+            where software, data, markets, and fast feedback loops all collided.
+          </p>
+          <p className="mt-4 max-w-2xl leading-relaxed text-[var(--slate)]">
+            That path pulled me into{" "}
+            <strong className="font-semibold text-[var(--slate-lightest)]">
+              crypto and startup land
+            </strong>
+            , where the learning curve was steeper and the work sat closer to
+            data science, research, and product.
+          </p>
+          <p className="mt-4 max-w-2xl leading-relaxed text-[var(--slate)]">
+            Today, I&apos;m the second member of{" "}
             <strong className="font-semibold text-[var(--slate-lightest)]">
               Pantera&apos;s in-house research team
             </strong>
-            , where I work across
-            research, data products, technical writing, portfolio support,
-            mechanism design, and full-stack development.
+            , where I work across research, data products, technical writing,
+            portfolio support, mechanism design, and full-stack development.
           </p>
           <p className="mt-4 max-w-2xl leading-relaxed text-[var(--slate)]">
-            My favorite work lives at the intersection of fast learning and
-            useful building: taking messy, unfamiliar problems and turning them
-            into sharper tools, better systems, and clearer thinking. A lot of
-            my work now sits in that{" "}
-            <strong className="font-semibold text-[var(--slate-lightest)]">
-              research-to-product
-            </strong>{" "}
-            middle ground, where
-            the job is to understand a workflow deeply enough to improve it.
+            The thread through all of it is that I like learning messy systems
+            from the inside out, finding the real workflow underneath the noise,
+            and building tools that make the work sharper, faster, or clearer.
           </p>
           <p className="mt-4 max-w-2xl leading-relaxed text-[var(--slate)]">
             <strong className="font-semibold text-[var(--slate-lightest)]">
               AI
             </strong>{" "}
-            has become central to that process. It changed how I research,
-            build, automate, and think through complex systems, and eventually
-            led me to cofound{" "}
+            has accelerated that instinct. It changed how I research, build,
+            automate, and reason through complex problems, and eventually led me
+            to cofound{" "}
             <strong className="font-semibold text-[var(--slate-lightest)]">
               Syndicate
             </strong>
-            : an AI agent orchestration app for coordinating specialized agents
+            , an AI agent orchestration app for coordinating specialized agents
             across messy, multi-step workflows.
           </p>
           <div className="mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
