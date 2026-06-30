@@ -57,15 +57,13 @@ function Section({
   );
 }
 
-/* Placeholder copy only — final wording owned by Technical Writer (Phase 2). */
-
 export function About() {
   return (
     <Section id="about" label="About me">
       <div className="grid gap-12 md:grid-cols-2 md:items-start">
         <div className="space-y-4 text-[var(--slate)]">
           <p>
-            [Placeholder] I&apos;m an engineer who keeps changing the medium but
+            I&apos;m an engineer who keeps changing the medium but
             not the method: find a hard system, model it, and ship tools that
             make it tractable. My career reads as three acts — scroll down to
             walk through each one.
@@ -268,25 +266,17 @@ export function SideProjects() {
             <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(18rem,0.9fr)] md:items-center">
               <blockquote className="space-y-3 rounded-xl border-l-2 border-[var(--accent)]/50 border-y border-r border-y-[var(--accent)]/15 border-r-[var(--accent)]/15 bg-[var(--accent)]/[0.06] px-4 py-4 text-sm leading-relaxed text-[var(--slate)] shadow-sm shadow-black/10 sm:px-5 sm:text-base">
                 <span className="block">
-                  I&apos;m the technical cofounder and engineer of Syndicate.
-                </span>
-                <span className="block">
                   I&apos;m the technical cofounder and engineer behind Syndicate,
                   building the product in close partnership with my cofounder, who
-                  leads the business side.
+                  leads the business side. We made it because we wanted a product
+                  we could use every day, both at work and on personal projects,
+                  and it became the one we reach for constantly.
                 </span>
                 <span className="block">
-                  We made it because we wanted a product we could use every day,
-                  at work and on personal projects, and it became the one we
-                  reach for constantly.
-                </span>
-                <span className="block">
-                  The idea is simple: everyone gets a team.
-                </span>
-                <span className="block">
-                  Describe the outcome you want and specialist agents plan it,
-                  build it, and hand it back finished, turning &lsquo;I wish I
-                  could build that&rsquo; into something you actually ship.
+                  The idea is simple: everyone gets a team. Describe the outcome
+                  you want and specialist agents plan it, build it, and hand it
+                  back finished, turning &ldquo;I wish I could build that&rdquo;
+                  into something you actually ship.
                 </span>
               </blockquote>
 
@@ -333,7 +323,7 @@ export function SideProjects() {
             </a>
             <p className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-3 py-1.5 text-center text-xs font-medium leading-snug text-[var(--slate-light)] sm:ml-auto">
               <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-              Closed beta launching within the next month
+              Private beta
             </p>
           </div>
         </div>
@@ -624,9 +614,8 @@ export function Contact() {
     <Section id="contact" label="Get in touch" centeredHeading>
       <div className="mx-auto max-w-lg space-y-6 text-center text-[var(--slate)]">
         <p>
-          [Placeholder] I&apos;m focused on product engineering for computer-use
-          and agentic systems. If you&apos;re building in that space, I&apos;d
-          love to talk.
+          I&apos;m focused on product engineering, research systems, and AI agent
+          workflows. If you&apos;re building in that world, I&apos;d love to talk.
         </p>
         <div className="flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
           <a
@@ -635,15 +624,9 @@ export function Contact() {
           >
             Say Hello
           </a>
-          <a
-            href="/Ally Zach Resume.pdf"
-            className="group inline-flex items-center justify-center rounded-md border border-[var(--accent)] px-6 py-3 text-sm font-semibold text-[var(--accent)] transition-colors hover:bg-[var(--accent-tint)]"
-          >
-            View Full Résumé
-            <span className="ml-1 transition-transform group-hover:translate-x-1">
-              →
-            </span>
-          </a>
+          {/* TODO: replace with updated 2026 resume before making resume CTA public.
+              Hidden temporarily — current /Ally Zach Resume.pdf is stale (lists Messari
+              as present role, no Pantera/Syndicate) and exposes a home street address. */}
         </div>
 
         <div className="flex items-center justify-center gap-4 pt-2">

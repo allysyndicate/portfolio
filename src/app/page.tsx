@@ -39,8 +39,7 @@ export default function Home() {
                 </a>
               ))}
             </div>
-            Built with Next.js, React, and Tailwind. Placeholder content — final
-            copy in progress.
+            Built with Next.js, React, and Tailwind.
           </footer>
         </main>
       </div>

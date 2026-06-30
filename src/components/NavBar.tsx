@@ -80,14 +80,8 @@ export default function NavBar() {
               </a>
             );
           })}
-          <a
-            href="/Ally Zach Resume.pdf"
-            aria-label="Resume (PDF)"
-            title="Resume"
-            className="inline-flex h-10 items-center justify-center rounded-full border border-[var(--accent)]/25 bg-[var(--bg-elev)]/80 px-5 text-sm font-medium text-[var(--slate-light)] shadow-sm shadow-black/10 transition-all hover:-translate-y-0.5 hover:border-[var(--accent)]/60 hover:bg-[var(--accent-tint)] hover:text-[var(--accent)] hover:shadow-[0_8px_24px_-8px_var(--accent)]"
-          >
-            Resume
-          </a>
+          {/* TODO: replace with updated 2026 resume before making resume CTA public.
+              Hidden temporarily — current /Ally Zach Resume.pdf is stale and exposes a home street address. */}
         </nav>
 
         <button
@@ -122,17 +116,8 @@ export default function NavBar() {
                 </a>
               </li>
             ))}
-            <li className="mt-3 flex">
-              <a
-                href="/Ally Zach Resume.pdf"
-                onClick={() => setOpen(false)}
-                aria-label="Resume (PDF)"
-                title="Resume"
-                className="inline-flex h-10 w-full items-center justify-center rounded-full border border-[var(--accent)]/25 bg-[var(--bg-elev)]/80 px-5 text-sm font-medium text-[var(--slate-light)] shadow-sm shadow-black/10 transition-all hover:-translate-y-0.5 hover:border-[var(--accent)]/60 hover:bg-[var(--accent-tint)] hover:text-[var(--accent)] hover:shadow-[0_8px_24px_-8px_var(--accent)]"
-              >
-                Resume
-              </a>
-            </li>
+            {/* TODO: replace with updated 2026 resume before making resume CTA public.
+                Hidden temporarily — current /Ally Zach Resume.pdf is stale and exposes a home street address. */}
           </ul>
         </nav>
       )}

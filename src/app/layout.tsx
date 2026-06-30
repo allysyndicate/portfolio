@@ -13,7 +13,7 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ally Zach — Product Engineer",
+  title: "Ally Zach — Research Engineer & Product Builder",
   description:
     "Ally Zach: structural engineer turned crypto research engineer turned AI-product builder. Cofounder of Syndicate.",
 };
