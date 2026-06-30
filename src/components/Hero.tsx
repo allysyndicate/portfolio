@@ -5,7 +5,7 @@ export default function Hero() {
     <section
       id="about"
       aria-label="Introduction"
-      className="relative scroll-mt-24 pt-24 pb-20 md:pt-28 md:pb-28 lg:pt-28"
+      className="relative scroll-mt-24 pt-20 pb-14 sm:pt-24 sm:pb-20 md:pt-28 md:pb-28 lg:pt-28"
     >
       <div
         aria-hidden
@@ -19,7 +19,7 @@ export default function Hero() {
           <div className="mt-3 text-xs font-bold uppercase tracking-[0.25em] text-[var(--accent)]">
             ABOUT ME
           </div>
-          <p className="mt-6 max-w-2xl leading-relaxed text-[var(--slate)]">
+          <p className="mt-5 max-w-2xl leading-relaxed text-[var(--slate)] sm:mt-6">
             I started as a{" "}
             <strong className="font-semibold text-[var(--slate-lightest)]">
               structural engineer
@@ -64,7 +64,7 @@ export default function Hero() {
             : an AI agent orchestration app for coordinating specialized agents
             across messy, multi-step workflows.
           </p>
-          <div className="mt-6 flex items-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
             {socials.map((s) => (
               <a
                 key={s.label}
@@ -117,7 +117,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <ul className="mt-16 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-white/5 pt-6 text-sm text-[var(--slate)]">
+      <ul className="mt-12 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/5 pt-5 text-xs text-[var(--slate)] sm:mt-16 sm:gap-x-6 sm:pt-6 sm:text-sm">
         {[
           "Structural Engineering",
           "Crypto Research",

@@ -41,11 +41,11 @@ function Section({
       id={id}
       aria-label={label}
       style={style}
-      className="scroll-mt-24 py-9 md:py-12"
+      className="scroll-mt-24 py-8 md:py-12"
     >
       {!hideHeading && (
         <h2
-          className={`mb-10 text-3xl font-bold tracking-tight text-[var(--slate-lightest)] sm:text-4xl ${
+          className={`mb-8 text-2xl font-bold tracking-tight text-[var(--slate-lightest)] sm:mb-10 sm:text-4xl ${
             centeredHeading ? "text-center" : ""
           }`}
         >
@@ -244,9 +244,9 @@ const syndicateHighlights = [
 export function SideProjects() {
   return (
     <Section id="side-projects" label="Side Projects" centeredHeading>
-      <div className="overflow-hidden rounded-2xl border border-[var(--accent)]/25 bg-[var(--bg-elev)]/60 shadow-lg shadow-black/20">
-        <div className="p-8 md:p-12">
-          <div className="space-y-8">
+      <div className="overflow-hidden rounded-xl border border-[var(--accent)]/25 bg-[var(--bg-elev)]/60 shadow-lg shadow-black/20 sm:rounded-2xl">
+        <div className="p-5 sm:p-8 md:p-12">
+          <div className="space-y-7 sm:space-y-8">
             <div className="max-w-[20rem] space-y-2 text-left">
               <h3 className="flex justify-start leading-none">
                 <span className="sr-only">Syndicate</span>
@@ -266,7 +266,7 @@ export function SideProjects() {
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(18rem,0.9fr)] md:items-center">
-              <blockquote className="space-y-3 rounded-xl border-l-2 border-[var(--accent)]/50 border-y border-r border-y-[var(--accent)]/15 border-r-[var(--accent)]/15 bg-[var(--accent)]/[0.06] px-5 py-4 text-[var(--slate)] shadow-sm shadow-black/10">
+              <blockquote className="space-y-3 rounded-xl border-l-2 border-[var(--accent)]/50 border-y border-r border-y-[var(--accent)]/15 border-r-[var(--accent)]/15 bg-[var(--accent)]/[0.06] px-4 py-4 text-sm leading-relaxed text-[var(--slate)] shadow-sm shadow-black/10 sm:px-5 sm:text-base">
                 <span className="block">
                   I&apos;m the technical cofounder and engineer of Syndicate.
                 </span>
@@ -303,7 +303,7 @@ export function SideProjects() {
             </div>
           </div>
 
-          <ul className="mt-8 grid gap-x-10 gap-y-3 border-t border-[var(--accent)]/15 pt-8 text-sm text-[var(--slate-light)] md:grid-cols-2">
+          <ul className="mt-7 grid gap-x-10 gap-y-4 border-t border-[var(--accent)]/15 pt-7 text-sm leading-relaxed text-[var(--slate-light)] md:mt-8 md:grid-cols-2 md:pt-8">
             {syndicateHighlights.map((h) => (
               <li key={h.lead} className="flex gap-3">
                 <span aria-hidden className="mt-1 text-[var(--accent)]">
@@ -319,19 +319,19 @@ export function SideProjects() {
             ))}
           </ul>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="mt-8 flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center">
             <a
               href="https://usesyndicate.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center rounded-md bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--accent-strong)]"
+              className="group inline-flex items-center justify-center rounded-md bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--accent-strong)]"
             >
               Visit usesyndicate.org
               <span className="ml-1 transition-transform group-hover:translate-x-1">
                 →
               </span>
             </a>
-            <p className="ml-auto inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-3 py-1 text-xs font-medium text-[var(--slate-light)]">
+            <p className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-3 py-1.5 text-center text-xs font-medium leading-snug text-[var(--slate-light)] sm:ml-auto">
               <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
               Closed beta launching within the next month
             </p>
@@ -371,7 +371,7 @@ const honors = [
 export function Education() {
   return (
     <Section id="education" label="Education" centeredHeading>
-      <div className="group relative overflow-hidden rounded-2xl border border-[var(--accent)]/30 bg-gradient-to-br from-[var(--bg-elev-2)] via-[var(--bg-elev)] to-[var(--bg-elev-2)] p-8 shadow-xl shadow-black/30 ring-1 ring-[var(--accent)]/10 transition-all duration-300 hover:border-[var(--accent)]/55 hover:shadow-2xl hover:shadow-[var(--accent)]/20 md:p-12">
+      <div className="group relative overflow-hidden rounded-xl border border-[var(--accent)]/30 bg-gradient-to-br from-[var(--bg-elev-2)] via-[var(--bg-elev)] to-[var(--bg-elev-2)] p-5 shadow-xl shadow-black/30 ring-1 ring-[var(--accent)]/10 transition-all duration-300 hover:border-[var(--accent)]/55 hover:shadow-2xl hover:shadow-[var(--accent)]/20 sm:rounded-2xl sm:p-8 md:p-12">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-70"
@@ -381,11 +381,11 @@ export function Education() {
           className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[var(--accent)]/15 blur-3xl"
         />
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-start gap-3">
           <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--accent)] to-[var(--accent-strong)] text-white shadow-md shadow-[var(--accent)]/30">
             <img src="/illinois-block-i.png" alt="" aria-hidden className="h-9 w-9 object-contain" />
           </span>
-          <div>
+          <div className="min-w-0">
             <h3 className="text-xl font-bold tracking-tight text-[var(--slate-lightest)] sm:text-2xl">
               University of Illinois at Urbana-Champaign
             </h3>
@@ -401,7 +401,7 @@ export function Education() {
               key={d.level}
               className="relative rounded-xl border border-[var(--accent)]/20 bg-[var(--bg-elev)]/60 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--accent)]/45"
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-start gap-3">
                 <span
                   className={
                     d.primary
@@ -411,7 +411,7 @@ export function Education() {
                 >
                   {d.level}
                 </span>
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm font-bold text-[var(--slate-lightest)]">
                     {d.title}
                   </p>
@@ -526,10 +526,10 @@ const skills = [
 export function Resume() {
   return (
     <Section id="resume" label="The Full Record" centeredHeading>
-      <div className="overflow-hidden rounded-2xl bg-[#eef3ff] text-[#0e1830] shadow-2xl shadow-black/40 ring-1 ring-white/10">
-        <div className="p-8 md:p-12">
+      <div className="overflow-hidden rounded-xl bg-[#eef3ff] text-[#0e1830] shadow-2xl shadow-black/40 ring-1 ring-white/10 sm:rounded-2xl">
+        <div className="p-5 sm:p-8 md:p-12">
           {/* Single column — experience, teaching timeline, then skills */}
-          <div className="space-y-12">
+          <div className="space-y-10 sm:space-y-12">
             <div>
               <p className="mb-6 text-xs font-bold uppercase tracking-[0.25em] text-[var(--accent-strong)]">
                 Earlier Experience
@@ -628,16 +628,16 @@ export function Contact() {
           and agentic systems. If you&apos;re building in that space, I&apos;d
           love to talk.
         </p>
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
           <a
             href="mailto:allyzach28@gmail.com"
-            className="rounded-md bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--accent-strong)]"
+            className="rounded-md bg-[var(--accent)] px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[var(--accent-strong)]"
           >
             Say Hello
           </a>
           <a
             href="/Ally Zach Resume.pdf"
-            className="group inline-flex items-center rounded-md border border-[var(--accent)] px-6 py-3 text-sm font-semibold text-[var(--accent)] transition-colors hover:bg-[var(--accent-tint)]"
+            className="group inline-flex items-center justify-center rounded-md border border-[var(--accent)] px-6 py-3 text-sm font-semibold text-[var(--accent)] transition-colors hover:bg-[var(--accent-tint)]"
           >
             View Full Résumé
             <span className="ml-1 transition-transform group-hover:translate-x-1">

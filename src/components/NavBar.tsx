@@ -10,6 +10,26 @@ function isItemActive(item: NavItem, active: string) {
   return item.id === active;
 }
 
+function MenuIcon({ open }: { open: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      aria-hidden
+      className="h-5 w-5"
+    >
+      {open ? (
+        <path d="M6 6l12 12M18 6 6 18" />
+      ) : (
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      )}
+    </svg>
+  );
+}
+
 export default function NavBar() {
   const [active, setActive] = useState<string>(sections[0].id);
   const [open, setOpen] = useState(false);
@@ -35,15 +55,14 @@ export default function NavBar() {
     <header
       className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-[var(--bg)]/80 backdrop-blur"
     >
-      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-6 py-4 md:px-10">
+      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-3 sm:px-6 md:px-10 md:py-4">
         <a
           href="#about"
-          className="text-lg font-bold tracking-tight text-[var(--slate-lightest)]"
+          className="text-base font-bold tracking-tight text-[var(--slate-lightest)] sm:text-lg"
         >
           Ally Zach<span className="text-[var(--accent)]">.</span>
         </a>
 
-        {/* Desktop nav */}
         <nav className="hidden items-center gap-8 md:flex" aria-label="Sections">
           {sections.map((s) => {
             const isActive = isItemActive(s, active);
@@ -71,7 +90,6 @@ export default function NavBar() {
           </a>
         </nav>
 
-        {/* Mobile toggle */}
         <button
           type="button"
           aria-label="Toggle navigation menu"
@@ -79,16 +97,13 @@ export default function NavBar() {
           onClick={() => setOpen((v) => !v)}
           className="flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-[var(--slate-lightest)] md:hidden"
         >
-          <span aria-hidden className="text-lg leading-none">
-            {open ? "✕" : "☰"}
-          </span>
+          <MenuIcon open={open} />
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
         <nav
-          className="border-t border-white/5 bg-[var(--bg)] px-6 py-4 md:hidden"
+          className="border-t border-white/5 bg-[var(--bg)] px-4 py-4 shadow-xl shadow-black/20 sm:px-6 md:hidden"
           aria-label="Sections"
         >
           <ul className="space-y-1">
@@ -107,13 +122,13 @@ export default function NavBar() {
                 </a>
               </li>
             ))}
-            <li className="mt-2 flex">
+            <li className="mt-3 flex">
               <a
                 href="/Ally Zach Resume.pdf"
                 onClick={() => setOpen(false)}
                 aria-label="Resume (PDF)"
                 title="Resume"
-                className="inline-flex h-10 items-center justify-center rounded-full border border-[var(--accent)]/25 bg-[var(--bg-elev)]/80 px-5 text-sm font-medium text-[var(--slate-light)] shadow-sm shadow-black/10 transition-all hover:-translate-y-0.5 hover:border-[var(--accent)]/60 hover:bg-[var(--accent-tint)] hover:text-[var(--accent)] hover:shadow-[0_8px_24px_-8px_var(--accent)]"
+                className="inline-flex h-10 w-full items-center justify-center rounded-full border border-[var(--accent)]/25 bg-[var(--bg-elev)]/80 px-5 text-sm font-medium text-[var(--slate-light)] shadow-sm shadow-black/10 transition-all hover:-translate-y-0.5 hover:border-[var(--accent)]/60 hover:bg-[var(--accent-tint)] hover:text-[var(--accent)] hover:shadow-[0_8px_24px_-8px_var(--accent)]"
               >
                 Resume
               </a>

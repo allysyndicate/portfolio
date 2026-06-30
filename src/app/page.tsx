@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <GlowBackground />
       <NavBar />
-      <div className="relative z-10 mx-auto max-w-screen-xl px-6 md:px-10">
+      <div className="relative z-10 mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10">
         <main>
           <Hero />
           <Chapters />
@@ -16,7 +16,7 @@ export default function Home() {
           <Education />
           <Resume />
           <Contact />
-          <footer className="border-t border-white/5 py-10 text-center text-xs text-[var(--slate)]">
+          <footer className="border-t border-white/5 py-8 text-center text-xs leading-relaxed text-[var(--slate)] sm:py-10">
             <div className="mb-4 flex items-center justify-center gap-5">
               {socials.map((s) => (
                 <a

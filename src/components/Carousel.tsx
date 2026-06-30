@@ -142,7 +142,7 @@ export default function Carousel({
             data-card
             aria-roledescription="slide"
             aria-label={`${i + 1} of ${projects.length}`}
-            className="w-[78%] shrink-0 snap-start sm:w-[58%] lg:w-[46%]"
+            className="w-[86%] shrink-0 snap-start sm:w-[58%] lg:w-[46%]"
           >
             <a
               href={p.href}
@@ -152,7 +152,7 @@ export default function Carousel({
               onClick={(e) => {
                 if (drag.current.moved) e.preventDefault();
               }}
-              className="group block h-full overflow-hidden rounded-lg border border-[var(--bg-elev)] bg-[var(--bg-elev)]/40 transition hover:border-[var(--accent)] hover:bg-[var(--bg-elev)]/70"
+              className="group block h-full min-w-0 overflow-hidden rounded-lg border border-[var(--bg-elev)] bg-[var(--bg-elev)]/40 transition hover:border-[var(--accent)] hover:bg-[var(--bg-elev)]/70"
             >
               {p.img ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -173,9 +173,9 @@ export default function Carousel({
                 </div>
               )}
               <div className="p-4">
-                <h4 className="flex items-center font-medium text-[var(--slate-lightest)] group-hover:text-[var(--accent)]">
-                  {p.title}
-                  <span className="ml-1.5 inline-flex h-5 w-5 items-center justify-center rounded-full text-[var(--slate)] transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:bg-[var(--accent-tint)] group-hover:text-[var(--accent)]">
+                <h4 className="flex min-w-0 items-start gap-1.5 font-medium leading-snug text-[var(--slate-lightest)] group-hover:text-[var(--accent)]">
+                  <span className="min-w-0 [overflow-wrap:anywhere]">{p.title}</span>
+                  <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[var(--slate)] transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:bg-[var(--accent-tint)] group-hover:text-[var(--accent)]">
                     <ArrowIcon direction="upRight" />
                   </span>
                 </h4>
