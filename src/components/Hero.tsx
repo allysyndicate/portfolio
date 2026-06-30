@@ -25,16 +25,27 @@ export default function Hero() {
         {/* B — photo card + social links */}
         <div className="mx-auto w-full max-w-[15rem] md:mx-0 md:[grid-area:photo]">
           <div className="flex flex-col items-center">
-            <div className="relative mx-auto aspect-square w-44 overflow-hidden rounded-full border-2 border-[var(--accent)]/70 shadow-sm shadow-black/20 sm:w-48">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/twitter%20pro.jpg"
-                alt="Ally Zach"
-                className="h-full w-full object-cover object-center grayscale"
+            <div className="relative mx-auto aspect-square w-full max-w-[15rem]">
+              <div
+                aria-hidden
+                className="absolute inset-0 rounded-full border-2 border-[var(--accent)]/70"
+                style={{ clipPath: "inset(0 0 0 35%)" }}
+              />
+              <div className="absolute inset-5 overflow-hidden rounded-full ring-1 ring-white/5 sm:inset-6">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/twitter%20pro.jpg"
+                  alt="Ally Zach"
+                  className="h-full w-full object-cover object-center grayscale"
+                />
+              </div>
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -left-1 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-[var(--accent)]/45"
               />
               <span
                 aria-hidden
-                className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-[var(--accent)]/20"
+                className="pointer-events-none absolute right-2 top-8 h-1.5 w-8 rounded-full bg-[var(--accent)]/25"
               />
             </div>
             <div className="mt-4 flex w-full flex-wrap gap-2">
