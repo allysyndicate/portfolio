@@ -43,7 +43,9 @@ body {
   color: var(--slate);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* `clip` (not `hidden`) prevents horizontal scroll WITHOUT making <body> a
+     scroll container, which would break `position: sticky` in the About section. */
+  overflow-x: clip;
 }
 
 ::selection {
