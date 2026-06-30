@@ -12,7 +12,7 @@ export default function Hero() {
         className="grid-texture pointer-events-none absolute inset-0 -z-10"
       />
       <div className="grid items-center gap-10 md:grid-cols-[minmax(0,1.5fr)_minmax(15rem,0.7fr)] lg:gap-14">
-        <div>
+        <div className="order-last md:order-none">
           <h1 className="text-3xl font-bold leading-[1.05] tracking-tight text-[var(--slate-lightest)] sm:text-4xl lg:text-5xl">
             Ally Zach
           </h1>
@@ -88,8 +88,8 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="mx-auto w-full max-w-[18rem]">
-          <div className="relative mx-auto hidden aspect-square w-full max-w-[16.5rem] md:block lg:max-w-[17.5rem]">
+        <div className="order-first mx-auto w-full max-w-[18rem] md:order-none">
+          <div className="relative mx-auto aspect-square w-full max-w-[16.5rem] lg:max-w-[17.5rem]">
             <div
               aria-hidden
               className="absolute inset-0 rounded-full border-2 border-[var(--accent)]/70"
