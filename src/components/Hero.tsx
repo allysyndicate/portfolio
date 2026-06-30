@@ -117,16 +117,19 @@ export default function Hero() {
         </div>
       </div>
 
-      <ul className="mt-12 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/5 pt-5 text-xs text-[var(--slate)] sm:mt-16 sm:gap-x-6 sm:pt-6 sm:text-sm">
+      <ul className="mt-12 flex flex-wrap items-center gap-2 border-t border-white/5 pt-6 sm:mt-16 sm:gap-2.5 sm:pt-7">
         {[
           "Structural Engineering",
+          "Self-Taught Developer",
           "Crypto Research",
           "Data Products",
-          "Full-Stack",
-          "AI Agents",
-          "Computer Use",
+          "Mechanism Design",
+          "AI Agent Orchestration",
         ].map((k) => (
-          <li key={k} className="whitespace-nowrap">
+          <li
+            key={k}
+            className="whitespace-nowrap rounded-lg border border-[var(--accent)]/40 bg-[var(--accent-tint)] px-3 py-1.5 text-xs font-semibold tracking-wide text-[var(--slate-lightest)] transition-colors hover:border-[var(--accent)] sm:text-sm"
+          >
             {k}
           </li>
         ))}
