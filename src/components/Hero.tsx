@@ -1,76 +1,58 @@
 import { socials } from "./Sections";
 
-const intro =
-  "I started in structural engineering, but the real throughline has become building tools for messy systems. I taught myself software by following the problems in front of me: first automation, then markets, then crypto research, and now AI agent workflows.";
+const supporting =
+  "I started as a structural engineer, then taught myself software by automating repeatable design work at MKA. That thread pulled me into algorithmic trading, crypto research, data products, and now AI agent orchestration.";
 
-const timeline = [
+const currently =
+  "Currently on Pantera's in-house research team and technical cofounder of Syndicate.";
+
+const proof = [
   {
-    title: "Structures",
-    body: "Designed complex buildings and infrastructure, learning how to reason through technical systems with real constraints.",
+    title: "Started in structures",
+    body: "Nearly five years designing and analyzing complex buildings and infrastructure, where real constraints mattered.",
   },
   {
-    title: "Automation",
-    body: "At MKA, built scripts and workflows to automate repeatable structural design processes.",
+    title: "Built my way into software",
+    body: "Self-taught through Python, JavaScript, full-stack projects, MKA automation tools, and algorithmic trading systems.",
   },
   {
-    title: "Software",
-    body: "Taught myself Python, JavaScript, and full-stack development by using projects as bridges into new domains.",
-  },
-  {
-    title: "Markets",
-    body: "Moved into algorithmic trading, where software, data, markets, and fast feedback loops collided.",
-  },
-  {
-    title: "Research",
-    body: "Joined Pantera's in-house research team, working across crypto research, data products, writing, and full-stack tools.",
-  },
-  {
-    title: "Agents",
-    body: "Cofounded Syndicate, an AI agent orchestration app for coordinating specialized agents across messy workflows.",
+    title: "Now building research + agent systems",
+    body: "Data products, technical research, full-stack tools, mechanism design, and AI agent workflows at Pantera and Syndicate.",
   },
 ];
 
-const tags = [
-  "Structural Engineering",
-  "Self-Taught Developer",
-  "Crypto Research",
-  "Data Products",
-  "Mechanism Design",
-  "AI Agent Orchestration",
-];
-
-function PhotoCard() {
+function Photo() {
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[12rem] sm:max-w-[13rem]">
-      {/* Open accent arc sweeping the circle. */}
+    <div className="relative mx-auto w-full max-w-[18rem] sm:max-w-[20rem] lg:max-w-[22rem]">
+      {/* Soft accent glow behind the photo. */}
       <div
         aria-hidden
-        className="absolute inset-0 rounded-full border-[3px] border-[var(--accent)]"
-        style={{ clipPath: "inset(0 0 0 35%)" }}
+        className="absolute -inset-6 -z-20 rounded-[2.25rem] bg-[var(--accent)]/15 blur-2xl"
       />
-      <div className="absolute inset-4 overflow-hidden rounded-full shadow-2xl shadow-[var(--accent)]/20 ring-1 ring-white/10 sm:inset-5">
+      {/* Offset accent frame for a layered, editorial card feel. */}
+      <div
+        aria-hidden
+        className="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-[1.75rem] border border-[var(--accent)]/40"
+      />
+      <div className="overflow-hidden rounded-3xl shadow-2xl shadow-[var(--accent)]/25 ring-1 ring-white/10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/twitter%20pro.jpg"
           alt="Ally Zach"
-          className="h-full w-full object-cover object-center grayscale transition-all duration-700 hover:grayscale-0"
+          className="aspect-[4/5] h-full w-full object-cover object-center"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-full bg-[var(--accent)]/10 mix-blend-overlay"
+          className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10"
         />
       </div>
-      <span
-        aria-hidden
-        className="pointer-events-none absolute -left-2 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-[var(--accent)] shadow-[0_0_12px_2px_var(--accent)]"
-      />
     </div>
   );
 }
 
 function SocialLinks() {
   return (
-    <div className="mt-5 flex items-center justify-center gap-4">
+    <div className="flex items-center justify-center gap-4">
       {socials.map((s) => (
         <a
           key={s.label}
@@ -81,12 +63,7 @@ function SocialLinks() {
           title={`${s.label} · ${s.handle}`}
           className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--accent)]/40 bg-[var(--accent-tint)] text-[var(--accent)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white hover:shadow-lg hover:shadow-[var(--accent)]/30"
         >
-          <svg
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            aria-hidden
-            className="h-5 w-5"
-          >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className="h-5 w-5">
             {s.icon}
           </svg>
         </a>
@@ -95,40 +72,22 @@ function SocialLinks() {
   );
 }
 
-function Tags({ className = "" }: { className?: string }) {
+function ProofStrip() {
   return (
-    <ul className={`flex flex-wrap gap-2 ${className}`}>
-      {tags.map((t) => (
+    <ul className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      {proof.map((p) => (
         <li
-          key={t}
-          className="rounded-full border border-[var(--accent)]/25 bg-[var(--accent-tint)] px-3 py-1 text-xs font-medium text-[var(--slate-light)]"
+          key={p.title}
+          className="group rounded-2xl border border-white/10 bg-[var(--bg-elev)]/70 p-5 transition-colors hover:border-[var(--accent)]/40"
         >
-          {t}
+          <h3 className="text-sm font-semibold tracking-tight text-[var(--slate-lightest)]">
+            <span className="text-[var(--accent)]">→ </span>
+            {p.title}
+          </h3>
+          <p className="mt-2 text-sm leading-[1.6] text-[var(--slate)]">{p.body}</p>
         </li>
       ))}
     </ul>
-  );
-}
-
-function Timeline() {
-  return (
-    <ol className="relative mt-7 space-y-5 border-l border-[var(--accent)]/20 pl-6">
-      {timeline.map((step) => (
-        <li key={step.title} className="group relative">
-          {/* Node on the vertical line. */}
-          <span
-            aria-hidden
-            className="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-[var(--accent)] bg-[var(--bg)] transition-colors group-hover:bg-[var(--accent)]"
-          />
-          <h3 className="text-base font-semibold tracking-tight text-[var(--slate-lightest)]">
-            {step.title}
-          </h3>
-          <p className="mt-1 max-w-[38rem] text-sm leading-[1.6] text-[var(--slate)]">
-            {step.body}
-          </p>
-        </li>
-      ))}
-    </ol>
   );
 }
 
@@ -137,39 +96,77 @@ export default function Hero() {
     <section
       id="about"
       aria-label="Introduction"
-      className="relative scroll-mt-24 pt-20 pb-14 sm:pt-24 sm:pb-20 md:pt-28 md:pb-24"
+      className="relative scroll-mt-24 pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24"
     >
       <div
         aria-hidden
         className="grid-texture pointer-events-none absolute inset-0 -z-10"
       />
-      <div className="grid grid-cols-1 gap-x-12 gap-y-6 md:grid-cols-[minmax(12rem,0.85fr)_minmax(0,1.7fr)] md:items-start md:[grid-template-areas:'profile_head''profile_intro''profile_time']">
-        {/* Heading */}
-        <div className="md:[grid-area:head]">
-          <h1 className="text-3xl font-bold leading-[1.05] tracking-tight text-[var(--slate-lightest)] sm:text-4xl lg:text-5xl">
-            Ally Zach
-          </h1>
-          <div className="mt-3 text-xs font-bold uppercase tracking-[0.25em] text-[var(--accent)]">
+
+      <div className="flex flex-col gap-y-10 md:grid md:grid-cols-[1.15fr_0.85fr] md:items-center md:gap-x-14 md:gap-y-0">
+        {/* Name + eyebrow */}
+        <div className="order-1 md:col-start-1 md:row-start-1">
+          <div className="text-xs font-bold uppercase tracking-[0.28em] text-[var(--accent)]">
             About
+          </div>
+          <div className="mt-2 text-base font-semibold tracking-tight text-[var(--slate-light)]">
+            Ally Zach
           </div>
         </div>
 
-        {/* Profile card — photo, social links, and tags as one unit. */}
-        <div className="mt-2 md:mt-0 md:sticky md:top-24 md:self-start md:[grid-area:profile]">
-          <PhotoCard />
-          <SocialLinks />
-          <Tags className="mt-6 justify-center" />
+        {/* Photo + social (right column on desktop) */}
+        <div className="order-2 md:order-none md:col-start-2 md:row-span-5 md:row-start-1 md:self-center">
+          <Photo />
+          <div className="mt-7 hidden md:block">
+            <SocialLinks />
+          </div>
         </div>
 
-        {/* Short intro */}
-        <p className="max-w-[42rem] text-base leading-[1.75] text-[var(--slate-light)] md:[grid-area:intro] sm:text-lg">
-          {intro}
+        {/* Headline */}
+        <h1 className="order-3 max-w-[15ch] text-4xl font-bold leading-[1.04] tracking-tight text-[var(--slate-lightest)] sm:text-5xl lg:text-[3.75rem] md:col-start-1 md:row-start-2">
+          I used to design buildings.{" "}
+          <span className="text-[var(--accent)]">Now I build tools for messy systems.</span>
+        </h1>
+
+        {/* Supporting paragraph */}
+        <p className="order-4 max-w-[34rem] text-base leading-[1.7] text-[var(--slate-light)] sm:text-lg md:col-start-1 md:row-start-3">
+          {supporting}
         </p>
 
-        {/* Timeline — the main storytelling device. */}
-        <div className="md:[grid-area:time]">
-          <Timeline />
+        {/* Currently line */}
+        <p className="order-5 flex items-center gap-2.5 text-sm text-[var(--slate)] md:col-start-1 md:row-start-4">
+          <span
+            aria-hidden
+            className="h-2 w-2 flex-none rounded-full bg-[var(--accent)] shadow-[0_0_10px_2px_var(--accent)]"
+          />
+          {currently}
+        </p>
+
+        {/* Social links — mobile placement (desktop copy lives under the photo). */}
+        <div className="order-6 md:hidden">
+          <SocialLinks />
         </div>
+
+        {/* CTA buttons */}
+        <div className="order-7 flex flex-wrap items-center gap-3 md:col-start-1 md:row-start-5">
+          <a
+            href="#pantera"
+            className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[var(--accent-strong)] hover:shadow-lg hover:shadow-[var(--accent)]/30"
+          >
+            View work
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center rounded-full border border-[var(--accent)]/40 bg-[var(--accent-tint)] px-6 py-3 text-sm font-semibold text-[var(--slate-lightest)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-white"
+          >
+            Say hello
+          </a>
+        </div>
+      </div>
+
+      {/* Three-card proof strip below the hero. */}
+      <div className="mt-12 md:mt-16">
+        <ProofStrip />
       </div>
     </section>
   );
