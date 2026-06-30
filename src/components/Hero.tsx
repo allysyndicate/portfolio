@@ -17,7 +17,7 @@ export default function Hero() {
             Ally Zach
           </h1>
           <div className="mt-3 text-xs font-bold uppercase tracking-[0.25em] text-[var(--accent)]">
-            ABOUT ME
+            About
           </div>
           <p className="mt-5 max-w-2xl leading-relaxed text-[var(--slate)] sm:mt-6">
             I started my career as a{" "}
