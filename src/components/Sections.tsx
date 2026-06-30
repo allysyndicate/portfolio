@@ -290,13 +290,13 @@ export function SideProjects() {
                 </span>
               </blockquote>
 
-              <div className="group relative hidden aspect-[16/10] overflow-hidden rounded-2xl border border-[var(--accent)]/20 bg-[#071a3d] p-2 shadow-2xl shadow-black/35 transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(56,121,255,0.22)] md:block">
+              <div className="group relative aspect-[16/10] w-full min-w-0 max-w-full overflow-hidden rounded-2xl border border-[var(--accent)]/20 bg-[#071a3d] p-2 shadow-2xl shadow-black/35 transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(56,121,255,0.22)]">
                 <div className="h-full overflow-hidden rounded-2xl">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/syndicate-app.png"
                     alt="Syndicate desktop app — team workspace running autonomous AI agents"
-                    className="h-full w-full rounded-2xl object-contain object-center"
+                    className="h-full w-full max-w-full rounded-2xl object-contain object-center"
                   />
                 </div>
               </div>
