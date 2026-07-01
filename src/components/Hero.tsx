@@ -42,7 +42,7 @@ const journey: Journey[] = [
     id: "software",
     title: "Taught myself software",
     teaser: "Python became JavaScript, then full-stack.",
-    body: "So I kept going, teaching myself by building. Python, then JavaScript, then full-stack apps, whatever the next problem needed. I never learned software the tidy way; I just followed the mess and built my way through it.",
+    body: "My software education came through the work itself. I kept running into problems worth automating, then learned whatever I needed to build the next tool well.",
   },
   {
     id: "markets",
