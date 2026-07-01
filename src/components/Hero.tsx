@@ -245,9 +245,12 @@ function JourneyCard({
 
       {/* De-emphasized body, chunked into short paragraphs. */}
       <Collapse open={open}>
-        <div className="mt-5 max-w-prose space-y-2.5 border-t border-white/10 pt-5">
+        <div className="mt-5 max-w-prose space-y-3 border-t border-white/10 pt-5">
           {item.body.map((sentence) => (
-            <p key={sentence} className="text-sm leading-[1.7] text-[var(--slate)]">
+            <p
+              key={sentence}
+              className="text-[0.9375rem] leading-[1.7] text-[var(--slate-light)]"
+            >
               {sentence}
             </p>
           ))}
@@ -349,7 +352,7 @@ function JourneyCards() {
         <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
           How I got here
         </div>
-        <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--slate)]">
+        <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--slate-light)]">
           The short version of how a structural engineer ended up building AI agents.
         </p>
         <div className="mt-8 grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3">
@@ -357,7 +360,9 @@ function JourneyCards() {
             <div
               key={item.id}
               className={
-                index === journey.length - 1 ? "sm:col-span-2 lg:col-span-3" : ""
+                index === journey.length - 1
+                  ? "sm:col-span-2 sm:mx-auto sm:w-full sm:max-w-[calc((100%-1.75rem)/2)] lg:col-span-1 lg:col-start-2 lg:mx-0 lg:max-w-none"
+                  : ""
               }
             >
               <JourneyCard

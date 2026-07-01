@@ -142,7 +142,7 @@ export default function Carousel({
             data-card
             aria-roledescription="slide"
             aria-label={`${i + 1} of ${projects.length}`}
-            className="w-[86%] shrink-0 snap-start sm:w-[58%] lg:w-[46%]"
+            className="w-full shrink-0 snap-start sm:w-[calc((100%-1rem)/2)] lg:w-[calc((100%-2rem)/3)]"
           >
             <a
               href={p.href}
