@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { socials } from "./Sections";
 
 const supporting =
@@ -182,62 +185,151 @@ function CurrentlyCard() {
     </div>
   );
 }
-function JourneyCard({ item, index }: { item: Journey; index: number }) {
+/* Smooth height collapse without JS measurement: 1fr <-> 0fr grid rows. */
+function Collapse({ open, children }: { open: boolean; children: React.ReactNode }) {
   return (
-    <article className="flex h-full flex-col rounded-2xl border border-white/10 bg-[var(--bg-elev)]/60 p-6 sm:p-7 lg:p-8">
+    <div
+      className="grid transition-[grid-template-rows,opacity] duration-500 ease-in-out"
+      style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}
+      aria-hidden={!open}
+    >
+      <div className="overflow-hidden">{children}</div>
+    </div>
+  );
+}
+
+function JourneyCard({
+  item,
+  index,
+  expanded,
+}: {
+  item: Journey;
+  index: number;
+  expanded: boolean;
+}) {
+  return (
+    <article
+      className={`flex h-full flex-col rounded-2xl border bg-[var(--bg-elev)]/60 p-6 transition-all duration-500 sm:p-7 ${
+        expanded
+          ? "border-[var(--accent)]/25 lg:p-7"
+          : "border-white/10 lg:px-5 lg:py-4"
+      }`}
+    >
       {/* Scannable headline layer: badge chip + title + teaser. */}
       <div className="flex items-start gap-4">
         <span
           aria-hidden
-          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--accent)]/12 text-sm font-bold tabular-nums text-[var(--accent)] ring-1 ring-[var(--accent)]/30"
+          className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-sm font-bold tabular-nums ring-1 transition-colors duration-500 ${
+            expanded
+              ? "bg-[var(--accent)]/12 text-[var(--accent)] ring-[var(--accent)]/30"
+              : "bg-white/5 text-[var(--slate)] ring-white/10"
+          }`}
         >
           {String(index + 1).padStart(2, "0")}
         </span>
         <div>
-          <h3 className="text-lg font-bold tracking-tight text-[var(--slate-lightest)] sm:text-xl">
+          <h3
+            className={`text-lg font-bold tracking-tight transition-colors duration-500 sm:text-xl ${
+              expanded ? "text-[var(--slate-lightest)]" : "text-[var(--slate-light)]"
+            }`}
+          >
             {item.title}
           </h3>
-          <p className="mt-1 text-[0.9375rem] font-semibold leading-snug text-[var(--slate-light)]">
-            {item.teaser}
-          </p>
+          <Collapse open={expanded}>
+            <p className="mt-1 text-[0.9375rem] font-semibold leading-snug text-[var(--slate-light)]">
+              {item.teaser}
+            </p>
+          </Collapse>
         </div>
       </div>
 
       {/* De-emphasized body, chunked into short paragraphs. */}
-      <div className="mt-5 max-w-prose space-y-2.5 border-t border-white/10 pt-5">
-        {item.body.map((sentence) => (
-          <p
-            key={sentence}
-            className="text-sm leading-[1.7] text-[var(--slate)]"
-          >
-            {sentence}
-          </p>
-        ))}
-      </div>
+      <Collapse open={expanded}>
+        <div className="mt-5 max-w-prose space-y-2.5 border-t border-white/10 pt-5">
+          {item.body.map((sentence) => (
+            <p key={sentence} className="text-sm leading-[1.7] text-[var(--slate)]">
+              {sentence}
+            </p>
+          ))}
+        </div>
+      </Collapse>
     </article>
   );
 }
 
+const stageOf = (index: number) => (index < 3 ? 0 : index < 6 ? 1 : 2);
+
 function JourneyCards() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  // Scroll-linked expand/compress only on desktop with motion allowed;
+  // everywhere else (mobile, reduced-motion, SSR/no-JS) all cards stay expanded.
+  const [scrolly, setScrolly] = useState(false);
+  const [stage, setStage] = useState(0);
+
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const motion = window.matchMedia("(prefers-reduced-motion: no-preference)");
+    const update = () => setScrolly(desktop.matches && motion.matches);
+    update();
+    desktop.addEventListener("change", update);
+    motion.addEventListener("change", update);
+    return () => {
+      desktop.removeEventListener("change", update);
+      motion.removeEventListener("change", update);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!scrolly) return;
+    const el = trackRef.current;
+    if (!el) return;
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const rect = el.getBoundingClientRect();
+        const span = rect.height - window.innerHeight;
+        const p = span > 0 ? Math.min(1, Math.max(0, -rect.top / span)) : 1;
+        setStage(p < 0.38 ? 0 : p < 0.76 ? 1 : 2);
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [scrolly]);
+
   return (
-    <div>
-      <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
-        How I got here
-      </div>
-      <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--slate)]">
-        The short version of how a structural engineer ended up building AI agents.
-      </p>
-      <div className="mt-8 grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3">
-        {journey.map((item, index) => (
-          <div
-            key={item.id}
-            className={
-              index === journey.length - 1 ? "sm:col-span-2 lg:col-span-3" : ""
-            }
-          >
-            <JourneyCard item={item} index={index} />
-          </div>
-        ))}
+    // The tall track reserves scroll distance; the sticky frame inside it means
+    // nothing below the section shifts while rows expand/compress.
+    <div ref={trackRef} className={scrolly ? "lg:h-[260vh]" : undefined}>
+      <div className={scrolly ? "lg:sticky lg:top-24" : undefined}>
+        <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
+          How I got here
+        </div>
+        <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--slate)]">
+          The short version of how a structural engineer ended up building AI agents.
+        </p>
+        <div className="mt-8 grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3">
+          {journey.map((item, index) => (
+            <div
+              key={item.id}
+              className={
+                index === journey.length - 1 ? "sm:col-span-2 lg:col-span-3" : ""
+              }
+            >
+              <JourneyCard
+                item={item}
+                index={index}
+                expanded={!scrolly || stageOf(index) === stage}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
