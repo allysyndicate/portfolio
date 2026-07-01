@@ -185,13 +185,14 @@ function CurrentlyCard() {
     </div>
   );
 }
-/* Smooth height collapse without JS measurement: 1fr <-> 0fr grid rows. */
-function Collapse({ open, children }: { open: boolean; children: React.ReactNode }) {
+/* Smooth height collapse without JS measurement: fractional fr grid rows.
+   `open` is continuous 0..1 so scroll can interpolate height, not just toggle it. */
+function Collapse({ open, children }: { open: number; children: React.ReactNode }) {
   return (
     <div
-      className="grid transition-[grid-template-rows,opacity] duration-500 ease-in-out"
-      style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}
-      aria-hidden={!open}
+      className="grid"
+      style={{ gridTemplateRows: `${open}fr`, opacity: open }}
+      aria-hidden={open < 0.5}
     >
       <div className="overflow-hidden">{children}</div>
     </div>
@@ -201,18 +202,17 @@ function Collapse({ open, children }: { open: boolean; children: React.ReactNode
 function JourneyCard({
   item,
   index,
-  expanded,
+  open,
 }: {
   item: Journey;
   index: number;
-  expanded: boolean;
+  open: number;
 }) {
+  const expanded = open > 0.5;
   return (
     <article
-      className={`flex h-full flex-col rounded-2xl border bg-[var(--bg-elev)]/60 p-6 transition-all duration-500 sm:p-7 ${
-        expanded
-          ? "border-[var(--accent)]/25 lg:p-7"
-          : "border-white/10 lg:px-5 lg:py-4"
+      className={`flex h-full flex-col rounded-2xl border bg-[var(--bg-elev)]/60 p-6 transition-colors duration-500 sm:p-7 ${
+        expanded ? "border-[var(--accent)]/25" : "border-white/10"
       }`}
     >
       {/* Scannable headline layer: badge chip + title + teaser. */}
@@ -235,7 +235,7 @@ function JourneyCard({
           >
             {item.title}
           </h3>
-          <Collapse open={expanded}>
+          <Collapse open={open}>
             <p className="mt-1 text-[0.9375rem] font-semibold leading-snug text-[var(--slate-light)]">
               {item.teaser}
             </p>
@@ -244,7 +244,7 @@ function JourneyCard({
       </div>
 
       {/* De-emphasized body, chunked into short paragraphs. */}
-      <Collapse open={expanded}>
+      <Collapse open={open}>
         <div className="mt-5 max-w-prose space-y-2.5 border-t border-white/10 pt-5">
           {item.body.map((sentence) => (
             <p key={sentence} className="text-sm leading-[1.7] text-[var(--slate)]">
@@ -257,7 +257,15 @@ function JourneyCard({
   );
 }
 
-const stageOf = (index: number) => (index < 3 ? 0 : index < 6 ? 1 : 2);
+const groupOf = (index: number) => (index < 3 ? 0 : index < 6 ? 1 : 2);
+
+const smoothstep = (t: number) => t * t * (3 - 2 * t);
+
+// Continuous openness of a group given the smoothed stage value (0..2).
+// The 1.5x slope gives each group a plateau where it's fully open, with
+// eased crossfades to its neighbors instead of hard threshold flips.
+const opennessOf = (stage: number, group: number) =>
+  smoothstep(Math.min(1, Math.max(0, 1.5 * (1 - Math.abs(stage - group)))));
 
 function JourneyCards() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -284,19 +292,49 @@ function JourneyCards() {
     const el = trackRef.current;
     if (!el) return;
     let raf = 0;
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const rect = el.getBoundingClientRect();
-        const span = rect.height - window.innerHeight;
-        const p = span > 0 ? Math.min(1, Math.max(0, -rect.top / span)) : 1;
-        setStage(p < 0.38 ? 0 : p < 0.76 ? 1 : 2);
-      });
+    let running = false;
+    let current = 0;
+    let target = 0;
+    let last = 0;
+
+    const readTarget = () => {
+      const rect = el.getBoundingClientRect();
+      const span = rect.height - window.innerHeight;
+      const p = span > 0 ? Math.min(1, Math.max(0, -rect.top / span)) : 1;
+      target = p * 2;
     };
-    onScroll();
+
+    // Exponentially smooth the scroll-linked value toward its target so
+    // trackpad/wheel steps read as fluid motion instead of jumps. Native
+    // scrolling is never intercepted — this only softens what we render.
+    const tick = (now: number) => {
+      const dt = Math.min(64, now - last);
+      last = now;
+      current += (target - current) * (1 - Math.exp(-dt / 90));
+      if (Math.abs(target - current) < 0.002) {
+        current = target;
+        running = false;
+      }
+      setStage(current);
+      if (running) raf = requestAnimationFrame(tick);
+    };
+
+    const onScroll = () => {
+      readTarget();
+      if (!running) {
+        running = true;
+        last = performance.now();
+        raf = requestAnimationFrame(tick);
+      }
+    };
+
+    readTarget();
+    current = target;
+    setStage(current);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
+      running = false;
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
@@ -325,7 +363,7 @@ function JourneyCards() {
               <JourneyCard
                 item={item}
                 index={index}
-                expanded={!scrolly || stageOf(index) === stage}
+                open={scrolly ? opennessOf(stage, groupOf(index)) : 1}
               />
             </div>
           ))}
