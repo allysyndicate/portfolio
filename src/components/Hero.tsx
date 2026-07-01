@@ -167,7 +167,7 @@ function JourneyCard({
 }
 
 function JourneyCards() {
-  const [active, setActive] = useState("mka");
+  const [active, setActive] = useState("structures");
 
   return (
     <div>
