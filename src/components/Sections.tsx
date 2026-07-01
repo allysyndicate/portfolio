@@ -494,8 +494,12 @@ export function Contact() {
     <Section id="contact" label="Get in touch" centeredHeading>
       <div className="mx-auto max-w-lg space-y-6 text-center text-[var(--slate)]">
         <p>
-          I&apos;m focused on product engineering, research systems, and AI agent
-          workflows. If you&apos;re building in that world, I&apos;d love to talk.
+          Outside of work, life is centered just outside Portland, Oregon with
+          my family, a busy toddler, a Bernese mountain dog, and two Ragdoll
+          cats. I love eating my way through new cuisines and cooking at home,
+          and my weekends tend to follow the weather: snowboarding in winter,
+          paddleboarding when it&apos;s warm, plus bouldering, camping, and
+          anything else that gets me outside.
         </p>
         <div className="flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
           <a
