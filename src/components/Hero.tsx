@@ -4,7 +4,7 @@ import { useState } from "react";
 import { socials } from "./Sections";
 
 const supporting =
-  "I started as a structural engineer, taught myself software by automating real design workflows at MKA, then followed that thread into algorithmic trading, crypto research, data products, and AI agent orchestration.";
+  "I started as a structural engineer, then taught myself software by automating real design workflows at MKA. That path led me into algorithmic trading, crypto research, data products, and AI agent orchestration.";
 
 const currently =
   "Currently on Pantera's in-house research team and technical cofounder of Syndicate.";
@@ -220,11 +220,11 @@ export default function Hero() {
         </div>
 
         {/* Headline */}
-        <h1 className="order-3 text-4xl font-bold leading-[1.06] tracking-tight text-[var(--slate-lightest)] sm:text-5xl lg:text-[3.6rem] md:col-start-1 md:row-start-2">
-          <span className="block">From buildings to AI agents,</span>
+        <h1 className="order-3 text-balance text-4xl font-bold leading-[1.06] tracking-tight text-[var(--slate-lightest)] sm:text-5xl lg:text-[3.6rem] md:col-start-1 md:row-start-2">
+          <span className="block">I used to design buildings.</span>
           <span className="block">
-            I build tools for{" "}
-            <span className="text-[var(--accent)]">messy systems</span>.
+            Now I build the{" "}
+            <span className="text-[var(--accent)]">tools behind the work</span>.
           </span>
         </h1>
 
