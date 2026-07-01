@@ -21,37 +21,37 @@ const journey: Journey[] = [
     id: "structures",
     title: "Started in structures",
     teaser: "Designed real buildings with real constraints.",
-    body: "I earned degrees in civil engineering and spent nearly five years as a structural engineer, designing and analyzing complex buildings and infrastructure. That work taught me how to reason through technical systems where the math matters, the constraints are real, and mistakes are expensive.",
+    body: "I earned my degrees in civil engineering and spent almost five years as a structural engineer, designing and analyzing big, complicated buildings. It taught me to think hard about systems where the math has to be right, the constraints are real, and getting it wrong is expensive.",
   },
   {
     id: "mka",
     title: "Found code at MKA",
     teaser: "Automation was the first crack in the wall.",
-    body: "At MKA, I started writing scripts and workflows to automate repeatable structural design processes. The more I built, the more I realized I was drawn to the tools shaping the work, not just the drawings those tools produced.",
+    body: "At MKA I started writing scripts to automate the repetitive parts of structural design. The more I built, the more I noticed I cared about the tools shaping the work as much as the buildings themselves.",
   },
   {
     id: "software",
     title: "Taught myself software",
     teaser: "Python became JavaScript, then full-stack.",
-    body: "I kept teaching myself by building: Python scripts, JavaScript projects, full-stack apps, and whatever else helped me move from one problem to the next. I learned software by following the mess and building my way through it.",
+    body: "So I kept going, teaching myself by building. Python, then JavaScript, then full-stack apps, whatever the next problem needed. I never learned software the tidy way; I just followed the mess and built my way through it.",
   },
   {
     id: "markets",
     title: "Followed data into markets",
     teaser: "Algorithmic trading made feedback loops addictive.",
-    body: "Algorithmic trading pulled software, data, probability, and markets into one live system. It gave me a faster learning loop and eventually pulled me toward crypto, where research, product, and code blur together in useful ways.",
+    body: "Algorithmic trading pulled everything I loved into one live system: software, data, probability, and markets all at once. The feedback was fast and honest, and it eventually drew me into crypto, where research, product, and code blur together.",
   },
   {
     id: "research",
     title: "Built research systems",
     teaser: "Crypto research turned into products and tools.",
-    body: "At Pantera, I'm the second member of the in-house research team, working across technical writing, data products, portfolio support, mechanism design, and full-stack tools. The work sits in the middle of research, product, and systems-building.",
+    body: "At Pantera I'm the second member of our in-house research team, which really means I do a bit of everything: technical writing, data products, portfolio support, mechanism design, and the full-stack tools that tie it all together. I like living right where research, product, and systems-building overlap.",
   },
   {
     id: "agents",
     title: "Now building agents",
     teaser: "Syndicate is where the threads converge.",
-    body: "Syndicate came from using AI constantly and wanting a better way to coordinate specialized agents across real workflows. It is an AI agent orchestration app for turning fuzzy requests into teams, plans, tools, and shipped output.",
+    body: "Syndicate grew out of using AI all day and wishing I had a better way to coordinate specialized agents across real work. It's an orchestration app that turns a fuzzy request into a team, a plan, the right tools, and finished output.",
   },
 ];
 
