@@ -236,7 +236,7 @@ function JourneyCard({
             {item.title}
           </h3>
           <Collapse open={open}>
-            <p className="mt-1 text-[0.9375rem] font-semibold leading-snug text-[var(--accent)]">
+            <p className="mt-1.5 text-base font-semibold leading-snug tracking-[-0.01em] text-[var(--slate-lightest)] sm:text-[1.0625rem]">
               {item.teaser}
             </p>
           </Collapse>
