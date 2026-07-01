@@ -51,6 +51,12 @@ const journey: Journey[] = [
     body: "Algorithmic trading pulled everything I loved into one live system where code met probability in real time. The feedback was fast and honest, and it eventually drew me into crypto, where the research and the building are the same job.",
   },
   {
+    id: "messari",
+    title: "Learned crypto through data",
+    teaser: "Volatility became the bridge.",
+    body: "Algo trading taught me to pay attention to volatility, and crypto made that volatility impossible to ignore. That pulled me into what was effectively a data-science role at Messari, where I spent my days digging through protocol data and learning a new application or blockchain every time the work demanded it.",
+  },
+  {
     id: "research",
     title: "Built research systems",
     teaser: "Crypto research turned into products and tools.",
