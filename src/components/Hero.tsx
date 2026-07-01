@@ -19,7 +19,7 @@ type Journey = {
   id: string;
   title: string;
   teaser: string;
-  body: string;
+  body: string[];
 };
 
 const journey: Journey[] = [
@@ -27,43 +27,63 @@ const journey: Journey[] = [
     id: "structures",
     title: "Started in structures",
     teaser: "Five years designing high-rise towers.",
-    body: "I earned my BS and MS in civil engineering from the University of Illinois, then spent almost five years designing high-rise towers, over 7M sq ft across the US and SE Asia.",
+    body: [
+      "I earned my BS and MS in civil engineering from the University of Illinois, then spent almost five years designing high-rise towers, over 7M sq ft across the US and SE Asia.",
+    ],
   },
   {
     id: "mka",
     title: "Turned to tooling",
     teaser: "Automation was the first crack in the wall.",
-    body: "At MKA I started building office-wide design and analysis tools, first in Excel and Visual Basic, then in Python, to speed up how our projects got delivered. The more I built, the more I realized I cared about the tools shaping the work as much as the towers they helped design.",
+    body: [
+      "At MKA I started building office-wide design and analysis tools, first in Excel and Visual Basic, then in Python, to speed up how our projects got delivered.",
+      "The more I built, the more I realized I cared about the tools shaping the work as much as the towers they helped design.",
+    ],
   },
   {
     id: "software",
     title: "Taught myself software",
     teaser: "Python became JavaScript, then full-stack.",
-    body: "My software education came through the work itself. I kept running into problems worth automating, then learned whatever I needed to build the next tool well.",
+    body: [
+      "My software education came through the work itself.",
+      "I kept running into problems worth automating, then learned whatever I needed to build the next tool well.",
+    ],
   },
   {
     id: "markets",
     title: "Followed data into markets",
     teaser: "Algorithmic trading made feedback loops addictive.",
-    body: "Algorithmic trading put my code up against a live market for the first time. The market graded my work daily, in dollars, and that kind of feedback was hard to give up.",
+    body: [
+      "Algorithmic trading put my code up against a live market for the first time.",
+      "The market graded my work daily, in dollars, and that kind of feedback was hard to give up.",
+    ],
   },
   {
     id: "messari",
     title: "Learned crypto through data",
     teaser: "Volatility became the bridge.",
-    body: "Algo trading taught me to pay attention to volatility, and crypto made that volatility impossible to ignore. That pulled me into what was effectively a data-science role at Messari, where I spent my days digging through protocol data and learning a new application or blockchain every time the work demanded it.",
+    body: [
+      "Algo trading taught me to pay attention to volatility, and crypto made that volatility impossible to ignore.",
+      "That pulled me into what was effectively a data-science role at Messari, where I spent my days digging through protocol data and learning a new application or blockchain every time the work demanded it.",
+    ],
   },
   {
     id: "research",
     title: "Built research systems",
     teaser: "Research that ships as software.",
-    body: "At Pantera I'm the second member of our in-house research team, which in practice means I do a bit of everything. One week I'm writing a report on tokenization, the next I'm building the live dashboard that backs it up.",
+    body: [
+      "At Pantera I'm the second member of our in-house research team, which in practice means I do a bit of everything.",
+      "One week I'm writing a report on tokenization, the next I'm building the live dashboard that backs it up.",
+    ],
   },
   {
     id: "agents",
     title: "Now building agents",
     teaser: "Syndicate turns a request into a team.",
-    body: "Syndicate grew out of using AI all day and wishing I had a better way to coordinate specialized agents across real work. It's an orchestration app that turns a fuzzy request into a team with a plan and the tools to finish the job.",
+    body: [
+      "Syndicate grew out of using AI all day and wishing I had a better way to coordinate specialized agents across real work.",
+      "It's an orchestration app that turns a fuzzy request into a team with a plan and the tools to finish the job.",
+    ],
   },
 ];
 
@@ -164,26 +184,36 @@ function CurrentlyCard() {
 }
 function JourneyCard({ item, index }: { item: Journey; index: number }) {
   return (
-    <article className="flex h-full flex-col rounded-2xl border border-white/10 bg-[var(--bg-elev)]/60 p-6 sm:p-7">
-      <div className="flex items-baseline gap-3">
+    <article className="flex h-full flex-col rounded-2xl border border-white/10 bg-[var(--bg-elev)]/60 p-6 sm:p-7 lg:p-8">
+      {/* Scannable headline layer: badge chip + title + teaser. */}
+      <div className="flex items-start gap-4">
         <span
           aria-hidden
-          className="text-[0.8125rem] font-bold tabular-nums leading-none text-[var(--accent)]"
+          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--accent)]/12 text-sm font-bold tabular-nums text-[var(--accent)] ring-1 ring-[var(--accent)]/30"
         >
           {String(index + 1).padStart(2, "0")}
         </span>
-        <h3 className="text-lg font-semibold tracking-tight text-[var(--slate-lightest)] sm:text-xl">
-          {item.title}
-        </h3>
+        <div>
+          <h3 className="text-lg font-bold tracking-tight text-[var(--slate-lightest)] sm:text-xl">
+            {item.title}
+          </h3>
+          <p className="mt-1 text-[0.9375rem] font-semibold leading-snug text-[var(--slate-light)]">
+            {item.teaser}
+          </p>
+        </div>
       </div>
 
-      <p className="mt-3 text-[0.8125rem] uppercase tracking-[0.06em] leading-[1.5] text-[var(--slate)]">
-        {item.teaser}
-      </p>
-
-      <p className="mt-4 border-t border-white/10 pt-4 text-[0.9375rem] leading-[1.7] text-[var(--slate-light)]">
-        {item.body}
-      </p>
+      {/* De-emphasized body, chunked into short paragraphs. */}
+      <div className="mt-5 max-w-prose space-y-2.5 border-t border-white/10 pt-5">
+        {item.body.map((sentence) => (
+          <p
+            key={sentence}
+            className="text-sm leading-[1.7] text-[var(--slate)]"
+          >
+            {sentence}
+          </p>
+        ))}
+      </div>
     </article>
   );
 }
@@ -197,7 +227,7 @@ function JourneyCards() {
       <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--slate)]">
         The short version of how a structural engineer ended up building AI agents.
       </p>
-      <div className="mt-8 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+      <div className="mt-8 grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3">
         {journey.map((item, index) => (
           <div
             key={item.id}
