@@ -499,7 +499,9 @@ export function Contact() {
           cats. I love eating my way through new cuisines and cooking at home,
           and my weekends tend to follow the weather: snowboarding in winter,
           paddleboarding when it&apos;s warm, plus bouldering, camping, and
-          anything else that gets me outside.
+          anything else that gets me outside. After eight years in the Pacific
+          Northwest, my sports loyalty still belongs to where I grew up:
+          Chicago. Bears, Bulls, Cubs, and Hawks, always.
         </p>
         <div className="flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
           <a
