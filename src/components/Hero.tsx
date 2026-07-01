@@ -246,22 +246,6 @@ export default function Hero() {
         <div className="order-6 md:hidden">
           <SocialLinks />
         </div>
-
-        {/* CTA buttons */}
-        <div className="order-7 flex flex-wrap items-center gap-3 md:col-start-1 md:row-start-5">
-          <a
-            href="#pantera"
-            className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[var(--accent-strong)] hover:shadow-lg hover:shadow-[var(--accent)]/30"
-          >
-            View work
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center rounded-full border border-[var(--accent)]/40 bg-[var(--accent-tint)] px-6 py-3 text-sm font-semibold text-[var(--slate-lightest)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-white"
-          >
-            Say hello
-          </a>
-        </div>
       </div>
 
       {/* Six expandable journey cards below the hero. */}
