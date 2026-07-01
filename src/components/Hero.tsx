@@ -170,12 +170,16 @@ function JourneyCard({
   active,
   onActivate,
   compact = false,
+  reserveBodySpace = false,
 }: {
   item: Journey;
   active: boolean;
   onActivate: () => void;
   compact?: boolean;
+  reserveBodySpace?: boolean;
 }) {
+  const bodyOpen = active || reserveBodySpace;
+
   return (
     <button
       type="button"
@@ -212,11 +216,12 @@ function JourneyCard({
       {/* Expanded story — animates open via a 0fr→1fr grid row, no height measuring. */}
       <div
         className={`grid transition-[grid-template-rows] duration-500 ease-out motion-reduce:transition-none ${
-          active ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          bodyOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
         <div className="overflow-hidden">
           <p
+            aria-hidden={!active}
             className={`mt-4 border-t border-white/10 pt-4 text-[0.9375rem] leading-[1.7] text-[var(--slate-light)] transition-opacity duration-300 motion-reduce:transition-none ${
               active ? "opacity-100" : "opacity-0"
             }`}
@@ -298,6 +303,7 @@ function MobileJourneyCards() {
               item={item}
               active={active === item.id}
               onActivate={() => setActive(item.id)}
+              reserveBodySpace
             />
           </div>
         ))}
@@ -475,7 +481,7 @@ export default function Hero() {
 
       </div>
 
-      {/* Six expandable journey cards below the hero. */}
+      {/* Journey cards below the hero. */}
       <div className="mt-10 md:mt-14">
         <JourneyCards />
       </div>
