@@ -25,9 +25,9 @@ const journey: Journey[] = [
   },
   {
     id: "mka",
-    title: "Found code at MKA",
+    title: "Turned to tooling",
     teaser: "Automation was the first crack in the wall.",
-    body: "At MKA I started writing scripts to automate the repetitive parts of structural design. The more I built, the more I noticed I cared about the tools shaping the work as much as the buildings themselves.",
+    body: "At MKA I started building office-wide design and analysis tools, first in Excel and Visual Basic, then in Python, to speed up how our projects got delivered. The more I built, the more I realized I cared about the tools shaping the work as much as the towers they helped design.",
   },
   {
     id: "software",
