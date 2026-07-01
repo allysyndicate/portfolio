@@ -236,7 +236,7 @@ function JourneyCard({
             {item.title}
           </h3>
           <Collapse open={open}>
-            <p className="mt-1 text-[0.9375rem] font-semibold leading-snug text-[var(--slate-light)]">
+            <p className="mt-1 text-[0.9375rem] font-semibold leading-snug text-[var(--accent)]">
               {item.teaser}
             </p>
           </Collapse>
@@ -249,7 +249,7 @@ function JourneyCard({
           {item.body.map((sentence) => (
             <p
               key={sentence}
-              className="text-[0.9375rem] leading-[1.7] text-[var(--slate-light)]"
+              className="text-[0.9375rem] leading-[1.65] text-[var(--slate-lightest)]"
             >
               {sentence}
             </p>
