@@ -4,7 +4,7 @@ import { useState } from "react";
 import { socials } from "./Sections";
 
 const supporting =
-  "I started as a structural engineer, then taught myself software by automating real design workflows at MKA. That path led me into algorithmic trading, crypto research, data products, and AI agent orchestration.";
+  "I started as a structural engineer, then taught myself software by automating real design workflows at MKA. That same pull carried me into algorithmic trading, then into crypto, and now into building teams of AI agents that do real work.";
 
 const currently =
   "Currently: Research Engineer at Pantera Capital + technical cofounder of Syndicate.";
@@ -39,19 +39,19 @@ const journey: Journey[] = [
     id: "markets",
     title: "Followed data into markets",
     teaser: "Algorithmic trading made feedback loops addictive.",
-    body: "Algorithmic trading pulled everything I loved into one live system: software, data, probability, and markets all at once. The feedback was fast and honest, and it eventually drew me into crypto, where research, product, and code blur together.",
+    body: "Algorithmic trading pulled everything I loved into one live system where code met probability in real time. The feedback was fast and honest, and it eventually drew me into crypto, where the research and the building are the same job.",
   },
   {
     id: "research",
     title: "Built research systems",
     teaser: "Crypto research turned into products and tools.",
-    body: "At Pantera I'm the second member of our in-house research team, which really means I do a bit of everything: technical writing, data products, portfolio support, mechanism design, and the full-stack tools that tie it all together. I like living right where research, product, and systems-building overlap.",
+    body: "At Pantera I'm the second member of our in-house research team, which really means I do a bit of everything. One day it's technical writing or mechanism design, the next it's shipping a data product or building the full-stack tool that ties it all together. I like living right where research and building overlap.",
   },
   {
     id: "agents",
     title: "Now building agents",
     teaser: "Syndicate is where the threads converge.",
-    body: "Syndicate grew out of using AI all day and wishing I had a better way to coordinate specialized agents across real work. It's an orchestration app that turns a fuzzy request into a team, a plan, the right tools, and finished output.",
+    body: "Syndicate grew out of using AI all day and wishing I had a better way to coordinate specialized agents across real work. It's an orchestration app that turns a fuzzy request into a team with a plan and the tools to finish the job.",
   },
 ];
 
