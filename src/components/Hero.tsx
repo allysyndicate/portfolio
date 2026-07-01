@@ -213,9 +213,9 @@ export default function Hero() {
           <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
             About
           </div>
-          <div className="mt-3 text-sm font-semibold uppercase tracking-[0.15em] text-[var(--slate-light)]">
+          <h2 className="mt-2 flex items-center gap-2.5 text-2xl font-bold text-[var(--slate-lightest)]">
             Ally Zach
-          </div>
+          </h2>
         </div>
 
         {/* Photo + social (right column on desktop) */}
