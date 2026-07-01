@@ -179,15 +179,15 @@ export function SideProjects() {
                 <span className="block">
                   I&apos;m the technical cofounder and engineer behind Syndicate,
                   building the product in close partnership with my cofounder, who
-                  leads the business side. We made it because we wanted a product
-                  we could use every day, both at work and on personal projects,
-                  and it became the one we reach for constantly.
+                  leads the business side. We built it because we wanted a tool
+                  we&apos;d actually use every day ourselves, and we do, at work
+                  and on personal projects.
                 </span>
                 <span className="block">
-                  The idea is simple: everyone gets a team. Describe the outcome
-                  you want and specialist agents plan it, build it, and hand it
-                  back finished, turning &ldquo;I wish I could build that&rdquo;
-                  into something you actually ship.
+                  Everyone gets a team. You describe what you want, and specialist
+                  agents plan the work and hand you back something finished.
+                  It&apos;s built for every idea that used to stall at &ldquo;I wish
+                  I could build that.&rdquo;
                 </span>
               </blockquote>
 

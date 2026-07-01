@@ -37,7 +37,7 @@ export const chapters: Chapter[] = [
     location: "Remote",
     years: "2024 — Present",
     intro:
-      "Cross-functional research engineer at Pantera spanning mechanism design, data science, technical writing, and full-stack data products, with portfolio-company advising across the firm's investments.",
+      "I'm one of two people on Pantera's in-house research team. I publish the firm's data-driven research and build the dashboards and data products behind it, and I advise portfolio companies across the firm's investments.",
     accent: "#818cf8",
     accentTint: "rgba(129, 140, 248, 0.16)",
     projects: [
@@ -122,7 +122,7 @@ export const chapters: Chapter[] = [
     location: "Remote",
     years: "2022 — 2024",
     intro:
-      "Authored 50+ long-form research reports across L1s, L2s, NFTs, DeFi, and consumer apps, and built the analytics tooling and automation behind the research team.",
+      "I wrote 50+ long-form research reports, covering everything from L1 protocols to consumer apps, and built the analytics tooling the research team ran on.",
     accent: "#38bdf8",
     accentTint: "rgba(56, 189, 248, 0.14)",
     projects: [
@@ -186,7 +186,7 @@ export const chapters: Chapter[] = [
     location: "Seattle, WA",
     years: "2018 — 2022",
     intro:
-      "Specialized in three areas for high-rise towers: high-seismic and high-wind design, foundation design, and performance-based design. Engineered more than 7M sq ft of construction across the US and Asia.",
+      "I spent four years at MKA designing high-rise towers, focused on performance-based design and foundations in high-seismic and high-wind regions. In total I engineered more than 7M sq ft of construction across the US and SE Asia.",
     accent: "#60a5fa",
     accentTint: "rgba(96, 165, 250, 0.14)",
     projects: [
