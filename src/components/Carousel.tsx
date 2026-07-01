@@ -35,6 +35,10 @@ export default function Carousel({
 }) {
   const trackRef = useRef<HTMLUListElement>(null);
   const [active, setActive] = useState(0);
+  // Edge state from real scroll metrics so it works for multi-up layouts,
+  // where the leftmost active card never reaches the last index.
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
 
   // Drag-to-scroll (pointer). Suppress click after a real drag.
   const drag = useRef({ down: false, moved: false, startX: 0, startLeft: 0 });
@@ -58,24 +62,31 @@ export default function Carousel({
     [cardWidth, projects.length]
   );
 
-  // Track active card from scroll position.
+  // Track active card + edge state from scroll position.
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
     let raf = 0;
+    const sync = () => {
+      const w = cardWidth();
+      if (w) setActive(Math.round(track.scrollLeft / w));
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      setAtStart(track.scrollLeft <= 1);
+      setAtEnd(track.scrollLeft >= maxScroll - 1);
+    };
     const onScroll = () => {
       cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const w = cardWidth();
-        if (w) setActive(Math.round(track.scrollLeft / w));
-      });
+      raf = requestAnimationFrame(sync);
     };
+    sync();
     track.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
     return () => {
       track.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(raf);
     };
-  }, [cardWidth]);
+  }, [cardWidth, projects.length]);
 
   const onPointerDown = (e: React.PointerEvent) => {
     const track = trackRef.current;
@@ -122,6 +133,7 @@ export default function Carousel({
 
   return (
     <div className="relative">
+      <div className="relative">
       <ul
         ref={trackRef}
         role="group"
@@ -134,7 +146,7 @@ export default function Carousel({
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
         onPointerLeave={endDrag}
-        className="carousel-track flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 motion-reduce:scroll-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
+        className="carousel-track flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth scroll-pl-10 px-10 pb-4 motion-reduce:scroll-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
       >
         {projects.map((p, i) => (
           <li
@@ -142,7 +154,7 @@ export default function Carousel({
             data-card
             aria-roledescription="slide"
             aria-label={`${i + 1} of ${projects.length}`}
-            className="w-full shrink-0 snap-start sm:w-[calc((100%-1rem)/2)] lg:w-[calc((100%-2rem)/3)]"
+            className="w-[80%] shrink-0 snap-start sm:w-[45%] lg:w-[31%]"
           >
             <a
               href={p.href}
@@ -188,8 +200,43 @@ export default function Carousel({
         ))}
       </ul>
 
-      {/* Controls: dots + prev/next */}
-      <div className="mt-2 flex items-center justify-between">
+        {/* Edge fades over the peeking previous/next cards */}
+        <div
+          aria-hidden
+          className={`pointer-events-none absolute inset-y-0 left-0 z-10 w-14 rounded-l-lg bg-gradient-to-r from-[var(--bg)] via-[var(--bg)]/70 to-transparent transition-opacity duration-300 motion-reduce:transition-none ${
+            atStart ? "opacity-0" : "opacity-100"
+          }`}
+        />
+        <div
+          aria-hidden
+          className={`pointer-events-none absolute inset-y-0 right-0 z-10 w-14 rounded-r-lg bg-gradient-to-l from-[var(--bg)] via-[var(--bg)]/70 to-transparent transition-opacity duration-300 motion-reduce:transition-none ${
+            atEnd ? "opacity-0" : "opacity-100"
+          }`}
+        />
+
+        {/* Side controls: prev/next on the left and right edges */}
+        <button
+          type="button"
+          aria-label="Previous project"
+          onClick={() => scrollToIndex(active - 1)}
+          disabled={atStart}
+          className="absolute left-1 top-1/2 z-20 inline-flex h-10 w-10 shrink-0 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--accent)]/25 bg-[var(--bg-elev)]/90 text-[var(--slate-light)] shadow-md shadow-black/30 backdrop-blur transition-all enabled:hover:border-[var(--accent)] enabled:hover:bg-[var(--accent-tint)] enabled:hover:text-[var(--accent)] disabled:cursor-not-allowed disabled:opacity-0"
+        >
+          <ArrowIcon direction="left" />
+        </button>
+        <button
+          type="button"
+          aria-label="Next project"
+          onClick={() => scrollToIndex(active + 1)}
+          disabled={atEnd}
+          className="absolute right-1 top-1/2 z-20 inline-flex h-10 w-10 shrink-0 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--accent)]/25 bg-[var(--bg-elev)]/90 text-[var(--slate-light)] shadow-md shadow-black/30 backdrop-blur transition-all enabled:hover:border-[var(--accent)] enabled:hover:bg-[var(--accent-tint)] enabled:hover:text-[var(--accent)] disabled:cursor-not-allowed disabled:opacity-0"
+        >
+          <ArrowIcon direction="right" />
+        </button>
+      </div>
+
+      {/* Position dots */}
+      <div className="mt-2 flex items-center justify-center">
         <ul className="flex gap-2" aria-label="Carousel position">
           {projects.map((p, i) => (
             <li key={p.title}>
@@ -207,26 +254,6 @@ export default function Carousel({
             </li>
           ))}
         </ul>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            aria-label="Previous project"
-            onClick={() => scrollToIndex(active - 1)}
-            disabled={active === 0}
-            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--accent)]/25 bg-[var(--bg-elev)]/70 text-[var(--slate-light)] shadow-sm shadow-black/20 transition-all enabled:hover:-translate-y-0.5 enabled:hover:border-[var(--accent)] enabled:hover:bg-[var(--accent-tint)] enabled:hover:text-[var(--accent)] disabled:cursor-not-allowed disabled:opacity-30"
-          >
-            <ArrowIcon direction="left" />
-          </button>
-          <button
-            type="button"
-            aria-label="Next project"
-            onClick={() => scrollToIndex(active + 1)}
-            disabled={active === projects.length - 1}
-            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--accent)]/25 bg-[var(--bg-elev)]/70 text-[var(--slate-light)] shadow-sm shadow-black/20 transition-all enabled:hover:-translate-y-0.5 enabled:hover:border-[var(--accent)] enabled:hover:bg-[var(--accent-tint)] enabled:hover:text-[var(--accent)] disabled:cursor-not-allowed disabled:opacity-30"
-          >
-            <ArrowIcon direction="right" />
-          </button>
-        </div>
       </div>
     </div>
   );
