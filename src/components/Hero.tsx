@@ -118,42 +118,47 @@ function SocialLinks() {
 function CurrentlyCard() {
   const linkClass =
     "font-semibold text-[var(--accent)] underline decoration-[var(--accent)]/35 underline-offset-4 transition-colors hover:text-[var(--accent-strong)] hover:decoration-[var(--accent-strong)]";
+  const labelClass =
+    "w-24 shrink-0 text-[0.6875rem] font-bold uppercase tracking-[0.18em] text-[var(--accent)] sm:pt-0.5";
+  const rowClass =
+    "flex flex-col gap-1 leading-snug sm:flex-row sm:items-baseline sm:gap-3";
 
   return (
-    <div className="order-5 max-w-[34rem] rounded-xl border border-[var(--accent)]/25 bg-[var(--bg-elev)]/70 px-4 py-3 text-sm leading-[1.6] text-[var(--slate-light)] shadow-sm shadow-black/10 sm:text-base md:col-start-1 md:row-start-4 md:mt-8">
-      <p className="flex gap-2.5">
-        <span
-          aria-hidden
-          className="mt-[0.6em] h-2 w-2 flex-none rounded-full bg-[var(--accent)] shadow-[0_0_10px_2px_var(--accent)]"
-        />
-        <span>
-          Currently: Research Engineer at{" "}
-          <a
-            href="https://panteracapital.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClass}
-          >
-            Pantera
-          </a>{" "}
-          Capital
-        </span>
-      </p>
-      <p className="mt-1.5 pl-[1.125rem]">
-        Technical cofounder of{" "}
-        <a
-          href="https://usesyndicate.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={linkClass}
-        >
-          Syndicate
-        </a>
-      </p>
+    <div className="order-5 max-w-[34rem] rounded-lg border border-[var(--accent)]/20 bg-[var(--bg-elev)]/55 px-4 py-3 text-sm text-[var(--slate-light)] shadow-sm shadow-black/10 sm:px-5 sm:text-base md:col-start-1 md:row-start-4 md:mt-8">
+      <div className="space-y-2.5">
+        <p className={rowClass}>
+          <span className={labelClass}>Currently</span>
+          <span>
+            Research Engineer at{" "}
+            <a
+              href="https://panteracapital.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={linkClass}
+            >
+              Pantera
+            </a>{" "}
+            Capital
+          </span>
+        </p>
+        <p className={rowClass}>
+          <span className={labelClass}>Also</span>
+          <span>
+            Technical cofounder of{" "}
+            <a
+              href="https://usesyndicate.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={linkClass}
+            >
+              Syndicate
+            </a>
+          </span>
+        </p>
+      </div>
     </div>
   );
 }
-
 function JourneyCard({
   item,
   active,
