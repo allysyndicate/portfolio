@@ -6,9 +6,6 @@ import { socials } from "./Sections";
 const supporting =
   "I started as a structural engineer, then taught myself software by automating real design workflows at MKA. That same pull carried me into algorithmic trading, then into crypto, and now into building teams of AI agents that do real work.";
 
-const currently =
-  "Currently: Research Engineer at Pantera Capital + technical cofounder of Syndicate.";
-
 const heroSocials = [
   ...socials,
   {
@@ -114,6 +111,45 @@ function SocialLinks() {
           </svg>
         </a>
       ))}
+    </div>
+  );
+}
+
+function CurrentlyCard() {
+  const linkClass =
+    "font-semibold text-[var(--accent)] underline decoration-[var(--accent)]/35 underline-offset-4 transition-colors hover:text-[var(--accent-strong)] hover:decoration-[var(--accent-strong)]";
+
+  return (
+    <div className="order-5 max-w-[34rem] rounded-xl border border-[var(--accent)]/25 bg-[var(--bg-elev)]/70 px-4 py-3 text-sm leading-[1.6] text-[var(--slate-light)] shadow-sm shadow-black/10 sm:text-base md:col-start-1 md:row-start-4 md:mt-8">
+      <p className="flex gap-2.5">
+        <span
+          aria-hidden
+          className="mt-[0.6em] h-2 w-2 flex-none rounded-full bg-[var(--accent)] shadow-[0_0_10px_2px_var(--accent)]"
+        />
+        <span>
+          Currently: Research Engineer at{" "}
+          <a
+            href="https://panteracapital.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+          >
+            Pantera
+          </a>{" "}
+          Capital
+        </span>
+      </p>
+      <p className="mt-1.5 pl-[1.125rem]">
+        Technical cofounder of{" "}
+        <a
+          href="https://usesyndicate.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={linkClass}
+        >
+          Syndicate
+        </a>
+      </p>
     </div>
   );
 }
@@ -242,14 +278,8 @@ export default function Hero() {
           {supporting}
         </p>
 
-        {/* Currently line */}
-        <p className="order-5 flex items-center gap-2.5 text-sm leading-[1.55] text-[var(--slate-light)] sm:text-base md:col-start-1 md:row-start-4 md:mt-8">
-          <span
-            aria-hidden
-            className="h-2 w-2 flex-none rounded-full bg-[var(--accent)] shadow-[0_0_10px_2px_var(--accent)]"
-          />
-          {currently}
-        </p>
+        {/* Currently surface */}
+        <CurrentlyCard />
 
       </div>
 
