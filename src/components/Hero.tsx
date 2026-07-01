@@ -21,7 +21,7 @@ const journey: Journey[] = [
     id: "structures",
     title: "Started in structures",
     teaser: "Designed real buildings with real constraints.",
-    body: "I earned my degrees in civil engineering and spent almost five years as a structural engineer, designing and analyzing big, complicated buildings. It taught me to think hard about systems where the math has to be right, the constraints are real, and getting it wrong is expensive.",
+    body: "I earned my BS and MS in civil engineering from the University of Illinois, then spent almost five years designing high-rise towers. Real ones, like the 40-story MIRA tower at 160 Folsom in San Francisco and a 68-story residential tower in Metro Manila, adding up to more than 7M sq ft of construction across the US and Asia.",
   },
   {
     id: "mka",
