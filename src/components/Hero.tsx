@@ -262,6 +262,8 @@ function JourneyCard({
 
 const groupOf = (index: number) => (index < 3 ? 0 : index < 6 ? 1 : 2);
 
+const clamp01 = (t: number) => Math.min(1, Math.max(0, t));
+
 const smoothstep = (t: number) => t * t * (3 - 2 * t);
 
 // Continuous openness of a group given the smoothed stage value (0..2).
@@ -272,15 +274,20 @@ const opennessOf = (stage: number, group: number) =>
 
 function JourneyCards() {
   const trackRef = useRef<HTMLDivElement>(null);
-  // Scroll-linked expand/compress only on desktop with motion allowed;
-  // everywhere else (mobile, reduced-motion, SSR/no-JS) all cards stay expanded.
-  const [scrolly, setScrolly] = useState(false);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  // Scroll-linked expand/compress everywhere motion is allowed; reduced-motion
+  // and SSR/no-JS render the fully expanded static stack. Desktop pins the
+  // grid and stages groups by track progress; mobile can't fit a whole group
+  // in the viewport, so each card opens/compresses by its own scroll position.
+  const [mode, setMode] = useState<"static" | "desktop" | "mobile">("static");
   const [stage, setStage] = useState(0);
+  const [opens, setOpens] = useState<number[]>(() => journey.map(() => 1));
 
   useEffect(() => {
     const desktop = window.matchMedia("(min-width: 1024px)");
     const motion = window.matchMedia("(prefers-reduced-motion: no-preference)");
-    const update = () => setScrolly(desktop.matches && motion.matches);
+    const update = () =>
+      setMode(!motion.matches ? "static" : desktop.matches ? "desktop" : "mobile");
     update();
     desktop.addEventListener("change", update);
     motion.addEventListener("change", update);
@@ -291,7 +298,7 @@ function JourneyCards() {
   }, []);
 
   useEffect(() => {
-    if (!scrolly) return;
+    if (mode !== "desktop") return;
     const el = trackRef.current;
     if (!el) return;
     let raf = 0;
@@ -342,33 +349,103 @@ function JourneyCards() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [scrolly]);
+  }, [mode]);
+
+  useEffect(() => {
+    if (mode !== "mobile") return;
+    let raf = 0;
+    let running = false;
+    let last = 0;
+    const current = journey.map(() => 0);
+    const targets = journey.map(() => 0);
+
+    // A card expands as its top scrolls up past ~4/5 of the viewport and
+    // compresses again as it exits the top, so the open "wave" walks the
+    // column card by card — the mobile translation of the desktop groups.
+    const readTargets = () => {
+      const h = window.innerHeight;
+      cardRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const top = el.getBoundingClientRect().top;
+        const rise = clamp01((0.85 * h - top) / (0.25 * h));
+        const fall = clamp01((top - 0.03 * h) / (0.17 * h));
+        targets[i] = smoothstep(Math.min(rise, fall));
+      });
+    };
+
+    const tick = (now: number) => {
+      const dt = Math.min(64, now - last);
+      last = now;
+      const k = 1 - Math.exp(-dt / 90);
+      let settled = true;
+      for (let i = 0; i < current.length; i++) {
+        current[i] += (targets[i] - current[i]) * k;
+        if (Math.abs(targets[i] - current[i]) > 0.002) settled = false;
+        else current[i] = targets[i];
+      }
+      setOpens([...current]);
+      if (settled) {
+        running = false;
+      } else {
+        // Heights are changing mid-animation, so card positions (and thus
+        // targets) drift each frame — re-read before the next step.
+        readTargets();
+        raf = requestAnimationFrame(tick);
+      }
+    };
+
+    const onScroll = () => {
+      readTargets();
+      if (!running) {
+        running = true;
+        last = performance.now();
+        raf = requestAnimationFrame(tick);
+      }
+    };
+
+    readTargets();
+    for (let i = 0; i < current.length; i++) current[i] = targets[i];
+    setOpens([...current]);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      running = false;
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [mode]);
 
   return (
     // The tall track reserves scroll distance; the sticky frame inside it means
     // nothing below the section shifts while rows expand/compress.
-    <div ref={trackRef} className={scrolly ? "lg:h-[260vh]" : undefined}>
-      <div className={scrolly ? "lg:sticky lg:top-24" : undefined}>
+    <div ref={trackRef} className={mode === "desktop" ? "lg:h-[260vh]" : undefined}>
+      <div className={mode === "desktop" ? "lg:sticky lg:top-24" : undefined}>
         <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
           How I got here
         </div>
         <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--slate-light)]">
           The short version of how a structural engineer ended up building AI agents.
         </p>
-        <div className="mt-8 grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 items-stretch gap-5 sm:gap-6 lg:grid-cols-3 lg:gap-7">
           {journey.map((item, index) => (
             <div
               key={item.id}
-              className={
-                index === journey.length - 1
-                  ? "sm:col-span-2 sm:mx-auto sm:w-full sm:max-w-[calc((100%-1.75rem)/2)] lg:col-span-1 lg:col-start-2 lg:mx-0 lg:max-w-none"
-                  : ""
-              }
+              ref={(el) => {
+                cardRefs.current[index] = el;
+              }}
+              className={index === journey.length - 1 ? "lg:col-start-2" : ""}
             >
               <JourneyCard
                 item={item}
                 index={index}
-                open={scrolly ? opennessOf(stage, groupOf(index)) : 1}
+                open={
+                  mode === "static"
+                    ? 1
+                    : mode === "desktop"
+                      ? opennessOf(stage, groupOf(index))
+                      : opens[index]
+                }
               />
             </div>
           ))}
