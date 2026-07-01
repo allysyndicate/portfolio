@@ -95,7 +95,7 @@ function SocialLinks() {
           rel="noopener noreferrer"
           aria-label={`${s.label} — ${s.handle}`}
           title={`${s.label} · ${s.handle}`}
-          className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--accent)]/40 bg-[var(--accent-tint)] text-[var(--accent)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white hover:shadow-lg hover:shadow-[var(--accent)]/30"
+          className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--accent)]/25 bg-[var(--bg-elev)]/80 text-[var(--slate-light)] shadow-sm shadow-black/10 transition-all hover:-translate-y-0.5 hover:border-[var(--accent)]/60 hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
         >
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className="h-5 w-5">
             {s.icon}
