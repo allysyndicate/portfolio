@@ -7,7 +7,7 @@ const supporting =
   "I started as a structural engineer, then taught myself software by automating real design workflows at MKA. That path led me into algorithmic trading, crypto research, data products, and AI agent orchestration.";
 
 const currently =
-  "Currently: in-house research at Pantera + technical cofounder of Syndicate.";
+  "Currently: Research Engineer at Pantera Capital + technical cofounder of Syndicate.";
 
 type Journey = {
   id: string;
