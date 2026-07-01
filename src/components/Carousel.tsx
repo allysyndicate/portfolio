@@ -39,6 +39,10 @@ export default function Carousel({
   // where the leftmost active card never reaches the last index.
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
+  // Snap positions actually reachable at the current breakpoint. With N cards
+  // and C visible per view, the leftmost card stops at N-C, so there are
+  // N-C+1 positions — not one per card.
+  const [pageCount, setPageCount] = useState(projects.length);
 
   // Drag-to-scroll (pointer). Suppress click after a real drag.
   const drag = useRef({ down: false, moved: false, startX: 0, startLeft: 0 });
@@ -69,8 +73,10 @@ export default function Carousel({
     let raf = 0;
     const sync = () => {
       const w = cardWidth();
-      if (w) setActive(Math.round(track.scrollLeft / w));
       const maxScroll = track.scrollWidth - track.clientWidth;
+      const pages = w ? Math.max(1, Math.round(maxScroll / w) + 1) : 1;
+      setPageCount(pages);
+      if (w) setActive(Math.min(Math.round(track.scrollLeft / w), pages - 1));
       setAtStart(track.scrollLeft <= 1);
       setAtEnd(track.scrollLeft >= maxScroll - 1);
     };
@@ -238,11 +244,11 @@ export default function Carousel({
       {/* Position dots */}
       <div className="mt-2 flex items-center justify-center">
         <ul className="flex gap-2" aria-label="Carousel position">
-          {projects.map((p, i) => (
-            <li key={p.title}>
+          {Array.from({ length: pageCount }, (_, i) => (
+            <li key={i}>
               <button
                 type="button"
-                aria-label={`Go to ${p.title}`}
+                aria-label={`Go to position ${i + 1} of ${pageCount}`}
                 aria-current={i === active}
                 onClick={() => scrollToIndex(i)}
                 className={`h-2 rounded-full transition-all motion-reduce:transition-none ${
