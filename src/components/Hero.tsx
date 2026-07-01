@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { socials } from "./Sections";
 
 const supporting =
@@ -169,10 +169,12 @@ function JourneyCard({
   item,
   active,
   onActivate,
+  compact = false,
 }: {
   item: Journey;
   active: boolean;
   onActivate: () => void;
+  compact?: boolean;
 }) {
   return (
     <button
@@ -181,7 +183,9 @@ function JourneyCard({
       onMouseEnter={onActivate}
       onFocus={onActivate}
       onClick={onActivate}
-      className={`group flex h-full flex-col rounded-2xl border p-6 text-left transition-all duration-300 motion-reduce:transition-none sm:p-7 ${
+      className={`group flex h-full flex-col rounded-2xl border p-6 text-left transition-all duration-300 motion-reduce:transition-none ${
+        compact ? "" : "sm:p-7"
+      } ${
         active
           ? "border-[var(--accent)]/55 bg-[var(--bg-elev-2)]/80 shadow-lg shadow-[var(--accent)]/15"
           : "border-white/10 bg-[var(--bg-elev)]/60 hover:border-[var(--accent)]/35 hover:bg-[var(--bg-elev)]/90"
@@ -225,25 +229,202 @@ function JourneyCard({
   );
 }
 
-function JourneyCards() {
+function MobileJourneyCards() {
   const [active, setActive] = useState("structures");
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const cards = cardRefs.current.filter(
+      (card): card is HTMLDivElement => card !== null,
+    );
+
+    if (!cards.length) {
+      return;
+    }
+
+    let frame = 0;
+
+    const updateActiveCard = () => {
+      const viewportCenter = window.innerHeight / 2;
+      const centeredCard = cards
+        .map((card) => {
+          const rect = card.getBoundingClientRect();
+          const cardCenter = rect.top + rect.height / 2;
+
+          return {
+            id: card.getAttribute("data-journey-id"),
+            distance: Math.abs(cardCenter - viewportCenter),
+          };
+        })
+        .sort((a, b) => a.distance - b.distance)[0];
+
+      if (centeredCard?.id) {
+        setActive(centeredCard.id);
+      }
+    };
+
+    const queueUpdate = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(updateActiveCard);
+    };
+
+    updateActiveCard();
+    window.addEventListener("scroll", queueUpdate, { passive: true });
+    window.addEventListener("resize", queueUpdate);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", queueUpdate);
+      window.removeEventListener("resize", queueUpdate);
+    };
+  }, []);
 
   return (
-    <div>
+    <div className="lg:hidden">
       <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
         How I got here
       </div>
-      <div className="mt-8 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-        {journey.map((item) => (
-          <JourneyCard
+      <div className="mt-8 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 sm:gap-6">
+        {journey.map((item, index) => (
+          <div
             key={item.id}
-            item={item}
-            active={active === item.id}
-            onActivate={() => setActive(item.id)}
-          />
+            ref={(node) => {
+              cardRefs.current[index] = node;
+            }}
+            data-journey-id={item.id}
+            className="scroll-mt-28"
+          >
+            <JourneyCard
+              item={item}
+              active={active === item.id}
+              onActivate={() => setActive(item.id)}
+            />
+          </div>
         ))}
       </div>
     </div>
+  );
+}
+
+function DesktopJourneyCarousel() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeItem = journey[activeIndex];
+  const previousIndex = (activeIndex - 1 + journey.length) % journey.length;
+  const nextIndex = (activeIndex + 1) % journey.length;
+
+  const goToPrevious = () => setActiveIndex(previousIndex);
+  const goToNext = () => setActiveIndex(nextIndex);
+
+  return (
+    <div className="hidden lg:block">
+      <div className="flex items-end justify-between gap-6">
+        <div>
+          <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
+            How I got here
+          </div>
+          <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--slate)]">
+            A compressed path from structures to software, markets, crypto research, and agent systems.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-3" aria-label="Journey carousel controls">
+          <button
+            type="button"
+            onClick={goToPrevious}
+            aria-label="Show previous journey card"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--accent)]/25 bg-[var(--bg-elev)]/80 text-xl leading-none text-[var(--slate-light)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)]/60 hover:bg-[var(--accent-tint)] hover:text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+          >
+            <span aria-hidden>&larr;</span>
+          </button>
+          <button
+            type="button"
+            onClick={goToNext}
+            aria-label="Show next journey card"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--accent)]/25 bg-[var(--bg-elev)]/80 text-xl leading-none text-[var(--slate-light)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)]/60 hover:bg-[var(--accent-tint)] hover:text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+          >
+            <span aria-hidden>&rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <div
+        className="mt-8 grid grid-cols-[0.75fr_1.6fr_0.75fr] items-stretch gap-5"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="How I got here journey cards"
+        tabIndex={0}
+        onKeyDown={(event) => {
+          if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            goToPrevious();
+          }
+          if (event.key === "ArrowRight") {
+            event.preventDefault();
+            goToNext();
+          }
+        }}
+      >
+        <div className="opacity-60 blur-[0.2px] transition-opacity">
+          <JourneyCard
+            item={journey[previousIndex]}
+            active={false}
+            onActivate={goToPrevious}
+            compact
+          />
+        </div>
+
+        <div aria-live="polite" className="min-h-[20rem]">
+          <JourneyCard
+            item={activeItem}
+            active
+            onActivate={() => setActiveIndex(activeIndex)}
+          />
+        </div>
+
+        <div className="opacity-60 blur-[0.2px] transition-opacity">
+          <JourneyCard
+            item={journey[nextIndex]}
+            active={false}
+            onActivate={goToNext}
+            compact
+          />
+        </div>
+      </div>
+
+      <div className="mt-6 flex items-center justify-between gap-5">
+        <div className="h-px flex-1 bg-white/10">
+          <div
+            className="h-px bg-[var(--accent)] transition-[width] duration-300"
+            style={{ width: `${((activeIndex + 1) / journey.length) * 100}%` }}
+          />
+        </div>
+        <div className="flex items-center gap-2">
+          {journey.map((item, index) => (
+            <button
+              key={item.id}
+              type="button"
+              aria-label={`Show ${item.title}`}
+              aria-current={activeIndex === index}
+              onClick={() => setActiveIndex(index)}
+              className={`h-2.5 rounded-full transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] ${
+                activeIndex === index
+                  ? "w-8 bg-[var(--accent)]"
+                  : "w-2.5 bg-white/20 hover:bg-[var(--accent)]/60"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function JourneyCards() {
+  return (
+    <>
+      <MobileJourneyCards />
+      <DesktopJourneyCarousel />
+    </>
   );
 }
 
