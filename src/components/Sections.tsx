@@ -126,15 +126,15 @@ export function Chapters() {
 const syndicateHighlights = [
   {
     lead: "Atlas, a manager agent",
-    rest: " that breaks a goal into tasks, dispatches them to specialist agents, routes messages between them, and escalates open questions back to me.",
+    rest: " that breaks a goal into tasks and routes each one to the right specialist agent. Anything it can't resolve comes back to me.",
   },
   {
     lead: "A provider-agnostic runtime",
-    rest: " that runs Claude, OpenAI, and Gemini agents on one team, normalizing streaming, tool calls, and auth across three separate CLIs behind a single protocol.",
+    rest: " that runs Claude, OpenAI, and Gemini agents on one team, hiding three very different CLIs behind a single protocol.",
   },
   {
     lead: "Agent Maker",
-    rest: ", which turns a plain-English role description into a reusable, installable agent package with generated identity, skills, and scoped tool permissions.",
+    rest: ", which turns a plain-English role description into an installable agent package, complete with its own identity and scoped tool permissions.",
   },
   {
     lead: "Tunable interruption levels",
@@ -142,11 +142,11 @@ const syndicateHighlights = [
   },
   {
     lead: "A tag-based orchestration protocol",
-    rest: " for messaging, task lifecycle, and human questions, with parser fallbacks so dispatch survives imperfect model output.",
+    rest: " covering everything from task lifecycle to human questions, with parser fallbacks so dispatch survives imperfect model output.",
   },
   {
     lead: "A local-first Electron app",
-    rest: " that sandboxes every agent to its project folder, with per-agent MCP servers and connectors, live dev-server previews, and encrypted on-device credentials.",
+    rest: " that sandboxes every agent to its own project folder and keeps credentials encrypted on-device, with live dev-server previews and per-agent MCP connectors.",
   },
 ];
 
