@@ -7,7 +7,7 @@ const supporting =
   "I started as a structural engineer, then taught myself software by automating real design workflows at MKA. That path led me into algorithmic trading, crypto research, data products, and AI agent orchestration.";
 
 const currently =
-  "Currently on Pantera's in-house research team and technical cofounder of Syndicate.";
+  "Currently: in-house research at Pantera + technical cofounder of Syndicate.";
 
 type Journey = {
   id: string;
@@ -193,38 +193,35 @@ export default function Hero() {
     <section
       id="about"
       aria-label="Introduction"
-      className="relative scroll-mt-24 pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24"
+      className="relative scroll-mt-24 pt-24 pb-10 sm:pt-28 sm:pb-12 md:pt-32 md:pb-14"
     >
-      <div
-        aria-hidden
-        className="grid-texture pointer-events-none absolute inset-0 -z-10"
-      />
-
-      <div className="flex flex-col gap-y-8 md:grid md:grid-cols-[1.15fr_0.85fr] md:items-center md:gap-x-16 md:gap-y-0">
+      <div className="flex flex-col gap-y-8 md:grid md:grid-cols-[1.25fr_0.75fr] md:items-center md:gap-x-14 md:gap-y-0">
         {/* Name + eyebrow */}
         <div className="order-1 md:col-start-1 md:row-start-1 md:mb-7">
           <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
             About
           </div>
-          <div className="mt-3 text-sm font-semibold uppercase tracking-[0.15em] text-[var(--slate-light)]">
-            Ally Zach
+          <div className="mt-3 text-base font-medium tracking-tight text-[var(--slate-light)] sm:text-lg">
+            Research Engineer &amp; Product Builder
           </div>
         </div>
 
         {/* Photo + social (right column on desktop) */}
         <div className="order-2 md:order-none md:col-start-2 md:row-span-5 md:row-start-1 md:self-center">
           <Photo />
-          <div className="mt-8 hidden md:block">
+          <div className="mt-5">
             <SocialLinks />
           </div>
         </div>
 
         {/* Headline */}
-        <h1 className="order-3 text-balance text-[2.5rem] font-bold leading-[1.05] tracking-[-0.02em] text-[var(--slate-lightest)] sm:text-[3.25rem] lg:text-[4rem] md:col-start-1 md:row-start-2">
-          <span className="block">I used to design buildings.</span>
+        <h1 className="order-3 text-pretty text-[2.125rem] font-bold leading-[1.08] tracking-[-0.02em] text-[var(--slate-lightest)] sm:text-[3rem] sm:leading-[1.05] lg:text-[3.5rem] md:col-start-1 md:row-start-2">
+          <span className="block">
+            I used to <span className="whitespace-nowrap">design buildings.</span>
+          </span>
           <span className="block">
             Now I build the{" "}
-            <span className="text-[var(--accent)]">tools behind the work</span>.
+            <span className="text-[var(--accent)]">tools I wished existed</span>.
           </span>
         </h1>
 
@@ -234,7 +231,7 @@ export default function Hero() {
         </p>
 
         {/* Currently line */}
-        <p className="order-5 flex items-center gap-2.5 text-[0.8125rem] leading-[1.5] text-[var(--slate)] md:col-start-1 md:row-start-4 md:mt-7">
+        <p className="order-5 flex items-center gap-2.5 text-sm leading-[1.55] text-[var(--slate-light)] sm:text-base md:col-start-1 md:row-start-4 md:mt-8">
           <span
             aria-hidden
             className="h-2 w-2 flex-none rounded-full bg-[var(--accent)] shadow-[0_0_10px_2px_var(--accent)]"
@@ -242,14 +239,26 @@ export default function Hero() {
           {currently}
         </p>
 
-        {/* Social links — mobile placement (desktop copy lives under the photo). */}
-        <div className="order-6 md:hidden">
-          <SocialLinks />
+        {/* Primary + secondary CTAs */}
+        <div className="order-6 flex flex-wrap items-center gap-3 md:col-start-1 md:row-start-5 md:mt-8">
+          <a
+            href="#pantera"
+            className="inline-flex items-center justify-center rounded-md bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-[var(--accent)]/25 transition-colors hover:bg-[var(--accent-strong)]"
+          >
+            View work
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center rounded-md border border-[var(--accent)]/40 bg-[var(--accent-tint)] px-6 py-3 text-sm font-semibold text-[var(--accent)] transition-colors hover:border-[var(--accent)] hover:bg-[var(--accent)]/15"
+          >
+            Say hello
+          </a>
         </div>
+
       </div>
 
       {/* Six expandable journey cards below the hero. */}
-      <div className="mt-16 md:mt-24">
+      <div className="mt-10 md:mt-14">
         <JourneyCards />
       </div>
     </section>
