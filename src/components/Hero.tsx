@@ -201,8 +201,8 @@ export default function Hero() {
           <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
             About
           </div>
-          <div className="mt-3 text-base font-medium tracking-tight text-[var(--slate-light)] sm:text-lg">
-            Research Engineer &amp; Product Builder
+          <div className="mt-3 text-sm font-semibold uppercase tracking-[0.15em] text-[var(--slate-light)]">
+            Ally Zach
           </div>
         </div>
 
@@ -238,22 +238,6 @@ export default function Hero() {
           />
           {currently}
         </p>
-
-        {/* Primary + secondary CTAs */}
-        <div className="order-6 flex flex-wrap items-center gap-3 md:col-start-1 md:row-start-5 md:mt-8">
-          <a
-            href="#pantera"
-            className="inline-flex items-center justify-center rounded-md bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-[var(--accent)]/25 transition-colors hover:bg-[var(--accent-strong)]"
-          >
-            View work
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center rounded-md border border-[var(--accent)]/40 bg-[var(--accent-tint)] px-6 py-3 text-sm font-semibold text-[var(--accent)] transition-colors hover:border-[var(--accent)] hover:bg-[var(--accent)]/15"
-          >
-            Say hello
-          </a>
-        </div>
 
       </div>
 
