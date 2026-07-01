@@ -122,27 +122,27 @@ function JourneyCard({
       onMouseEnter={onActivate}
       onFocus={onActivate}
       onClick={onActivate}
-      className={`group flex h-full flex-col rounded-2xl border p-5 text-left transition-all duration-300 motion-reduce:transition-none sm:p-6 ${
+      className={`group flex h-full flex-col rounded-2xl border p-6 text-left transition-all duration-300 motion-reduce:transition-none sm:p-7 ${
         active
           ? "border-[var(--accent)]/55 bg-[var(--bg-elev-2)]/80 shadow-lg shadow-[var(--accent)]/15"
           : "border-white/10 bg-[var(--bg-elev)]/60 hover:border-[var(--accent)]/35 hover:bg-[var(--bg-elev)]/90"
       }`}
     >
-      <div className="flex items-baseline gap-2">
+      <div className="flex items-baseline gap-2.5">
         <span
           aria-hidden
-          className={`text-base leading-none transition-colors duration-300 ${
+          className={`text-lg leading-none transition-colors duration-300 ${
             active ? "text-[var(--accent)]" : "text-[var(--accent)]/50"
           }`}
         >
           →
         </span>
-        <h3 className="text-base font-semibold tracking-tight text-[var(--slate-lightest)] sm:text-lg">
+        <h3 className="text-lg font-semibold tracking-tight text-[var(--slate-lightest)] sm:text-xl">
           {item.title}
         </h3>
       </div>
 
-      <p className="mt-2 text-sm leading-[1.55] text-[var(--slate-light)]">
+      <p className="mt-3 text-[0.8125rem] uppercase tracking-[0.06em] leading-[1.5] text-[var(--slate)]">
         {item.teaser}
       </p>
 
@@ -154,7 +154,7 @@ function JourneyCard({
       >
         <div className="overflow-hidden">
           <p
-            className={`mt-3 border-t border-white/10 pt-3 text-sm leading-[1.65] text-[var(--slate)] transition-opacity duration-300 motion-reduce:transition-none ${
+            className={`mt-4 border-t border-white/10 pt-4 text-[0.9375rem] leading-[1.7] text-[var(--slate-light)] transition-opacity duration-300 motion-reduce:transition-none ${
               active ? "opacity-100" : "opacity-0"
             }`}
           >
@@ -171,10 +171,10 @@ function JourneyCards() {
 
   return (
     <div>
-      <div className="text-xs font-bold uppercase tracking-[0.28em] text-[var(--accent)]">
+      <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
         How I got here
       </div>
-      <div className="mt-6 grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
         {journey.map((item) => (
           <JourneyCard
             key={item.id}
@@ -200,13 +200,13 @@ export default function Hero() {
         className="grid-texture pointer-events-none absolute inset-0 -z-10"
       />
 
-      <div className="flex flex-col gap-y-10 md:grid md:grid-cols-[1.15fr_0.85fr] md:items-center md:gap-x-14 md:gap-y-0">
+      <div className="flex flex-col gap-y-8 md:grid md:grid-cols-[1.15fr_0.85fr] md:items-center md:gap-x-16 md:gap-y-0">
         {/* Name + eyebrow */}
-        <div className="order-1 md:col-start-1 md:row-start-1">
-          <div className="text-xs font-bold uppercase tracking-[0.28em] text-[var(--accent)]">
+        <div className="order-1 md:col-start-1 md:row-start-1 md:mb-7">
+          <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
             About
           </div>
-          <div className="mt-2 text-base font-semibold tracking-tight text-[var(--slate-light)]">
+          <div className="mt-3 text-sm font-semibold uppercase tracking-[0.15em] text-[var(--slate-light)]">
             Ally Zach
           </div>
         </div>
@@ -214,13 +214,13 @@ export default function Hero() {
         {/* Photo + social (right column on desktop) */}
         <div className="order-2 md:order-none md:col-start-2 md:row-span-5 md:row-start-1 md:self-center">
           <Photo />
-          <div className="mt-7 hidden md:block">
+          <div className="mt-8 hidden md:block">
             <SocialLinks />
           </div>
         </div>
 
         {/* Headline */}
-        <h1 className="order-3 text-balance text-4xl font-bold leading-[1.06] tracking-tight text-[var(--slate-lightest)] sm:text-5xl lg:text-[3.6rem] md:col-start-1 md:row-start-2">
+        <h1 className="order-3 text-balance text-[2.5rem] font-bold leading-[1.05] tracking-[-0.02em] text-[var(--slate-lightest)] sm:text-[3.25rem] lg:text-[4rem] md:col-start-1 md:row-start-2">
           <span className="block">I used to design buildings.</span>
           <span className="block">
             Now I build the{" "}
@@ -229,12 +229,12 @@ export default function Hero() {
         </h1>
 
         {/* Supporting paragraph */}
-        <p className="order-4 max-w-[34rem] text-base leading-[1.7] text-[var(--slate-light)] sm:text-lg md:col-start-1 md:row-start-3">
+        <p className="order-4 max-w-[34rem] text-base leading-[1.75] text-[var(--slate-light)] sm:text-lg md:col-start-1 md:row-start-3 md:mt-8">
           {supporting}
         </p>
 
         {/* Currently line */}
-        <p className="order-5 flex items-center gap-2.5 text-sm text-[var(--slate)] md:col-start-1 md:row-start-4">
+        <p className="order-5 flex items-center gap-2.5 text-[0.8125rem] leading-[1.5] text-[var(--slate)] md:col-start-1 md:row-start-4 md:mt-7">
           <span
             aria-hidden
             className="h-2 w-2 flex-none rounded-full bg-[var(--accent)] shadow-[0_0_10px_2px_var(--accent)]"
@@ -249,7 +249,7 @@ export default function Hero() {
       </div>
 
       {/* Six expandable journey cards below the hero. */}
-      <div className="mt-14 md:mt-20">
+      <div className="mt-16 md:mt-24">
         <JourneyCards />
       </div>
     </section>
