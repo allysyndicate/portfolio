@@ -42,6 +42,13 @@ export const chapters: Chapter[] = [
     accentTint: "rgba(129, 140, 248, 0.16)",
     projects: [
       {
+        title: "Crypto on the Clock — An Empirical Study of Short-Term Crypto Market Microstructure on Polymarket and Kalshi",
+        descriptor: "Empirical study of $7.8B in near-term crypto trading, finding 86% of Polymarket's 5-min taker volume is bot-driven while Kalshi out-earns on fees (2.74% vs 0.96%).",
+        href: "https://panteraresearchlab.xyz/research/crypto-on-the-clock/",
+        img: "/pantera-prl-crypto-on-the-clock-cover.png",
+        thumb: "from-[#555db8] to-[#0c2238]",
+      },
+      {
         title: "The State of Tokenization — Q1 2026 Report",
         descriptor: "Published report mapping 593 tokenized assets totaling $320.6B.",
         href: "https://panteracapital.com/the-state-of-tokenization/",
