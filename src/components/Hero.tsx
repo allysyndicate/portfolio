@@ -272,17 +272,46 @@ function BranchCard({ branch }: { branch: Branch }) {
   );
 }
 
+// One past-stage card as it appears on the DESKTOP horizontal trunk: centered
+// copy that hangs above or below the rail. Placement only sets which side the
+// gap goes on; the grid row it lives in handles the rest.
+function DesktopStageCard({ stage }: { stage: Stage }) {
+  // Every stage hangs BELOW the rail (no more above/below alternation), so all
+  // items read as one horizontal row. Copy is left-aligned within its narrow
+  // column and top-aligned to the rail node above it.
+  return (
+    <div className="px-4 pt-10 text-left">
+      <div className="flex items-baseline gap-2 text-[0.6875rem] font-bold uppercase tracking-[0.22em]">
+        <span className="tabular-nums text-[var(--accent)]">{stage.num}</span>
+        <span className="text-[var(--slate)]">{stage.label}</span>
+      </div>
+      <h3 className="mt-2 text-base font-bold tracking-[-0.01em] text-[var(--slate-lightest)] xl:text-lg">
+        {stage.title}
+      </h3>
+      <p className="mt-2 text-[0.8125rem] leading-[1.5] text-[var(--slate-light)]">
+        {stage.body}
+      </p>
+      <div className="mt-3">
+        <ProofLine>{stage.proof}</ProofLine>
+      </div>
+    </div>
+  );
+}
+
 // Node positions along the trunk, as fractions 0..1. Because the drawn line's
 // length is tied to a single scroll `progress` (width on desktop, height on
 // mobile), a node lights exactly when the fill reaches its fraction — so line
 // and nodes stay consistent in both orientations.
-const STAGE_T = [1 / 6, 1 / 2, 5 / 6];
-const NOW_X = 0.94; // NOW sits just past stage 03 at the right end of the line
-const NOW_T = 0.9;
+// Desktop lays the row out as a 4-column grid (01 · 02 · 03 · NOW) inside a
+// left-aligned max-width, so the nodes fall on the cell centers 1/8, 3/8, 5/8,
+// 7/8 of that compact rail — one tight sequence, not spread across the page.
+const STAGE_T = [0.125, 0.375, 0.625];
+const NOW_X = 0.875; // NOW is the 4th column, at the right end of the compact row
+const NOW_T = 0.875;
 
 // The load path. On DESKTOP the trunk is a horizontal line running left → right
-// through the three past stages (copy alternating above/below), reaching a NOW
-// node at the right end where it forks downward into two parallel current
+// through the three past stages (all copy below the line, one compact row),
+// reaching a NOW node at the right end where it forks downward into two current
 // tracks. On MOBILE it collapses to a single vertical left-edge line with the
 // stages stacked and the two tracks below. Motion is restrained and scroll-
 // linked — the line draws as the section enters and each node lights when the
@@ -361,88 +390,75 @@ function Timeline() {
         mind?
       </p>
 
-      {/* ── DESKTOP TRUNK: horizontal line through the three past stages ── */}
+      {/* ── DESKTOP TRUNK: one compact horizontal row — 01 · 02 · 03 · NOW — in
+          a left-aligned max-width, so the sequence stays tight instead of
+          stretching across the page. Every stage's copy hangs BELOW a single
+          rail (no alternation), and the whole thing is content-sized: the rail
+          sits on its own row, all cards on the row beneath, so copy length can
+          never overflow into the fork. The 4-column grid puts nodes on the cell
+          centers (1/8, 3/8, 5/8, 7/8). ── */}
       <div
         ref={desktopTrunkRef}
-        className="relative mt-16 hidden h-[40rem] lg:block"
+        className="relative mt-16 hidden lg:block lg:max-w-4xl"
       >
-        {/* Horizontal rail (unfilled track) + accent draw overlay. */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-white/10"
-        >
+        {/* The rail: track + accent draw, with the three stage nodes and the
+            NOW fork node sitting on it. */}
+        <div className="relative">
           <div
-            className="absolute inset-y-0 left-0 bg-[var(--accent)] transition-[width] duration-200 ease-out"
-            style={{ width: `${progress * 100}%` }}
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/10"
+          >
+            <div
+              className="absolute inset-y-0 left-0 bg-[var(--accent)] transition-[width] duration-200 ease-out"
+              style={{ width: `${progress * 100}%` }}
+            />
+          </div>
+          {STAGE_T.map((t, i) => (
+            <span
+              key={i}
+              aria-hidden
+              className={`absolute top-0 z-10 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4 ring-[var(--bg)] transition-colors duration-500 ${
+                stageActive[i] ? "bg-[var(--accent)]" : "bg-[var(--bg-elev-2)]"
+              }`}
+              style={{ left: `${t * 100}%` }}
+            />
+          ))}
+          {/* NOW node at the right end of the compact row. */}
+          <span
+            aria-hidden
+            className={`absolute top-0 z-10 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4 ring-[var(--bg)] transition-all duration-500 ${
+              nowActive
+                ? "bg-[var(--accent)] shadow-[0_0_0_5px_var(--accent-tint)]"
+                : "bg-[var(--bg-elev-2)]"
+            }`}
+            style={{ left: `${NOW_X * 100}%` }}
           />
         </div>
 
-        {stages.map((s, i) => {
-          const above = i % 2 === 0; // 01 above, 02 below, 03 above
-          return (
-            <div key={s.id}>
-              <span
-                aria-hidden
-                className={`absolute top-1/2 z-10 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4 ring-[var(--bg)] transition-colors duration-500 ${
-                  stageActive[i] ? "bg-[var(--accent)]" : "bg-[var(--bg-elev-2)]"
-                }`}
-                style={{ left: `${STAGE_T[i] * 100}%` }}
-              />
-              <div
-                className={`absolute w-[16rem] -translate-x-1/2 px-2 text-center ${
-                  above ? "bottom-1/2 mb-10" : "top-1/2 mt-10"
-                }`}
-                style={{ left: `${STAGE_T[i] * 100}%` }}
-              >
-                <div className="flex items-baseline justify-center gap-2 text-[0.6875rem] font-bold uppercase tracking-[0.22em]">
-                  <span className="tabular-nums text-[var(--accent)]">
-                    {s.num}
-                  </span>
-                  <span className="text-[var(--slate)]">{s.label}</span>
-                </div>
-                <h3 className="mt-2 text-lg font-bold tracking-[-0.01em] text-[var(--slate-lightest)] xl:text-xl">
-                  {s.title}
-                </h3>
-                <p className="mt-2 text-[0.875rem] leading-[1.55] text-[var(--slate-light)]">
-                  {s.body}
-                </p>
-                <div className="mt-3 flex justify-center">
-                  <ProofLine>{s.proof}</ProofLine>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-
-        {/* NOW node at the right end of the line, plus a vertical drop into the
-            fork below. */}
-        <span
-          aria-hidden
-          className={`absolute top-1/2 z-10 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4 ring-[var(--bg)] transition-all duration-500 ${
-            nowActive
-              ? "bg-[var(--accent)] shadow-[0_0_0_5px_var(--accent-tint)]"
-              : "bg-[var(--bg-elev-2)]"
-          }`}
-          style={{ left: `${NOW_X * 100}%` }}
-        />
-        <div
-          aria-hidden
-          className="absolute bottom-0 top-1/2 w-px -translate-x-1/2 bg-[var(--accent)] transition-opacity duration-500"
-          style={{ left: `${NOW_X * 100}%`, opacity: nowActive ? 0.4 : 0 }}
-        />
-        <div
-          className="absolute top-1/2 mt-7 w-[10rem] -translate-x-full text-right"
-          style={{ left: `${NOW_X * 100}%` }}
-        >
-          <span className="text-[0.6875rem] font-bold uppercase tracking-[0.24em] text-[var(--accent)]">
-            Now, two parallel tracks
-          </span>
+        {/* Cards BELOW the rail: all three stages plus the NOW label, in one
+            4-column row. A faint vertical drop links the NOW node to the fork. */}
+        <div className="relative grid grid-cols-4 items-start">
+          <div
+            aria-hidden
+            className="absolute bottom-0 top-0 w-px -translate-x-1/2 bg-[var(--accent)] transition-opacity duration-500"
+            style={{ left: `${NOW_X * 100}%`, opacity: nowActive ? 0.4 : 0 }}
+          />
+          {stages.map((s) => (
+            <DesktopStageCard key={s.id} stage={s} />
+          ))}
+          <div className="px-4 pt-10 text-left">
+            <span className="text-[0.6875rem] font-bold uppercase tracking-[0.22em] text-[var(--accent)]">
+              Now, two parallel tracks
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Desktop fork: two traces fanning from the NOW node (right) down toward
-          each column. Appears together with the branches when NOW lights. */}
-      <div aria-hidden className="hidden lg:block">
+      {/* Desktop fork: two traces fanning from the NOW node down toward each
+          branch column. Lives in the same compact max-width as the row and the
+          branches below, so the geometry lines up. Appears with the branches
+          when NOW lights. */}
+      <div aria-hidden className="hidden lg:block lg:max-w-4xl">
         <svg
           viewBox="0 0 100 36"
           preserveAspectRatio="none"
@@ -450,7 +466,7 @@ function Timeline() {
           style={{ opacity: nowActive ? 1 : 0 }}
         >
           <path
-            d="M94 0 C 94 18, 25 8, 25 36"
+            d="M87.5 0 C 87.5 18, 25 8, 25 36"
             fill="none"
             stroke="var(--accent)"
             strokeWidth={1.5}
@@ -458,7 +474,7 @@ function Timeline() {
             vectorEffect="non-scaling-stroke"
           />
           <path
-            d="M94 0 C 94 22, 75 12, 75 36"
+            d="M87.5 0 C 87.5 22, 75 12, 75 36"
             fill="none"
             stroke="var(--accent)"
             strokeWidth={1.5}
@@ -525,7 +541,7 @@ function Timeline() {
       </div>
 
       {/* Two parallel current tracks — equal weight, rendered together. */}
-      <div className="mt-4 grid gap-6 sm:gap-8 lg:mt-2 lg:grid-cols-2 lg:gap-10">
+      <div className="mt-4 grid gap-6 sm:gap-8 lg:mt-2 lg:max-w-4xl lg:grid-cols-2 lg:gap-10">
         {branches.map((b) => (
           <div
             key={b.id}
@@ -553,7 +569,7 @@ function Timeline() {
       </div>
 
       {/* Closing synthesis under the fork. */}
-      <p className="mt-10 max-w-2xl text-[0.9375rem] italic leading-[1.7] text-[var(--slate-light)] lg:mx-auto lg:text-center">
+      <p className="mt-10 max-w-2xl text-[0.9375rem] italic leading-[1.7] text-[var(--slate-light)]">
         Two expressions of the same instinct: understand complex systems, then
         build better ways to work with them.
       </p>
