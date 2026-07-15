@@ -37,12 +37,9 @@ export const chapters: Chapter[] = [
   {
     id: "pantera",
     act: "Venture Capital",
-    eyebrow: "PANTERA CAPITAL · RESEARCH ENGINEER · 2024–PRESENT",
     label: "Pantera",
-    company: "Pantera Capital",
-    heading: "Research that ships as more than a report.",
+    company: "Pantera",
     role: "Research Engineer",
-    location: "Remote",
     years: "2024 — Present",
     intro:
       "I'm one of two people on Pantera's in-house research team. I take open-ended questions from research design and data collection through analysis, validation, publication, and deployment. The result might be an empirical study, a live dashboard, or a public dataset, but the goal is the same: make the finding inspectable and the work useful after publication.",
