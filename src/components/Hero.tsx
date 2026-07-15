@@ -18,43 +18,69 @@ const heroSocials = [
   },
 ] as const;
 
-type Journey = {
+// Three past stages carry the reader down one continuous line before it forks.
+type Stage = {
   id: string;
+  num: string;
   label: string;
   title: string;
   body: string;
+  proof: string;
 };
 
-const journey: Journey[] = [
+const stages: Stage[] = [
   {
     id: "structures",
-    label: "Structural Engineering",
+    num: "01",
+    label: "Structures",
     title: "Designed for uncertainty.",
-    body: "I spent five years designing more than 7 million square feet of high-rise buildings across the United States and Southeast Asia, often in seismic and high-wind regions. The work taught me to quantify uncertainty, reason about failure, and make decisions that had to survive real constraints.",
+    body: "I spent five years designing high-rise buildings in seismic and high-wind regions. The work taught me to quantify uncertainty, reason about failure, and make decisions that had to survive real constraints.",
+    proof: "7M+ square feet designed",
   },
   {
     id: "software",
+    num: "02",
     label: "Software",
     title: "Turned recurring work into software.",
-    body: "At MKA, I began translating repetitive design and analysis workflows into office-wide tools, first in Excel and VBA, then in Python. Automation started as a practical shortcut and became a new way of thinking about the work itself.",
+    body: "I began translating repetitive engineering workflows into office-wide tools, first in Excel and VBA, then in Python. Automation started as a practical shortcut and became a new way of thinking about the work itself.",
+    proof: "Engineering tools adopted across the office",
   },
   {
     id: "markets",
+    num: "03",
     label: "Markets & Data",
     title: "Tested ideas against live systems.",
-    body: "Algorithmic trading put my models against a system that responded immediately and unpredictably. That led me into crypto research at Messari, where I used market, network, and on-chain data to study behavior and incentives, publish more than 50 reports, and build analytical tools.",
+    body: "Algorithmic trading put my models against a system that responded immediately and unpredictably. That led me to Messari, where I used market, network, and on-chain data to study behavior and incentives.",
+    proof: "50+ published research reports",
   },
+];
+
+// At NOW the line branches into two parallel, equal-weight current tracks.
+type Branch = {
+  id: "pantera" | "syndicate";
+  track: string;
+  org: string;
+  title: string;
+  body: string;
+  proof: string;
+};
+
+const branches: Branch[] = [
   {
-    id: "research",
-    label: "Research Engineering",
+    id: "pantera",
+    track: "Research Engineering",
+    org: "Pantera Capital",
     title: "Built research that ships.",
-    body: "At Pantera, I take ambiguous questions from framing and data collection through analysis, validation, publication, and live data products. The goal is not just to produce an interesting finding, but to build the system that makes the finding reproducible and useful.",
+    body: "I take ambiguous questions from framing and data collection through analysis, validation, publication, and live data products. The goal is not only to find an answer, but to build the system that makes it reproducible and useful.",
+    proof: "Research spanning billions of dollars in market activity",
   },
   {
-    id: "ai",
-    label: "AI Systems",
+    id: "syndicate",
+    track: "AI Systems",
+    org: "Syndicate",
     title: "Brought the same questions to AI.",
-    body: "As technical cofounder of Syndicate, I'm building a workspace for coordinating multiple AI models across complex tasks. The work has drawn me into model orchestration, structured delegation, failure recovery, human oversight, and the practical question of when an AI system can be trusted to act.",
+    body: "As technical cofounder, I'm building a workspace for coordinating multiple AI models across complex tasks. The work centers on delegation, structured communication, failure recovery, human oversight, and when an AI system can be trusted to act.",
+    proof: "Multi-model orchestration with configurable human control",
   },
 ];
 
@@ -166,300 +192,316 @@ function HeroCtas() {
     </div>
   );
 }
-/* Smooth height collapse without JS measurement: fractional fr grid rows.
-   `open` is continuous 0..1 so scroll can interpolate height, not just toggle it. */
-function Collapse({ open, children }: { open: number; children: React.ReactNode }) {
+
+const clamp01 = (t: number) => Math.min(1, Math.max(0, t));
+
+// Tiny on-palette data motif for the Pantera (research) branch — bars + trend,
+// evidence not decoration.
+function ChartMotif() {
   return (
-    <div
-      className="grid"
-      style={{ gridTemplateRows: `${open}fr`, opacity: open }}
-      aria-hidden={open < 0.5}
+    <svg
+      aria-hidden
+      viewBox="0 0 40 28"
+      className="h-7 w-10 shrink-0 text-[var(--accent)]/60"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
     >
-      <div className="overflow-hidden">{children}</div>
+      <line x1="4" y1="24" x2="4" y2="17" />
+      <line x1="12" y1="24" x2="12" y2="12" />
+      <line x1="20" y1="24" x2="20" y2="19" />
+      <line x1="28" y1="24" x2="28" y2="8" />
+      <line x1="36" y1="24" x2="36" y2="14" />
+      <polyline points="4,15 12,10 20,13 28,5 36,11" strokeOpacity="0.55" />
+    </svg>
+  );
+}
+
+// Tiny on-palette node-network motif for the Syndicate (AI systems) branch.
+function NetworkMotif() {
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 40 28"
+      className="h-7 w-10 shrink-0 text-[var(--accent)]/60"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+    >
+      <line x1="8" y1="7" x2="20" y2="14" strokeOpacity="0.7" />
+      <line x1="8" y1="21" x2="20" y2="14" strokeOpacity="0.7" />
+      <line x1="20" y1="14" x2="34" y2="8" strokeOpacity="0.7" />
+      <line x1="20" y1="14" x2="34" y2="20" strokeOpacity="0.7" />
+      <circle cx="8" cy="7" r="2.5" fill="currentColor" stroke="none" />
+      <circle cx="8" cy="21" r="2.5" fill="currentColor" stroke="none" />
+      <circle cx="20" cy="14" r="3" fill="currentColor" stroke="none" />
+      <circle cx="34" cy="8" r="2.5" fill="currentColor" stroke="none" />
+      <circle cx="34" cy="20" r="2.5" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function ProofLine({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-[var(--accent)]/25 bg-[var(--accent-tint)] px-3 py-1 text-xs font-medium text-[var(--slate-lightest)]">
+      <span aria-hidden className="h-1 w-1 rounded-full bg-[var(--accent)]" />
+      {children}
+    </span>
+  );
+}
+
+function BranchCard({ branch }: { branch: Branch }) {
+  return (
+    <div className="flex h-full flex-col rounded-2xl border border-[var(--accent)]/15 bg-[var(--bg-elev)]/50 p-6 sm:p-7">
+      <div className="flex items-start justify-between gap-4">
+        <div className="text-[0.6875rem] font-bold uppercase tracking-[0.2em]">
+          <div className="text-[var(--accent)]">{branch.track}</div>
+          <div className="mt-1 text-[var(--slate)]">{branch.org}</div>
+        </div>
+        {branch.id === "pantera" ? <ChartMotif /> : <NetworkMotif />}
+      </div>
+      <h3 className="mt-4 text-lg font-bold tracking-[-0.01em] text-[var(--slate-lightest)] sm:text-xl">
+        {branch.title}
+      </h3>
+      <p className="mt-2 text-[0.9375rem] leading-[1.65] text-[var(--slate-light)]">
+        {branch.body}
+      </p>
+      <ProofLine>{branch.proof}</ProofLine>
     </div>
   );
 }
 
-function JourneyCard({
-  item,
-  index,
-  open,
-}: {
-  item: Journey;
-  index: number;
-  open: number;
-}) {
-  const expanded = open > 0.5;
-  return (
-    <article
-      className={`flex h-full flex-col rounded-2xl border bg-[var(--bg-elev)]/60 p-6 transition-colors duration-500 sm:p-7 ${
-        expanded ? "border-[var(--accent)]/25" : "border-white/10"
-      }`}
-    >
-      {/* Scannable headline layer: numbered badge · category label + title. */}
-      <div className="flex items-start gap-4">
-        <span
-          aria-hidden
-          className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-sm font-bold tabular-nums ring-1 transition-colors duration-500 ${
-            expanded
-              ? "bg-[var(--accent)]/12 text-[var(--accent)] ring-[var(--accent)]/30"
-              : "bg-white/5 text-[var(--slate)] ring-white/10"
-          }`}
-        >
-          {String(index + 1).padStart(2, "0")}
-        </span>
-        <div>
-          <div
-            className={`text-[0.6875rem] font-semibold uppercase tracking-[0.18em] transition-colors duration-500 ${
-              expanded ? "text-[var(--slate-light)]" : "text-[var(--slate)]"
-            }`}
-          >
-            {item.label}
-          </div>
-          {/* Title carries the emphasis through size + weight, not color. */}
-          <h3
-            className={`mt-1 text-lg font-bold tracking-[-0.01em] transition-colors duration-500 sm:text-xl ${
-              expanded ? "text-[var(--slate-lightest)]" : "text-[var(--slate-light)]"
-            }`}
-          >
-            {item.title}
-          </h3>
-        </div>
-      </div>
+// The load path: one continuous vertical line draws through three past stages,
+// then branches at a NOW node into two parallel current tracks. Motion is
+// restrained and scroll-linked — the line fills as the section enters the
+// viewport and each node lights when the fill reaches it. Under
+// prefers-reduced-motion (and SSR/no-JS) everything renders filled and static,
+// so the structure reads identically without animation.
+function Timeline() {
+  const railRef = useRef<HTMLDivElement>(null);
+  // One ref per node on the trunk: the three stages plus the NOW fork marker.
+  const nodeRefs = useRef<(HTMLElement | null)[]>([]);
+  const nodeCount = stages.length + 1;
+  const nowIndex = stages.length;
 
-      {/* De-emphasized body, revealed as the card expands. */}
-      <Collapse open={open}>
-        <div className="mt-5 max-w-prose border-t border-white/10 pt-5">
-          <p className="text-[0.9375rem] leading-[1.65] text-[var(--slate-lightest)]">
-            {item.body}
-          </p>
-        </div>
-      </Collapse>
-    </article>
+  const [animate, setAnimate] = useState(false);
+  const [fill, setFill] = useState(1); // fraction of the trunk drawn, 0..1
+  const [active, setActive] = useState<boolean[]>(() =>
+    Array(nodeCount).fill(true),
   );
-}
-
-// Desktop lays the cards out in a 3-across grid, so each row of up to three
-// cards is one scroll-staged "group". Derived from the card count so the
-// staging adapts if the number of journey cards changes.
-const COLS = 3;
-const numGroups = Math.ceil(journey.length / COLS);
-const lastGroup = numGroups - 1;
-
-const groupOf = (index: number) => Math.floor(index / COLS);
-
-// Cards in the final (possibly partial) row are centered across the grid.
-// The grid is COLS*2 columns wide and each card spans 2, so the trailing row
-// starts at column (1 + COLS - trailingCount). Class strings are spelled out
-// in full so Tailwind's JIT scanner keeps them.
-const trailingCount = journey.length - (numGroups - 1) * COLS;
-const firstTrailingIndex = journey.length - trailingCount;
-const colStartClass: Record<number, string> = {
-  2: "lg:col-start-2",
-  3: "lg:col-start-3",
-  4: "lg:col-start-4",
-};
-const trailingColStartClass =
-  trailingCount < COLS ? (colStartClass[1 + COLS - trailingCount] ?? "") : "";
-
-const trackHeightClass = numGroups >= 3 ? "lg:h-[260vh]" : "lg:h-[190vh]";
-
-const clamp01 = (t: number) => Math.min(1, Math.max(0, t));
-
-const smoothstep = (t: number) => t * t * (3 - 2 * t);
-
-// Continuous openness of a group given the smoothed stage value (0..2).
-// The 1.5x slope gives each group a plateau where it's fully open, with
-// eased crossfades to its neighbors instead of hard threshold flips.
-const opennessOf = (stage: number, group: number) =>
-  smoothstep(Math.min(1, Math.max(0, 1.5 * (1 - Math.abs(stage - group)))));
-
-function JourneyCards() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  // Scroll-linked expand/compress everywhere motion is allowed; reduced-motion
-  // and SSR/no-JS render the fully expanded static stack. Desktop pins the
-  // grid and stages groups by track progress; mobile can't fit a whole group
-  // in the viewport, so each card opens/compresses by its own scroll position.
-  const [mode, setMode] = useState<"static" | "desktop" | "mobile">("static");
-  const [stage, setStage] = useState(0);
-  const [opens, setOpens] = useState<number[]>(() => journey.map(() => 1));
 
   useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 1024px)");
     const motion = window.matchMedia("(prefers-reduced-motion: no-preference)");
-    const update = () =>
-      setMode(!motion.matches ? "static" : desktop.matches ? "desktop" : "mobile");
+    const update = () => setAnimate(motion.matches);
     update();
-    desktop.addEventListener("change", update);
     motion.addEventListener("change", update);
-    return () => {
-      desktop.removeEventListener("change", update);
-      motion.removeEventListener("change", update);
-    };
+    return () => motion.removeEventListener("change", update);
   }, []);
 
   useEffect(() => {
-    if (mode !== "desktop") return;
-    const el = trackRef.current;
-    if (!el) return;
-    let raf = 0;
-    let running = false;
-    let current = 0;
-    let target = 0;
-    let last = 0;
-
-    const readTarget = () => {
-      const rect = el.getBoundingClientRect();
-      const span = rect.height - window.innerHeight;
-      const p = span > 0 ? Math.min(1, Math.max(0, -rect.top / span)) : 1;
-      target = p * lastGroup;
+    // Reduced motion / no animation: fully drawn, all nodes lit, no listeners.
+    const reset = () => {
+      setFill(1);
+      setActive(Array(nodeCount).fill(true));
     };
+    if (!animate) {
+      reset();
+      return;
+    }
+    const rail = railRef.current;
+    if (!rail) return;
 
-    // Exponentially smooth the scroll-linked value toward its target so
-    // trackpad/wheel steps read as fluid motion instead of jumps. Native
-    // scrolling is never intercepted — this only softens what we render.
-    const tick = (now: number) => {
-      const dt = Math.min(64, now - last);
-      last = now;
-      current += (target - current) * (1 - Math.exp(-dt / 90));
-      if (Math.abs(target - current) < 0.002) {
-        current = target;
-        running = false;
-      }
-      setStage(current);
-      if (running) raf = requestAnimationFrame(tick);
+    let ticking = false;
+    // The draw line follows a fixed anchor ~62% down the viewport: the trunk
+    // fills to wherever that anchor intersects it, and a node lights the moment
+    // the fill passes it — so line and nodes stay perfectly consistent.
+    const read = () => {
+      ticking = false;
+      const anchor = window.innerHeight * 0.62;
+      const r = rail.getBoundingClientRect();
+      setFill(r.height > 0 ? clamp01((anchor - r.top) / r.height) : 1);
+      setActive(
+        nodeRefs.current
+          .slice(0, nodeCount)
+          .map((el) => (el ? el.getBoundingClientRect().top <= anchor : false)),
+      );
     };
-
     const onScroll = () => {
-      readTarget();
-      if (!running) {
-        running = true;
-        last = performance.now();
-        raf = requestAnimationFrame(tick);
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(read);
       }
     };
 
-    readTarget();
-    current = target;
-    setStage(current);
+    read();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
-      running = false;
-      cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [mode]);
+  }, [animate, nodeCount]);
 
-  useEffect(() => {
-    if (mode !== "mobile") return;
-    let raf = 0;
-    let running = false;
-    let last = 0;
-    const current = journey.map(() => 0);
-    const targets = journey.map(() => 0);
-
-    // A card expands as its top scrolls up past ~4/5 of the viewport and
-    // compresses again as it exits the top, so the open "wave" walks the
-    // column card by card — the mobile translation of the desktop groups.
-    const readTargets = () => {
-      const h = window.innerHeight;
-      cardRefs.current.forEach((el, i) => {
-        if (!el) return;
-        const top = el.getBoundingClientRect().top;
-        const rise = clamp01((0.85 * h - top) / (0.25 * h));
-        const fall = clamp01((top - 0.03 * h) / (0.17 * h));
-        targets[i] = smoothstep(Math.min(rise, fall));
-      });
-    };
-
-    const tick = (now: number) => {
-      const dt = Math.min(64, now - last);
-      last = now;
-      const k = 1 - Math.exp(-dt / 90);
-      let settled = true;
-      for (let i = 0; i < current.length; i++) {
-        current[i] += (targets[i] - current[i]) * k;
-        if (Math.abs(targets[i] - current[i]) > 0.002) settled = false;
-        else current[i] = targets[i];
-      }
-      setOpens([...current]);
-      if (settled) {
-        running = false;
-      } else {
-        // Heights are changing mid-animation, so card positions (and thus
-        // targets) drift each frame — re-read before the next step.
-        readTargets();
-        raf = requestAnimationFrame(tick);
-      }
-    };
-
-    const onScroll = () => {
-      readTargets();
-      if (!running) {
-        running = true;
-        last = performance.now();
-        raf = requestAnimationFrame(tick);
-      }
-    };
-
-    readTargets();
-    for (let i = 0; i < current.length; i++) current[i] = targets[i];
-    setOpens([...current]);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      running = false;
-      cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [mode]);
+  const nowActive = active[nowIndex];
 
   return (
-    // The tall track reserves scroll distance; the sticky frame inside it means
-    // nothing below the section shifts while rows expand/compress.
-    <div ref={trackRef} className={mode === "desktop" ? trackHeightClass : undefined}>
-      <div className={mode === "desktop" ? "lg:sticky lg:top-24" : undefined}>
-        <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
-          How I got here
+    <div>
+      <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
+        How I got here
+      </div>
+      <h2 className="mt-3 text-2xl font-bold tracking-[-0.02em] text-[var(--slate-lightest)] sm:text-3xl">
+        From structures to systems.
+      </h2>
+      <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--slate-light)] sm:text-base">
+        The domains changed. The underlying questions didn&apos;t: How does a
+        complex system behave? Where does it fail? What evidence would change my
+        mind?
+      </p>
+
+      {/* Trunk: the three past stages threaded by one continuous line. */}
+      <div className="relative mt-10 lg:mt-14">
+        {/* The rail (unfilled track) + accent draw overlay. Left edge on
+            mobile, centered on desktop. */}
+        <div
+          ref={railRef}
+          aria-hidden
+          className="pointer-events-none absolute bottom-0 left-[11px] top-0 w-px -translate-x-1/2 bg-white/10 lg:left-1/2"
+        >
+          <div
+            className="absolute inset-x-0 top-0 bg-[var(--accent)] transition-[height] duration-200 ease-out"
+            style={{ height: `${fill * 100}%` }}
+          />
         </div>
-        <h2 className="mt-3 text-2xl font-bold tracking-[-0.02em] text-[var(--slate-lightest)] sm:text-3xl">
-          From structures to systems.
-        </h2>
-        <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--slate-light)] sm:text-base">
-          The domains changed. The underlying questions didn&apos;t: How does a
-          complex system behave? Where does it fail? What evidence would change my
-          mind? And what tools would make the answer easier to find?
-        </p>
-        <div className="mt-8 grid grid-cols-1 items-stretch gap-5 sm:gap-6 lg:grid-cols-6 lg:gap-7">
-          {journey.map((item, index) => (
-            <div
-              key={item.id}
-              ref={(el) => {
-                cardRefs.current[index] = el;
-              }}
-              className={`lg:col-span-2 ${
-                index === firstTrailingIndex ? trailingColStartClass : ""
-              }`}
-            >
-              <JourneyCard
-                item={item}
-                index={index}
-                open={
-                  mode === "static"
-                    ? 1
-                    : mode === "desktop"
-                      ? opennessOf(stage, groupOf(index))
-                      : opens[index]
-                }
+
+        {stages.map((s, i) => {
+          const isLeft = i % 2 === 0; // 01 left, 02 right, 03 left
+          return (
+            <div key={s.id} className="relative py-6 lg:py-9">
+              <span
+                ref={(el) => {
+                  nodeRefs.current[i] = el;
+                }}
+                aria-hidden
+                className={`absolute left-[11px] top-7 z-10 h-3.5 w-3.5 -translate-x-1/2 rounded-full ring-4 ring-[var(--bg)] transition-colors duration-500 lg:left-1/2 lg:top-9 ${
+                  active[i] ? "bg-[var(--accent)]" : "bg-[var(--bg-elev-2)]"
+                }`}
               />
+              <div className="pl-10 lg:grid lg:grid-cols-2 lg:gap-x-16 lg:pl-0">
+                <div
+                  className={`flex max-w-[26rem] flex-col ${
+                    isLeft
+                      ? "lg:col-start-1 lg:ml-auto lg:items-end lg:text-right"
+                      : "lg:col-start-2 lg:mr-auto"
+                  }`}
+                >
+                  <div
+                    className={`flex items-baseline gap-2 text-[0.6875rem] font-bold uppercase tracking-[0.22em] ${
+                      isLeft ? "lg:justify-end" : ""
+                    }`}
+                  >
+                    <span className="tabular-nums text-[var(--accent)]">
+                      {s.num}
+                    </span>
+                    <span className="text-[var(--slate)]">{s.label}</span>
+                  </div>
+                  <h3 className="mt-2 text-lg font-bold tracking-[-0.01em] text-[var(--slate-lightest)] sm:text-xl">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-[0.9375rem] leading-[1.65] text-[var(--slate-light)]">
+                    {s.body}
+                  </p>
+                  <ProofLine>{s.proof}</ProofLine>
+                </div>
+              </div>
             </div>
-          ))}
+          );
+        })}
+
+        {/* NOW: the fork marker where the trunk splits into two tracks. On
+            desktop the node sits on the line above the centered label; on
+            mobile it stays on the left rail beside the label. */}
+        <div className="relative pt-6 lg:pt-10">
+          <span
+            ref={(el) => {
+              nodeRefs.current[nowIndex] = el;
+            }}
+            aria-hidden
+            className={`absolute left-[11px] top-7 z-10 h-4 w-4 -translate-x-1/2 rounded-full ring-4 ring-[var(--bg)] transition-all duration-500 lg:left-1/2 lg:top-0 ${
+              nowActive
+                ? "bg-[var(--accent)] shadow-[0_0_0_5px_var(--accent-tint)]"
+                : "bg-[var(--bg-elev-2)]"
+            }`}
+          />
+          <div className="pl-10 lg:pl-0 lg:pt-8 lg:text-center">
+            <span className="text-[0.6875rem] font-bold uppercase tracking-[0.28em] text-[var(--accent)]">
+              Now, two parallel tracks
+            </span>
+          </div>
         </div>
       </div>
+
+      {/* Desktop fork: two curves splitting from the NOW node toward each
+          column. Appears together with the branches when NOW lights. */}
+      <div aria-hidden className="hidden lg:block">
+        <svg
+          viewBox="0 0 100 40"
+          preserveAspectRatio="none"
+          className="mx-auto h-10 w-full transition-opacity duration-700"
+          style={{ opacity: nowActive ? 1 : 0 }}
+        >
+          <path
+            d="M50 0 C 50 24, 25 16, 25 40"
+            fill="none"
+            stroke="var(--accent)"
+            strokeWidth={1.5}
+            strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
+          />
+          <path
+            d="M50 0 C 50 24, 75 16, 75 40"
+            fill="none"
+            stroke="var(--accent)"
+            strokeWidth={1.5}
+            strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
+          />
+        </svg>
+      </div>
+
+      {/* Two parallel current tracks — equal weight, rendered together. */}
+      <div className="mt-4 grid gap-6 sm:gap-8 lg:mt-2 lg:grid-cols-2 lg:gap-10">
+        {branches.map((b) => (
+          <div
+            key={b.id}
+            className={`relative pl-10 transition-all duration-700 ease-out lg:pl-0 ${
+              nowActive ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+            }`}
+            style={{ transitionDelay: animate && nowActive ? "120ms" : "0ms" }}
+          >
+            {/* Mobile-only short horizontal branch off the left rail. */}
+            <span
+              aria-hidden
+              className="absolute left-[11px] top-0 h-8 w-px -translate-x-1/2 bg-white/10 lg:hidden"
+            />
+            <span
+              aria-hidden
+              className="absolute left-[11px] top-8 h-px w-6 bg-[var(--accent)]/50 lg:hidden"
+            />
+            <span
+              aria-hidden
+              className="absolute left-[11px] top-8 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--accent)] lg:hidden"
+            />
+            <BranchCard branch={b} />
+          </div>
+        ))}
+      </div>
+
+      {/* Closing synthesis under the fork. */}
+      <p className="mt-10 max-w-2xl text-[0.9375rem] italic leading-[1.7] text-[var(--slate-light)] lg:mx-auto lg:text-center">
+        Two expressions of the same instinct: understand complex systems, then
+        build better ways to work with them.
+      </p>
     </div>
   );
 }
@@ -511,9 +553,9 @@ export default function Hero() {
 
       </div>
 
-      {/* Journey cards below the hero. */}
+      {/* Forked-timeline journey below the hero. */}
       <div className="mt-10 md:mt-14">
-        <JourneyCards />
+        <Timeline />
       </div>
     </section>
   );
