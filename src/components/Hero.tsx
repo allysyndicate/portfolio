@@ -20,73 +20,41 @@ const heroSocials = [
 
 type Journey = {
   id: string;
+  label: string;
   title: string;
-  teaser: string;
-  body: string[];
+  body: string;
 };
 
 const journey: Journey[] = [
   {
     id: "structures",
-    title: "Started in structures",
-    teaser: "Five years designing high-rise towers.",
-    body: [
-      "I earned my BS and MS in civil engineering from the University of Illinois, then spent almost five years designing high-rise towers, over 7M sq ft across the US and SE Asia.",
-    ],
-  },
-  {
-    id: "mka",
-    title: "Turned to tooling",
-    teaser: "Automation was the first crack in the wall.",
-    body: [
-      "At MKA I started building office-wide design and analysis tools, first in Excel and Visual Basic, then in Python, to speed up how our projects got delivered.",
-      "The more I built, the more I realized I cared about the tools shaping the work as much as the towers they helped design.",
-    ],
+    label: "Structural Engineering",
+    title: "Designed for uncertainty.",
+    body: "I spent five years designing more than 7 million square feet of high-rise buildings across the United States and Southeast Asia, often in seismic and high-wind regions. The work taught me to quantify uncertainty, reason about failure, and make decisions that had to survive real constraints.",
   },
   {
     id: "software",
-    title: "Taught myself software",
-    teaser: "Python became JavaScript, then full-stack.",
-    body: [
-      "My software education came through the work itself.",
-      "I kept running into problems worth automating, then learned whatever I needed to build the next tool well.",
-    ],
+    label: "Software",
+    title: "Turned recurring work into software.",
+    body: "At MKA, I began translating repetitive design and analysis workflows into office-wide tools, first in Excel and VBA, then in Python. Automation started as a practical shortcut and became a new way of thinking about the work itself.",
   },
   {
     id: "markets",
-    title: "Followed data into markets",
-    teaser: "Algorithmic trading made feedback loops addictive.",
-    body: [
-      "Algorithmic trading put my code up against a live market for the first time.",
-      "The market graded my work daily, in dollars, and that kind of feedback was hard to give up.",
-    ],
-  },
-  {
-    id: "messari",
-    title: "Learned crypto through data",
-    teaser: "Volatility became the bridge.",
-    body: [
-      "Algo trading taught me to pay attention to volatility, and crypto made that volatility impossible to ignore.",
-      "That pulled me into what was effectively a data-science role at Messari, where I spent my days digging through protocol data and learning a new application or blockchain every time the work demanded it.",
-    ],
+    label: "Markets & Data",
+    title: "Tested ideas against live systems.",
+    body: "Algorithmic trading put my models against a system that responded immediately and unpredictably. That led me into crypto research at Messari, where I used market, network, and on-chain data to study behavior and incentives, publish more than 50 reports, and build analytical tools.",
   },
   {
     id: "research",
-    title: "Built research systems",
-    teaser: "Research that ships as software.",
-    body: [
-      "At Pantera I'm the second member of our in-house research team, which in practice means I do a bit of everything.",
-      "One week I'm writing a report on tokenization, the next I'm building the live dashboard that backs it up.",
-    ],
+    label: "Research Engineering",
+    title: "Built research that ships.",
+    body: "At Pantera, I take ambiguous questions from framing and data collection through analysis, validation, publication, and live data products. The goal is not just to produce an interesting finding, but to build the system that makes the finding reproducible and useful.",
   },
   {
-    id: "agents",
-    title: "Now building agents",
-    teaser: "Syndicate turns a request into a team.",
-    body: [
-      "Syndicate grew out of using AI all day and wishing I had a better way to coordinate specialized agents across real work.",
-      "It's an orchestration app that turns a fuzzy request into a team with a plan and the tools to finish the job.",
-    ],
+    id: "ai",
+    label: "AI Systems",
+    title: "Brought the same questions to AI.",
+    body: "As technical cofounder of Syndicate, I'm building a workspace for coordinating multiple AI models across complex tasks. The work has drawn me into model orchestration, structured delegation, failure recovery, human oversight, and the practical question of when an AI system can be trusted to act.",
   },
 ];
 
@@ -228,7 +196,7 @@ function JourneyCard({
         expanded ? "border-[var(--accent)]/25" : "border-white/10"
       }`}
     >
-      {/* Scannable headline layer: badge chip + title + teaser. */}
+      {/* Scannable headline layer: numbered badge · category label + title. */}
       <div className="flex items-start gap-4">
         <span
           aria-hidden
@@ -241,39 +209,60 @@ function JourneyCard({
           {String(index + 1).padStart(2, "0")}
         </span>
         <div>
+          <div
+            className={`text-[0.6875rem] font-semibold uppercase tracking-[0.18em] transition-colors duration-500 ${
+              expanded ? "text-[var(--slate-light)]" : "text-[var(--slate)]"
+            }`}
+          >
+            {item.label}
+          </div>
+          {/* Title carries the emphasis through size + weight, not color. */}
           <h3
-            className={`text-lg font-bold tracking-tight transition-colors duration-500 sm:text-xl ${
+            className={`mt-1 text-lg font-bold tracking-[-0.01em] transition-colors duration-500 sm:text-xl ${
               expanded ? "text-[var(--slate-lightest)]" : "text-[var(--slate-light)]"
             }`}
           >
             {item.title}
           </h3>
-          <Collapse open={open}>
-            <p className="mt-1.5 text-base font-semibold leading-snug tracking-[-0.01em] text-[var(--slate-lightest)] sm:text-[1.0625rem]">
-              {item.teaser}
-            </p>
-          </Collapse>
         </div>
       </div>
 
-      {/* De-emphasized body, chunked into short paragraphs. */}
+      {/* De-emphasized body, revealed as the card expands. */}
       <Collapse open={open}>
-        <div className="mt-5 max-w-prose space-y-3 border-t border-white/10 pt-5">
-          {item.body.map((sentence) => (
-            <p
-              key={sentence}
-              className="text-[0.9375rem] leading-[1.65] text-[var(--slate-lightest)]"
-            >
-              {sentence}
-            </p>
-          ))}
+        <div className="mt-5 max-w-prose border-t border-white/10 pt-5">
+          <p className="text-[0.9375rem] leading-[1.65] text-[var(--slate-lightest)]">
+            {item.body}
+          </p>
         </div>
       </Collapse>
     </article>
   );
 }
 
-const groupOf = (index: number) => (index < 3 ? 0 : index < 6 ? 1 : 2);
+// Desktop lays the cards out in a 3-across grid, so each row of up to three
+// cards is one scroll-staged "group". Derived from the card count so the
+// staging adapts if the number of journey cards changes.
+const COLS = 3;
+const numGroups = Math.ceil(journey.length / COLS);
+const lastGroup = numGroups - 1;
+
+const groupOf = (index: number) => Math.floor(index / COLS);
+
+// Cards in the final (possibly partial) row are centered across the grid.
+// The grid is COLS*2 columns wide and each card spans 2, so the trailing row
+// starts at column (1 + COLS - trailingCount). Class strings are spelled out
+// in full so Tailwind's JIT scanner keeps them.
+const trailingCount = journey.length - (numGroups - 1) * COLS;
+const firstTrailingIndex = journey.length - trailingCount;
+const colStartClass: Record<number, string> = {
+  2: "lg:col-start-2",
+  3: "lg:col-start-3",
+  4: "lg:col-start-4",
+};
+const trailingColStartClass =
+  trailingCount < COLS ? (colStartClass[1 + COLS - trailingCount] ?? "") : "";
+
+const trackHeightClass = numGroups >= 3 ? "lg:h-[260vh]" : "lg:h-[190vh]";
 
 const clamp01 = (t: number) => Math.min(1, Math.max(0, t));
 
@@ -324,7 +313,7 @@ function JourneyCards() {
       const rect = el.getBoundingClientRect();
       const span = rect.height - window.innerHeight;
       const p = span > 0 ? Math.min(1, Math.max(0, -rect.top / span)) : 1;
-      target = p * 2;
+      target = p * lastGroup;
     };
 
     // Exponentially smooth the scroll-linked value toward its target so
@@ -432,22 +421,29 @@ function JourneyCards() {
   return (
     // The tall track reserves scroll distance; the sticky frame inside it means
     // nothing below the section shifts while rows expand/compress.
-    <div ref={trackRef} className={mode === "desktop" ? "lg:h-[260vh]" : undefined}>
+    <div ref={trackRef} className={mode === "desktop" ? trackHeightClass : undefined}>
       <div className={mode === "desktop" ? "lg:sticky lg:top-24" : undefined}>
         <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
           How I got here
         </div>
-        <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--slate-light)]">
-          The short version of how a structural engineer ended up building AI agents.
+        <h2 className="mt-3 text-2xl font-bold tracking-[-0.02em] text-[var(--slate-lightest)] sm:text-3xl">
+          From structures to systems.
+        </h2>
+        <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--slate-light)] sm:text-base">
+          The domains changed. The underlying questions didn&apos;t: How does a
+          complex system behave? Where does it fail? What evidence would change my
+          mind? And what tools would make the answer easier to find?
         </p>
-        <div className="mt-8 grid grid-cols-1 items-stretch gap-5 sm:gap-6 lg:grid-cols-3 lg:gap-7">
+        <div className="mt-8 grid grid-cols-1 items-stretch gap-5 sm:gap-6 lg:grid-cols-6 lg:gap-7">
           {journey.map((item, index) => (
             <div
               key={item.id}
               ref={(el) => {
                 cardRefs.current[index] = el;
               }}
-              className={index === journey.length - 1 ? "lg:col-start-2" : ""}
+              className={`lg:col-span-2 ${
+                index === firstTrailingIndex ? trailingColStartClass : ""
+              }`}
             >
               <JourneyCard
                 item={item}
