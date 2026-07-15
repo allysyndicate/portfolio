@@ -75,10 +75,10 @@ export function Chapters() {
         >
           <div className="mb-6">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
-              {c.act}
+              {c.eyebrow ?? c.act}
             </p>
             <h3 className="mt-2 flex items-center gap-2.5 text-2xl font-bold text-[var(--slate-lightest)]">
-              {c.company}
+              {c.heading ?? c.company}
               {c.id === "messari" && (
                 <a
                   href="https://messari.io/research/ally-zach"
@@ -103,18 +103,25 @@ export function Chapters() {
                 </a>
               )}
             </h3>
-            {c.role && (
+            {!c.heading && c.role && (
               <p className="mt-1 text-base font-medium text-[var(--slate-light)]">
                 {c.role}
               </p>
             )}
-            {c.location && (
+            {!c.heading && c.location && (
               <p className="mt-0.5 text-sm text-[var(--slate)]">{c.location}</p>
             )}
-            <p className="mt-0.5 text-sm text-[var(--slate)]">{c.years}</p>
+            {!c.heading && (
+              <p className="mt-0.5 text-sm text-[var(--slate)]">{c.years}</p>
+            )}
             <p className="mt-3 max-w-xl text-sm text-[var(--slate)]">
               {c.intro}
             </p>
+            {c.topics && (
+              <p className="mt-3 max-w-xl text-xs font-medium tracking-wide text-[var(--slate)]/80">
+                {c.topics}
+              </p>
+            )}
           </div>
           <Carousel projects={c.projects} label={c.label} />
         </Section>

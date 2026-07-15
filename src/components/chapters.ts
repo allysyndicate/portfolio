@@ -12,15 +12,21 @@ export type Chapter = {
   id: "pantera" | "messari" | "structural";
   /** Act number shown as the chapter eyebrow. */
   act: string;
+  /** Optional override for the small-caps eyebrow line (replaces `act` when set). */
+  eyebrow?: string;
   label: string;
   /** Employer — the primary/largest headline line. */
   company: string;
+  /** Optional thematic heading; when set it replaces the company name as the h3 and the role/location/years meta lines are hidden. */
+  heading?: string;
   /** Role/title — secondary line under the employer. */
   role?: string;
   /** Location — optional line under the role. */
   location?: string;
   years: string;
   intro: string;
+  /** Optional subtle meta/tag line of topics, rendered under the description. */
+  topics?: string;
   /** Per-chapter accent — drives links, tags, dots, and nav highlight. */
   accent: string;
   accentTint: string;
@@ -31,13 +37,17 @@ export const chapters: Chapter[] = [
   {
     id: "pantera",
     act: "Venture Capital",
+    eyebrow: "PANTERA CAPITAL · RESEARCH ENGINEER · 2024–PRESENT",
     label: "Pantera",
     company: "Pantera Capital",
+    heading: "Research that ships as more than a report.",
     role: "Research Engineer",
     location: "Remote",
     years: "2024 — Present",
     intro:
-      "I'm one of two people on Pantera's in-house research team. I publish the firm's data-driven research and build the dashboards and data products behind it, and I advise portfolio companies across the firm's investments.",
+      "I'm one of two people on Pantera's in-house research team. I take open-ended questions from research design and data collection through analysis, validation, publication, and deployment. The result might be an empirical study, a live dashboard, or a public dataset, but the goal is the same: make the finding inspectable and the work useful after publication.",
+    topics:
+      "Market microstructure · Prediction markets · Tokenization · Digital-asset treasuries · User behavior · AI agents",
     accent: "#818cf8",
     accentTint: "rgba(129, 140, 248, 0.16)",
     projects: [
