@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { socials } from "./Sections";
 
 const supporting =
-  "I frame empirical questions, assemble the data, validate the results, and ship the pipelines, dashboards, and software behind the analysis. My work spans market behavior, user networks, and AI systems.";
+  "I frame empirical questions, assemble the data, validate the results, and ship the pipelines, dashboards, and software behind the analysis, working mostly in Python, SQL, and TypeScript. My work spans market behavior, user networks, and AI systems.";
 
 const heroSocials = [
   ...socials,
@@ -34,7 +34,7 @@ const stages: Stage[] = [
     num: "01",
     label: "Structures",
     title: "Designed for uncertainty.",
-    body: "I spent five years designing high-rise buildings in seismic and high-wind regions. The work taught me to quantify uncertainty, reason about failure, and make decisions that had to survive real constraints.",
+    body: "I spent five years in structural engineering, designing high-rise buildings in seismic and high-wind regions. The work taught me to quantify uncertainty, reason about failure, and make decisions that had to survive real constraints.",
     proof: "7M+ square feet designed",
   },
   {
@@ -548,7 +548,8 @@ export default function Hero() {
 
         {/* De-emphasized origin note */}
         <p className="order-7 text-sm text-[var(--slate)] md:col-start-1 md:row-start-6 md:mt-6">
-          Previously, I spent five years designing high-rise buildings.
+          Previously, I spent five years as a structural engineer designing
+          high-rise buildings.
         </p>
 
       </div>

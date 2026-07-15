@@ -202,7 +202,7 @@ export function SideProjects() {
                 <div className="h-full overflow-hidden rounded-2xl">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/syndicate-app.png"
+                    src="/syndicate-app.webp"
                     alt="Syndicate desktop app — team workspace running autonomous AI agents"
                     className="h-full w-full max-w-full rounded-2xl object-contain object-center"
                   />

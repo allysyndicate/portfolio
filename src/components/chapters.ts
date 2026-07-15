@@ -92,7 +92,7 @@ export const chapters: Chapter[] = [
       },
       {
         title: "Prediction Markets Dashboard",
-        descriptor: "Novig — live prediction-markets dashboard tracking NFL activity across Kalshi & Polymarket.",
+        descriptor: "Live dashboard built for Novig, tracking NFL prediction-market activity across Kalshi & Polymarket.",
         href: "https://novig-nfl.vercel.app/",
         img: "/pantera-novig-portal.png",
         thumb: "from-[#474ea8] to-[#0a1a30]",
@@ -113,8 +113,8 @@ export const chapters: Chapter[] = [
       },
       {
         title: "Speculative Swells and the Memecoin Aftermath",
-        descriptor: "Supply-shock analysis of memecoin price moves and the speculative aftermath.",
-        href: "https://pantera-research-lab.vercel.app/",
+        descriptor: "Supply-shock analysis of memecoin price moves and the speculative aftermath, published in the Stanford Blockchain Review.",
+        href: "https://review.stanfordblockchain.xyz/p/49-speculative-swells-and-the-memecoin",
         img: "/pantera-prl-memecoin-cover.png",
         thumb: "from-[#474ea8] to-[#0a1a30]",
       },
