@@ -272,42 +272,115 @@ function BranchCard({ branch }: { branch: Branch }) {
   );
 }
 
-// One past-stage card as it appears on the DESKTOP horizontal trunk: centered
-// copy that hangs above or below the rail. Placement only sets which side the
-// gap goes on; the grid row it lives in handles the rest.
-function DesktopStageCard({ stage }: { stage: Stage }) {
-  // Every stage hangs BELOW the rail (no more above/below alternation), so all
-  // items read as one horizontal row. Copy is left-aligned within its narrow
-  // column and top-aligned to the rail node above it.
+// DESKTOP horizontal trunk copy. All six items — the three past stages, the
+// NOW fork marker, and the two current tracks (Pantera + Syndicate) — sit as
+// columns along ONE rail, their copy hanging above or below it in an
+// alternating rhythm. The branches continue rightward on the same line as the
+// rest; they never drop below the trunk.
+function StageCopy({ stage }: { stage: Stage }) {
   return (
-    <div className="px-4 pt-10 text-left">
-      <div className="flex items-baseline gap-2 text-[0.6875rem] font-bold uppercase tracking-[0.22em]">
+    <div className="px-1">
+      <div className="flex items-baseline gap-1.5 text-[0.625rem] font-bold uppercase tracking-[0.16em]">
         <span className="tabular-nums text-[var(--accent)]">{stage.num}</span>
         <span className="text-[var(--slate)]">{stage.label}</span>
       </div>
-      <h3 className="mt-2 text-base font-bold tracking-[-0.01em] text-[var(--slate-lightest)] xl:text-lg">
+      <h3 className="mt-1.5 text-[0.9375rem] font-bold leading-snug tracking-[-0.01em] text-[var(--slate-lightest)]">
         {stage.title}
       </h3>
-      <p className="mt-2 text-[0.8125rem] leading-[1.5] text-[var(--slate-light)]">
+      <p className="mt-1.5 text-[0.75rem] leading-[1.5] text-[var(--slate-light)]">
         {stage.body}
       </p>
-      <div className="mt-3">
+      <div className="mt-2">
         <ProofLine>{stage.proof}</ProofLine>
       </div>
     </div>
   );
 }
 
+// A current-track column: keeps the subtle card + chart/network motif, but sized
+// to sit inline on the rail rather than as a big dropped-below card.
+function BranchCopy({ branch }: { branch: Branch }) {
+  return (
+    <div className="rounded-xl border border-[var(--accent)]/15 bg-[var(--bg-elev)]/50 px-3 py-3">
+      <div className="flex items-start justify-between gap-2">
+        <div className="text-[0.5625rem] font-bold uppercase tracking-[0.14em]">
+          <div className="text-[var(--accent)]">{branch.track}</div>
+          <div className="mt-0.5 text-[var(--slate)]">{branch.org}</div>
+        </div>
+        {branch.id === "pantera" ? <ChartMotif /> : <NetworkMotif />}
+      </div>
+      <h3 className="mt-2 text-[0.9375rem] font-bold leading-snug tracking-[-0.01em] text-[var(--slate-lightest)]">
+        {branch.title}
+      </h3>
+      <p className="mt-1.5 text-[0.75rem] leading-[1.5] text-[var(--slate-light)]">
+        {branch.body}
+      </p>
+      <div className="mt-2">
+        <ProofLine>{branch.proof}</ProofLine>
+      </div>
+    </div>
+  );
+}
+
+// The NOW fork marker — a compact label at its node on the rail.
+function NowLabel() {
+  return (
+    <div className="px-1">
+      <span className="text-[0.625rem] font-bold uppercase leading-tight tracking-[0.16em] text-[var(--accent)]">
+        Now, two parallel tracks
+      </span>
+    </div>
+  );
+}
+
+// Static Tailwind class names so the JIT keeps them (no dynamic interpolation).
+const COL_START = [
+  "col-start-1",
+  "col-start-2",
+  "col-start-3",
+  "col-start-4",
+  "col-start-5",
+  "col-start-6",
+];
+
+// The six desktop columns in left→right order, each with which side of the rail
+// its copy hangs on. Alternating above/below is intentional ("one on top, then
+// switches to the bottom"). Pantera + Syndicate are the final two items ON the
+// line, not below it.
+const desktopColumns: {
+  key: string;
+  place: "above" | "below";
+  render: () => React.ReactNode;
+}[] = [
+  { key: "s1", place: "above", render: () => <StageCopy stage={stages[0]} /> },
+  { key: "s2", place: "below", render: () => <StageCopy stage={stages[1]} /> },
+  { key: "s3", place: "above", render: () => <StageCopy stage={stages[2]} /> },
+  { key: "now", place: "below", render: () => <NowLabel /> },
+  {
+    key: "pantera",
+    place: "above",
+    render: () => <BranchCopy branch={branches[0]} />,
+  },
+  {
+    key: "syndicate",
+    place: "below",
+    render: () => <BranchCopy branch={branches[1]} />,
+  },
+];
+
 // Node positions along the trunk, as fractions 0..1. Because the drawn line's
 // length is tied to a single scroll `progress` (width on desktop, height on
 // mobile), a node lights exactly when the fill reaches its fraction — so line
 // and nodes stay consistent in both orientations.
-// Desktop lays the row out as a 4-column grid (01 · 02 · 03 · NOW) inside a
-// left-aligned max-width, so the nodes fall on the cell centers 1/8, 3/8, 5/8,
-// 7/8 of that compact rail — one tight sequence, not spread across the page.
+// MOBILE (vertical) uses the three stage fractions plus a NOW fraction.
 const STAGE_T = [0.125, 0.375, 0.625];
-const NOW_X = 0.875; // NOW is the 4th column, at the right end of the compact row
 const NOW_T = 0.875;
+
+// DESKTOP lays the trunk out as a 6-column grid (01 · 02 · 03 · NOW · Pantera ·
+// Syndicate), so the nodes fall on the cell centers 1/12, 3/12 … 11/12 of the
+// rail. Every item — including the two current tracks — lives ON this one line.
+const NODE_T = [1, 3, 5, 7, 9, 11].map((n) => n / 12);
+const NOW_IDX = 3;
 
 // The load path. On DESKTOP the trunk is a horizontal line running left → right
 // through the three past stages (all copy below the line, one compact row),
@@ -375,6 +448,7 @@ function Timeline() {
 
   const stageActive = STAGE_T.map((t) => progress >= t);
   const nowActive = progress >= NOW_T;
+  const nodeLit = NODE_T.map((t) => progress >= t);
 
   return (
     <div>
@@ -390,98 +464,70 @@ function Timeline() {
         mind?
       </p>
 
-      {/* ── DESKTOP TRUNK: one compact horizontal row — 01 · 02 · 03 · NOW — in
-          a left-aligned max-width, so the sequence stays tight instead of
-          stretching across the page. Every stage's copy hangs BELOW a single
-          rail (no alternation), and the whole thing is content-sized: the rail
-          sits on its own row, all cards on the row beneath, so copy length can
-          never overflow into the fork. The 4-column grid puts nodes on the cell
-          centers (1/8, 3/8, 5/8, 7/8). ── */}
-      <div
-        ref={desktopTrunkRef}
-        className="relative mt-16 hidden lg:block lg:max-w-4xl"
-      >
-        {/* The rail: track + accent draw, with the three stage nodes and the
-            NOW fork node sitting on it. */}
-        <div className="relative">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/10"
-          >
+      {/* ── DESKTOP TRUNK: ONE horizontal rail carrying all six items left→right
+          — 01 · 02 · 03 · NOW · Pantera · Syndicate. Copy alternates above/below
+          the line for rhythm; the two current tracks are the final items ON the
+          rail, never dropping below it. A three-row grid (above copy / rail /
+          below copy) auto-sizes each row so copy can never overlap the line. ── */}
+      <div ref={desktopTrunkRef} className="relative mt-16 hidden lg:block">
+        <div className="grid grid-cols-6 gap-x-3 xl:gap-x-4">
+          {/* Above-rail copy */}
+          {desktopColumns.map((c, i) =>
+            c.place === "above" ? (
+              <div
+                key={`a-${c.key}`}
+                className={`${COL_START[i]} row-start-1 flex flex-col justify-end pb-5`}
+              >
+                {c.render()}
+              </div>
+            ) : null
+          )}
+
+          {/* The rail: track + accent draw, with all six nodes sitting on it. */}
+          <div className="col-span-6 row-start-2 relative h-4">
             <div
-              className="absolute inset-y-0 left-0 bg-[var(--accent)] transition-[width] duration-200 ease-out"
-              style={{ width: `${progress * 100}%` }}
-            />
-          </div>
-          {STAGE_T.map((t, i) => (
-            <span
-              key={i}
               aria-hidden
-              className={`absolute top-0 z-10 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4 ring-[var(--bg)] transition-colors duration-500 ${
-                stageActive[i] ? "bg-[var(--accent)]" : "bg-[var(--bg-elev-2)]"
-              }`}
-              style={{ left: `${t * 100}%` }}
-            />
-          ))}
-          {/* NOW node at the right end of the compact row. */}
-          <span
-            aria-hidden
-            className={`absolute top-0 z-10 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4 ring-[var(--bg)] transition-all duration-500 ${
-              nowActive
-                ? "bg-[var(--accent)] shadow-[0_0_0_5px_var(--accent-tint)]"
-                : "bg-[var(--bg-elev-2)]"
-            }`}
-            style={{ left: `${NOW_X * 100}%` }}
-          />
-        </div>
-
-        {/* Cards BELOW the rail: all three stages plus the NOW label, in one
-            4-column row. A faint vertical drop links the NOW node to the fork. */}
-        <div className="relative grid grid-cols-4 items-start">
-          <div
-            aria-hidden
-            className="absolute bottom-0 top-0 w-px -translate-x-1/2 bg-[var(--accent)] transition-opacity duration-500"
-            style={{ left: `${NOW_X * 100}%`, opacity: nowActive ? 0.4 : 0 }}
-          />
-          {stages.map((s) => (
-            <DesktopStageCard key={s.id} stage={s} />
-          ))}
-          <div className="px-4 pt-10 text-left">
-            <span className="text-[0.6875rem] font-bold uppercase tracking-[0.22em] text-[var(--accent)]">
-              Now, two parallel tracks
-            </span>
+              className="pointer-events-none absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-white/10"
+            >
+              <div
+                className="absolute inset-y-0 left-0 bg-[var(--accent)] transition-[width] duration-200 ease-out"
+                style={{ width: `${progress * 100}%` }}
+              />
+            </div>
+            {NODE_T.map((t, i) => {
+              const isNow = i === NOW_IDX;
+              const isBranch = i > NOW_IDX;
+              return (
+                <span
+                  key={i}
+                  aria-hidden
+                  className={`absolute top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4 ring-[var(--bg)] transition-all duration-500 ${
+                    isNow || isBranch ? "h-4 w-4" : "h-3.5 w-3.5"
+                  } ${
+                    nodeLit[i]
+                      ? isNow || isBranch
+                        ? "bg-[var(--accent)] shadow-[0_0_0_5px_var(--accent-tint)]"
+                        : "bg-[var(--accent)]"
+                      : "bg-[var(--bg-elev-2)]"
+                  }`}
+                  style={{ left: `${t * 100}%` }}
+                />
+              );
+            })}
           </div>
-        </div>
-      </div>
 
-      {/* Desktop fork: two traces fanning from the NOW node down toward each
-          branch column. Lives in the same compact max-width as the row and the
-          branches below, so the geometry lines up. Appears with the branches
-          when NOW lights. */}
-      <div aria-hidden className="hidden lg:block lg:max-w-4xl">
-        <svg
-          viewBox="0 0 100 36"
-          preserveAspectRatio="none"
-          className="h-9 w-full transition-opacity duration-700"
-          style={{ opacity: nowActive ? 1 : 0 }}
-        >
-          <path
-            d="M87.5 0 C 87.5 18, 25 8, 25 36"
-            fill="none"
-            stroke="var(--accent)"
-            strokeWidth={1.5}
-            strokeLinecap="round"
-            vectorEffect="non-scaling-stroke"
-          />
-          <path
-            d="M87.5 0 C 87.5 22, 75 12, 75 36"
-            fill="none"
-            stroke="var(--accent)"
-            strokeWidth={1.5}
-            strokeLinecap="round"
-            vectorEffect="non-scaling-stroke"
-          />
-        </svg>
+          {/* Below-rail copy */}
+          {desktopColumns.map((c, i) =>
+            c.place === "below" ? (
+              <div
+                key={`b-${c.key}`}
+                className={`${COL_START[i]} row-start-3 flex flex-col justify-start pt-5`}
+              >
+                {c.render()}
+              </div>
+            ) : null
+          )}
+        </div>
       </div>
 
       {/* ── MOBILE TRUNK: single vertical left-edge line, stages stacked ── */}
@@ -540,12 +586,13 @@ function Timeline() {
         </div>
       </div>
 
-      {/* Two parallel current tracks — equal weight, rendered together. */}
-      <div className="mt-4 grid gap-6 sm:gap-8 lg:mt-2 lg:max-w-4xl lg:grid-cols-2 lg:gap-10">
+      {/* MOBILE-ONLY: two parallel current tracks stacked below the vertical
+          rail. On desktop these live inline on the horizontal rail above. */}
+      <div className="mt-4 grid gap-6 sm:gap-8 lg:hidden">
         {branches.map((b) => (
           <div
             key={b.id}
-            className={`relative pl-10 transition-all duration-700 ease-out lg:pl-0 ${
+            className={`relative pl-10 transition-all duration-700 ease-out ${
               nowActive ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
             }`}
             style={{ transitionDelay: animate && nowActive ? "120ms" : "0ms" }}
