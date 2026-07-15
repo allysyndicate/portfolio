@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { socials } from "./Sections";
 
 const supporting =
-  "I started as a structural engineer, then taught myself software by automating real design workflows at MKA. That same pull carried me into algorithmic trading, then into crypto, and now into building teams of AI agents that do real work.";
+  "I frame empirical questions, assemble the data, validate the results, and ship the pipelines, dashboards, and software behind the analysis. My work spans market behavior, user networks, and AI systems.";
 
 const heroSocials = [
   ...socials,
@@ -141,47 +141,60 @@ function SocialLinks() {
   );
 }
 
-function CurrentlyCard() {
+function RolesBlock() {
   const linkClass =
     "font-semibold text-[var(--accent)] underline decoration-[var(--accent)]/35 underline-offset-4 transition-colors hover:text-[var(--accent-strong)] hover:decoration-[var(--accent-strong)]";
-  const labelClass =
-    "w-24 shrink-0 text-[0.6875rem] font-bold uppercase tracking-[0.18em] text-[var(--accent)] sm:pt-0.5";
-  const rowClass =
-    "flex flex-col gap-1 leading-snug sm:flex-row sm:items-baseline sm:gap-3";
 
   return (
-    <div className="order-5 max-w-[34rem] rounded-lg border border-[var(--accent)]/20 bg-[var(--bg-elev)]/55 px-4 py-3 text-sm text-[var(--slate-light)] shadow-sm shadow-black/10 sm:px-5 sm:text-base md:col-start-1 md:row-start-4 md:mt-8">
-      <div className="space-y-2.5">
-        <p className={rowClass}>
-          <span className={labelClass}>Currently</span>
-          <span>
-            Research Engineer at{" "}
-            <a
-              href="https://panteracapital.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={linkClass}
-            >
-              Pantera
-            </a>{" "}
-            Capital
-          </span>
+    <div className="order-5 max-w-[34rem] border-l-2 border-[var(--accent)]/35 pl-4 text-sm text-[var(--slate-light)] sm:text-base md:col-start-1 md:row-start-4 md:mt-8">
+      <div className="space-y-1.5 leading-snug">
+        <p>
+          Research Engineer at{" "}
+          <a
+            href="https://panteracapital.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+          >
+            Pantera Capital
+          </a>
         </p>
-        <p className={rowClass}>
-          <span className={labelClass}>Also</span>
-          <span>
-            Technical cofounder of{" "}
-            <a
-              href="https://usesyndicate.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={linkClass}
-            >
-              Syndicate
-            </a>
-          </span>
+        <p>
+          Technical Cofounder of{" "}
+          <a
+            href="https://usesyndicate.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+          >
+            Syndicate
+          </a>
         </p>
       </div>
+    </div>
+  );
+}
+
+/* Hero call-to-action row.
+   - "View selected research" → in-page Experience/research carousels (#pantera).
+   - "View résumé" → in-page "The Full Record" timeline (#resume); the downloadable
+     PDF is intentionally NOT used (stale + contains a home address/phone).
+   - GitHub is omitted: no GitHub profile URL exists anywhere in the site. */
+function HeroCtas() {
+  return (
+    <div className="order-6 flex flex-wrap items-center gap-3 md:col-start-1 md:row-start-5 md:mt-8">
+      <a
+        href="#pantera"
+        className="rounded-md bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-[var(--accent)]/25 transition-colors hover:bg-[var(--accent-strong)]"
+      >
+        View selected research
+      </a>
+      <a
+        href="#resume"
+        className="rounded-md border border-[var(--accent)]/40 bg-[var(--bg-elev)]/60 px-5 py-2.5 text-sm font-semibold text-[var(--slate-lightest)] transition-colors hover:border-[var(--accent)]/70 hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
+      >
+        View résumé
+      </a>
     </div>
   );
 }
@@ -463,18 +476,15 @@ export default function Hero() {
       className="relative scroll-mt-24 pt-24 pb-10 sm:pt-28 sm:pb-12 md:pt-32 md:pb-14"
     >
       <div className="flex flex-col gap-y-8 md:grid md:grid-cols-[1.25fr_0.75fr] md:items-center md:gap-x-14 md:gap-y-0">
-        {/* Name + eyebrow */}
+        {/* Eyebrow (replaces the name label) */}
         <div className="order-1 md:col-start-1 md:row-start-1 md:mb-7">
           <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
-            About
+            Research Engineer · Data Scientist
           </div>
-          <h2 className="mt-2 flex items-center gap-2.5 text-2xl font-bold text-[var(--slate-lightest)]">
-            Ally Zach
-          </h2>
         </div>
 
         {/* Photo + social (right column on desktop) */}
-        <div className="order-2 md:order-none md:col-start-2 md:row-span-5 md:row-start-1 md:self-center">
+        <div className="order-2 md:order-none md:col-start-2 md:row-span-6 md:row-start-1 md:self-center">
           <Photo />
           <div className="mt-5">
             <SocialLinks />
@@ -483,13 +493,8 @@ export default function Hero() {
 
         {/* Headline */}
         <h1 className="order-3 text-pretty text-[2.125rem] font-bold leading-[1.08] tracking-[-0.02em] text-[var(--slate-lightest)] sm:text-[3rem] sm:leading-[1.05] lg:text-[3.5rem] md:col-start-1 md:row-start-2">
-          <span className="block">
-            I used to <span className="whitespace-nowrap">design buildings.</span>
-          </span>
-          <span className="block">
-            Now I build the{" "}
-            <span className="text-[var(--accent)]">tools I wished existed</span>.
-          </span>
+          I study how complex systems behave, then{" "}
+          <span className="text-[var(--accent)]">build the tools to understand them</span>.
         </h1>
 
         {/* Supporting paragraph */}
@@ -497,8 +502,16 @@ export default function Hero() {
           {supporting}
         </p>
 
-        {/* Currently surface */}
-        <CurrentlyCard />
+        {/* Current roles */}
+        <RolesBlock />
+
+        {/* Primary calls to action */}
+        <HeroCtas />
+
+        {/* De-emphasized origin note */}
+        <p className="order-7 text-sm text-[var(--slate)] md:col-start-1 md:row-start-6 md:mt-6">
+          Previously, I spent five years designing high-rise buildings.
+        </p>
 
       </div>
 
