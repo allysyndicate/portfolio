@@ -1,7 +1,7 @@
 import GlowBackground from "@/components/GlowBackground";
 import NavBar from "@/components/NavBar";
 import Hero from "@/components/Hero";
-import { Chapters, SideProjects, Education, Resume, Contact } from "@/components/Sections";
+import { Chapters, SideProjects, Education, Contact } from "@/components/Sections";
 
 export default function Home() {
   return (
@@ -14,7 +14,6 @@ export default function Home() {
           <Chapters />
           <SideProjects />
           <Education />
-          <Resume />
           <Contact />
         </main>
       </div>

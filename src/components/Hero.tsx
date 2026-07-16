@@ -135,44 +135,42 @@ function SocialLinks() {
   );
 }
 
+// Single proof-point line — Pantera + Syndicate read as one credential strip
+// rather than two paragraphs competing with the thesis headline.
 function RolesBlock() {
   const linkClass =
-    "font-semibold text-[var(--accent)] underline decoration-[var(--accent)]/35 underline-offset-4 transition-colors hover:text-[var(--accent-strong)] hover:decoration-[var(--accent-strong)]";
+    "font-semibold text-[var(--slate-lightest)] transition-colors hover:text-[var(--accent)]";
 
   return (
-    <div className="order-5 max-w-[34rem] border-l-2 border-[var(--accent)]/35 pl-4 text-sm text-[var(--slate-light)] sm:text-base md:col-start-1 md:row-start-4 md:mt-8">
-      <div className="space-y-1.5 leading-snug">
-        <p>
-          Research Engineer at{" "}
-          <a
-            href="https://panteracapital.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClass}
-          >
-            Pantera Capital
-          </a>
-        </p>
-        <p>
-          Technical Cofounder of{" "}
-          <a
-            href="https://usesyndicate.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClass}
-          >
-            Syndicate
-          </a>
-        </p>
-      </div>
+    <div className="order-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[var(--slate)] md:col-start-1 md:row-start-4 md:mt-7">
+      <a
+        href="https://panteracapital.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={linkClass}
+      >
+        Pantera Capital
+      </a>
+      <span aria-hidden className="text-[var(--accent)]/60">
+        ·
+      </span>
+      <a
+        href="https://usesyndicate.org"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={linkClass}
+      >
+        Syndicate
+      </a>
     </div>
   );
 }
 
 /* Hero call-to-action row.
    - "View selected research" → in-page Experience/research carousels (#pantera).
-   - "View résumé" → in-page "The Full Record" timeline (#resume); the downloadable
-     PDF is intentionally NOT used (stale + contains a home address/phone).
+   - "View résumé" → the /resume route ("The Full Record": earlier roles, teaching,
+     honors, full chronology). The downloadable PDF is intentionally NOT used
+     (stale + contains a home address/phone).
    - GitHub is omitted: no GitHub profile URL exists anywhere in the site. */
 function HeroCtas() {
   return (
@@ -184,7 +182,7 @@ function HeroCtas() {
         View selected research
       </a>
       <a
-        href="#resume"
+        href="/resume"
         className="rounded-md border border-[var(--accent)]/40 bg-[var(--bg-elev)]/60 px-5 py-2.5 text-sm font-semibold text-[var(--slate-lightest)] transition-colors hover:border-[var(--accent)]/70 hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
       >
         View résumé
@@ -545,17 +543,37 @@ export default function Hero() {
 
         {/* Primary calls to action */}
         <HeroCtas />
-
-        {/* De-emphasized origin note */}
-        <p className="order-7 text-sm text-[var(--slate)] md:col-start-1 md:row-start-6 md:mt-6">
-          Previously, I spent five years as a structural engineer designing
-          high-rise buildings.
-        </p>
-
       </div>
 
+      {/* Origin note pinned to the hero's bottom edge as a scroll teaser into
+          the journey section below. */}
+      <a
+        href="#how-i-got-here"
+        className="group mt-14 flex flex-col items-start gap-2 border-t border-white/10 pt-6 text-sm text-[var(--slate)] transition-colors hover:text-[var(--slate-light)] md:mt-16"
+      >
+        <span>
+          Previously, I spent five years as a structural engineer designing
+          high-rise buildings.
+        </span>
+        <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+          How I got here
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+            className="h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5"
+          >
+            <path d="M12 5v14M5 12l7 7 7-7" />
+          </svg>
+        </span>
+      </a>
+
       {/* Forked-timeline journey below the hero. */}
-      <div className="mt-10 md:mt-14">
+      <div id="how-i-got-here" className="mt-10 scroll-mt-24 md:mt-14">
         <Timeline />
       </div>
     </section>
