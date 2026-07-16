@@ -42,7 +42,7 @@ export const chapters: Chapter[] = [
     role: "Research Engineer",
     years: "2024 — Present",
     intro:
-      "I'm one of two people on Pantera's in-house research team. I take open-ended questions from research design and data collection through analysis, validation, publication, and deployment. The result might be an empirical study, a live dashboard, or a public dataset, but the goal is the same: make the finding inspectable and the work useful after publication.",
+      "I'm one of two people on Pantera's in-house research team. I take open-ended questions from research design through deployment, and most of what I publish ships with a live dashboard or an open dataset so the finding stays useful after the report is out.",
     topics:
       "Market microstructure · Prediction markets · Tokenization · Digital-asset treasuries · User behavior · AI agents",
     accent: "#818cf8",
@@ -136,7 +136,7 @@ export const chapters: Chapter[] = [
     location: "Remote",
     years: "2022 — 2024",
     intro:
-      "I wrote 50+ long-form research reports, covering everything from L1 protocols to consumer apps, and built the analytics tooling the research team ran on.",
+      "I spent two years at Messari writing 50+ long-form research reports, on everything from L1 protocols to consumer apps. Behind the writing, I built the analytics tooling the research team ran on — which is where my research started turning into software.",
     accent: "#38bdf8",
     accentTint: "rgba(56, 189, 248, 0.14)",
     projects: [
@@ -200,7 +200,7 @@ export const chapters: Chapter[] = [
     location: "Seattle, WA",
     years: "2018 — 2022",
     intro:
-      "I spent four years at MKA designing high-rise towers, focused on performance-based design and foundations in high-seismic and high-wind regions. In total I engineered more than 7M sq ft of construction across the US and SE Asia.",
+      "I spent four years at MKA designing high-rise towers in high-seismic and high-wind regions, engineering more than 7M sq ft of construction across the US and SE Asia. Along the way I began turning repetitive design workflows into office-wide tools, and that's where the software career started.",
     accent: "#60a5fa",
     accentTint: "rgba(96, 165, 250, 0.14)",
     projects: [

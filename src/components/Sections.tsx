@@ -130,6 +130,21 @@ export function Chapters() {
   );
 }
 
+const syndicateCapabilities = [
+  {
+    lead: "Multi-model agent teams",
+    rest: "Claude, OpenAI, and Gemini agents work side by side on one team, each doing what it does best.",
+  },
+  {
+    lead: "Manager-led task coordination",
+    rest: "A manager agent breaks your goal into tasks and keeps every specialist pointed at the right one.",
+  },
+  {
+    lead: "Human control over autonomy",
+    rest: "You decide how much the team does on its own, from fully hands-off to approving every step.",
+  },
+];
+
 const syndicateHighlights = [
   {
     lead: "Atlas, a manager agent",
@@ -181,6 +196,10 @@ export function SideProjects() {
                 Technical Cofounder
               </p>
             </div>
+            <p className="max-w-2xl text-left text-base font-medium leading-relaxed text-[var(--slate-lightest)] sm:text-lg">
+              Describe what you want. A team of specialist agents plans the work
+              and hands you back something finished.
+            </p>
             <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(18rem,0.9fr)] md:items-center">
               <blockquote className="space-y-3 rounded-xl border-l-2 border-[var(--accent)]/50 border-y border-r border-y-[var(--accent)]/15 border-r-[var(--accent)]/15 bg-[var(--accent)]/[0.06] px-4 py-4 text-sm leading-relaxed text-[var(--slate)] shadow-sm shadow-black/10 sm:px-5 sm:text-base">
                 <span className="block">
@@ -211,21 +230,40 @@ export function SideProjects() {
             </div>
           </div>
 
-          <ul className="mt-7 grid gap-x-10 gap-y-4 border-t border-[var(--accent)]/15 pt-7 text-sm leading-relaxed text-[var(--slate-light)] md:mt-8 md:grid-cols-2 md:pt-8">
-            {syndicateHighlights.map((h) => (
-              <li key={h.lead} className="flex gap-3">
-                <span aria-hidden className="mt-1 text-[var(--accent)]">
-                  →
-                </span>
-                <span>
-                  <strong className="font-semibold text-[var(--slate-lightest)]">
-                    {h.lead}
-                  </strong>
-                  {h.rest}
-                </span>
+          <ul className="mt-7 grid gap-x-10 gap-y-6 border-t border-[var(--accent)]/15 pt-7 text-sm leading-relaxed text-[var(--slate-light)] md:mt-8 md:grid-cols-3 md:pt-8">
+            {syndicateCapabilities.map((cap) => (
+              <li key={cap.lead} className="space-y-1.5">
+                <p className="font-semibold text-[var(--slate-lightest)]">
+                  {cap.lead}
+                </p>
+                <p>{cap.rest}</p>
               </li>
             ))}
           </ul>
+
+          <details className="group mt-6 border-t border-[var(--accent)]/15 pt-5">
+            <summary className="flex cursor-pointer list-none items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+              <span className="transition-transform group-open:rotate-90" aria-hidden>
+                →
+              </span>
+              Technical details
+            </summary>
+            <ul className="mt-5 grid gap-x-10 gap-y-4 text-sm leading-relaxed text-[var(--slate-light)] md:grid-cols-2">
+              {syndicateHighlights.map((h) => (
+                <li key={h.lead} className="flex gap-3">
+                  <span aria-hidden className="mt-1 text-[var(--accent)]">
+                    →
+                  </span>
+                  <span>
+                    <strong className="font-semibold text-[var(--slate-lightest)]">
+                      {h.lead}
+                    </strong>
+                    {h.rest}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </details>
 
           <div className="mt-8 flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center">
             <a
@@ -506,18 +544,43 @@ export function Contact() {
             Outside the screen
           </p>
           <ul className="space-y-2.5 text-base leading-relaxed text-[var(--slate-light)] sm:text-lg">
-            <li>Home base just outside Portland, Oregon</li>
-            <li>A toddler, a Bernese mountain dog, and two Ragdoll cats</li>
-            <li>Cooking, snowboarding, paddleboarding</li>
-            <li>Chicago sports loyalty, always</li>
+            <li>
+              <strong className="font-semibold text-[var(--slate-lightest)]">
+                Home base:
+              </strong>{" "}
+              just outside Portland, Oregon.
+            </li>
+            <li>
+              <strong className="font-semibold text-[var(--slate-lightest)]">
+                The household:
+              </strong>{" "}
+              my family, one busy toddler, a Bernese mountain dog, and two
+              Ragdoll cats.
+            </li>
+            <li>
+              <strong className="font-semibold text-[var(--slate-lightest)]">
+                Off hours:
+              </strong>{" "}
+              cooking something new, snowboarding in winter, paddleboarding when
+              it&apos;s warm.
+            </li>
+            <li>
+              <strong className="font-semibold text-[var(--slate-lightest)]">
+                Still and always:
+              </strong>{" "}
+              Chicago sports.
+            </li>
           </ul>
         </div>
         <div className="flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
           <a
             href="mailto:allyzach28@gmail.com"
-            className="rounded-md bg-[var(--accent)] px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[var(--accent-strong)]"
+            className="group rounded-md bg-[var(--accent)] px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[var(--accent-strong)]"
           >
             Say hello
+            <span className="ml-1 inline-block transition-transform group-hover:translate-x-1">
+              →
+            </span>
           </a>
           {/* TODO: replace with updated 2026 resume before making resume CTA public.
               Hidden temporarily — current /Ally Zach Resume.pdf is stale (lists Messari
