@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import Carousel from "./Carousel";
+import ChapterProjects from "./ChapterProjects";
 import { chapters } from "./chapters";
 
 export const socials = [
@@ -123,7 +123,7 @@ export function Chapters() {
               </p>
             )}
           </div>
-          <Carousel projects={c.projects} label={c.label} />
+          <ChapterProjects projects={c.projects} label={c.label} />
         </Section>
       ))}
     </>
@@ -159,7 +159,7 @@ const syndicateHighlights = [
 
 export function SideProjects() {
   return (
-    <Section id="side-projects" label="Side Projects" centeredHeading>
+    <Section id="side-projects" label="What I'm Building" centeredHeading>
       <div className="overflow-hidden rounded-xl border border-[var(--accent)]/25 bg-[var(--bg-elev)]/60 shadow-lg shadow-black/20 sm:rounded-2xl">
         <div className="p-5 sm:p-8 md:p-12">
           <div className="space-y-7 sm:space-y-8">
@@ -276,77 +276,35 @@ const honors = [
   "Corsetti Scholarship Fund",
 ];
 
+/**
+ * Compact horizontal Education strip near the bottom of the homepage. The full
+ * degree detail + honors/scholarships live in the Full Record (/resume).
+ */
 export function Education() {
   return (
-    <Section id="education" label="Education" centeredHeading>
-      <div className="group relative overflow-hidden rounded-xl border border-[var(--accent)]/30 bg-gradient-to-br from-[var(--bg-elev-2)] via-[var(--bg-elev)] to-[var(--bg-elev-2)] p-5 shadow-xl shadow-black/30 ring-1 ring-[var(--accent)]/10 transition-all duration-300 hover:border-[var(--accent)]/55 hover:shadow-2xl hover:shadow-[var(--accent)]/20 sm:rounded-2xl sm:p-8 md:p-12">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-70"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[var(--accent)]/15 blur-3xl"
-        />
-
-        <div className="flex items-start gap-3">
-          <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--accent)] to-[var(--accent-strong)] text-white shadow-md shadow-[var(--accent)]/30">
-            <img src="/illinois-block-i.png" alt="" aria-hidden className="h-9 w-9 object-contain" />
-          </span>
-          <div className="min-w-0">
-            <h3 className="text-xl font-bold tracking-tight text-[var(--slate-lightest)] sm:text-2xl">
-              University of Illinois at Urbana-Champaign
-            </h3>
-            <p className="mt-1 text-sm text-[var(--slate-light)]">
-              Civil & Environmental Engineering, minor in Business
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-8 grid gap-5 md:grid-cols-2">
-          {degrees.map((d) => (
-            <div
-              key={d.level}
-              className="relative rounded-xl border border-[var(--accent)]/20 bg-[var(--bg-elev)]/60 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--accent)]/45"
-            >
-              <div className="flex items-start gap-3">
-                <span
-                  className={
-                    d.primary
-                      ? "rounded-lg bg-gradient-to-br from-[var(--accent)] to-[var(--accent-strong)] px-3 py-1.5 text-sm font-bold tracking-wide text-white shadow-sm shadow-[var(--accent)]/30"
-                      : "rounded-lg border border-[var(--accent)]/40 bg-[var(--accent-tint)] px-3 py-1.5 text-sm font-bold tracking-wide text-[var(--slate-lightest)]"
-                  }
-                >
-                  {d.level}
-                </span>
-                <div className="min-w-0">
-                  <p className="text-sm font-bold text-[var(--slate-lightest)]">
-                    {d.title}
-                  </p>
-                  <p className="text-xs text-[var(--slate)]">{d.field}</p>
-                </div>
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-[var(--slate-light)]">
-                {d.detail}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-8 border-t border-[var(--accent)]/15 pt-6">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-[var(--accent)]">
-            Honors &amp; Scholarships
+    <Section id="education" label="Education" hideHeading>
+      <div className="flex flex-col items-start gap-3 rounded-xl border border-[var(--accent)]/20 bg-[var(--bg-elev)]/50 px-5 py-4 sm:flex-row sm:items-center sm:gap-5 sm:rounded-2xl sm:px-7 sm:py-5">
+        <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--accent)] to-[var(--accent-strong)] shadow-md shadow-[var(--accent)]/30">
+          <img
+            src="/illinois-block-i.png"
+            alt=""
+            aria-hidden
+            className="h-8 w-8 object-contain"
+          />
+        </span>
+        <div className="min-w-0">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+            University of Illinois
           </p>
-          <div className="flex flex-wrap gap-2.5">
-            {honors.map((h) => (
-              <span
-                key={h}
-                className="rounded-lg border border-[var(--accent)]/25 bg-[var(--accent)]/[0.08] px-3 py-1.5 text-xs font-semibold text-[var(--slate-light)]"
-              >
-                {h}
-              </span>
-            ))}
-          </div>
+          <p className="mt-1 text-sm text-[var(--slate-light)] sm:text-base">
+            <span className="font-semibold text-[var(--slate-lightest)]">
+              M.S. + B.S. Civil Engineering
+            </span>
+            <span className="text-[var(--slate)]">
+              {" "}
+              · Structural Engineering · Business minor
+            </span>
+          </p>
         </div>
       </div>
     </Section>
@@ -489,6 +447,49 @@ export function Resume() {
                 ))}
               </ol>
             </div>
+
+            <div>
+              <p className="mb-6 text-xs font-bold uppercase tracking-[0.25em] text-[var(--accent-strong)]">
+                Education
+              </p>
+              <h3 className="text-lg font-bold tracking-tight text-[#0e1830]">
+                University of Illinois at Urbana-Champaign
+              </h3>
+              <p className="mt-0.5 text-sm font-medium text-[#3c4860]">
+                Civil &amp; Environmental Engineering, minor in Business
+              </p>
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                {degrees.map((d) => (
+                  <div
+                    key={d.level}
+                    className="rounded-lg border border-[#c7d2e6] bg-white/60 p-4"
+                  >
+                    <p className="text-sm font-bold text-[#0e1830]">
+                      {d.level} — {d.title}
+                    </p>
+                    <p className="text-xs text-[#64748b]">{d.field}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-[#3c4860]">
+                      {d.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6">
+                <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#64748b]">
+                  Honors &amp; Scholarships
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {honors.map((h) => (
+                    <span
+                      key={h}
+                      className="rounded-md border border-[#c7d2e6] bg-white/70 px-3 py-1.5 text-xs font-semibold text-[#3c4860]"
+                    >
+                      {h}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -499,23 +500,24 @@ export function Resume() {
 export function Contact() {
   return (
     <Section id="contact" label="Get in touch" centeredHeading>
-      <div className="mx-auto max-w-lg space-y-6 text-center text-[var(--slate)]">
-        <p>
-          Outside of work, life is centered just outside Portland, Oregon with
-          my family, a busy toddler, a Bernese mountain dog, and two Ragdoll
-          cats. I love eating my way through new cuisines and cooking at home,
-          and my weekends tend to follow the weather: snowboarding in winter,
-          paddleboarding when it&apos;s warm, plus bouldering, camping, and
-          anything else that gets me outside. After eight years in the Pacific
-          Northwest, my sports loyalty still belongs to where I grew up:
-          Chicago. Bears, Bulls, Cubs, and Hawks, always.
-        </p>
+      <div className="mx-auto max-w-lg space-y-8 text-center">
+        <div className="space-y-4">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
+            Outside the screen
+          </p>
+          <ul className="space-y-2.5 text-base leading-relaxed text-[var(--slate-light)] sm:text-lg">
+            <li>Home base just outside Portland, Oregon</li>
+            <li>A toddler, a Bernese mountain dog, and two Ragdoll cats</li>
+            <li>Cooking, snowboarding, paddleboarding</li>
+            <li>Chicago sports loyalty, always</li>
+          </ul>
+        </div>
         <div className="flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
           <a
             href="mailto:allyzach28@gmail.com"
             className="rounded-md bg-[var(--accent)] px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[var(--accent-strong)]"
           >
-            Say Hello
+            Say hello
           </a>
           {/* TODO: replace with updated 2026 resume before making resume CTA public.
               Hidden temporarily — current /Ally Zach Resume.pdf is stale (lists Messari
