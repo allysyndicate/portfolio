@@ -209,7 +209,7 @@ export const chapters: Chapter[] = [
         descriptor:
           "Five-star integrated resort & casino — three hotel towers (~1,000 keys), 236,800 sq ft casino, 2,500-seat theater; ~5.28M sq ft, Cebu's tallest development.",
         href: "https://www.hksinc.com/what-we-do/projects/nustar-casino-resort/",
-        img: "https://www.hksinc.com/wp-content/uploads/2018/12/Infinity-1-scaled.jpg",
+        img: "/nustar-resort-casino-cover.jpg",
         thumb: "from-[#1e3a5f] to-[#0a192f]",
       },
       {
