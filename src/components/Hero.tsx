@@ -249,9 +249,11 @@ function ProofLine({ children }: { children: React.ReactNode }) {
   );
 }
 
-function BranchCard({ branch }: { branch: Branch }) {
+// A single track inside the paired NOW box. Both tracks share one container so
+// the fork reads as one resolution, not two competing cards.
+function BranchColumn({ branch }: { branch: Branch }) {
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-[var(--accent)]/15 bg-[var(--bg-elev)]/50 p-6 sm:p-7">
+    <div className="flex h-full flex-col p-6 sm:p-7">
       <div className="flex items-start justify-between gap-4">
         <div className="text-[0.6875rem] font-bold uppercase tracking-[0.2em]">
           <div className="text-[var(--accent)]">{branch.track}</div>
@@ -266,6 +268,63 @@ function BranchCard({ branch }: { branch: Branch }) {
         {branch.body}
       </p>
       <ProofLine>{branch.proof}</ProofLine>
+    </div>
+  );
+}
+
+// Staggered story card for a past stage. Prominence varies by `size` so the
+// three stages read as an uneven path (large → small offset → large), not a
+// uniform row. The accent number sits large and quiet behind the copy.
+function StageCard({
+  stage,
+  size,
+  active,
+}: {
+  stage: Stage;
+  size: "lg" | "sm";
+  active: boolean;
+}) {
+  const large = size === "lg";
+  return (
+    <div
+      className={`relative overflow-hidden rounded-2xl border bg-[var(--bg-elev)]/50 transition-all duration-500 ${
+        large ? "p-7 sm:p-8" : "p-6 sm:p-6"
+      } ${
+        active
+          ? "border-[var(--accent)]/25 shadow-lg shadow-[var(--accent)]/5"
+          : "border-white/10"
+      }`}
+    >
+      {/* Oversized ghost number — structure without a dashboard tile. */}
+      <span
+        aria-hidden
+        className={`pointer-events-none absolute -right-2 -top-4 font-bold tabular-nums leading-none text-[var(--accent)]/10 ${
+          large ? "text-[7rem]" : "text-[5rem]"
+        }`}
+      >
+        {stage.num}
+      </span>
+      <div className="relative">
+        <div className="flex items-baseline gap-2 text-[0.6875rem] font-bold uppercase tracking-[0.22em]">
+          <span className="tabular-nums text-[var(--accent)]">{stage.num}</span>
+          <span className="text-[var(--slate)]">{stage.label}</span>
+        </div>
+        <h3
+          className={`mt-2 font-bold tracking-[-0.01em] text-[var(--slate-lightest)] ${
+            large ? "text-xl sm:text-2xl" : "text-lg"
+          }`}
+        >
+          {stage.title}
+        </h3>
+        <p
+          className={`mt-2 leading-[1.65] text-[var(--slate-light)] ${
+            large ? "text-[0.9375rem] sm:text-base" : "text-[0.875rem]"
+          }`}
+        >
+          {stage.body}
+        </p>
+        <ProofLine>{stage.proof}</ProofLine>
+      </div>
     </div>
   );
 }
@@ -357,9 +416,12 @@ function Timeline() {
         mind?
       </p>
 
-      {/* Trunk: the three past stages threaded by one continuous line. */}
+      {/* Staggered path: three story cards of uneven prominence, alternating
+          left/right of a central spine that draws as you scroll. The rhythm
+          (large → small offset → large) reads as one continuous transformation
+          rather than a row of equal tiles. */}
       <div className="relative mt-10 lg:mt-14">
-        {/* The rail (unfilled track) + accent draw overlay. Left edge on
+        {/* The spine (unfilled track) + accent draw overlay. Left edge on
             mobile, centered on desktop. */}
         <div
           ref={railRef}
@@ -374,58 +436,59 @@ function Timeline() {
 
         {stages.map((s, i) => {
           const isLeft = i % 2 === 0; // 01 left, 02 right, 03 left
+          const size: "lg" | "sm" = i === 1 ? "sm" : "lg"; // 02 is the small beat
           return (
-            <div key={s.id} className="relative py-6 lg:py-9">
+            <div key={s.id} className="relative py-5 lg:py-7">
+              {/* Spine node for this stage. */}
               <span
                 ref={(el) => {
                   nodeRefs.current[i] = el;
                 }}
                 aria-hidden
-                className={`absolute left-[11px] top-7 z-10 h-3.5 w-3.5 -translate-x-1/2 rounded-full ring-4 ring-[var(--bg)] transition-colors duration-500 lg:left-1/2 lg:top-9 ${
+                className={`absolute left-[11px] top-8 z-10 h-3.5 w-3.5 -translate-x-1/2 rounded-full ring-4 ring-[var(--bg)] transition-colors duration-500 lg:left-1/2 lg:top-10 ${
                   active[i] ? "bg-[var(--accent)]" : "bg-[var(--bg-elev-2)]"
                 }`}
               />
-              <div className="pl-10 lg:grid lg:grid-cols-2 lg:gap-x-16 lg:pl-0">
+              {/* Connector from the spine node to the card edge (desktop). */}
+              <span
+                aria-hidden
+                className={`absolute top-[2.875rem] hidden h-px bg-gradient-to-r transition-opacity duration-500 lg:block ${
+                  isLeft
+                    ? "right-1/2 left-auto w-8 from-transparent to-[var(--accent)]/50"
+                    : "left-1/2 w-8 from-[var(--accent)]/50 to-transparent"
+                } ${active[i] ? "opacity-100" : "opacity-30"}`}
+              />
+              <div className="pl-10 lg:grid lg:grid-cols-2 lg:gap-x-14 lg:pl-0">
                 <div
-                  className={`flex max-w-[26rem] flex-col ${
+                  className={`flex flex-col ${
                     isLeft
-                      ? "lg:col-start-1 lg:ml-auto lg:items-end lg:text-right"
-                      : "lg:col-start-2 lg:mr-auto"
-                  }`}
+                      ? "lg:col-start-1 lg:items-end"
+                      : "lg:col-start-2 lg:items-start"
+                  } ${size === "sm" ? "lg:mt-6" : ""}`}
                 >
                   <div
-                    className={`flex items-baseline gap-2 text-[0.6875rem] font-bold uppercase tracking-[0.22em] ${
-                      isLeft ? "lg:justify-end" : ""
+                    className={`w-full ${
+                      size === "lg"
+                        ? "lg:max-w-[30rem]"
+                        : "lg:max-w-[22rem]"
                     }`}
                   >
-                    <span className="tabular-nums text-[var(--accent)]">
-                      {s.num}
-                    </span>
-                    <span className="text-[var(--slate)]">{s.label}</span>
+                    <StageCard stage={s} size={size} active={active[i]} />
                   </div>
-                  <h3 className="mt-2 text-lg font-bold tracking-[-0.01em] text-[var(--slate-lightest)] sm:text-xl">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 text-[0.9375rem] leading-[1.65] text-[var(--slate-light)]">
-                    {s.body}
-                  </p>
-                  <ProofLine>{s.proof}</ProofLine>
                 </div>
               </div>
             </div>
           );
         })}
 
-        {/* NOW: the fork marker where the trunk splits into two tracks. On
-            desktop the node sits on the line above the centered label; on
-            mobile it stays on the left rail beside the label. */}
-        <div className="relative pt-6 lg:pt-10">
+        {/* NOW: the fork marker where the spine resolves into the paired box. */}
+        <div className="relative pt-8 lg:pt-12">
           <span
             ref={(el) => {
               nodeRefs.current[nowIndex] = el;
             }}
             aria-hidden
-            className={`absolute left-[11px] top-7 z-10 h-4 w-4 -translate-x-1/2 rounded-full ring-4 ring-[var(--bg)] transition-all duration-500 lg:left-1/2 lg:top-0 ${
+            className={`absolute left-[11px] top-9 z-10 h-4 w-4 -translate-x-1/2 rounded-full ring-4 ring-[var(--bg)] transition-all duration-500 lg:left-1/2 lg:top-0 ${
               nowActive
                 ? "bg-[var(--accent)] shadow-[0_0_0_5px_var(--accent-tint)]"
                 : "bg-[var(--bg-elev-2)]"
@@ -439,60 +502,19 @@ function Timeline() {
         </div>
       </div>
 
-      {/* Desktop fork: two curves splitting from the NOW node toward each
-          column. Appears together with the branches when NOW lights. */}
-      <div aria-hidden className="hidden lg:block">
-        <svg
-          viewBox="0 0 100 40"
-          preserveAspectRatio="none"
-          className="mx-auto h-10 w-full transition-opacity duration-700"
-          style={{ opacity: nowActive ? 1 : 0 }}
-        >
-          <path
-            d="M50 0 C 50 24, 25 16, 25 40"
-            fill="none"
-            stroke="var(--accent)"
-            strokeWidth={1.5}
-            strokeLinecap="round"
-            vectorEffect="non-scaling-stroke"
-          />
-          <path
-            d="M50 0 C 50 24, 75 16, 75 40"
-            fill="none"
-            stroke="var(--accent)"
-            strokeWidth={1.5}
-            strokeLinecap="round"
-            vectorEffect="non-scaling-stroke"
-          />
-        </svg>
-      </div>
-
-      {/* Two parallel current tracks — equal weight, rendered together. */}
-      <div className="mt-4 grid gap-6 sm:gap-8 lg:mt-2 lg:grid-cols-2 lg:gap-10">
-        {branches.map((b) => (
-          <div
-            key={b.id}
-            className={`relative pl-10 transition-all duration-700 ease-out lg:pl-0 ${
-              nowActive ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
-            }`}
-            style={{ transitionDelay: animate && nowActive ? "120ms" : "0ms" }}
-          >
-            {/* Mobile-only short horizontal branch off the left rail. */}
-            <span
-              aria-hidden
-              className="absolute left-[11px] top-0 h-8 w-px -translate-x-1/2 bg-white/10 lg:hidden"
-            />
-            <span
-              aria-hidden
-              className="absolute left-[11px] top-8 h-px w-6 bg-[var(--accent)]/50 lg:hidden"
-            />
-            <span
-              aria-hidden
-              className="absolute left-[11px] top-8 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--accent)] lg:hidden"
-            />
-            <BranchCard branch={b} />
-          </div>
-        ))}
+      {/* The fork resolves into ONE paired box holding both current tracks
+          side by side — a shared frame, divided down the middle. */}
+      <div
+        className={`mt-6 overflow-hidden rounded-2xl border border-[var(--accent)]/20 bg-[var(--bg-elev)]/40 transition-all duration-700 ease-out lg:mt-8 ${
+          nowActive ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+        }`}
+        style={{ transitionDelay: animate && nowActive ? "120ms" : "0ms" }}
+      >
+        <div className="grid divide-y divide-white/10 lg:grid-cols-2 lg:divide-x lg:divide-y-0">
+          {branches.map((b) => (
+            <BranchColumn key={b.id} branch={b} />
+          ))}
+        </div>
       </div>
 
       {/* Closing synthesis under the fork. */}
