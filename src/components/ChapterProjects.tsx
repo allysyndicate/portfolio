@@ -62,7 +62,7 @@ function ProjectCardLink({
           alt={p.title}
           loading="lazy"
           className={`m-2 w-[calc(100%-1rem)] rounded-xl border border-[var(--line)] bg-[var(--paper-elev)] object-contain p-2 shadow-[var(--shadow-soft)] ${
-            featured ? "aspect-[6/5]" : "aspect-[16/10]"
+            featured ? "aspect-[7/6]" : "aspect-[16/10]"
           }`}
         />
       ) : (
