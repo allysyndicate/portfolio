@@ -39,7 +39,7 @@ export const chapters: Chapter[] = [
     role: "Research Engineer",
     years: "2024 – Present",
     intro:
-      "On Pantera's two-person in-house research team, I own projects from open question to shipped work. I design the research, source and model the data, build the pipelines and software, validate the results, and deliver the work as reports, dashboards, datasets, or internal tools. I also support the investment team and portfolio companies, moving between research, engineering, and product as each problem requires.",
+      "At Pantera, my role spans research, data engineering, and product. I take open-ended market questions through study design, data collection, analysis, validation, and delivery, building the pipelines, dashboards, datasets, or software each project requires. The work supports published research, investment decisions, and portfolio companies.",
     tagline: "One role across research, engineering, and product.",
     projects: [
       {
