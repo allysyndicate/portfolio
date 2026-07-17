@@ -44,7 +44,7 @@ const stages: Stage[] = [
     label: "Software",
     title: "Turned recurring work into software.",
     body: "I built tools to automate design and analysis workflows, first in Excel and VBA, then in Python. That work became my path from structural engineering into software and data.",
-    proof: "Adopted across the office",
+    proof: "Adopted across the firm",
   },
   {
     id: "markets",
