@@ -47,7 +47,7 @@ export const chapters: Chapter[] = [
         title: "Crypto on the Clock",
         descriptor: "An empirical study of short-term crypto market microstructure on Polymarket and Kalshi, measuring $7.8B in near-term trading; 86% of Polymarket's 5-minute taker volume was bot-driven.",
         href: "https://panteraresearchlab.xyz/research/crypto-on-the-clock/",
-        img: "/pantera-prl-crypto-on-the-clock-cover.png",
+        img: "/pantera-prl-crypto-on-the-clock-cover-alt-intraday.png",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {

@@ -59,7 +59,5 @@ next-env.d.ts
 /vv-desktop-*.png
 /final-*.png
 /p1-*.png
-# Unreferenced experimental cover variants
-/public/pantera-prl-crypto-on-the-clock-cover-alt-*.png
 /vv-*.png
 /work-*.png
