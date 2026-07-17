@@ -13,6 +13,20 @@
   --accent: #3b82f6;
   --accent-strong: #2563eb;
   --accent-tint: rgba(59, 130, 246, 0.12);
+
+  /* ── Homepage background modes ───────────────────────────── */
+  --surface-default: #070d1f;   /* Mode 1 · = existing --bg, unchanged */
+  --surface-soft: #0b1328;      /* Mode 2 · subtle navy lift */
+  --surface-strong: #05070f;    /* Mode 3 · deep near-black cool slate, Syndicate ONLY */
+  --surface-strong-elev: #0a1020; /* optional: lift a card off the strong band */
+
+  /* On-dark (Syndicate) treatments — contrast checked vs #05070f */
+  --on-strong-heading: var(--slate-lightest); /* #d4ddf7 · ~13:1  AAA */
+  --on-strong-body: var(--slate-light);        /* #aab4d4 · ~9.5:1 AAA */
+  --on-strong-muted: var(--slate);             /* #8893b5 · ~6.1:1 AA  */
+  --on-strong-link: #6ba5ff;                   /* ~7.5:1 — small accent text */
+  --border-on-strong: rgba(255, 255, 255, 0.1);       /* structural hairline */
+  --border-on-strong-accent: rgba(59, 130, 246, 0.3); /* emphasis borders */
 }
 
 @theme inline {

@@ -554,9 +554,16 @@ export default function Hero() {
         <HeroCtas />
       </div>
 
-      {/* Forked-timeline journey below the hero. */}
-      <div id="how-i-got-here" className="mt-16 scroll-mt-24 md:mt-20">
-        <Timeline />
+      {/* Forked-timeline journey below the hero — full-bleed soft band so the
+          "How I got here" story reads as its own grouped section. */}
+      <div
+        id="how-i-got-here"
+        className="relative mx-[calc(50%-50vw)] mt-16 scroll-mt-24 md:mt-20"
+        style={{ backgroundColor: "var(--surface-soft)" }}
+      >
+        <div className="mx-auto max-w-screen-xl px-4 py-[72px] sm:px-6 sm:py-24 md:px-10 lg:py-[120px]">
+          <Timeline />
+        </div>
       </div>
     </section>
   );

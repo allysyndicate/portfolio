@@ -63,8 +63,12 @@ const chapterLayout: Record<
   { variant: ChapterVariant; tinted: boolean; divider: boolean }
 > = {
   pantera: { variant: "pantera", tinted: false, divider: false },
-  messari: { variant: "messari", tinted: true, divider: true },
-  structural: { variant: "mka", tinted: false, divider: true },
+  // Messari + MKA read as ONE continuous soft band (same --surface-soft), so
+  // the color — not spacing — groups them. Messari's top divider is dropped so
+  // the band's entry is just the color change; MKA keeps a softened internal
+  // rule that separates the two employers without splitting the band.
+  messari: { variant: "messari", tinted: true, divider: false },
+  structural: { variant: "mka", tinted: true, divider: true },
 };
 
 /** Small-caps eyebrow → employer name (+ optional Messari profile link). */
@@ -195,12 +199,16 @@ export function Chapters() {
             key={c.id}
             id={c.id}
             aria-label={c.label}
-            className="relative mx-[calc(50%-50vw)] scroll-mt-24"
+            className={`relative mx-[calc(50%-50vw)] scroll-mt-24 ${
+              // Enlarged transition gap: Pantera stands alone on the default
+              // surface, set off from the soft journey band above the label.
+              i === 0 ? "mt-10 sm:mt-14" : ""
+            }`}
             style={
               {
                 "--accent": c.accent,
                 "--accent-tint": c.accentTint,
-                ...(tinted ? { backgroundColor: "rgba(14, 24, 48, 0.6)" } : {}),
+                ...(tinted ? { backgroundColor: "var(--surface-soft)" } : {}),
               } as CSSProperties
             }
           >
@@ -208,7 +216,7 @@ export function Chapters() {
               {divider && (
                 <div
                   aria-hidden
-                  className="mb-12 border-t border-white/[0.06] sm:mb-16 lg:mb-24"
+                  className="mx-auto mb-12 h-px w-2/3 max-w-[640px] bg-white/[0.04] sm:mb-16 lg:mb-24"
                 />
               )}
               {i === 0 && (
@@ -270,8 +278,20 @@ const syndicateHighlights = [
 
 export function SideProjects() {
   return (
-    <Section id="side-projects" label="What I'm Building" centeredHeading>
-      <div className="overflow-hidden rounded-xl border border-[var(--accent)]/25 bg-[var(--bg-elev)]/60 shadow-lg shadow-black/20 sm:rounded-2xl">
+    <section
+      id="side-projects"
+      aria-label="What I'm Building"
+      /* Neutral bridge: mt shows the default surface between the soft Messari/MKA
+         band above and this strong band, so soft never slams straight into strong.
+         Syndicate is the ONLY strong-contrast section, whole-section wrapped. */
+      className="relative mx-[calc(50%-50vw)] mt-16 scroll-mt-24 sm:mt-20"
+      style={{ backgroundColor: "var(--surface-strong)" }}
+    >
+      <div className="mx-auto max-w-screen-xl px-4 py-[72px] sm:px-6 sm:py-24 md:px-10 lg:py-[120px]">
+        <h2 className="mb-8 text-center text-2xl font-bold tracking-tight text-[var(--on-strong-heading)] sm:mb-10 sm:text-4xl">
+          What I&apos;m Building
+        </h2>
+        <div className="overflow-hidden rounded-xl border border-[var(--accent)]/25 bg-[var(--surface-strong-elev)] shadow-lg shadow-black/40 sm:rounded-2xl">
         <div className="p-5 sm:p-8 md:p-12">
           <div className="space-y-7 sm:space-y-8">
             <div className="max-w-[20rem] space-y-2 text-left">
@@ -380,7 +400,8 @@ export function SideProjects() {
           </div>
         </div>
       </div>
-    </Section>
+      </div>
+    </section>
   );
 }
 
