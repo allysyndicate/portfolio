@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 import { socials } from "./socials";
 
 const supporting =
-  "I frame empirical questions, assemble the data, validate the results, and ship the pipelines, dashboards, and software behind the analysis, working mostly in Python, SQL, and TypeScript. My work spans market behavior, user networks, and AI systems.";
+  "Across markets, user networks, and AI systems, I design studies, build data pipelines, validate results, and ship production software.";
 
 const heroSocials = [
   ...socials,
@@ -539,8 +539,8 @@ export default function Hero() {
           delay={70}
           className="order-3 text-pretty text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.02em] text-[var(--ink)] sm:text-[3rem] sm:leading-[1.05] lg:text-[3.5rem] md:col-start-1 md:row-start-2"
         >
-          I study how complex systems behave, then{" "}
-          <span className="text-[var(--accent)]">build the tools to understand them</span>.
+          I make complex behavior{" "}
+          <span className="text-[var(--accent)]">measurable</span>.
         </Reveal>
 
         {/* Supporting paragraph */}
