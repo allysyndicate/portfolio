@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 import { socials } from "./socials";
 
 const supporting =
-  "Across markets, user networks, and AI systems, I design studies, build data pipelines, validate results, and ship production software.";
+  "My work has taken me from asking empirical questions to building the systems that make them answerable. I move between research, engineering, and product, turning messy real-world data into credible findings and useful software.";
 
 const heroSocials = [
   ...socials,
@@ -145,7 +145,7 @@ function RolesBlock() {
   return (
     <Reveal
       delay={210}
-      className="order-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[var(--muted)] md:col-start-1 md:row-start-4 md:mt-7"
+      className="mt-11 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[var(--muted)]"
     >
       <a
         href="https://panteracapital.com"
@@ -514,46 +514,51 @@ export default function Hero() {
       aria-label="Introduction"
       className="relative scroll-mt-24 pt-24 pb-10 sm:pt-28 sm:pb-12 md:pt-32 md:pb-14"
     >
-      <div className="flex flex-col gap-y-8 md:grid md:grid-cols-[1.25fr_0.75fr] md:items-center md:gap-x-14 md:gap-y-0">
-        {/* Eyebrow (replaces the name label) */}
-        <Reveal className="order-1 md:col-start-1 md:row-start-1 md:mb-7">
-          <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent-strong)]">
-            Research Engineer · Data Scientist
-          </div>
-        </Reveal>
+      <div className="flex flex-col gap-y-10 md:grid md:grid-cols-[1.25fr_0.75fr] md:items-center md:gap-x-14 md:gap-y-0">
+        {/* Left column: one vertically-centered stack — eyebrow, headline,
+            paragraph, affiliations — capped at 680px so it reads as a single
+            block centered against the portrait, not spread across the viewport. */}
+        <div className="order-2 flex max-w-[680px] flex-col md:order-none md:col-start-1 md:row-start-1">
+          {/* Eyebrow (replaces the name label) */}
+          <Reveal>
+            <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent-strong)]">
+              Research Engineer · Data Scientist
+            </div>
+          </Reveal>
+
+          {/* Headline — accent on a single phrase */}
+          <Reveal
+            as="h1"
+            delay={70}
+            className="mt-6 text-pretty text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.02em] text-[var(--ink)] sm:text-[3rem] sm:leading-[1.05] lg:text-[3.5rem]"
+          >
+            I build data systems to study{" "}
+            <span className="text-[var(--accent)]">markets, user networks, and AI</span>.
+          </Reveal>
+
+          {/* Supporting paragraph */}
+          <Reveal
+            as="p"
+            delay={140}
+            className="mt-9 max-w-[620px] text-[1.25rem] leading-[1.55] text-[var(--body)]"
+          >
+            {supporting}
+          </Reveal>
+
+          {/* Current roles */}
+          <RolesBlock />
+        </div>
 
         {/* Photo + social (right column on desktop) */}
         <Reveal
-          delay={140}
-          className="order-2 md:order-none md:col-start-2 md:row-span-4 md:row-start-1 md:self-center"
+          delay={90}
+          className="order-1 md:order-none md:col-start-2 md:row-start-1 md:self-center"
         >
           <Photo />
           <div className="mt-5">
             <SocialLinks />
           </div>
         </Reveal>
-
-        {/* Headline */}
-        <Reveal
-          as="h1"
-          delay={70}
-          className="order-3 text-pretty text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.02em] text-[var(--ink)] sm:text-[3rem] sm:leading-[1.05] lg:text-[3.5rem] md:col-start-1 md:row-start-2"
-        >
-          I make complex behavior{" "}
-          <span className="text-[var(--accent)]">measurable</span>.
-        </Reveal>
-
-        {/* Supporting paragraph */}
-        <Reveal
-          as="p"
-          delay={140}
-          className="order-4 max-w-[34rem] text-base leading-[1.75] text-[var(--body)] sm:text-lg md:col-start-1 md:row-start-3 md:mt-8"
-        >
-          {supporting}
-        </Reveal>
-
-        {/* Current roles */}
-        <RolesBlock />
       </div>
 
       {/* Forked-timeline journey below the hero — full-bleed soft band so the
