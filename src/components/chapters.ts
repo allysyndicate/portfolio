@@ -204,11 +204,11 @@ export const chapters: Chapter[] = [
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
-        title: "Mission Rock (Verde)",
+        title: "Viridian at Greenhills",
         descriptor:
-          "At San Francisco's Mission Rock waterfront, Verde is a reinforced-concrete 23-story tower on a five-story podium; its 254 units, about 287,000 sq ft, sit five feet above sea level for storm-surge resilience, completed 2024.",
-        href: "https://studiogang.com/projects/mission-rock",
-        img: "/mission-rock-cover.jpg",
+          "Peer review and performance-based seismic design of a slender 55-story, 560-unit tower in San Juan, Metro Manila, pairing a concrete core wall with buckling-restrained braces and perimeter columns.",
+        href: "https://www.mka.com/projects/viridian-at-greenhills/",
+        img: "/mka-viridian-at-greenhills-cover.webp",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
@@ -236,11 +236,11 @@ export const chapters: Chapter[] = [
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
-        title: "Viridian at Greenhills",
+        title: "Mission Rock",
         descriptor:
-          "Peer review and performance-based seismic design of a slender 55-story, 560-unit tower in San Juan, Metro Manila, pairing a concrete core wall with buckling-restrained braces and perimeter columns.",
-        href: "https://www.mka.com/projects/viridian-at-greenhills/",
-        img: "/mka-viridian-at-greenhills-cover.webp",
+          "At San Francisco's Mission Rock waterfront, Verde is a reinforced-concrete 23-story tower on a five-story podium; its 254 units, about 287,000 sq ft, sit five feet above sea level for storm-surge resilience, completed 2024.",
+        href: "https://studiogang.com/projects/mission-rock",
+        img: "/mission-rock-cover.jpg",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
