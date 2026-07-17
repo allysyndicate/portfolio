@@ -398,15 +398,15 @@ function Timeline() {
   return (
     <div>
       <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent-strong)]">
-        How I got here
+        Background
       </div>
       <h2 className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-[var(--ink)] sm:text-3xl">
         From structures to systems.
       </h2>
       <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--body)] sm:text-base">
-        The domains changed. The underlying questions didn&apos;t: How does a
-        complex system behave? Where does it fail? What evidence would change my
-        mind?
+        Structural engineering trained me to quantify uncertainty, test
+        assumptions, and design around failure. I now apply those same habits to
+        markets, user networks, and AI systems.
       </p>
 
       {/* Staggered path: three story cards of uneven prominence, alternating
