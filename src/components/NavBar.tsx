@@ -109,13 +109,20 @@ export default function NavBar() {
               </a>
             );
           })}
-          {/* Resume lives on its own route (the full HTML resume). This links the
-              page, not the downloadable PDF, so no home address is exposed. */}
+          {/* Resume is a filled button (not a plain tab) to signal it opens a
+              separate page. Links the HTML page, not the PDF, so no address is
+              exposed. #B25232 = terracotta midpoint that keeps white text at 4.5:1. */}
           <Link
             href="/resume"
-            className="relative text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--ink)]"
+            className="group inline-flex items-center gap-1.5 rounded-md bg-[#B25232] px-4 py-2 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
           >
             Resume
+            <span
+              aria-hidden
+              className="inline-block transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-0.5"
+            >
+              →
+            </span>
           </Link>
         </nav>
 
@@ -158,13 +165,19 @@ export default function NavBar() {
                 </a>
               </li>
             ))}
-            <li>
+            <li className="pt-2">
               <Link
                 href="/resume"
                 onClick={() => setOpen(false)}
-                className="block rounded px-2 py-2 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--ink)]"
+                className="group flex items-center justify-center gap-1.5 rounded-md bg-[#B25232] px-4 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
               >
                 Resume
+                <span
+                  aria-hidden
+                  className="inline-block transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-0.5"
+                >
+                  →
+                </span>
               </Link>
             </li>
           </ul>
