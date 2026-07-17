@@ -2,7 +2,7 @@
 
 :root {
   /* Warm Editorial Light palette (single source of truth). */
-  --paper: #FAF9F5;           /* page background — warm ivory */
+  --paper: #FAF9F5;           /* page background - warm ivory */
   --paper-elev: #FFFFFF;      /* cards / elevated surfaces */
   --paper-tint: #F2EFE8;      /* soft alternate band */
   --ink: #1F1E1A;             /* headings, strong text */
@@ -18,7 +18,7 @@
   --shadow-card: 0 2px 14px rgba(31, 30, 26, 0.07);
   --shadow-feature: 0 18px 48px rgba(31, 30, 26, 0.12);
 
-  /* Motion tokens — micro-interactions 150-200ms, reveals 550-700ms. */
+  /* Motion tokens - micro-interactions 150-200ms, reveals 550-700ms. */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -61,7 +61,7 @@ body {
   color: var(--ink);
 }
 
-/* Cursor-follow glow — barely-there warm accent. */
+/* Cursor-follow glow - barely-there warm accent. */
 .glow-bg {
   background: radial-gradient(
     650px at var(--mx, 50%) var(--my, 0%),

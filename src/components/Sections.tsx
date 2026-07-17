@@ -128,9 +128,9 @@ function ChapterMeta({ c }: { c: Chapter }) {
 }
 
 /**
- * Employer header — ONE layout for every chapter: eyebrow → heading (+ link
+ * Employer header - ONE layout for every chapter: eyebrow → heading (+ link
  * chip) → role/location/years meta → intro → topics. It always stays an OPEN
- * section header above the project grid — never boxed in with the cards.
+ * section header above the project grid - never boxed in with the cards.
  * Pantera (first employer) renders slightly larger; the structure is identical.
  */
 function ChapterHeader({ c, variant }: { c: Chapter; variant: ChapterVariant }) {
@@ -290,7 +290,7 @@ export function SideProjects() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/syndicate-app.webp"
-                    alt="Syndicate desktop app — team workspace running autonomous AI agents"
+                    alt="Syndicate desktop app, team workspace running autonomous AI agents"
                     className="h-full w-full max-w-full rounded-2xl object-contain object-center"
                   />
                 </div>
@@ -450,7 +450,7 @@ export function Contact() {
             </span>
           </a>
           {/* TODO: replace with updated 2026 resume before making resume CTA public.
-              Hidden temporarily — current /Ally Zach Resume.pdf is stale (lists Messari
+              Hidden temporarily - current /Ally Zach Resume.pdf is stale (lists Messari
               as present role, no Pantera/Syndicate) and exposes a home street address. */}
         </div>
 
@@ -461,7 +461,7 @@ export function Contact() {
               href={s.href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${s.label} — ${s.handle}`}
+              aria-label={`${s.label} · ${s.handle}`}
               title={`${s.label} · ${s.handle}`}
               className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--line-strong)] bg-[var(--paper-elev)] text-[var(--body)] shadow-[var(--shadow-soft)] transition-all duration-200 ease-[var(--ease-out)] hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
             >

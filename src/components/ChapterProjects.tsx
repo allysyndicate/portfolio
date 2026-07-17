@@ -123,7 +123,7 @@ function ExpandToggle({
 }
 
 /**
- * Editorial cover tile — image bleeds edge-to-edge under a bottom-up scrim with
+ * Editorial cover tile - image bleeds edge-to-edge under a bottom-up scrim with
  * the title + descriptor overlaid. The shell (radius, border, hover lift) is the
  * shared CARD_SHELL; only the cover-image layout is tile-specific. `className`
  * carries the per-tile grid span + height so the surrounding layout can be
@@ -141,7 +141,7 @@ function PanteraTile({ p, className = "" }: { p: ProjectCard; className?: string
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={p.img}
-          alt={`${p.title} — cover`}
+          alt={`${p.title} cover`}
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover opacity-90"
         />

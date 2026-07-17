@@ -51,7 +51,7 @@ const stages: Stage[] = [
     num: "03",
     label: "Markets & Data",
     title: "Tested ideas against live systems.",
-    body: "Algorithmic trading put my models against a system that responded immediately and unpredictably — my move into data science. It led me to Messari, where I used financial markets and blockchain data to study user behavior and incentive schemes.",
+    body: "Algorithmic trading put my models against a system that responded immediately and unpredictably. That was my move into data science, and it led me to Messari, where I used financial markets and blockchain data to study user behavior and incentive schemes.",
     proof: "50+ published research reports",
   },
 ];
@@ -123,7 +123,7 @@ function SocialLinks() {
           href={s.href}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`${s.label} — ${s.handle}`}
+          aria-label={`${s.label} · ${s.handle}`}
           title={`${s.label} · ${s.handle}`}
           className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--line-strong)] bg-[var(--paper-elev)] text-[var(--body)] shadow-[var(--shadow-soft)] transition-all duration-200 ease-[var(--ease-out)] hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
         >
@@ -136,7 +136,7 @@ function SocialLinks() {
   );
 }
 
-// Single proof-point line — Pantera + Syndicate read as one credential strip
+// Single proof-point line - Pantera + Syndicate read as one credential strip
 // rather than two paragraphs competing with the thesis headline.
 function RolesBlock() {
   const linkClass =
@@ -172,7 +172,7 @@ function RolesBlock() {
 
 const clamp01 = (t: number) => Math.min(1, Math.max(0, t));
 
-// Tiny on-palette data motif for the Pantera (research) branch — bars + trend,
+// Tiny on-palette data motif for the Pantera (research) branch - bars + trend,
 // evidence not decoration.
 function ChartMotif() {
   return (
@@ -272,7 +272,7 @@ function StageCard({
         active ? "border-[var(--accent)]/25" : "border-[var(--line)]"
       }`}
     >
-      {/* Oversized ghost number — structure without a dashboard tile. */}
+      {/* Oversized ghost number - structure without a dashboard tile. */}
       <span
         aria-hidden
         className={`pointer-events-none absolute -right-2 -top-4 font-bold tabular-nums leading-none text-[var(--accent)]/15 ${
@@ -308,7 +308,7 @@ function StageCard({
 
 // The load path: one continuous vertical line draws through three past stages,
 // then branches at a NOW node into two parallel current tracks. Motion is
-// restrained and scroll-linked — the line fills as the section enters the
+// restrained and scroll-linked - the line fills as the section enters the
 // viewport and each node lights when the fill reaches it. Under
 // prefers-reduced-motion (and SSR/no-JS) everything renders filled and static,
 // so the structure reads identically without animation.
@@ -327,7 +327,7 @@ function Timeline() {
     Array(nodeCount).fill(true),
   );
   // Pinned true when the paired box is already in the viewport on mount
-  // (scroll restoration, back-navigation, deep links) — mirrors Reveal.tsx's
+  // (scroll restoration, back-navigation, deep links) - mirrors Reveal.tsx's
   // above-the-fold guard so on-screen content never fades out post-hydration.
   const [nowPinned, setNowPinned] = useState(false);
 
@@ -363,7 +363,7 @@ function Timeline() {
     let ticking = false;
     // The draw line follows a fixed anchor ~62% down the viewport: the trunk
     // fills to wherever that anchor intersects it, and a node lights the moment
-    // the fill passes it — so line and nodes stay perfectly consistent.
+    // the fill passes it - so line and nodes stay perfectly consistent.
     const read = () => {
       ticking = false;
       const anchor = window.innerHeight * 0.62;
@@ -374,7 +374,7 @@ function Timeline() {
         .map((el) => (el ? el.getBoundingClientRect().top <= anchor : false));
       setActive(next);
       // Once revealed, the paired box latches visible (reveal-once, matching
-      // Reveal.tsx) — only the decorative spine nodes stay scroll-linked.
+      // Reveal.tsx) - only the decorative spine nodes stay scroll-linked.
       if (next[nowIndex]) setNowPinned(true);
     };
     const onScroll = () => {
@@ -489,7 +489,7 @@ function Timeline() {
       </div>
 
       {/* The fork resolves into ONE paired box holding both current tracks
-          side by side — a shared frame, divided down the middle. */}
+          side by side - a shared frame, divided down the middle. */}
       <div
         ref={boxRef}
         className={`mt-6 overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--paper-elev)] shadow-[var(--shadow-card)] transition-all duration-700 ease-[var(--ease-out)] lg:mt-8 ${
@@ -515,8 +515,8 @@ export default function Hero() {
       className="relative scroll-mt-24 pt-24 pb-10 sm:pt-28 sm:pb-12 md:pt-32 md:pb-14"
     >
       <div className="flex flex-col gap-y-10 md:grid md:grid-cols-[1.25fr_0.75fr] md:items-center md:gap-x-14 md:gap-y-0">
-        {/* Left column: one vertically-centered stack — eyebrow, headline,
-            paragraph, affiliations — capped at 680px so it reads as a single
+        {/* Left column: one vertically-centered stack - eyebrow, headline,
+            paragraph, affiliations - capped at 680px so it reads as a single
             block centered against the portrait, not spread across the viewport. */}
         <div className="order-2 flex max-w-[680px] flex-col md:order-none md:col-start-1 md:row-start-1">
           {/* Eyebrow (replaces the name label) */}
@@ -526,7 +526,7 @@ export default function Hero() {
             </div>
           </Reveal>
 
-          {/* Headline — accent on a single phrase */}
+          {/* Headline - accent on a single phrase */}
           <Reveal
             as="h1"
             delay={70}
@@ -561,7 +561,7 @@ export default function Hero() {
         </Reveal>
       </div>
 
-      {/* Forked-timeline journey below the hero — full-bleed soft band so the
+      {/* Forked-timeline journey below the hero - full-bleed soft band so the
           "How I got here" story reads as its own grouped section. */}
       <div
         id="how-i-got-here"

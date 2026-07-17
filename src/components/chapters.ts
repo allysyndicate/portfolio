@@ -15,13 +15,13 @@ export type Chapter = {
   /** Optional override for the small-caps eyebrow line (replaces `act` when set). */
   eyebrow?: string;
   label: string;
-  /** Employer — the primary/largest headline line. */
+  /** Employer - the primary/largest headline line. */
   company: string;
   /** Optional thematic heading; when set it replaces the company name as the h3 and the role/location/years meta lines are hidden. */
   heading?: string;
-  /** Role/title — secondary line under the employer. */
+  /** Role/title - secondary line under the employer. */
   role?: string;
-  /** Location — optional line under the role. */
+  /** Location - optional line under the role. */
   location?: string;
   years: string;
   intro: string;
@@ -37,7 +37,7 @@ export const chapters: Chapter[] = [
     label: "Pantera",
     company: "Pantera",
     role: "Research Engineer",
-    years: "2024 — Present",
+    years: "2024 – Present",
     intro:
       "Pantera's in-house research team is two people, and I'm one of them. I take open-ended questions from research design through deployment: a study of $7.8B in short-term crypto trading, a map of 593 tokenized assets worth $320.6B, a live dashboard tracking digital-asset treasuries from parsed SEC filings. Part of the work supports Pantera's investment team and portfolio companies, and most of what I publish ships with a dashboard or an open dataset, so the finding stays useful after the report is out.",
     topics:
@@ -51,14 +51,14 @@ export const chapters: Chapter[] = [
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
-        title: "Crypto on the Clock — An Empirical Study of Short-Term Crypto Market Microstructure on Polymarket and Kalshi",
+        title: "Crypto on the Clock: An Empirical Study of Short-Term Crypto Market Microstructure on Polymarket and Kalshi",
         descriptor: "Measured $7.8B in near-term trading; 86% of Polymarket's 5-minute taker volume was bot-driven.",
         href: "https://panteraresearchlab.xyz/research/crypto-on-the-clock/",
         img: "/pantera-prl-crypto-on-the-clock-cover.png",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
-        title: "The State of Tokenization — Q1 2026 Report",
+        title: "The State of Tokenization: Q1 2026 Report",
         descriptor: "Mapped 593 tokenized assets totaling $320.6B, published on panteracapital.com.",
         href: "https://panteracapital.com/the-state-of-tokenization/",
         img: "/pantera-tokenization-report-cover.png",
@@ -121,7 +121,7 @@ export const chapters: Chapter[] = [
     label: "Messari",
     company: "Messari",
     role: "Enterprise Research Analyst",
-    years: "2022 — 2024",
+    years: "2022 – 2024",
     intro:
       "Over two years at Messari I wrote 50+ long-form reports on L1s, L2s, NFTs, DeFi, and consumer apps, specializing in user analytics at the network and application level: questions like whether a chain's growth is sybils, airdrop farmers, or real users. Behind the writing, I built the SQL and Python dashboards and ingestion tools the research team ran on, which is where my research started turning into software.",
     projects: [
@@ -183,7 +183,7 @@ export const chapters: Chapter[] = [
     company: "Magnusson Klemencic Associates",
     role: "Structural Engineer",
     location: "Seattle, WA",
-    years: "2018 — 2022",
+    years: "2018 – 2022",
     intro:
       "A high-rise in a seismic zone is a question about failure: how the structure behaves under loads you can only model, and what evidence shows the design holds. I spent four years at MKA working that question across 7M+ sq ft of towers in the US and Southeast Asia, where earthquakes and typhoons set the terms. The repetitive parts I turned into office-wide tools, first in Excel and VBA, then in Python, and that's where the software career started.",
     projects: [
@@ -212,7 +212,7 @@ export const chapters: Chapter[] = [
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
-        title: "Hilton Garden Inn — Austin",
+        title: "Hilton Garden Inn, Austin",
         descriptor:
           "17-story, 214-key, ~140,000 sq ft hotel at 17th & Lavaca; completed 2021.",
         href: "https://www.dpr.com/projects/hilton-garden-inn-17th-and-lavaca-hotel",

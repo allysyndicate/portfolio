@@ -12,7 +12,7 @@ const mono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-const siteTitle = "Ally Zach — Research Engineer & Data Scientist";
+const siteTitle = "Ally Zach · Research Engineer & Data Scientist";
 const siteDescription =
   "Empirical research on financial markets, user networks, and AI systems. Research Engineer at Pantera Capital; technical cofounder of Syndicate.";
 

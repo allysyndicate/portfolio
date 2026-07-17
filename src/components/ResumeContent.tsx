@@ -22,7 +22,7 @@ const work: Entry[] = [
     org: "Pantera Capital",
     title: "Research Engineer",
     location: "Remote",
-    dates: "April 2024 — Present",
+    dates: "April 2024 – Present",
     href: "https://panteraresearchlab.xyz",
     summary:
       "Cross-functional research engineer spanning data science, technical writing, portfolio-company advisory, and full-stack development.",
@@ -38,7 +38,7 @@ const work: Entry[] = [
     org: "Messari",
     title: "Enterprise Research Analyst",
     location: "Remote",
-    dates: "April 2022 — April 2024",
+    dates: "April 2022 – April 2024",
     href: "https://messari.io/research/ally-zach",
     bullets: [
       "Authored 50+ long-form research reports spanning L1s, L2s, NFTs, DeFi, and consumer applications.",
@@ -52,7 +52,7 @@ const work: Entry[] = [
     org: "Magnusson Klemencic Associates",
     title: "Structural Engineer",
     location: "Seattle, WA",
-    dates: "July 2018 — March 2022",
+    dates: "July 2018 – March 2022",
     bullets: [
       "Specialized in high-seismic and high-wind foundation design and performance-based design of high-rise towers.",
       "Designed and coordinated construction of 7M+ sq ft of high-rise residential towers across Southeast Asia.",
@@ -63,7 +63,7 @@ const work: Entry[] = [
     org: "KPFF Consulting Engineers",
     title: "Structural Engineering Intern",
     location: "Seattle, WA",
-    dates: "May 2017 — August 2017",
+    dates: "May 2017 – August 2017",
     bullets: [
       "Designed beam haunches, retaining walls, and steel connections for the new REI headquarters.",
       "Reviewed steel and rebar shop drawings for the SeaTac International Arrivals Facility expansion.",
@@ -73,7 +73,7 @@ const work: Entry[] = [
     org: "HNTB Corporation",
     title: "Structural Engineering Intern, Bridge Design",
     location: "Chicago, IL",
-    dates: "May 2016 — August 2016",
+    dates: "May 2016 – August 2016",
     bullets: [
       "Produced load ratings for a Detroit bascule bridge using CSiBridge and gravity load calculations.",
       "Performed and documented fracture-critical, element-level, and routine inspections on Chicago bridges.",
@@ -101,28 +101,28 @@ const teaching = [
   {
     role: "Design of Structural Systems",
     sub: "Teaching Assistant · Dr. Daniel Abrams & Dr. James LaFave",
-    dates: "January 2018 — May 2018",
+    dates: "January 2018 – May 2018",
     detail:
       "Led the CEE 465 capstone design through lectures and studio sessions, preparing assignments and submittal guidelines.",
   },
   {
     role: "Steel Structures I",
     sub: "Teaching Assistant · Dr. James LaFave",
-    dates: "August 2017 — December 2017",
+    dates: "August 2017 – December 2017",
     detail:
       "Taught CEE 460 structural steel theory and AISC Steel Construction Manual use via lectures, studios, and office hours.",
   },
   {
     role: "University of Illinois Expansion and Planning",
     sub: "Research Assistant · Associate Dean Dr. Liang Liu",
-    dates: "April 2015 — May 2018",
+    dates: "April 2015 – May 2018",
     detail:
       "Built an interactive campus Revit model and researched future College of Engineering building projects with faculty.",
   },
   {
     role: "General Education Course Data Project",
     sub: "Research Assistant · Assistant Provost and DMI Amy Edwards",
-    dates: "November 2015 — January 2016",
+    dates: "November 2015 – January 2016",
     detail:
       "Analyzed six years of general-education enrollment data in Excel, surfacing trends for faculty and the board.",
   },
@@ -239,7 +239,7 @@ function EntryItem({ entry }: { entry: Entry }) {
 export default function ResumeContent() {
   return (
     <article className="mx-auto max-w-3xl pb-20 pt-6">
-      {/* Header — street address and phone from the source doc omitted (public page). */}
+      {/* Header - street address and phone from the source doc omitted (public page). */}
       <header className="border-b border-[var(--line)] pb-8">
         <h1 className="text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-4xl">
           Ally Zach
@@ -273,7 +273,7 @@ export default function ResumeContent() {
               href={s.href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${s.label} — ${s.handle}`}
+              aria-label={`${s.label} · ${s.handle}`}
               title={`${s.label} · ${s.handle}`}
               className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[var(--line)] text-[var(--body)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent-strong)]"
             >
