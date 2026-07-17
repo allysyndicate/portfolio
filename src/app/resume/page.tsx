@@ -4,9 +4,9 @@ import GlowBackground from "@/components/GlowBackground";
 import ResumeContent from "@/components/ResumeContent";
 
 export const metadata: Metadata = {
-  title: "Résumé — Ally Zach",
+  title: "Resume — Ally Zach",
   description:
-    "Full résumé: research engineering at Pantera, technical cofounder of Syndicate, research at Messari, structural engineering at MKA, plus teaching, education, and honors.",
+    "Full resume: research engineering at Pantera, technical founder of Syndicate, research at Messari, structural engineering at MKA, plus teaching, education, and skills.",
   alternates: { canonical: "/resume" },
 };
 

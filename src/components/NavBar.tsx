@@ -109,13 +109,13 @@ export default function NavBar() {
               </a>
             );
           })}
-          {/* Résumé lives on its own route (the full HTML resume). This links the
+          {/* Resume lives on its own route (the full HTML resume). This links the
               page, not the downloadable PDF, so no home address is exposed. */}
           <Link
             href="/resume"
             className="relative text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--ink)]"
           >
-            Résumé
+            Resume
           </Link>
         </nav>
 
@@ -164,7 +164,7 @@ export default function NavBar() {
                 onClick={() => setOpen(false)}
                 className="block rounded px-2 py-2 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--ink)]"
               >
-                Résumé
+                Resume
               </Link>
             </li>
           </ul>
