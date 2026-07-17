@@ -51,7 +51,7 @@ const stages: Stage[] = [
     num: "03",
     label: "Markets & Data",
     title: "Tested ideas against live systems.",
-    body: "Algorithmic trading put my models against a system that responded immediately and unpredictably. That led me to Messari, where I used market, network, and on-chain data to study behavior and incentives.",
+    body: "Algorithmic trading put my models against a system that responded immediately and unpredictably — my move into data science. It led me to Messari, where I used financial markets and blockchain data to study user behavior and incentive schemes.",
     proof: "50+ published research reports",
   },
 ];
