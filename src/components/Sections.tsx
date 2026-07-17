@@ -249,23 +249,38 @@ export function SideProjects() {
         <Reveal className="overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--paper-elev)] shadow-[var(--shadow-feature)]">
         <div className="p-5 sm:p-8 md:p-12">
           <div className="space-y-7 sm:space-y-8">
-            <div className="max-w-[20rem] space-y-2 text-left">
-              <h3 className="flex justify-start leading-none">
-                <span className="sr-only">Syndicate</span>
-                <span aria-hidden className="block w-full max-w-[19rem]">
-                  <span className="relative block aspect-[2080/280] overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src="/syndicate-logo.png"
-                      alt=""
-                      className="h-full w-full object-contain object-left"
-                    />
+            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <div className="max-w-[20rem] space-y-2 text-left">
+                <h3 className="flex justify-start leading-none">
+                  <span className="sr-only">Syndicate</span>
+                  <span aria-hidden className="block w-full max-w-[19rem]">
+                    <span className="relative block aspect-[2080/280] overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src="/syndicate-logo.png"
+                        alt=""
+                        className="h-full w-full object-contain object-left"
+                      />
+                    </span>
                   </span>
+                </h3>
+                <p className="text-left text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent-strong)]">
+                  Technical Cofounder
+                </p>
+              </div>
+              <a
+                href="https://usesyndicate.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                /* #B25232 = terracotta midpoint between --accent and --accent-strong;
+                   white text passes 4.5:1 at rest (plain --accent falls just short). */
+                className="group inline-flex shrink-0 items-center justify-center rounded-md bg-[#B25232] px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
+              >
+                Visit usesyndicate.org
+                <span className="ml-1 transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-1">
+                  →
                 </span>
-              </h3>
-              <p className="text-left text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent-strong)]">
-                Technical Cofounder
-              </p>
+              </a>
             </div>
             <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(18rem,0.9fr)] md:items-center">
               <blockquote className="space-y-3 rounded-xl border-l-2 border-[var(--accent)]/50 border-y border-r border-y-[var(--line)] border-r-[var(--line)] bg-[var(--accent-tint)] px-4 py-4 text-sm leading-relaxed text-[var(--body)] shadow-[var(--shadow-soft)] sm:px-5 sm:text-base">
@@ -331,22 +346,6 @@ export function SideProjects() {
               ))}
             </ul>
           </details>
-
-          <div className="mt-8 flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center">
-            <a
-              href="https://usesyndicate.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              /* #B25232 = terracotta midpoint between --accent and --accent-strong;
-                 white text passes 4.5:1 at rest (plain --accent falls just short). */
-              className="group inline-flex items-center justify-center rounded-md bg-[#B25232] px-6 py-3 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
-            >
-              Visit usesyndicate.org
-              <span className="ml-1 transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-1">
-                →
-              </span>
-            </a>
-          </div>
         </div>
       </Reveal>
       </div>
