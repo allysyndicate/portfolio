@@ -190,7 +190,7 @@ export const chapters: Chapter[] = [
       {
         title: "NuStar Resort & Casino",
         descriptor:
-          "Cebu's tallest development: ~5.28M sq ft, three hotel towers, a 236,800 sq ft casino.",
+          "Cebu's tallest development, NuStar Resort & Casino spans roughly 5.28M sq ft across three reinforced-concrete hotel towers up to 29 stories plus a 236,800 sq ft casino, all engineered for high Philippine seismicity.",
         href: "https://www.hksinc.com/what-we-do/projects/nustar-casino-resort/",
         img: "/nustar-resort-casino-cover.jpg",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
@@ -198,7 +198,7 @@ export const chapters: Chapter[] = [
       {
         title: "160 Folsom St / MIRA",
         descriptor:
-          "392 condos in Studio Gang's 420-ft twisting tower; 40 stories, completed 2020.",
+          "Studio Gang's twisting bay-window facade defines this reinforced-concrete 40-story, 420-foot San Francisco tower, whose 392 condos rise on a 12,800-cubic-yard mat foundation; repeatable slabs enabled a four-day floor cycle, completed 2020.",
         href: "https://www.pacific-structures.com/project/160-folsom-mira/",
         img: "/folsom-bay-tower-mira-cover.jpg",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
@@ -206,7 +206,7 @@ export const chapters: Chapter[] = [
       {
         title: "Mission Rock (Verde)",
         descriptor:
-          "254 units in the Mission Rock waterfront redevelopment; 23 stories, completed 2024.",
+          "At San Francisco's Mission Rock waterfront, Verde is a reinforced-concrete 23-story tower on a five-story podium; its 254 units, about 287,000 sq ft, sit five feet above sea level for storm-surge resilience, completed 2024.",
         href: "https://studiogang.com/projects/mission-rock",
         img: "/mission-rock-cover.jpg",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
@@ -214,7 +214,7 @@ export const chapters: Chapter[] = [
       {
         title: "Hilton Garden Inn, Austin",
         descriptor:
-          "17-story, 214-key, ~140,000 sq ft hotel at 17th & Lavaca; completed 2021.",
+          "Squeezed onto an 8,700 sq ft Austin infill lot at 17th and Lavaca, this concrete-framed 17-story, 214-key Hilton Garden Inn stacks 140,000 sq ft behind a prefabricated facade with no on-site parking, completed 2021.",
         href: "https://www.dpr.com/projects/hilton-garden-inn-17th-and-lavaca-hotel",
         img: "/hilton-garden-inn-austin-cover.jpg",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
@@ -222,7 +222,7 @@ export const chapters: Chapter[] = [
       {
         title: "Imperium Tower",
         descriptor:
-          "Outrigger bracing cut this 68-story Manila tower's core aspect ratio from 20:1 to 12:1.",
+          "In Pasig, Metro Manila, the 68-story Imperium residential tower ties a reinforced-concrete core to composite HISTAR-steel perimeter columns with buckling-restrained-brace outriggers, cutting the core's aspect ratio from 20:1 to 12:1 under performance-based seismic design.",
         href: "https://www.mka.com/projects/imperium-tower/",
         img: "/mka-imperium-tower-cover.webp",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
@@ -230,7 +230,7 @@ export const chapters: Chapter[] = [
       {
         title: "Galleon Place",
         descriptor:
-          "Twin towers for typhoon country: triangular concrete core, outriggered columns, column-free office floors.",
+          "Galleon Place pairs two Pasig, Manila towers: a 53-story residential tower whose triangular concrete core and outriggered columns resist typhoon and seismic loads, and a 39-story office tower using post-tensioned wide-shallow beams for column-free floors.",
         href: "https://www.mka.com/projects/galleon-place/",
         img: "/mka-galleon-place-cover.webp",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
@@ -238,7 +238,7 @@ export const chapters: Chapter[] = [
       {
         title: "Viridian at Greenhills",
         descriptor:
-          "Peer review and Performance-Based Seismic Design for a slender 55-story BRB-braced tower.",
+          "Peer review and performance-based seismic design of a slender 55-story, 560-unit tower in San Juan, Metro Manila, pairing a concrete core wall with buckling-restrained braces and perimeter columns.",
         href: "https://www.mka.com/projects/viridian-at-greenhills/",
         img: "/mka-viridian-at-greenhills-cover.webp",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
@@ -246,7 +246,7 @@ export const chapters: Chapter[] = [
       {
         title: "JW Marriott Austin",
         descriptor:
-          "Ultra-shallow ballroom trusses; 30-ft cantilevers carrying a pool with levels hanging below.",
+          "Austin's 34-story, 1,012-room JW Marriott (2015) uses ultra-shallow ballroom trusses to meet podium height limits; Level 4 trusses cantilever 30 feet to hang a pool with two suspended levels, over concrete V-trusses reaching 19 feet.",
         href: "https://www.mka.com/projects/jw-marriott-austin/",
         img: "/mka-jw-marriott-austin-cover.webp",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
