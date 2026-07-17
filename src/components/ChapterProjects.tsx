@@ -165,7 +165,7 @@ function PanteraTile({ p, className = "" }: { p: ProjectCard; className?: string
   );
 }
 
-const PANTERA_INITIAL = 6;
+const PANTERA_INITIAL = 7;
 
 // Static class maps so Tailwind's JIT can see every span/height literal at build
 // time (dynamic `lg:col-span-${n}` strings would be purged).

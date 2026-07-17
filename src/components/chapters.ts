@@ -49,6 +49,13 @@ export const chapters: Chapter[] = [
     accentTint: "rgba(129, 140, 248, 0.16)",
     projects: [
       {
+        title: "Pantera DATboard",
+        descriptor: "Live dashboard tracking DAT treasuries (BTC/ETH/SOL) from parsed SEC 10-Q/8-K filings.",
+        href: "https://datboard.panteraresearchlab.xyz/",
+        img: "/pantera-datboard-portal.png",
+        thumb: "from-[#555db8] to-[#0c2238]",
+      },
+      {
         title: "Crypto on the Clock — An Empirical Study of Short-Term Crypto Market Microstructure on Polymarket and Kalshi",
         descriptor: "Empirical study of $7.8B in near-term crypto trading, finding 86% of Polymarket's 5-min taker volume is bot-driven while Kalshi out-earns on fees (2.74% vs 0.96%).",
         href: "https://panteraresearchlab.xyz/research/crypto-on-the-clock/",
@@ -89,13 +96,6 @@ export const chapters: Chapter[] = [
         href: "https://tokenization.panteraresearchlab.xyz/",
         img: "/pantera-tokenization-portal.png",
         thumb: "from-[#474ea8] to-[#0a1a30]",
-      },
-      {
-        title: "Pantera DATboard",
-        descriptor: "Live dashboard tracking DAT treasuries (BTC/ETH/SOL) from parsed SEC 10-Q/8-K filings.",
-        href: "https://datboard.panteraresearchlab.xyz/",
-        img: "/pantera-datboard-portal.png",
-        thumb: "from-[#555db8] to-[#0c2238]",
       },
       {
         title: "Prediction Markets Dashboard",
