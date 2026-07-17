@@ -44,17 +44,17 @@ export const chapters: Chapter[] = [
       "Market microstructure · Prediction markets · Tokenization · Digital-asset treasuries · User behavior · AI agents",
     projects: [
       {
+        title: "Crypto on the Clock",
+        descriptor: "An empirical study of short-term crypto market microstructure on Polymarket and Kalshi, measuring $7.8B in near-term trading; 86% of Polymarket's 5-minute taker volume was bot-driven.",
+        href: "https://panteraresearchlab.xyz/research/crypto-on-the-clock/",
+        img: "/pantera-prl-crypto-on-the-clock-cover.png",
+        thumb: "from-[#EAD9CE] to-[#F2EFE8]",
+      },
+      {
         title: "Pantera DATboard",
         descriptor: "Live tracker of BTC/ETH/SOL treasury holdings, parsed from SEC 10-Q/8-K filings.",
         href: "https://datboard.panteraresearchlab.xyz/",
         img: "/pantera-datboard-portal.png",
-        thumb: "from-[#EAD9CE] to-[#F2EFE8]",
-      },
-      {
-        title: "Crypto on the Clock: An Empirical Study of Short-Term Crypto Market Microstructure on Polymarket and Kalshi",
-        descriptor: "Measured $7.8B in near-term trading; 86% of Polymarket's 5-minute taker volume was bot-driven.",
-        href: "https://panteraresearchlab.xyz/research/crypto-on-the-clock/",
-        img: "/pantera-prl-crypto-on-the-clock-cover.png",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
