@@ -82,7 +82,7 @@ const VIEW_ALL: Record<
   { label: string; justify: string }
 > = {
   pantera: { label: "View all Pantera work", justify: "sm:justify-end" },
-  messari: { label: "View all Messari research", justify: "sm:justify-start" },
+  messari: { label: "View more Messari research", justify: "sm:justify-start" },
   mka: { label: "View all MKA projects", justify: "sm:justify-center" },
 };
 
