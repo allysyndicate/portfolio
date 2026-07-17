@@ -267,10 +267,6 @@ export function SideProjects() {
                 Technical Cofounder
               </p>
             </div>
-            <p className="max-w-2xl text-left text-base font-medium leading-relaxed text-[var(--ink)] sm:text-lg">
-              Describe what you want. A team of specialist agents plans the work
-              and hands you back something finished.
-            </p>
             <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(18rem,0.9fr)] md:items-center">
               <blockquote className="space-y-3 rounded-xl border-l-2 border-[var(--accent)]/50 border-y border-r border-y-[var(--line)] border-r-[var(--line)] bg-[var(--accent-tint)] px-4 py-4 text-sm leading-relaxed text-[var(--body)] shadow-[var(--shadow-soft)] sm:px-5 sm:text-base">
                 <span className="block">
