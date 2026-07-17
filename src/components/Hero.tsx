@@ -35,7 +35,7 @@ const stages: Stage[] = [
     num: "01",
     label: "Structures",
     title: "Designed for uncertainty.",
-    body: "I spent four years in structural engineering, designing high-rise buildings in seismic and high-wind regions. The work taught me to quantify uncertainty, reason about failure, and make decisions that had to survive real constraints.",
+    body: "I spent four years designing high-rise buildings in seismic and high-wind regions. The work required turning incomplete information into decisions that could withstand real physical constraints.",
     proof: "7M+ square feet designed",
   },
   {
@@ -412,9 +412,8 @@ function Timeline() {
         From structures to systems.
       </h2>
       <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--body)] sm:text-base">
-        Structural engineering trained me to quantify uncertainty, test
-        assumptions, and design around failure. I now apply those same habits to
-        financial markets, user networks, and AI systems.
+        I started in structural engineering, then moved into data science,
+        market research, and AI product development.
       </p>
 
       {/* Staggered path: three story cards of uneven prominence, alternating
