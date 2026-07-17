@@ -436,7 +436,7 @@ function Timeline() {
 
         {stages.map((s, i) => {
           const isLeft = i % 2 === 0; // 01 left, 02 right, 03 left
-          const size: "lg" | "sm" = i === 1 ? "sm" : "lg"; // 02 is the small beat
+          const size: "lg" | "sm" = "lg"; // all cards share one size
           return (
             <div key={s.id} className="relative py-5 lg:py-7">
               {/* Spine node for this stage. */}
@@ -516,12 +516,6 @@ function Timeline() {
           ))}
         </div>
       </div>
-
-      {/* Closing synthesis under the fork. */}
-      <p className="mt-10 max-w-2xl text-[0.9375rem] italic leading-[1.7] text-[var(--slate-light)] lg:mx-auto lg:text-center">
-        Two expressions of the same instinct: understand complex systems, then
-        build better ways to work with them.
-      </p>
     </div>
   );
 }
@@ -567,35 +561,8 @@ export default function Hero() {
         <HeroCtas />
       </div>
 
-      {/* Origin note pinned to the hero's bottom edge as a scroll teaser into
-          the journey section below. */}
-      <a
-        href="#how-i-got-here"
-        className="group mt-14 flex flex-col items-start gap-2 border-t border-white/10 pt-6 text-sm text-[var(--slate)] transition-colors hover:text-[var(--slate-light)] md:mt-16"
-      >
-        <span>
-          Previously, I spent five years as a structural engineer designing
-          high-rise buildings.
-        </span>
-        <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
-          How I got here
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden
-            className="h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5"
-          >
-            <path d="M12 5v14M5 12l7 7 7-7" />
-          </svg>
-        </span>
-      </a>
-
       {/* Forked-timeline journey below the hero. */}
-      <div id="how-i-got-here" className="mt-10 scroll-mt-24 md:mt-14">
+      <div id="how-i-got-here" className="mt-16 scroll-mt-24 md:mt-20">
         <Timeline />
       </div>
     </section>

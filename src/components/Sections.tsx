@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
-import ChapterProjects from "./ChapterProjects";
-import { chapters } from "./chapters";
+import ChapterProjects, { type ChapterVariant } from "./ChapterProjects";
+import { chapters, type Chapter } from "./chapters";
 
 export const socials = [
   {
@@ -57,75 +57,171 @@ function Section({
   );
 }
 
+/** Maps each chapter id to its layout variant + section-transition treatment. */
+const chapterLayout: Record<
+  Chapter["id"],
+  { variant: ChapterVariant; tinted: boolean; divider: boolean }
+> = {
+  pantera: { variant: "pantera", tinted: false, divider: false },
+  messari: { variant: "messari", tinted: true, divider: true },
+  structural: { variant: "mka", tinted: false, divider: true },
+};
+
+/** Small-caps eyebrow → employer name (+ optional Messari profile link). */
+function ChapterEyebrowHeading({ c }: { c: Chapter }) {
+  return (
+    <>
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+        {c.eyebrow ?? c.act}
+      </p>
+      <h3 className="mt-2 flex items-center gap-2.5 text-2xl font-bold text-[var(--slate-lightest)] sm:text-3xl">
+        {c.heading ?? c.company}
+        {c.id === "messari" && (
+          <a
+            href="https://messari.io/research/ally-zach"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Ally's Messari profile"
+            title="Ally's Messari profile"
+            className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--accent)]/40 bg-[var(--accent-tint)] text-[var(--accent)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white hover:shadow-lg hover:shadow-[var(--accent)]/30"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+              className="h-4 w-4"
+            >
+              <path d="M14 5h5v5M19 5l-9 9M19 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4" />
+            </svg>
+          </a>
+        )}
+      </h3>
+    </>
+  );
+}
+
+/** Role / location / years meta block (hidden when a thematic heading is set). */
+function ChapterMeta({ c }: { c: Chapter }) {
+  if (c.heading) return null;
+  return (
+    <>
+      {c.role && (
+        <p className="mt-1 text-base font-medium text-[var(--slate-light)]">
+          {c.role}
+        </p>
+      )}
+      {c.location && (
+        <p className="mt-0.5 text-sm text-[var(--slate)]">{c.location}</p>
+      )}
+      <p className="mt-0.5 text-sm text-[var(--slate)]">{c.years}</p>
+    </>
+  );
+}
+
+/**
+ * Employer header, laid out distinctly per employer. It always stays an OPEN
+ * section header above the project grid — never boxed in with the cards.
+ *  - pantera: two-column split (name/role left 35%, intro right 65%)
+ *  - messari: stacked, with a width-limited intro
+ *  - mka: centered heading, left-aligned intro in a narrow centered column
+ */
+function ChapterHeader({ c, variant }: { c: Chapter; variant: ChapterVariant }) {
+  if (variant === "pantera") {
+    return (
+      <div className="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-[35fr_65fr] lg:gap-16">
+        <div>
+          <ChapterEyebrowHeading c={c} />
+          <ChapterMeta c={c} />
+        </div>
+        <div className="lg:pt-1">
+          <p className="text-base leading-relaxed text-[var(--slate)]">
+            {c.intro}
+          </p>
+          {c.topics && (
+            <p className="mt-3 text-xs font-medium tracking-wide text-[var(--slate)]/80">
+              {c.topics}
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  if (variant === "messari") {
+    return (
+      <div className="mb-12">
+        <ChapterEyebrowHeading c={c} />
+        <ChapterMeta c={c} />
+        <p className="mt-3 max-w-[720px] text-sm leading-relaxed text-[var(--slate)]">
+          {c.intro}
+        </p>
+        {c.topics && (
+          <p className="mt-3 max-w-[720px] text-xs font-medium tracking-wide text-[var(--slate)]/80">
+            {c.topics}
+          </p>
+        )}
+      </div>
+    );
+  }
+
+  // mka — centered heading, left-aligned intro in a centered column
+  return (
+    <div className="mb-16 flex flex-col items-center text-center">
+      <ChapterEyebrowHeading c={c} />
+      <ChapterMeta c={c} />
+      <p className="mt-3 max-w-[760px] text-left text-sm leading-relaxed text-[var(--slate)]">
+        {c.intro}
+      </p>
+      {c.topics && (
+        <p className="mt-3 max-w-[760px] text-left text-xs font-medium tracking-wide text-[var(--slate)]/80">
+          {c.topics}
+        </p>
+      )}
+    </div>
+  );
+}
+
 export function Chapters() {
   return (
     <>
-      {chapters.map((c) => (
-        <Section
-          key={c.id}
-          id={c.id}
-          label={c.label}
-          hideHeading
-          style={
-            {
-              "--accent": c.accent,
-              "--accent-tint": c.accentTint,
-            } as CSSProperties
-          }
-        >
-          <div className="mb-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
-              {c.eyebrow ?? c.act}
-            </p>
-            <h3 className="mt-2 flex items-center gap-2.5 text-2xl font-bold text-[var(--slate-lightest)]">
-              {c.heading ?? c.company}
-              {c.id === "messari" && (
-                <a
-                  href="https://messari.io/research/ally-zach"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Ally's Messari profile"
-                  title="Ally's Messari profile"
-                  className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--accent)]/40 bg-[var(--accent-tint)] text-[var(--accent)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white hover:shadow-lg hover:shadow-[var(--accent)]/30"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden
-                    className="h-4 w-4"
-                  >
-                    <path d="M14 5h5v5M19 5l-9 9M19 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4" />
-                  </svg>
-                </a>
+      {chapters.map((c, i) => {
+        const { variant, tinted, divider } = chapterLayout[c.id];
+        return (
+          <section
+            key={c.id}
+            id={c.id}
+            aria-label={c.label}
+            className="relative mx-[calc(50%-50vw)] scroll-mt-24"
+            style={
+              {
+                "--accent": c.accent,
+                "--accent-tint": c.accentTint,
+                ...(tinted ? { backgroundColor: "rgba(14, 24, 48, 0.6)" } : {}),
+              } as CSSProperties
+            }
+          >
+            <div className="mx-auto max-w-[1200px] px-5 py-[72px] sm:px-8 sm:py-24 lg:px-10 lg:py-[120px]">
+              {divider && (
+                <div
+                  aria-hidden
+                  className="mb-12 border-t border-white/[0.06] sm:mb-16 lg:mb-24"
+                />
               )}
-            </h3>
-            {!c.heading && c.role && (
-              <p className="mt-1 text-base font-medium text-[var(--slate-light)]">
-                {c.role}
-              </p>
-            )}
-            {!c.heading && c.location && (
-              <p className="mt-0.5 text-sm text-[var(--slate)]">{c.location}</p>
-            )}
-            {!c.heading && (
-              <p className="mt-0.5 text-sm text-[var(--slate)]">{c.years}</p>
-            )}
-            <p className="mt-3 max-w-xl text-sm text-[var(--slate)]">
-              {c.intro}
-            </p>
-            {c.topics && (
-              <p className="mt-3 max-w-xl text-xs font-medium tracking-wide text-[var(--slate)]/80">
-                {c.topics}
-              </p>
-            )}
-          </div>
-          <ChapterProjects projects={c.projects} label={c.label} />
-        </Section>
-      ))}
+              {i === 0 && (
+                <h2 className="mb-10 text-2xl font-bold tracking-tight text-[var(--slate-lightest)] sm:mb-14 sm:text-4xl">
+                  Experience
+                </h2>
+              )}
+              <ChapterHeader c={c} variant={variant} />
+              <ChapterProjects projects={c.projects} variant={variant} />
+            </div>
+          </section>
+        );
+      })}
     </>
   );
 }
