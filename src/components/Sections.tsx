@@ -129,7 +129,7 @@ function ChapterMeta({ c }: { c: Chapter }) {
 
 /**
  * Employer header - ONE layout for every chapter: eyebrow → heading (+ link
- * chip) → role/location/years meta → intro → topics. It always stays an OPEN
+ * chip) → role/location/years meta → intro → tagline. It always stays an OPEN
  * section header above the project grid - never boxed in with the cards.
  * Pantera (first employer) renders slightly larger; the structure is identical.
  */
@@ -146,9 +146,9 @@ function ChapterHeader({ c, variant }: { c: Chapter; variant: ChapterVariant }) 
       >
         {c.intro}
       </p>
-      {c.topics && (
-        <p className="mt-3 max-w-[720px] text-xs font-medium tracking-wide text-[var(--muted)]">
-          {c.topics}
+      {c.tagline && (
+        <p className="mt-4 max-w-[720px] text-sm font-semibold text-[var(--ink)]">
+          {c.tagline}
         </p>
       )}
     </Reveal>

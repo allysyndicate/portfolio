@@ -25,8 +25,8 @@ export type Chapter = {
   location?: string;
   years: string;
   intro: string;
-  /** Optional subtle meta/tag line of topics, rendered under the description. */
-  topics?: string;
+  /** Optional bold one-line statement rendered under the intro. */
+  tagline?: string;
   projects: ProjectCard[];
 };
 
@@ -39,9 +39,8 @@ export const chapters: Chapter[] = [
     role: "Research Engineer",
     years: "2024 – Present",
     intro:
-      "Pantera's in-house research team is two people, and I'm one of them. I take open-ended questions from research design through deployment: a study of $7.8B in short-term crypto trading, a map of 593 tokenized assets worth $320.6B, a live dashboard tracking digital-asset treasuries from parsed SEC filings. Part of the work supports Pantera's investment team and portfolio companies, and most of what I publish ships with a dashboard or an open dataset, so the finding stays useful after the report is out.",
-    topics:
-      "Market microstructure · Prediction markets · Tokenization · Digital-asset treasuries · User behavior · AI agents",
+      "On Pantera's two-person in-house research team, I own projects from open question to shipped work. I design the research, source and model the data, build the pipelines and software, validate the results, and deliver the work as reports, dashboards, datasets, or internal tools. I also support the investment team and portfolio companies, moving between research, engineering, and product as each problem requires.",
+    tagline: "One role across research, engineering, and product.",
     projects: [
       {
         title: "Crypto on the Clock",
