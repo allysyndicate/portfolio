@@ -436,7 +436,6 @@ function Timeline() {
 
         {stages.map((s, i) => {
           const isLeft = i % 2 === 0; // 01 left, 02 right, 03 left
-          const size: "lg" | "sm" = "lg"; // all cards share one size
           return (
             <div key={s.id} className="relative py-5 lg:py-7">
               {/* Spine node for this stage. */}
@@ -464,16 +463,10 @@ function Timeline() {
                     isLeft
                       ? "lg:col-start-1 lg:items-end"
                       : "lg:col-start-2 lg:items-start"
-                  } ${size === "sm" ? "lg:mt-6" : ""}`}
+                  }`}
                 >
-                  <div
-                    className={`w-full ${
-                      size === "lg"
-                        ? "lg:max-w-[30rem]"
-                        : "lg:max-w-[22rem]"
-                    }`}
-                  >
-                    <StageCard stage={s} size={size} active={active[i]} />
+                  <div className="w-full lg:max-w-[30rem]">
+                    <StageCard stage={s} size="lg" active={active[i]} />
                   </div>
                 </div>
               </div>
