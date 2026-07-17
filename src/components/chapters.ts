@@ -190,7 +190,7 @@ export const chapters: Chapter[] = [
       {
         title: "NuStar Resort & Casino",
         descriptor:
-          "Cebu's tallest development, NuStar Resort & Casino spans roughly 5.28M sq ft across three reinforced-concrete hotel towers up to 29 stories plus a 236,800 sq ft casino, all engineered for high Philippine seismicity.",
+          "Cebu's tallest development, NuStar Resort & Casino spans roughly 5.28M sq ft across four reinforced-concrete hotel towers up to 29 stories over a podium of casino, entertainment, retail, and waterpark space, all engineered for high Philippine seismicity.",
         href: "https://www.hksinc.com/what-we-do/projects/nustar-casino-resort/",
         img: "/nustar-resort-casino-cover.jpg",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
