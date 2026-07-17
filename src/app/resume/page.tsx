@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import GlowBackground from "@/components/GlowBackground";
-import { Resume } from "@/components/Sections";
+import ResumeContent from "@/components/ResumeContent";
 
 export const metadata: Metadata = {
-  title: "The Full Record — Ally Zach",
+  title: "Résumé — Ally Zach",
   description:
-    "Full chronology: earlier engineering roles, research and teaching, honors and scholarships.",
+    "Full résumé: research engineering at Pantera, technical cofounder of Syndicate, research at Messari, structural engineering at MKA, plus teaching, education, and honors.",
   alternates: { canonical: "/resume" },
 };
 
@@ -34,7 +34,7 @@ export default function ResumePage() {
           Back to home
         </Link>
         <main>
-          <Resume />
+          <ResumeContent />
         </main>
       </div>
     </>

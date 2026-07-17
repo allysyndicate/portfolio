@@ -170,36 +170,6 @@ function RolesBlock() {
   );
 }
 
-/* Hero call-to-action row.
-   - "View selected research" → in-page Experience/research carousels (#pantera).
-   - "View résumé" → the /resume route ("The Full Record": earlier roles, teaching,
-     honors, full chronology). The downloadable PDF is intentionally NOT used
-     (stale + contains a home address/phone).
-   - GitHub is omitted: no GitHub profile URL exists anywhere in the site. */
-function HeroCtas() {
-  return (
-    <Reveal
-      delay={280}
-      className="order-6 flex flex-wrap items-center gap-3 md:col-start-1 md:row-start-5 md:mt-8"
-    >
-      {/* #B25232 = terracotta midpoint between --accent and --accent-strong;
-          white text passes 4.5:1 at rest (plain --accent falls just short). */}
-      <a
-        href="#pantera"
-        className="rounded-md bg-[#B25232] px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
-      >
-        View selected research
-      </a>
-      <a
-        href="/resume"
-        className="rounded-md border border-[var(--line-strong)] bg-[var(--paper-elev)]/60 px-5 py-2.5 text-sm font-semibold text-[var(--ink)] transition-colors duration-150 ease-[var(--ease-out)] hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] hover:text-[var(--accent-strong)]"
-      >
-        View résumé
-      </a>
-    </Reveal>
-  );
-}
-
 const clamp01 = (t: number) => Math.min(1, Math.max(0, t));
 
 // Tiny on-palette data motif for the Pantera (research) branch — bars + trend,
@@ -555,7 +525,7 @@ export default function Hero() {
         {/* Photo + social (right column on desktop) */}
         <Reveal
           delay={140}
-          className="order-2 md:order-none md:col-start-2 md:row-span-6 md:row-start-1 md:self-center"
+          className="order-2 md:order-none md:col-start-2 md:row-span-4 md:row-start-1 md:self-center"
         >
           <Photo />
           <div className="mt-5">
@@ -584,9 +554,6 @@ export default function Hero() {
 
         {/* Current roles */}
         <RolesBlock />
-
-        {/* Primary calls to action */}
-        <HeroCtas />
       </div>
 
       {/* Forked-timeline journey below the hero — full-bleed soft band so the

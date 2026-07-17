@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { sections, observedSectionIds } from "./nav-data";
 
 type NavItem = (typeof sections)[number];
@@ -108,8 +109,14 @@ export default function NavBar() {
               </a>
             );
           })}
-          {/* TODO: replace with updated 2026 resume before making resume CTA public.
-              Hidden temporarily — current /Ally Zach Resume.pdf is stale and exposes a home street address. */}
+          {/* Résumé lives on its own route (the full HTML resume). This links the
+              page, not the downloadable PDF, so no home address is exposed. */}
+          <Link
+            href="/resume"
+            className="relative text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--ink)]"
+          >
+            Résumé
+          </Link>
         </nav>
 
         <button
@@ -151,8 +158,15 @@ export default function NavBar() {
                 </a>
               </li>
             ))}
-            {/* TODO: replace with updated 2026 resume before making resume CTA public.
-                Hidden temporarily — current /Ally Zach Resume.pdf is stale and exposes a home street address. */}
+            <li>
+              <Link
+                href="/resume"
+                onClick={() => setOpen(false)}
+                className="block rounded px-2 py-2 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--ink)]"
+              >
+                Résumé
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
