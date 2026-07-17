@@ -40,7 +40,6 @@ export const chapters: Chapter[] = [
     years: "2024 – Present",
     intro:
       "At Pantera, my role spans research, data engineering, and product. I take open-ended market questions through study design, data collection, analysis, validation, and delivery, building the pipelines, dashboards, datasets, or software each project requires. The work supports published research, investment decisions, and portfolio companies.",
-    tagline: "One role across research, engineering, and product.",
     projects: [
       {
         title: "Crypto on the Clock",
