@@ -35,7 +35,7 @@ const stages: Stage[] = [
     num: "01",
     label: "Structures",
     title: "Designed for uncertainty.",
-    body: "I spent five years in structural engineering, designing high-rise buildings in seismic and high-wind regions. The work taught me to quantify uncertainty, reason about failure, and make decisions that had to survive real constraints.",
+    body: "I spent four years in structural engineering, designing high-rise buildings in seismic and high-wind regions. The work taught me to quantify uncertainty, reason about failure, and make decisions that had to survive real constraints.",
     proof: "7M+ square feet designed",
   },
   {
