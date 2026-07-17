@@ -51,13 +51,6 @@ export const chapters: Chapter[] = [
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
-        title: "Pantera DATboard",
-        descriptor: "Live tracker of BTC/ETH/SOL treasury holdings, parsed from SEC 10-Q/8-K filings.",
-        href: "https://datboard.panteraresearchlab.xyz/",
-        img: "/pantera-datboard-portal.png",
-        thumb: "from-[#EAD9CE] to-[#F2EFE8]",
-      },
-      {
         title: "The State of Tokenization: Q1 2026 Report",
         descriptor: "Mapped 593 tokenized assets totaling $320.6B, published on panteracapital.com.",
         href: "https://panteracapital.com/the-state-of-tokenization/",
@@ -65,17 +58,17 @@ export const chapters: Chapter[] = [
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
-        title: "The Super Bowl of Prediction Markets",
-        descriptor: "First-authored report on Kalshi vs Polymarket's fight over price discovery and liquidity.",
-        href: "https://panteraresearchlab.xyz/research/the-super-bowl-of-prediction-markets-kalshi-and-polymarkets-battle-for-price-vs-liquidity/",
-        img: "/pantera-superbowl-report-cover.png",
-        thumb: "from-[#EAD9CE] to-[#F2EFE8]",
-      },
-      {
         title: "Speculative Swells and the Memecoin Aftermath",
         descriptor: "Supply-shock analysis of memecoin price moves, published in the Stanford Blockchain Review.",
         href: "https://review.stanfordblockchain.xyz/p/49-speculative-swells-and-the-memecoin",
         img: "/pantera-prl-memecoin-cover.png",
+        thumb: "from-[#EAD9CE] to-[#F2EFE8]",
+      },
+      {
+        title: "The Super Bowl of Prediction Markets",
+        descriptor: "First-authored report on Kalshi vs Polymarket's fight over price discovery and liquidity.",
+        href: "https://panteraresearchlab.xyz/research/the-super-bowl-of-prediction-markets-kalshi-and-polymarkets-battle-for-price-vs-liquidity/",
+        img: "/pantera-superbowl-report-cover.png",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
@@ -90,6 +83,13 @@ export const chapters: Chapter[] = [
         descriptor: "Open-source dashboard joining on-chain and off-chain tokenized assets in one interactive view.",
         href: "https://tokenization.panteraresearchlab.xyz/",
         img: "/pantera-tokenization-portal.png",
+        thumb: "from-[#EAD9CE] to-[#F2EFE8]",
+      },
+      {
+        title: "Pantera DATboard",
+        descriptor: "Live tracker of BTC/ETH/SOL treasury holdings, parsed from SEC 10-Q/8-K filings.",
+        href: "https://datboard.panteraresearchlab.xyz/",
+        img: "/pantera-datboard-portal.png",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
