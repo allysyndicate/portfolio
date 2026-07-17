@@ -357,117 +357,79 @@ export function SideProjects() {
  * Compact horizontal Education strip near the bottom of the homepage. The full
  * degree detail + honors/scholarships live in the Full Record (/resume).
  */
-export function Education() {
-  return (
-    <Section id="education" label="Education" hideHeading>
-      <Reveal>
-      <div className="flex flex-col items-start gap-3 rounded-2xl border border-[var(--line)] bg-[var(--paper-elev)] px-5 py-4 shadow-[var(--shadow-card)] transition duration-200 ease-[var(--ease-out)] hover:-translate-y-0.5 hover:border-[var(--line-strong)] hover:shadow-[var(--shadow-feature)] sm:flex-row sm:items-center sm:gap-5 sm:px-7 sm:py-5">
-        <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--accent)] to-[var(--accent-strong)] shadow-[0_2px_14px_var(--accent-tint)]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/illinois-block-i.png"
-            alt=""
-            aria-hidden
-            className="h-8 w-8 object-contain"
-          />
-        </span>
-        <div className="min-w-0">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent-strong)]">
-            University of Illinois
-          </p>
-          <p className="mt-1 text-sm text-[var(--body)] sm:text-base">
-            <span className="font-semibold text-[var(--ink)]">
-              M.S. + B.S. Civil Engineering
-            </span>
-            <span className="text-[var(--muted)]">
-              {" "}
-              · Structural Engineering · Business minor
-            </span>
-          </p>
-        </div>
-      </div>
-      </Reveal>
-    </Section>
-  );
-}
-
+/**
+ * Two-column closing section: professional contact + email CTA on the left,
+ * a single Outside Work paragraph on the right. The contact column stacks
+ * first on mobile. (Education moved into the Background section.)
+ */
 export function Contact() {
   return (
-    <Section id="contact" label="Get in touch" centeredHeading>
-      <Reveal className="mx-auto max-w-xl space-y-8 rounded-2xl border border-[var(--line)] bg-[var(--paper-elev)] px-6 py-10 text-center shadow-[var(--shadow-card)] sm:px-10">
-        <div className="space-y-4">
+    <Section id="contact" label="Get in touch" hideHeading>
+      <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
+        <Reveal>
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--accent-strong)]">
-            Outside the screen
+            Get in touch
           </p>
-          <ul className="space-y-2.5 text-base leading-relaxed text-[var(--body)] sm:text-lg">
-            <li>
-              <strong className="font-semibold text-[var(--ink)]">
-                Home base:
-              </strong>{" "}
-              just outside Portland, Oregon.
-            </li>
-            <li>
-              <strong className="font-semibold text-[var(--ink)]">
-                The household:
-              </strong>{" "}
-              my family, one busy toddler, a Bernese mountain dog, and two
-              Ragdoll cats.
-            </li>
-            <li>
-              <strong className="font-semibold text-[var(--ink)]">
-                Off hours:
-              </strong>{" "}
-              cooking something new, snowboarding in winter, paddleboarding when
-              it&apos;s warm.
-            </li>
-            <li>
-              <strong className="font-semibold text-[var(--ink)]">
-                Still and always:
-              </strong>{" "}
-              Chicago sports.
-            </li>
-          </ul>
-        </div>
-        <div className="flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+          <h2 className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-[var(--ink)] sm:text-4xl">
+            Reach out.
+          </h2>
+          <p className="mt-4 max-w-[34rem] text-base leading-relaxed text-[var(--body)] sm:text-lg">
+            I&apos;m based just outside Portland, Oregon. Reach out about
+            research, data systems, AI products, or work that crosses those
+            lines.
+          </p>
           <a
             href="mailto:allyzach28@gmail.com"
             /* #B25232 = terracotta midpoint between --accent and --accent-strong;
                white text passes 4.5:1 at rest (plain --accent falls just short). */
-            className="group rounded-md bg-[#B25232] px-6 py-3 text-center text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
+            className="group mt-6 inline-flex items-center gap-1.5 rounded-md bg-[#B25232] px-6 py-3 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
           >
-            Say hello
-            <span className="ml-1 inline-block transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-1">
+            Email me
+            <span
+              aria-hidden
+              className="inline-block transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-1"
+            >
               →
             </span>
           </a>
           {/* TODO: replace with updated 2026 resume before making resume CTA public.
               Hidden temporarily - current /Ally Zach Resume.pdf is stale (lists Messari
               as present role, no Pantera/Syndicate) and exposes a home street address. */}
-        </div>
-
-        <div className="flex items-center justify-center gap-4 pt-2">
-          {socials.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${s.label} · ${s.handle}`}
-              title={`${s.label} · ${s.handle}`}
-              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--line-strong)] bg-[var(--paper-elev)] text-[var(--body)] shadow-[var(--shadow-soft)] transition-all duration-200 ease-[var(--ease-out)] hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden
-                className="h-5 w-5"
+          <div className="mt-8 flex items-center gap-4">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${s.label} · ${s.handle}`}
+                title={`${s.label} · ${s.handle}`}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--line-strong)] bg-[var(--paper-elev)] text-[var(--body)] shadow-[var(--shadow-soft)] transition-all duration-200 ease-[var(--ease-out)] hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
               >
-                {s.icon}
-              </svg>
-            </a>
-          ))}
-        </div>
-      </Reveal>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden
+                  className="h-4 w-4"
+                >
+                  {s.icon}
+                </svg>
+              </a>
+            ))}
+          </div>
+        </Reveal>
+
+        <Reveal delay={120}>
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--accent-strong)]">
+            Outside work
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-[var(--body)] sm:text-lg">
+            Outside work, I&apos;m usually cooking, snowboarding,
+            paddleboarding, following Chicago sports, or at home with my
+            family, a toddler, a Bernese mountain dog, and two Ragdoll cats.
+          </p>
+        </Reveal>
+      </div>
     </Section>
   );
 }

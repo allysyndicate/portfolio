@@ -421,6 +421,35 @@ function Timeline() {
         market research, and AI product development.
       </p>
 
+      {/* Compact credential row: the degree sits with the structural-engineering
+          origin it explains, not at the bottom of the page. */}
+      <div className="mt-8 flex max-w-2xl items-center gap-4 border-y border-[var(--line)] py-4">
+        <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--accent)] to-[var(--accent-strong)] shadow-[0_2px_14px_var(--accent-tint)]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/illinois-block-i.png"
+            alt=""
+            aria-hidden
+            className="h-8 w-8 object-contain"
+          />
+        </span>
+        <div className="min-w-0">
+          <p className="text-[0.6875rem] font-bold uppercase tracking-[0.2em] text-[var(--accent-strong)]">
+            Education
+          </p>
+          <p className="mt-0.5 text-sm text-[var(--body)] sm:text-base">
+            <span className="font-semibold text-[var(--ink)]">
+              University of Illinois
+            </span>{" "}
+            · M.S. + B.S. in Civil Engineering
+            <span className="text-[var(--muted)]">
+              {" "}
+              · Structural Engineering · Business minor
+            </span>
+          </p>
+        </div>
+      </div>
+
       {/* Staggered path: three story cards of uneven prominence, alternating
           left/right of a central spine that draws as you scroll. The rhythm
           (large → small offset → large) reads as one continuous transformation

@@ -2,7 +2,6 @@ export const sections = [
   { id: "about", label: "About" },
   { id: "pantera", label: "Experience", match: ["pantera", "messari", "structural"] },
   { id: "side-projects", label: "What I'm Building" },
-  { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
 ] as const;
 
