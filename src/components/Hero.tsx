@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 import { socials } from "./socials";
 
 const supporting =
-  "I began in structural engineering, where I learned to quantify uncertainty and design around failure. Today I apply that discipline across research, engineering, and product, turning real-world data into reproducible analysis and production software.";
+  "I began in structural engineering, where I learned to quantify uncertainty and design around failure. Today I apply that discipline across research, engineering, and product, turning real-world data into reproducible analysis, live data products, and working software.";
 
 const heroSocials = [
   ...socials,
