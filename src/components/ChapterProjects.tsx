@@ -40,7 +40,14 @@ const CARD_SHELL =
  * is used by every chapter (Pantera, Messari, MKA); only the surrounding grid
  * changes per employer.
  */
-function ProjectCardLink({ p }: { p: ProjectCard }) {
+function ProjectCardLink({
+  p,
+  featured = false,
+}: {
+  p: ProjectCard;
+  /** Featured cards use a taller image frame so near-square charts show fully. */
+  featured?: boolean;
+}) {
   return (
     <a
       href={p.href}
@@ -54,7 +61,9 @@ function ProjectCardLink({ p }: { p: ProjectCard }) {
           src={p.img}
           alt={p.title}
           loading="lazy"
-          className="m-2 aspect-[16/10] w-[calc(100%-1rem)] rounded-xl border border-[var(--line)] bg-[var(--paper-elev)] object-contain p-2 shadow-[var(--shadow-soft)]"
+          className={`m-2 w-[calc(100%-1rem)] rounded-xl border border-[var(--line)] bg-[var(--paper-elev)] object-contain p-2 shadow-[var(--shadow-soft)] ${
+            featured ? "aspect-[6/5]" : "aspect-[16/10]"
+          }`}
         />
       ) : (
         <div
@@ -147,7 +156,7 @@ function PanteraFeatureGrid({ projects }: { projects: ProjectCard[] }) {
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {/* Large featured card, right side, spanning both top rows. */}
         <Reveal className="sm:col-span-2 lg:col-span-2 lg:col-start-2 lg:row-start-1 lg:row-end-3">
-          <ProjectCardLink p={featured} />
+          <ProjectCardLink p={featured} featured />
         </Reveal>
         {/* Two small cards stacked to the left of the feature. */}
         {left.map((p, i) => (
