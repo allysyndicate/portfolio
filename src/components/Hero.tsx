@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 import { socials } from "./socials";
 
 const supporting =
-  "My work has taken me from asking empirical questions to building the systems that make them answerable. I move between research, engineering, and product, turning messy real-world data into credible findings and useful software.";
+  "I began in structural engineering, where I learned to quantify uncertainty and design around failure. Today I apply that discipline across research, engineering, and product, turning real-world data into reproducible analysis and production software.";
 
 const heroSocials = [
   ...socials,
@@ -136,36 +136,44 @@ function SocialLinks() {
   );
 }
 
-// Single proof-point line - Pantera + Syndicate read as one credential strip
-// rather than two paragraphs competing with the thesis headline.
-function RolesBlock() {
-  const linkClass =
-    "font-semibold text-[var(--ink)] transition-colors duration-150 ease-[var(--ease-out)] hover:text-[var(--accent-strong)]";
+// Compact current-roles metadata row: a hairline rule, a CURRENTLY eyebrow, and
+// the two roles side by side with a subtle divider. Plain linked text, not
+// buttons or badges, aligned to the paragraph width.
+const currentRoles = [
+  {
+    company: "Pantera Capital",
+    role: "Research Engineer",
+    href: "https://panteracapital.com",
+  },
+  {
+    company: "Syndicate",
+    role: "Technical Cofounder",
+    href: "https://usesyndicate.org",
+  },
+];
 
+function RolesBlock() {
   return (
-    <Reveal
-      delay={210}
-      className="mt-11 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[var(--muted)]"
-    >
-      <a
-        href="https://panteracapital.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={linkClass}
-      >
-        Pantera Capital
-      </a>
-      <span aria-hidden className="text-[var(--accent)]/60">
-        ·
-      </span>
-      <a
-        href="https://usesyndicate.org"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={linkClass}
-      >
-        Syndicate
-      </a>
+    <Reveal delay={210} className="mt-11 max-w-[620px]">
+      <div aria-hidden className="h-px w-full bg-[var(--line)]" />
+      <p className="mt-5 text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent-strong)]">
+        Currently
+      </p>
+      <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-0 sm:divide-x sm:divide-[var(--line)]">
+        {currentRoles.map((r, i) => (
+          <div key={r.company} className={i === 0 ? "sm:pr-8" : "sm:pl-8"}>
+            <a
+              href={r.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-[var(--ink)] transition-colors duration-150 ease-[var(--ease-out)] hover:text-[var(--accent-strong)]"
+            >
+              {r.company}
+            </a>
+            <span className="ml-2 text-sm text-[var(--muted)]">{r.role}</span>
+          </div>
+        ))}
+      </div>
     </Reveal>
   );
 }
@@ -532,8 +540,8 @@ export default function Hero() {
             delay={70}
             className="mt-6 text-pretty text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.02em] text-[var(--ink)] sm:text-[3rem] sm:leading-[1.05] lg:text-[3.5rem]"
           >
-            I build data systems to study{" "}
-            <span className="text-[var(--accent)]">financial markets, user networks, and AI</span>.
+            I build <span className="text-[var(--accent)]">data systems</span>{" "}
+            to study financial markets, user networks, and AI systems.
           </Reveal>
 
           {/* Supporting paragraph */}
