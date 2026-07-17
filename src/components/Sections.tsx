@@ -380,6 +380,7 @@ export function Contact() {
           </p>
           <a
             href="mailto:allyzach28@gmail.com"
+            aria-label="Email Ally Zach"
             /* #B25232 = terracotta midpoint between --accent and --accent-strong;
                white text passes 4.5:1 at rest (plain --accent falls just short). */
             className="group mt-6 inline-flex items-center gap-1.5 rounded-md bg-[#B25232] px-6 py-3 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
