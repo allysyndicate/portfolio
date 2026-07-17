@@ -121,7 +121,6 @@ export const chapters: Chapter[] = [
     label: "Messari",
     company: "Messari",
     role: "Enterprise Research Analyst",
-    location: "Remote",
     years: "2022 — 2024",
     intro:
       "Over two years at Messari I wrote 50+ long-form reports on L1s, L2s, NFTs, DeFi, and consumer apps, specializing in user analytics at the network and application level: questions like whether a chain's growth is sybils, airdrop farmers, or real users. Behind the writing, I built the SQL and Python dashboards and ingestion tools the research team ran on, which is where my research started turning into software.",
