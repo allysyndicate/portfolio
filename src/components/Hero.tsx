@@ -77,11 +77,11 @@ const branches: Branch[] = [
   },
   {
     id: "syndicate",
-    track: "AI Systems",
+    track: "Technical Cofounder",
     org: "Syndicate",
-    title: "Brought the same questions to AI.",
-    body: "As technical cofounder, I'm building a workspace for coordinating multiple AI models across complex tasks, and I test it daily by using the product myself. The questions underneath are the same ones: how agents delegate, how they communicate under structure, how they recover from failure, and when an AI system can be trusted to act.",
-    proof: "Multi-model orchestration with configurable human control",
+    title: "A workspace for coordinating teams of specialized AI agents.",
+    body: "I co-founded Syndicate and build the product end to end. It is a local-first Electron app where users create specialized agents, assemble them into teams, and control how work is delegated, reviewed, and interrupted. My work includes the provider-agnostic runtime, manager agents, tag-based orchestration, MCP integrations, and encrypted credential handling.",
+    proof: "TypeScript · Electron · MCP · Agent orchestration",
   },
 ];
 
@@ -482,7 +482,7 @@ function Timeline() {
           />
           <div className="pl-10 lg:pl-0 lg:pt-8 lg:text-center">
             <span className="text-[0.6875rem] font-bold uppercase tracking-[0.28em] text-[var(--accent-strong)]">
-              Now, two parallel tracks
+              Current work
             </span>
           </div>
         </div>

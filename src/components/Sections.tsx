@@ -350,10 +350,6 @@ export function SideProjects() {
                 →
               </span>
             </a>
-            <p className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--accent)]/30 bg-[var(--accent-tint)] px-3 py-1.5 text-center text-xs font-medium leading-snug text-[var(--body)] sm:ml-auto">
-              <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-              Private beta
-            </p>
           </div>
         </div>
       </Reveal>
