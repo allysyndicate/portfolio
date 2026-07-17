@@ -183,7 +183,7 @@ export const chapters: Chapter[] = [
     location: "Seattle, WA",
     years: "2018 – 2022",
     intro:
-      "A high-rise in a seismic zone is a question about failure: how the structure behaves under loads you can only model, and what evidence shows the design holds. I spent four years at MKA working that question across 7M+ sq ft of towers in the US and Southeast Asia, where earthquakes and typhoons set the terms. The repetitive parts I turned into office-wide tools, first in Excel and VBA, then in Python, and that's where the software career started.",
+      "At MKA, I designed and analyzed more than 7 million square feet of high-rise buildings across the U.S. and Southeast Asia, with a focus on seismic and wind performance. Alongside project work, I built office-wide tools in Excel, VBA, and Python to automate recurring design and analysis workflows. That work became my bridge from structural engineering into software and data.",
     projects: [
       {
         title: "NuStar Resort & Casino",
