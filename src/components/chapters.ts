@@ -142,7 +142,7 @@ export const chapters: Chapter[] = [
       },
       {
         title: "Decoding friend.tech from Metrics to Monetization",
-        descriptor: "Assembled on-chain Base metrics across 300K+ friend.tech users to model its quadratic bonding-curve revenue and points-program monetization.",
+        descriptor: "Reverse-engineered friend.tech's undisclosed points system with a machine-learning model fit to on-chain Base activity across 300K+ users.",
         href: "https://messari.io/report/decoding-friend-tech-from-metrics-to-monetization",
         img: "/messari-decoding-friend-tech-from-metrics-to-monetization.png",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
