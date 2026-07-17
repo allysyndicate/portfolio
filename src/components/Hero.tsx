@@ -406,7 +406,7 @@ function Timeline() {
       <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--body)] sm:text-base">
         Structural engineering trained me to quantify uncertainty, test
         assumptions, and design around failure. I now apply those same habits to
-        markets, user networks, and AI systems.
+        financial markets, user networks, and AI systems.
       </p>
 
       {/* Staggered path: three story cards of uneven prominence, alternating
@@ -533,7 +533,7 @@ export default function Hero() {
             className="mt-6 text-pretty text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.02em] text-[var(--ink)] sm:text-[3rem] sm:leading-[1.05] lg:text-[3.5rem]"
           >
             I build data systems to study{" "}
-            <span className="text-[var(--accent)]">markets, user networks, and AI</span>.
+            <span className="text-[var(--accent)]">financial markets, user networks, and AI</span>.
           </Reveal>
 
           {/* Supporting paragraph */}
