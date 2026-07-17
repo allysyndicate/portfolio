@@ -66,22 +66,23 @@ type Branch = {
   proof: string;
 };
 
+// Both cards share one structure: role, company, scope, ownership, capabilities.
 const branches: Branch[] = [
   {
     id: "pantera",
-    track: "Research Engineering",
+    track: "Research Engineer",
     org: "Pantera Capital",
-    title: "Built research that ships.",
-    body: "I take ambiguous questions from framing and data collection through analysis, validation, publication, and live data products. Finding the answer is half the job. Building the system that makes it reproducible and useful is the other half.",
-    proof: "Research spanning billions of dollars in market activity",
+    title: "Research and data products for crypto markets.",
+    body: "I take projects from an open question to a published result. I source and model market and on-chain data, test hypotheses, validate results, and ship the work as research, dashboards, and interactive tools. I also build the Python and SQL pipelines that keep each analysis reproducible and current.",
+    proof: "Market and on-chain data · Python/SQL · Research products",
   },
   {
     id: "syndicate",
     track: "Technical Cofounder",
     org: "Syndicate",
-    title: "A workspace for coordinating teams of specialized AI agents.",
-    body: "I co-founded Syndicate and build the product end to end. It is a local-first Electron app where users create specialized agents, assemble them into teams, and control how work is delegated, reviewed, and interrupted. My work includes the provider-agnostic runtime, manager agents, tag-based orchestration, MCP integrations, and encrypted credential handling.",
-    proof: "TypeScript · Electron · MCP · Agent orchestration",
+    title: "Product and infrastructure for multi-agent work.",
+    body: "I designed and built Syndicate end to end: a local-first Electron app where users combine Claude, OpenAI, and Gemini agents into teams and control how work is delegated, reviewed, and interrupted. My work spans the provider-agnostic runtime, orchestration layer, MCP integrations, and local security model.",
+    proof: "Multi-model runtime · Agent orchestration · Local-first security",
   },
 ];
 
@@ -254,7 +255,10 @@ function BranchColumn({ branch }: { branch: Branch }) {
       <p className="mt-2 text-[0.9375rem] leading-[1.65] text-[var(--body)]">
         {branch.body}
       </p>
-      <ProofLine>{branch.proof}</ProofLine>
+      {/* mt-auto bottom-aligns both capability lines across the equal-height columns. */}
+      <div className="mt-auto">
+        <ProofLine>{branch.proof}</ProofLine>
+      </div>
     </div>
   );
 }
