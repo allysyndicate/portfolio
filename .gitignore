@@ -50,3 +50,16 @@ next-env.d.ts
 /casino-card.png
 /nustar-work.png
 /devserver.log
+
+# Local verification/debug scripts & screenshot output (not source)
+/verify-*.mjs
+/shot-casino.mjs
+/pantera-asym-*.png
+/pantera-tiles-*.png
+/vv-desktop-*.png
+/final-*.png
+/p1-*.png
+# Unreferenced experimental cover variants
+/public/pantera-prl-crypto-on-the-clock-cover-alt-*.png
+/vv-*.png
+/work-*.png

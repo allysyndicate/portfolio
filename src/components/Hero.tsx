@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { socials } from "./Sections";
+import Reveal from "./Reveal";
+import { socials } from "./socials";
 
 const supporting =
   "I frame empirical questions, assemble the data, validate the results, and ship the pipelines, dashboards, and software behind the analysis, working mostly in Python, SQL, and TypeScript. My work spans market behavior, user networks, and AI systems.";
@@ -71,7 +72,7 @@ const branches: Branch[] = [
     track: "Research Engineering",
     org: "Pantera Capital",
     title: "Built research that ships.",
-    body: "I take ambiguous questions from framing and data collection through analysis, validation, publication, and live data products. The goal is not only to find an answer, but to build the system that makes it reproducible and useful.",
+    body: "I take ambiguous questions from framing and data collection through analysis, validation, publication, and live data products. Finding the answer is half the job. Building the system that makes it reproducible and useful is the other half.",
     proof: "Research spanning billions of dollars in market activity",
   },
   {
@@ -79,7 +80,7 @@ const branches: Branch[] = [
     track: "AI Systems",
     org: "Syndicate",
     title: "Brought the same questions to AI.",
-    body: "As technical cofounder, I'm building a workspace for coordinating multiple AI models across complex tasks. The work centers on delegation, structured communication, failure recovery, human oversight, and when an AI system can be trusted to act.",
+    body: "As technical cofounder, I'm building a workspace for coordinating multiple AI models across complex tasks, and I test it daily by using the product myself. The questions underneath are the same ones: how agents delegate, how they communicate under structure, how they recover from failure, and when an AI system can be trusted to act.",
     proof: "Multi-model orchestration with configurable human control",
   },
 ];
@@ -90,14 +91,14 @@ function Photo() {
       {/* Soft accent glow behind the photo. */}
       <div
         aria-hidden
-        className="absolute -inset-6 -z-20 rounded-[2.25rem] bg-[var(--accent)]/15 blur-2xl"
+        className="absolute -inset-6 -z-20 rounded-[2.25rem] bg-[var(--accent-tint)] blur-2xl"
       />
       {/* Offset accent frame for a layered, editorial card feel. */}
       <div
         aria-hidden
-        className="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-[1.75rem] border border-[var(--accent)]/40"
+        className="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-[1.75rem] border border-[var(--line)]"
       />
-      <div className="overflow-hidden rounded-3xl shadow-2xl shadow-[var(--accent)]/25 ring-1 ring-white/10">
+      <div className="overflow-hidden rounded-3xl shadow-[var(--shadow-feature)] ring-1 ring-[var(--line)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/twitter%20pro.jpg"
@@ -106,7 +107,7 @@ function Photo() {
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10"
+          className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-[var(--line)]"
         />
       </div>
     </div>
@@ -124,7 +125,7 @@ function SocialLinks() {
           rel="noopener noreferrer"
           aria-label={`${s.label} — ${s.handle}`}
           title={`${s.label} · ${s.handle}`}
-          className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--accent)]/25 bg-[var(--bg-elev)]/80 text-[var(--slate-light)] shadow-sm shadow-black/10 transition-all hover:-translate-y-0.5 hover:border-[var(--accent)]/60 hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
+          className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--line-strong)] bg-[var(--paper-elev)] text-[var(--body)] shadow-[var(--shadow-soft)] transition-all duration-200 ease-[var(--ease-out)] hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
         >
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className="h-5 w-5">
             {s.icon}
@@ -139,10 +140,13 @@ function SocialLinks() {
 // rather than two paragraphs competing with the thesis headline.
 function RolesBlock() {
   const linkClass =
-    "font-semibold text-[var(--slate-lightest)] transition-colors hover:text-[var(--accent)]";
+    "font-semibold text-[var(--ink)] transition-colors duration-150 ease-[var(--ease-out)] hover:text-[var(--accent-strong)]";
 
   return (
-    <div className="order-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[var(--slate)] md:col-start-1 md:row-start-4 md:mt-7">
+    <Reveal
+      delay={210}
+      className="order-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[var(--muted)] md:col-start-1 md:row-start-4 md:mt-7"
+    >
       <a
         href="https://panteracapital.com"
         target="_blank"
@@ -162,7 +166,7 @@ function RolesBlock() {
       >
         Syndicate
       </a>
-    </div>
+    </Reveal>
   );
 }
 
@@ -174,20 +178,25 @@ function RolesBlock() {
    - GitHub is omitted: no GitHub profile URL exists anywhere in the site. */
 function HeroCtas() {
   return (
-    <div className="order-6 flex flex-wrap items-center gap-3 md:col-start-1 md:row-start-5 md:mt-8">
+    <Reveal
+      delay={280}
+      className="order-6 flex flex-wrap items-center gap-3 md:col-start-1 md:row-start-5 md:mt-8"
+    >
+      {/* #B25232 = terracotta midpoint between --accent and --accent-strong;
+          white text passes 4.5:1 at rest (plain --accent falls just short). */}
       <a
         href="#pantera"
-        className="rounded-md bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-[var(--accent)]/25 transition-colors hover:bg-[var(--accent-strong)]"
+        className="rounded-md bg-[#B25232] px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
       >
         View selected research
       </a>
       <a
         href="/resume"
-        className="rounded-md border border-[var(--accent)]/40 bg-[var(--bg-elev)]/60 px-5 py-2.5 text-sm font-semibold text-[var(--slate-lightest)] transition-colors hover:border-[var(--accent)]/70 hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
+        className="rounded-md border border-[var(--line-strong)] bg-[var(--paper-elev)]/60 px-5 py-2.5 text-sm font-semibold text-[var(--ink)] transition-colors duration-150 ease-[var(--ease-out)] hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] hover:text-[var(--accent-strong)]"
       >
         View résumé
       </a>
-    </div>
+    </Reveal>
   );
 }
 
@@ -242,7 +251,7 @@ function NetworkMotif() {
 
 function ProofLine({ children }: { children: React.ReactNode }) {
   return (
-    <span className="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-[var(--accent)]/25 bg-[var(--accent-tint)] px-3 py-1 text-xs font-medium text-[var(--slate-lightest)]">
+    <span className="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-[var(--accent)]/25 bg-[var(--accent-tint)] px-3 py-1 text-xs font-medium text-[var(--ink)]">
       <span aria-hidden className="h-1 w-1 rounded-full bg-[var(--accent)]" />
       {children}
     </span>
@@ -256,15 +265,15 @@ function BranchColumn({ branch }: { branch: Branch }) {
     <div className="flex h-full flex-col p-6 sm:p-7">
       <div className="flex items-start justify-between gap-4">
         <div className="text-[0.6875rem] font-bold uppercase tracking-[0.2em]">
-          <div className="text-[var(--accent)]">{branch.track}</div>
-          <div className="mt-1 text-[var(--slate)]">{branch.org}</div>
+          <div className="text-[var(--accent-strong)]">{branch.track}</div>
+          <div className="mt-1 text-[var(--muted)]">{branch.org}</div>
         </div>
         {branch.id === "pantera" ? <ChartMotif /> : <NetworkMotif />}
       </div>
-      <h3 className="mt-4 text-lg font-bold tracking-[-0.01em] text-[var(--slate-lightest)] sm:text-xl">
+      <h3 className="mt-4 text-lg font-bold tracking-[-0.01em] text-[var(--ink)] sm:text-xl">
         {branch.title}
       </h3>
-      <p className="mt-2 text-[0.9375rem] leading-[1.65] text-[var(--slate-light)]">
+      <p className="mt-2 text-[0.9375rem] leading-[1.65] text-[var(--body)]">
         {branch.body}
       </p>
       <ProofLine>{branch.proof}</ProofLine>
@@ -287,18 +296,16 @@ function StageCard({
   const large = size === "lg";
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl border bg-[var(--bg-elev)]/50 transition-all duration-500 ${
+      className={`relative overflow-hidden rounded-2xl border bg-[var(--paper-elev)] shadow-[var(--shadow-card)] transition-all duration-200 ease-[var(--ease-out)] hover:-translate-y-[2px] hover:border-[var(--line-strong)] hover:shadow-[var(--shadow-feature)] ${
         large ? "p-7 sm:p-8" : "p-6 sm:p-6"
       } ${
-        active
-          ? "border-[var(--accent)]/25 shadow-lg shadow-[var(--accent)]/5"
-          : "border-white/10"
+        active ? "border-[var(--accent)]/25" : "border-[var(--line)]"
       }`}
     >
       {/* Oversized ghost number — structure without a dashboard tile. */}
       <span
         aria-hidden
-        className={`pointer-events-none absolute -right-2 -top-4 font-bold tabular-nums leading-none text-[var(--accent)]/10 ${
+        className={`pointer-events-none absolute -right-2 -top-4 font-bold tabular-nums leading-none text-[var(--accent)]/15 ${
           large ? "text-[7rem]" : "text-[5rem]"
         }`}
       >
@@ -306,18 +313,18 @@ function StageCard({
       </span>
       <div className="relative">
         <div className="flex items-baseline gap-2 text-[0.6875rem] font-bold uppercase tracking-[0.22em]">
-          <span className="tabular-nums text-[var(--accent)]">{stage.num}</span>
-          <span className="text-[var(--slate)]">{stage.label}</span>
+          <span className="tabular-nums text-[var(--accent-strong)]">{stage.num}</span>
+          <span className="text-[var(--muted)]">{stage.label}</span>
         </div>
         <h3
-          className={`mt-2 font-bold tracking-[-0.01em] text-[var(--slate-lightest)] ${
+          className={`mt-2 font-bold tracking-[-0.01em] text-[var(--ink)] ${
             large ? "text-xl sm:text-2xl" : "text-lg"
           }`}
         >
           {stage.title}
         </h3>
         <p
-          className={`mt-2 leading-[1.65] text-[var(--slate-light)] ${
+          className={`mt-2 leading-[1.65] text-[var(--body)] ${
             large ? "text-[0.9375rem] sm:text-base" : "text-[0.875rem]"
           }`}
         >
@@ -337,6 +344,8 @@ function StageCard({
 // so the structure reads identically without animation.
 function Timeline() {
   const railRef = useRef<HTMLDivElement>(null);
+  // The paired NOW box, so we can guard it against hiding while on screen.
+  const boxRef = useRef<HTMLDivElement>(null);
   // One ref per node on the trunk: the three stages plus the NOW fork marker.
   const nodeRefs = useRef<(HTMLElement | null)[]>([]);
   const nodeCount = stages.length + 1;
@@ -347,6 +356,10 @@ function Timeline() {
   const [active, setActive] = useState<boolean[]>(() =>
     Array(nodeCount).fill(true),
   );
+  // Pinned true when the paired box is already in the viewport on mount
+  // (scroll restoration, back-navigation, deep links) — mirrors Reveal.tsx's
+  // above-the-fold guard so on-screen content never fades out post-hydration.
+  const [nowPinned, setNowPinned] = useState(false);
 
   useEffect(() => {
     const motion = window.matchMedia("(prefers-reduced-motion: no-preference)");
@@ -369,6 +382,14 @@ function Timeline() {
     const rail = railRef.current;
     if (!rail) return;
 
+    // Already in the viewport on mount: pin the paired box visible so it
+    // never hides while on screen (same rect check as Reveal.tsx).
+    const box = boxRef.current;
+    if (box) {
+      const b = box.getBoundingClientRect();
+      if (b.top < window.innerHeight && b.bottom > 0) setNowPinned(true);
+    }
+
     let ticking = false;
     // The draw line follows a fixed anchor ~62% down the viewport: the trunk
     // fills to wherever that anchor intersects it, and a node lights the moment
@@ -378,11 +399,13 @@ function Timeline() {
       const anchor = window.innerHeight * 0.62;
       const r = rail.getBoundingClientRect();
       setFill(r.height > 0 ? clamp01((anchor - r.top) / r.height) : 1);
-      setActive(
-        nodeRefs.current
-          .slice(0, nodeCount)
-          .map((el) => (el ? el.getBoundingClientRect().top <= anchor : false)),
-      );
+      const next = nodeRefs.current
+        .slice(0, nodeCount)
+        .map((el) => (el ? el.getBoundingClientRect().top <= anchor : false));
+      setActive(next);
+      // Once revealed, the paired box latches visible (reveal-once, matching
+      // Reveal.tsx) — only the decorative spine nodes stay scroll-linked.
+      if (next[nowIndex]) setNowPinned(true);
     };
     const onScroll = () => {
       if (!ticking) {
@@ -400,17 +423,17 @@ function Timeline() {
     };
   }, [animate, nodeCount]);
 
-  const nowActive = active[nowIndex];
+  const nowActive = nowPinned || active[nowIndex];
 
   return (
     <div>
-      <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
+      <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent-strong)]">
         How I got here
       </div>
-      <h2 className="mt-3 text-2xl font-bold tracking-[-0.02em] text-[var(--slate-lightest)] sm:text-3xl">
+      <h2 className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-[var(--ink)] sm:text-3xl">
         From structures to systems.
       </h2>
-      <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--slate-light)] sm:text-base">
+      <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--body)] sm:text-base">
         The domains changed. The underlying questions didn&apos;t: How does a
         complex system behave? Where does it fail? What evidence would change my
         mind?
@@ -426,10 +449,10 @@ function Timeline() {
         <div
           ref={railRef}
           aria-hidden
-          className="pointer-events-none absolute bottom-0 left-[11px] top-0 w-px -translate-x-1/2 bg-white/10 lg:left-1/2"
+          className="pointer-events-none absolute bottom-0 left-[11px] top-0 w-px -translate-x-1/2 bg-[var(--line)] lg:left-1/2"
         >
           <div
-            className="absolute inset-x-0 top-0 bg-[var(--accent)] transition-[height] duration-200 ease-out"
+            className="absolute inset-x-0 top-0 bg-[var(--accent)] transition-[height] duration-200 ease-[var(--ease-out)]"
             style={{ height: `${fill * 100}%` }}
           />
         </div>
@@ -444,14 +467,14 @@ function Timeline() {
                   nodeRefs.current[i] = el;
                 }}
                 aria-hidden
-                className={`absolute left-[11px] top-8 z-10 h-3.5 w-3.5 -translate-x-1/2 rounded-full ring-4 ring-[var(--bg)] transition-colors duration-500 lg:left-1/2 lg:top-10 ${
-                  active[i] ? "bg-[var(--accent)]" : "bg-[var(--bg-elev-2)]"
+                className={`absolute left-[11px] top-8 z-10 h-3.5 w-3.5 -translate-x-1/2 rounded-full ring-4 ring-[var(--paper-tint)] transition-colors duration-[550ms] ease-[var(--ease-out)] lg:left-1/2 lg:top-10 ${
+                  active[i] ? "bg-[var(--accent)]" : "bg-[var(--line-strong)]"
                 }`}
               />
               {/* Connector from the spine node to the card edge (desktop). */}
               <span
                 aria-hidden
-                className={`absolute top-[2.875rem] hidden h-px bg-gradient-to-r transition-opacity duration-500 lg:block ${
+                className={`absolute top-[2.875rem] hidden h-px bg-gradient-to-r transition-opacity duration-[550ms] ease-[var(--ease-out)] lg:block ${
                   isLeft
                     ? "right-1/2 left-auto w-8 from-transparent to-[var(--accent)]/50"
                     : "left-1/2 w-8 from-[var(--accent)]/50 to-transparent"
@@ -465,9 +488,9 @@ function Timeline() {
                       : "lg:col-start-2 lg:items-start"
                   }`}
                 >
-                  <div className="w-full lg:max-w-[30rem]">
+                  <Reveal className="w-full lg:max-w-[30rem]">
                     <StageCard stage={s} size="lg" active={active[i]} />
-                  </div>
+                  </Reveal>
                 </div>
               </div>
             </div>
@@ -481,14 +504,14 @@ function Timeline() {
               nodeRefs.current[nowIndex] = el;
             }}
             aria-hidden
-            className={`absolute left-[11px] top-9 z-10 h-4 w-4 -translate-x-1/2 rounded-full ring-4 ring-[var(--bg)] transition-all duration-500 lg:left-1/2 lg:top-0 ${
+            className={`absolute left-[11px] top-9 z-10 h-4 w-4 -translate-x-1/2 rounded-full ring-4 ring-[var(--paper-tint)] transition-all duration-[550ms] ease-[var(--ease-out)] lg:left-1/2 lg:top-0 ${
               nowActive
                 ? "bg-[var(--accent)] shadow-[0_0_0_5px_var(--accent-tint)]"
-                : "bg-[var(--bg-elev-2)]"
+                : "bg-[var(--line-strong)]"
             }`}
           />
           <div className="pl-10 lg:pl-0 lg:pt-8 lg:text-center">
-            <span className="text-[0.6875rem] font-bold uppercase tracking-[0.28em] text-[var(--accent)]">
+            <span className="text-[0.6875rem] font-bold uppercase tracking-[0.28em] text-[var(--accent-strong)]">
               Now, two parallel tracks
             </span>
           </div>
@@ -498,12 +521,13 @@ function Timeline() {
       {/* The fork resolves into ONE paired box holding both current tracks
           side by side — a shared frame, divided down the middle. */}
       <div
-        className={`mt-6 overflow-hidden rounded-2xl border border-[var(--accent)]/20 bg-[var(--bg-elev)]/40 transition-all duration-700 ease-out lg:mt-8 ${
+        ref={boxRef}
+        className={`mt-6 overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--paper-elev)] shadow-[var(--shadow-card)] transition-all duration-700 ease-[var(--ease-out)] lg:mt-8 ${
           nowActive ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
         }`}
         style={{ transitionDelay: animate && nowActive ? "120ms" : "0ms" }}
       >
-        <div className="grid divide-y divide-white/10 lg:grid-cols-2 lg:divide-x lg:divide-y-0">
+        <div className="grid divide-y divide-[var(--line)] lg:grid-cols-2 lg:divide-x lg:divide-y-0">
           {branches.map((b) => (
             <BranchColumn key={b.id} branch={b} />
           ))}
@@ -522,30 +546,41 @@ export default function Hero() {
     >
       <div className="flex flex-col gap-y-8 md:grid md:grid-cols-[1.25fr_0.75fr] md:items-center md:gap-x-14 md:gap-y-0">
         {/* Eyebrow (replaces the name label) */}
-        <div className="order-1 md:col-start-1 md:row-start-1 md:mb-7">
-          <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
+        <Reveal className="order-1 md:col-start-1 md:row-start-1 md:mb-7">
+          <div className="text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent-strong)]">
             Research Engineer · Data Scientist
           </div>
-        </div>
+        </Reveal>
 
         {/* Photo + social (right column on desktop) */}
-        <div className="order-2 md:order-none md:col-start-2 md:row-span-6 md:row-start-1 md:self-center">
+        <Reveal
+          delay={140}
+          className="order-2 md:order-none md:col-start-2 md:row-span-6 md:row-start-1 md:self-center"
+        >
           <Photo />
           <div className="mt-5">
             <SocialLinks />
           </div>
-        </div>
+        </Reveal>
 
         {/* Headline */}
-        <h1 className="order-3 text-pretty text-[2.125rem] font-bold leading-[1.08] tracking-[-0.02em] text-[var(--slate-lightest)] sm:text-[3rem] sm:leading-[1.05] lg:text-[3.5rem] md:col-start-1 md:row-start-2">
+        <Reveal
+          as="h1"
+          delay={70}
+          className="order-3 text-pretty text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.02em] text-[var(--ink)] sm:text-[3rem] sm:leading-[1.05] lg:text-[3.5rem] md:col-start-1 md:row-start-2"
+        >
           I study how complex systems behave, then{" "}
           <span className="text-[var(--accent)]">build the tools to understand them</span>.
-        </h1>
+        </Reveal>
 
         {/* Supporting paragraph */}
-        <p className="order-4 max-w-[34rem] text-base leading-[1.75] text-[var(--slate-light)] sm:text-lg md:col-start-1 md:row-start-3 md:mt-8">
+        <Reveal
+          as="p"
+          delay={140}
+          className="order-4 max-w-[34rem] text-base leading-[1.75] text-[var(--body)] sm:text-lg md:col-start-1 md:row-start-3 md:mt-8"
+        >
           {supporting}
-        </p>
+        </Reveal>
 
         {/* Current roles */}
         <RolesBlock />
@@ -559,7 +594,7 @@ export default function Hero() {
       <div
         id="how-i-got-here"
         className="relative mx-[calc(50%-50vw)] mt-16 scroll-mt-24 md:mt-20"
-        style={{ backgroundColor: "var(--surface-soft)" }}
+        style={{ backgroundColor: "var(--paper-tint)" }}
       >
         <div className="mx-auto max-w-screen-xl px-4 py-[72px] sm:px-6 sm:py-24 md:px-10 lg:py-[120px]">
           <Timeline />

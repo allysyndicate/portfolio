@@ -33,6 +33,24 @@ function MenuIcon({ open }: { open: boolean }) {
 export default function NavBar() {
   const [active, setActive] = useState<string>(sections[0].id);
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    let ticking = false;
+    const update = () => {
+      setScrolled(window.scrollY > 8);
+      ticking = false;
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,12 +71,16 @@ export default function NavBar() {
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-[var(--bg)]/80 backdrop-blur"
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-[border-color,background-color,box-shadow] duration-200 ease-[var(--ease-out)] motion-reduce:transition-none ${
+        scrolled || open
+          ? "border-[var(--line)] bg-[var(--paper)]/85 shadow-[var(--shadow-soft)] backdrop-blur"
+          : "border-transparent bg-transparent"
+      }`}
     >
       <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-3 sm:px-6 md:px-10 md:py-4">
         <a
           href="#about"
-          className="text-base font-bold tracking-tight text-[var(--slate-lightest)] sm:text-lg"
+          className="text-base font-bold tracking-tight text-[var(--ink)] sm:text-lg"
         >
           Ally Zach<span className="text-[var(--accent)]">.</span>
         </a>
@@ -70,13 +92,19 @@ export default function NavBar() {
               <a
                 key={s.id}
                 href={`#${s.id}`}
-                className={`text-sm font-medium transition-colors ${
+                className={`relative text-sm font-medium transition-colors ${
                   isActive
-                    ? "text-[var(--accent)]"
-                    : "text-[var(--slate)] hover:text-[var(--slate-lightest)]"
+                    ? "text-[var(--accent-strong)]"
+                    : "text-[var(--muted)] hover:text-[var(--ink)]"
                 }`}
               >
                 {s.label}
+                <span
+                  aria-hidden
+                  className={`absolute inset-x-0 -bottom-1 h-px origin-left bg-[var(--accent-strong)] transition-transform duration-200 ease-[var(--ease-out)] motion-reduce:transition-none ${
+                    isActive ? "scale-x-100" : "scale-x-0"
+                  }`}
+                />
               </a>
             );
           })}
@@ -89,18 +117,25 @@ export default function NavBar() {
           aria-label="Toggle navigation menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-[var(--slate-lightest)] md:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-md border border-[var(--line)] text-[var(--ink)] md:hidden"
         >
           <MenuIcon open={open} />
         </button>
       </div>
 
-      {open && (
+      <div
+        inert={!open}
+        className={`grid transition-[grid-template-rows,opacity,visibility] duration-[250ms] ease-[var(--ease-out)] motion-reduce:transition-none md:hidden ${
+          open
+            ? "visible grid-rows-[1fr] opacity-100"
+            : "invisible grid-rows-[0fr] opacity-0"
+        }`}
+      >
         <nav
-          className="border-t border-white/5 bg-[var(--bg)] px-4 py-4 shadow-xl shadow-black/20 sm:px-6 md:hidden"
+          className="overflow-hidden border-t border-[var(--line)] bg-[var(--paper)] shadow-[var(--shadow-card)]"
           aria-label="Sections"
         >
-          <ul className="space-y-1">
+          <ul className="space-y-1 px-4 py-4 sm:px-6">
             {sections.map((s) => (
               <li key={s.id}>
                 <a
@@ -108,8 +143,8 @@ export default function NavBar() {
                   onClick={() => setOpen(false)}
                   className={`block rounded px-2 py-2 text-sm font-medium transition-colors ${
                     isItemActive(s, active)
-                      ? "bg-[var(--accent-tint)] text-[var(--accent)]"
-                      : "text-[var(--slate)] hover:text-[var(--slate-lightest)]"
+                      ? "bg-[var(--accent-tint)] text-[var(--accent-strong)]"
+                      : "text-[var(--muted)] hover:text-[var(--ink)]"
                   }`}
                 >
                   {s.label}
@@ -120,7 +155,7 @@ export default function NavBar() {
                 Hidden temporarily — current /Ally Zach Resume.pdf is stale and exposes a home street address. */}
           </ul>
         </nav>
-      )}
+      </div>
     </header>
   );
 }

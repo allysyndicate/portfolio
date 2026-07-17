@@ -1,43 +1,37 @@
 @import "tailwindcss";
 
 :root {
-  /* Deep-navy → electric-blue palette (reference re-skin, locked to blue). */
-  --bg: #070d1f;
-  --bg-elev: #0e1830;
-  --bg-elev-2: #142242;
-  --slate: #8893b5;
-  --slate-light: #aab4d4;
-  --slate-lightest: #d4ddf7;
-  --white: #eef3ff;
-  /* Primary action / global accent: electric blue. */
-  --accent: #3b82f6;
-  --accent-strong: #2563eb;
-  --accent-tint: rgba(59, 130, 246, 0.12);
+  /* Warm Editorial Light palette (single source of truth). */
+  --paper: #FAF9F5;           /* page background — warm ivory */
+  --paper-elev: #FFFFFF;      /* cards / elevated surfaces */
+  --paper-tint: #F2EFE8;      /* soft alternate band */
+  --ink: #1F1E1A;             /* headings, strong text */
+  --body: #504D45;            /* body text (~7:1 on paper) */
+  --muted: #6E6B63;           /* secondary/meta text (~4.9:1 on paper, ≥4.5:1 on tint) */
+  /* Primary action / global accent: terracotta. */
+  --accent: #C15F3C;          /* icons, large text, fills */
+  --accent-strong: #9C4426;   /* small text links, hovers (AA on paper) */
+  --accent-tint: rgba(193, 95, 60, 0.09);
+  --line: rgba(31, 30, 26, 0.12);        /* hairline borders */
+  --line-strong: rgba(31, 30, 26, 0.22); /* emphasis borders */
+  --shadow-soft: 0 1px 2px rgba(31, 30, 26, 0.05);
+  --shadow-card: 0 2px 14px rgba(31, 30, 26, 0.07);
+  --shadow-feature: 0 18px 48px rgba(31, 30, 26, 0.12);
 
-  /* ── Homepage background modes ───────────────────────────── */
-  --surface-default: #070d1f;   /* Mode 1 · = existing --bg, unchanged */
-  --surface-soft: #0b1328;      /* Mode 2 · subtle navy lift */
-  --surface-strong: #05070f;    /* Mode 3 · deep near-black cool slate, Syndicate ONLY */
-  --surface-strong-elev: #0a1020; /* optional: lift a card off the strong band */
-
-  /* On-dark (Syndicate) treatments — contrast checked vs #05070f */
-  --on-strong-heading: var(--slate-lightest); /* #d4ddf7 · ~13:1  AAA */
-  --on-strong-body: var(--slate-light);        /* #aab4d4 · ~9.5:1 AAA */
-  --on-strong-muted: var(--slate);             /* #8893b5 · ~6.1:1 AA  */
-  --on-strong-link: #6ba5ff;                   /* ~7.5:1 — small accent text */
-  --border-on-strong: rgba(255, 255, 255, 0.1);       /* structural hairline */
-  --border-on-strong-accent: rgba(59, 130, 246, 0.3); /* emphasis borders */
+  /* Motion tokens — micro-interactions 150-200ms, reveals 550-700ms. */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
-  --color-bg: var(--bg);
-  --color-bg-elev: var(--bg-elev);
-  --color-bg-elev-2: var(--bg-elev-2);
-  --color-slate: var(--slate);
-  --color-slate-light: var(--slate-light);
-  --color-slate-lightest: var(--slate-lightest);
-  --color-white: var(--white);
+  /* New light-system exposures */
+  --color-paper: var(--paper);
+  --color-paper-elev: var(--paper-elev);
+  --color-paper-tint: var(--paper-tint);
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
   --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -53,8 +47,8 @@ html {
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--slate);
+  background-color: var(--paper);
+  color: var(--body);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   /* `clip` (not `hidden`) prevents horizontal scroll WITHOUT making <body> a
@@ -64,46 +58,26 @@ body {
 
 ::selection {
   background-color: var(--accent-tint);
-  color: var(--slate-lightest);
+  color: var(--ink);
 }
 
-/* Cursor-follow glow, tinted blue. */
+/* Cursor-follow glow — barely-there warm accent. */
 .glow-bg {
   background: radial-gradient(
     650px at var(--mx, 50%) var(--my, 0%),
-    rgba(59, 130, 246, 0.08),
+    rgba(193, 95, 60, 0.05),
     transparent 80%
   );
-}
-
-/* Subtle blueprint-style grid texture behind the hero. */
-.grid-texture {
-  background-image:
-    linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(circle at 70% 30%, black, transparent 70%);
-}
-
-.carousel-track {
-  cursor: grab;
-  scrollbar-width: none;
-}
-.carousel-track:active {
-  cursor: grabbing;
-}
-.carousel-track::-webkit-scrollbar {
-  display: none;
 }
 
 ::-webkit-scrollbar {
   width: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg);
+  background: var(--paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--bg-elev-2);
+  background: var(--line-strong);
   border-radius: 8px;
-  border: 3px solid var(--bg);
+  border: 3px solid var(--paper);
 }

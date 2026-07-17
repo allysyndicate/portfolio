@@ -5,7 +5,7 @@ export const alt =
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-/* Static share card on the site palette (deep navy + electric blue),
+/* Static share card on the site palette (warm ivory + terracotta),
    generated at build time. */
 export default function Image() {
   return new ImageResponse(
@@ -18,9 +18,9 @@ export default function Image() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px 96px",
-          backgroundColor: "#070d1f",
+          backgroundColor: "#FAF9F5",
           backgroundImage:
-            "radial-gradient(900px 500px at 85% 0%, rgba(59, 130, 246, 0.18), transparent 70%)",
+            "radial-gradient(900px 500px at 85% 0%, rgba(193, 95, 60, 0.12), transparent 70%)",
           fontFamily: "sans-serif",
         }}
       >
@@ -31,7 +31,7 @@ export default function Image() {
             fontWeight: 700,
             letterSpacing: "0.3em",
             textTransform: "uppercase",
-            color: "#3b82f6",
+            color: "#9C4426",
           }}
         >
           Research Engineer · Data Scientist
@@ -43,7 +43,7 @@ export default function Image() {
             fontSize: 88,
             fontWeight: 700,
             letterSpacing: "-0.02em",
-            color: "#d4ddf7",
+            color: "#1F1E1A",
           }}
         >
           Ally Zach
@@ -55,7 +55,7 @@ export default function Image() {
             maxWidth: 900,
             fontSize: 36,
             lineHeight: 1.4,
-            color: "#aab4d4",
+            color: "#504D45",
           }}
         >
           I study how complex systems behave, then build the tools to
@@ -66,7 +66,7 @@ export default function Image() {
             display: "flex",
             marginTop: 48,
             fontSize: 26,
-            color: "#8893b5",
+            color: "#6E6B63",
           }}
         >
           allyzach.com

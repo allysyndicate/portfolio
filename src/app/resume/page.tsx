@@ -17,7 +17,7 @@ export default function ResumePage() {
       <div className="relative z-10 mx-auto max-w-screen-xl px-4 pt-10 sm:px-6 md:px-10">
         <Link
           href="/#about"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--slate-light)] transition-colors hover:text-[var(--accent)]"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--body)] transition-colors hover:text-[var(--accent-strong)]"
         >
           <svg
             viewBox="0 0 24 24"
