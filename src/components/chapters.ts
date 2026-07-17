@@ -52,7 +52,7 @@ export const chapters: Chapter[] = [
       },
       {
         title: "The State of Tokenization: Q1 2026 Report",
-        descriptor: "Constructed a cross-class taxonomy of 593 tokenized assets ($320.6B, 11 asset classes), tracing where each class creates and captures value on-chain versus off.",
+        descriptor: "Built a classification framework separating wrapped claims from natively on-chain assets, applied across 593 tokenized assets ($320.6B) to show where tokenization actually creates value.",
         href: "https://panteracapital.com/the-state-of-tokenization/",
         img: "/pantera-tokenization-report-cover.png",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
