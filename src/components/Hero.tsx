@@ -19,23 +19,37 @@ const heroSocials = [
   },
 ] as const;
 
-// Three past stages carry the reader down one continuous line before it forks.
+// Past stages carry the reader down one continuous line before it forks.
+// Education opens the story as a compact 00 credential card.
 type Stage = {
   id: string;
   num: string;
   label: string;
   title: string;
-  body: string;
-  proof: string;
+  body?: string;
+  proof?: string;
+  /** Compact credential lines rendered in place of body + proof (00 card). */
+  credential?: { org: string; degree: string; detail: string };
 };
 
 const stages: Stage[] = [
+  {
+    id: "education",
+    num: "00",
+    label: "Education",
+    title: "Trained in structural engineering.",
+    credential: {
+      org: "University of Illinois at Urbana-Champaign",
+      degree: "M.S. + B.S. in Civil Engineering",
+      detail: "Structural Engineering · Business minor",
+    },
+  },
   {
     id: "structures",
     num: "01",
     label: "Structures",
     title: "Designed for uncertainty.",
-    body: "I spent four years engineering high-rise towers against earthquakes and typhoons. When the data is incomplete and the stakes are physical, you learn to make decisions that hold.",
+    body: "I spent four years designing high-rise residential, office, and mixed-use buildings to perform under earthquakes and extreme winds. When the data is incomplete and the stakes are physical, you learn to make decisions that hold.",
     proof: "7M+ square feet designed",
   },
   {
@@ -279,10 +293,14 @@ function StageCard({
   active: boolean;
 }) {
   const large = size === "lg";
+  // Credential cards (00 · Education) stay compact: tighter padding, smaller
+  // ghost numeral, no body paragraph or proof pill. The credential itself is
+  // the content.
+  const compact = !!stage.credential;
   return (
     <div
       className={`relative overflow-hidden rounded-2xl border bg-[var(--paper-elev)] shadow-[var(--shadow-card)] transition-all duration-200 ease-[var(--ease-out)] hover:-translate-y-[2px] hover:border-[var(--line-strong)] hover:shadow-[var(--shadow-feature)] ${
-        large ? "p-7 sm:p-8" : "p-6 sm:p-6"
+        compact ? "p-5 sm:p-6" : large ? "p-7 sm:p-8" : "p-6 sm:p-6"
       } ${
         active ? "border-[var(--accent)]/25" : "border-[var(--line)]"
       }`}
@@ -308,14 +326,25 @@ function StageCard({
         >
           {stage.title}
         </h3>
-        <p
-          className={`mt-2 leading-[1.65] text-[var(--body)] ${
-            large ? "text-[0.9375rem] sm:text-base" : "text-[0.875rem]"
-          }`}
-        >
-          {stage.body}
-        </p>
-        <ProofLine>{stage.proof}</ProofLine>
+        {stage.body && (
+          <p
+            className={`mt-2 leading-[1.65] text-[var(--body)] ${
+              large ? "text-[0.9375rem] sm:text-base" : "text-[0.875rem]"
+            }`}
+          >
+            {stage.body}
+          </p>
+        )}
+        {stage.credential && (
+          <div className="mt-2 text-[0.9375rem] leading-[1.65] text-[var(--body)] sm:text-base">
+            <p className="font-semibold text-[var(--ink)]">
+              {stage.credential.org}
+            </p>
+            <p>{stage.credential.degree}</p>
+            <p className="text-[var(--muted)]">{stage.credential.detail}</p>
+          </div>
+        )}
+        {stage.proof && <ProofLine>{stage.proof}</ProofLine>}
       </div>
     </div>
   );
@@ -419,38 +448,10 @@ function Timeline() {
         From structures to systems.
       </h2>
       <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--body)] sm:text-base">
-        I started in structural engineering, then moved into data science,
-        market research, and AI product development.
+        Building software to automate structural engineering work changed the
+        direction of my career, leading me into data science, market research,
+        and AI product development.
       </p>
-
-      {/* Compact credential row: the degree sits with the structural-engineering
-          origin it explains, not at the bottom of the page. */}
-      <div className="mt-8 flex max-w-2xl items-center gap-4 border-y border-[var(--line)] py-4">
-        <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--accent)] to-[var(--accent-strong)] shadow-[0_2px_14px_var(--accent-tint)]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/illinois-block-i.png"
-            alt=""
-            aria-hidden
-            className="h-8 w-8 object-contain"
-          />
-        </span>
-        <div className="min-w-0">
-          <p className="text-[0.6875rem] font-bold uppercase tracking-[0.2em] text-[var(--accent-strong)]">
-            Education
-          </p>
-          <p className="mt-0.5 text-sm text-[var(--body)] sm:text-base">
-            <span className="font-semibold text-[var(--ink)]">
-              University of Illinois
-            </span>{" "}
-            · M.S. + B.S. in Civil Engineering
-            <span className="text-[var(--muted)]">
-              {" "}
-              · Structural Engineering · Business minor
-            </span>
-          </p>
-        </div>
-      </div>
 
       {/* Staggered path: three story cards of uneven prominence, alternating
           left/right of a central spine that draws as you scroll. The rhythm
@@ -471,7 +472,7 @@ function Timeline() {
         </div>
 
         {stages.map((s, i) => {
-          const isLeft = i % 2 === 0; // 01 left, 02 right, 03 left
+          const isLeft = i % 2 === 0; // 00 left, 01 right, 02 left, 03 right
           return (
             <div key={s.id} className="relative py-5 lg:py-7">
               {/* Spine node for this stage. */}
