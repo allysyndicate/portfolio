@@ -7,6 +7,10 @@ import { socials } from "./socials";
 const supporting =
   "I began in structural engineering, where I learned to quantify uncertainty and design around failure. Today I apply that discipline across research, engineering, and product, turning real-world data into reproducible analysis, live data products, and working software.";
 
+// Phones get one sentence; the full paragraph renders from sm up.
+const supportingShort =
+  "Structural engineer turned data scientist — I turn real-world data into research, data products, and working software.";
+
 const heroSocials = [
   ...socials,
   {
@@ -252,7 +256,9 @@ function BranchColumn({ branch }: { branch: Branch }) {
       <h3 className="mt-4 text-lg font-bold tracking-[-0.01em] text-[var(--ink)] sm:text-xl">
         {branch.title}
       </h3>
-      <p className="mt-2 text-[0.9375rem] leading-[1.65] text-[var(--body)]">
+      {/* The full role story is sm+ only - on phones the Experience chapters
+          below carry it, so the NOW box stays a compact signpost. */}
+      <p className="mt-2 hidden text-[0.9375rem] leading-[1.65] text-[var(--body)] sm:block">
         {branch.body}
       </p>
       {/* Quiet caption, not a tag: a single proof point, bottom-aligned across
@@ -577,13 +583,20 @@ export default function Hero() {
             to study financial markets, user networks, and AI systems.
           </Reveal>
 
-          {/* Supporting paragraph */}
+          {/* Supporting paragraph - full from sm up, one line on phones */}
           <Reveal
             as="p"
             delay={140}
-            className="mt-9 max-w-[620px] text-[1.25rem] leading-[1.55] text-[var(--body)]"
+            className="mt-9 hidden max-w-[620px] text-[1.25rem] leading-[1.55] text-[var(--body)] sm:block"
           >
             {supporting}
+          </Reveal>
+          <Reveal
+            as="p"
+            delay={140}
+            className="mt-7 max-w-[620px] text-[1.125rem] leading-[1.5] text-[var(--body)] sm:hidden"
+          >
+            {supportingShort}
           </Reveal>
 
           {/* Current roles */}
@@ -608,7 +621,7 @@ export default function Hero() {
         id="how-i-got-here"
         className="band-tint relative mx-[calc(50%-50vw)] mt-16 scroll-mt-24 md:mt-20"
       >
-        <div className="mx-auto max-w-screen-xl px-4 py-[72px] sm:px-6 sm:py-24 md:px-10 lg:py-[120px]">
+        <div className="mx-auto max-w-screen-xl px-4 py-14 sm:px-6 sm:py-24 md:px-10 lg:py-[120px]">
           <Timeline />
         </div>
       </div>

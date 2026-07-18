@@ -139,12 +139,16 @@ function ChapterHeader({ c, variant }: { c: Chapter; variant: ChapterVariant }) 
     <Reveal className="mb-12">
       <ChapterEyebrowHeading c={c} large={first} />
       <ChapterMeta c={c} />
+      {/* Full intro from sm up; phones get the one-line version. */}
       <p
-        className={`mt-3 max-w-[720px] leading-relaxed text-[var(--body)] ${
+        className={`mt-3 hidden max-w-[720px] leading-relaxed text-[var(--body)] sm:block ${
           first ? "text-base" : "text-sm"
         }`}
       >
         {c.intro}
+      </p>
+      <p className="mt-3 text-sm leading-relaxed text-[var(--body)] sm:hidden">
+        {c.introShort}
       </p>
       {c.tagline && (
         <p className="mt-4 max-w-[720px] text-sm font-semibold text-[var(--ink)]">
@@ -169,7 +173,7 @@ export function Chapters() {
               tinted ? "band-tint" : ""
             }`}
           >
-            <div className="mx-auto max-w-screen-xl px-4 py-[72px] sm:px-6 sm:py-24 md:px-10 lg:py-[120px]">
+            <div className="mx-auto max-w-screen-xl px-4 py-14 sm:px-6 sm:py-24 md:px-10 lg:py-[120px]">
               {i === 0 && (
                 <Reveal
                   as="h2"
@@ -301,7 +305,7 @@ export function SideProjects() {
          chapters, feature card in the shared card language inside. */
       className="band-tint relative mx-[calc(50%-50vw)] scroll-mt-24"
     >
-      <div className="mx-auto max-w-screen-xl px-4 py-[72px] sm:px-6 sm:py-24 md:px-10 lg:py-[120px]">
+      <div className="mx-auto max-w-screen-xl px-4 py-14 sm:px-6 sm:py-24 md:px-10 lg:py-[120px]">
         <Reveal
           as="h2"
           className="mb-8 text-center text-2xl font-semibold tracking-[-0.02em] text-[var(--ink)] sm:mb-10 sm:text-4xl"
@@ -329,11 +333,16 @@ export function SideProjects() {
                 Technical Cofounder
               </p>
 
-              <p className="mt-6 max-w-[36rem] text-sm leading-relaxed text-[var(--body)] sm:text-base">
+              {/* Full story from sm up; phones get the short version. */}
+              <p className="mt-6 hidden max-w-[36rem] text-sm leading-relaxed text-[var(--body)] sm:block sm:text-base">
                 I&apos;m the technical cofounder and engineer behind Syndicate;
                 my cofounder leads the business side. We built it because we
                 wanted a tool we&apos;d actually use every day ourselves — and
                 we do, at work and on personal projects.
+              </p>
+              <p className="mt-5 text-sm leading-relaxed text-[var(--body)] sm:hidden">
+                I&apos;m the technical cofounder and engineer behind Syndicate.
+                We built the tool we wanted to use every day — and we do.
               </p>
 
               <ul className="mt-7 space-y-5">
@@ -346,7 +355,8 @@ export function SideProjects() {
                       <p className="text-sm font-semibold text-[var(--ink)]">
                         {cap.lead}
                       </p>
-                      <p className="mt-0.5 text-sm leading-relaxed text-[var(--body)]">
+                      {/* Detail line is sm+ only - phones scan icon + lead. */}
+                      <p className="mt-0.5 hidden text-sm leading-relaxed text-[var(--body)] sm:block">
                         {cap.rest}
                       </p>
                     </div>
