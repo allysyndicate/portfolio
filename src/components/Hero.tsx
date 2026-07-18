@@ -35,7 +35,7 @@ const stages: Stage[] = [
     num: "01",
     label: "Structures",
     title: "Designed for uncertainty.",
-    body: "I spent four years designing high-rise buildings in seismic and high-wind regions. The work required turning incomplete information into decisions that could withstand real physical constraints.",
+    body: "I spent four years engineering high-rise towers against earthquakes and typhoons. When the data is incomplete and the stakes are physical, you learn to make decisions that hold.",
     proof: "7M+ square feet designed",
   },
   {
@@ -43,7 +43,7 @@ const stages: Stage[] = [
     num: "02",
     label: "Software",
     title: "Turned recurring work into software.",
-    body: "I built tools to automate design and analysis workflows, first in Excel and VBA, then in Python. That work became my path from structural engineering into software and data.",
+    body: "The same design work kept repeating, so I automated it — first in Excel and VBA, then in Python. The tools spread across the firm, and building them pulled me into software for good.",
     proof: "Adopted across the firm",
   },
   {
@@ -51,7 +51,7 @@ const stages: Stage[] = [
     num: "03",
     label: "Markets & Data",
     title: "Tested models against real markets.",
-    body: "I moved into data science through algorithmic trading, testing models against live market behavior. At Messari, I analyzed crypto markets and on-chain data to study user behavior and incentive design.",
+    body: "Algorithmic trading was my proving ground: a model either survives live markets or it doesn't. At Messari, I turned that discipline on crypto itself — user behavior, on-chain data, incentive design.",
     proof: "50+ published research reports",
   },
 ];

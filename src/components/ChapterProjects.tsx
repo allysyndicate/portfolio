@@ -210,23 +210,28 @@ function PanteraFeatureGrid({ projects }: { projects: ProjectCard[] }) {
         <Reveal className="sm:col-span-2 lg:col-span-2 lg:col-start-2 lg:row-start-1 lg:row-end-3">
           <ProjectCardLink p={featured} featured />
         </Reveal>
-        {/* Two small cards stacked to the left of the feature. */}
+        {/* Two small cards stacked to the left of the feature. On phones only
+            the first survives the fold - the rest wait behind "View all" so
+            readers reach Syndicate before card fatigue sets in. */}
         {left.map((p, i) => (
           <Reveal
             key={p.title}
             className={`min-w-0 lg:col-start-1 ${
               i === 0 ? "lg:row-start-1" : "lg:row-start-2"
-            }`}
+            } ${i > 0 && !expanded ? "hidden sm:block" : ""}`}
             delay={cardDelay(i + 1)}
           >
             <ProjectCardLink p={p} />
           </Reveal>
         ))}
-        {/* Three small cards in a row beneath everything. */}
+        {/* Three small cards in a row beneath everything (sm+ only until
+            expanded). */}
         {under.map((p, i) => (
           <Reveal
             key={p.title}
-            className={`min-w-0 lg:row-start-3 ${UNDER_COL[i]}`}
+            className={`min-w-0 lg:row-start-3 ${UNDER_COL[i]} ${
+              expanded ? "" : "hidden sm:block"
+            }`}
             delay={cardDelay(i + 3)}
           >
             <ProjectCardLink p={p} />
@@ -294,8 +299,15 @@ function HeroChapter({
     <div>
       {variant === "messari" && (
         <div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Phones show two cards until expanded; sm+ shows all three. */}
           {[featured, ...supporting].map((p, i) => (
-            <Reveal key={p.title} className="min-w-0" delay={cardDelay(i)}>
+            <Reveal
+              key={p.title}
+              className={`min-w-0 ${
+                i > 1 && !expanded ? "hidden sm:block" : ""
+              }`}
+              delay={cardDelay(i)}
+            >
               <ProjectCardLink p={p} />
             </Reveal>
           ))}
@@ -317,7 +329,9 @@ function HeroChapter({
           )}
           {supporting[1] && (
             <Reveal
-              className="sm:col-start-2 sm:col-end-3 lg:col-start-9 lg:col-end-13 lg:row-start-2 lg:row-end-3"
+              className={`sm:col-start-2 sm:col-end-3 lg:col-start-9 lg:col-end-13 lg:row-start-2 lg:row-end-3 ${
+                expanded ? "" : "hidden sm:block"
+              }`}
               delay={cardDelay(2)}
             >
               <ProjectCardLink p={supporting[1]} />
