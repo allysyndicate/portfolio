@@ -102,7 +102,7 @@ function Photo() {
       <div className="overflow-hidden rounded-3xl shadow-[var(--shadow-feature)] ring-1 ring-[var(--line)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/twitter%20pro.jpg"
+          src="/ally-zach.jpg"
           alt="Ally Zach"
           className="aspect-[4/5] h-full w-full object-cover object-center"
         />
@@ -606,8 +606,7 @@ export default function Hero() {
           "How I got here" story reads as its own grouped section. */}
       <div
         id="how-i-got-here"
-        className="relative mx-[calc(50%-50vw)] mt-16 scroll-mt-24 md:mt-20"
-        style={{ backgroundColor: "var(--paper-tint)" }}
+        className="band-tint relative mx-[calc(50%-50vw)] mt-16 scroll-mt-24 md:mt-20"
       >
         <div className="mx-auto max-w-screen-xl px-4 py-[72px] sm:px-6 sm:py-24 md:px-10 lg:py-[120px]">
           <Timeline />

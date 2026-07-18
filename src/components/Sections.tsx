@@ -165,8 +165,9 @@ export function Chapters() {
             key={c.id}
             id={c.id}
             aria-label={c.label}
-            className="relative mx-[calc(50%-50vw)] scroll-mt-24"
-            style={tinted ? { backgroundColor: "var(--paper-tint)" } : undefined}
+            className={`relative mx-[calc(50%-50vw)] scroll-mt-24 ${
+              tinted ? "band-tint" : ""
+            }`}
           >
             <div className="mx-auto max-w-screen-xl px-4 py-[72px] sm:px-6 sm:py-24 md:px-10 lg:py-[120px]">
               {i === 0 && (
@@ -187,18 +188,80 @@ export function Chapters() {
   );
 }
 
+/** Small on-palette icons for the Syndicate capability rows - same restrained
+ * stroke language as the Hero chart/network motifs. */
+function IconTeam() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      aria-hidden
+      className="h-4.5 w-4.5"
+    >
+      <circle cx="6" cy="7" r="2.4" />
+      <circle cx="18" cy="7" r="2.4" />
+      <circle cx="12" cy="17" r="2.4" />
+      <path d="M7.8 8.8 10.4 15M16.2 8.8 13.6 15M8.4 7h7.2" />
+    </svg>
+  );
+}
+
+function IconManager() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      className="h-4.5 w-4.5"
+    >
+      <rect x="9" y="3" width="6" height="5" rx="1.2" />
+      <rect x="3" y="16" width="6" height="5" rx="1.2" />
+      <rect x="15" y="16" width="6" height="5" rx="1.2" />
+      <path d="M12 8v4M12 12H6v4M12 12h6v4" />
+    </svg>
+  );
+}
+
+function IconControl() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      aria-hidden
+      className="h-4.5 w-4.5"
+    >
+      <path d="M4 7h16M4 17h16" />
+      <circle cx="15" cy="7" r="2.4" fill="var(--paper-elev)" />
+      <circle cx="9" cy="17" r="2.4" fill="var(--paper-elev)" />
+    </svg>
+  );
+}
+
 const syndicateCapabilities = [
   {
     lead: "Multi-model agent teams",
     rest: "Claude, OpenAI, and Gemini agents on one team, each doing what it does best.",
+    icon: <IconTeam />,
   },
   {
     lead: "Manager-led task coordination",
     rest: "A manager agent breaks your goal into tasks and keeps every specialist on target.",
+    icon: <IconManager />,
   },
   {
     lead: "Human control over autonomy",
     rest: "You decide how much runs without you, from fully hands-off to approving every step.",
+    icon: <IconControl />,
   },
 ];
 
@@ -236,8 +299,7 @@ export function SideProjects() {
       aria-label="What I'm Building"
       /* Syndicate is the feature section: same tinted band rhythm as the
          chapters, feature card in the shared card language inside. */
-      className="relative mx-[calc(50%-50vw)] scroll-mt-24"
-      style={{ backgroundColor: "var(--paper-tint)" }}
+      className="band-tint relative mx-[calc(50%-50vw)] scroll-mt-24"
     >
       <div className="mx-auto max-w-screen-xl px-4 py-[72px] sm:px-6 sm:py-24 md:px-10 lg:py-[120px]">
         <Reveal
@@ -247,80 +309,87 @@ export function SideProjects() {
           What I&apos;m Building
         </Reveal>
         <Reveal className="overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--paper-elev)] shadow-[var(--shadow-feature)]">
-        <div className="p-5 sm:p-8 md:p-12">
-          <div className="space-y-7 sm:space-y-8">
-            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-start sm:justify-between">
-              <div className="max-w-[20rem] space-y-2 text-left">
-                <h3 className="flex justify-start leading-none">
-                  <span className="sr-only">Syndicate</span>
-                  <span aria-hidden className="block w-full max-w-[19rem]">
-                    <span className="relative block aspect-[2080/280] overflow-hidden">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src="/syndicate-logo.png"
-                        alt=""
-                        className="h-full w-full object-contain object-left"
-                      />
-                    </span>
+          {/* Feature split: pitch column left, product visual right. */}
+          <div className="grid md:grid-cols-[1.05fr_0.95fr]">
+            <div className="flex flex-col p-6 sm:p-8 lg:p-12">
+              <h3 className="flex justify-start leading-none">
+                <span className="sr-only">Syndicate</span>
+                <span aria-hidden className="block w-full max-w-[17rem]">
+                  <span className="relative block aspect-[2080/280] overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/syndicate-logo.png"
+                      alt=""
+                      className="h-full w-full object-contain object-left"
+                    />
                   </span>
-                </h3>
-                <p className="text-left text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent-strong)]">
-                  Technical Cofounder
-                </p>
-              </div>
-              <a
-                href="https://usesyndicate.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                /* #B25232 = terracotta midpoint between --accent and --accent-strong;
-                   white text passes 4.5:1 at rest (plain --accent falls just short). */
-                className="group inline-flex shrink-0 items-center justify-center rounded-md bg-[#B25232] px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
-              >
-                Visit usesyndicate.org
-                <span className="ml-1 transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-1">
-                  →
                 </span>
-              </a>
-            </div>
-            <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(18rem,0.9fr)] md:items-center">
-              <blockquote className="space-y-3 rounded-xl border-l-2 border-[var(--accent)]/50 border-y border-r border-y-[var(--line)] border-r-[var(--line)] bg-[var(--accent-tint)] px-4 py-4 text-sm leading-relaxed text-[var(--body)] shadow-[var(--shadow-soft)] sm:px-5 sm:text-base">
-                <span className="block">
-                  I&apos;m the technical cofounder and engineer behind Syndicate;
-                  my cofounder leads the business side. We built it because we
-                  wanted a tool we&apos;d actually use every day ourselves, and we
-                  do, at work and on personal projects.
-                </span>
-                <span className="block">
-                  Everyone gets a team, and you decide how much it does on its
-                  own.
-                </span>
-              </blockquote>
+              </h3>
+              <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent-strong)]">
+                Technical Cofounder
+              </p>
 
-              <div className="group relative aspect-[16/10] w-full min-w-0 max-w-full overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--paper-tint)] p-2 shadow-[var(--shadow-card)] transition duration-200 ease-[var(--ease-out)] hover:-translate-y-0.5 hover:shadow-[0_24px_70px_var(--accent-tint)]">
-                <div className="h-full overflow-hidden rounded-2xl">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/syndicate-app.webp"
-                    alt="Syndicate desktop app, team workspace running autonomous AI agents"
-                    className="h-full w-full max-w-full rounded-2xl object-contain object-center"
-                  />
-                </div>
+              <p className="mt-6 max-w-[36rem] text-sm leading-relaxed text-[var(--body)] sm:text-base">
+                I&apos;m the technical cofounder and engineer behind Syndicate;
+                my cofounder leads the business side. We built it because we
+                wanted a tool we&apos;d actually use every day ourselves — and
+                we do, at work and on personal projects.
+              </p>
+
+              <ul className="mt-7 space-y-5">
+                {syndicateCapabilities.map((cap) => (
+                  <li key={cap.lead} className="flex gap-3.5">
+                    <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[var(--accent)]/25 bg-[var(--accent-tint)] text-[var(--accent)]">
+                      {cap.icon}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-[var(--ink)]">
+                        {cap.lead}
+                      </p>
+                      <p className="mt-0.5 text-sm leading-relaxed text-[var(--body)]">
+                        {cap.rest}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 md:mt-auto md:pt-8">
+                <a
+                  href="https://usesyndicate.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  /* #B25232 = terracotta midpoint between --accent and --accent-strong;
+                     white text passes 4.5:1 at rest (plain --accent falls just short). */
+                  className="group inline-flex shrink-0 items-center justify-center rounded-md bg-[#B25232] px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
+                >
+                  Visit usesyndicate.org
+                  <span className="ml-1 transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-1">
+                    →
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            {/* Product visual: app screenshot in a window frame on a soft
+                accent wash, so the flagship build reads as a product shot. */}
+            <div className="relative flex items-center justify-center overflow-hidden border-t border-[var(--line)] p-6 sm:p-8 md:border-l md:border-t-0 lg:p-10">
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-br from-[var(--accent-tint)] via-transparent to-[var(--accent-tint)]"
+              />
+              <div className="group relative w-full max-w-[34rem] overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--paper-elev)] shadow-[var(--shadow-feature)] transition duration-200 ease-[var(--ease-out)] hover:-translate-y-0.5 hover:shadow-[0_24px_70px_var(--accent-tint)]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/syndicate-app.webp"
+                  alt="Syndicate desktop app, team workspace running autonomous AI agents"
+                  className="w-full"
+                />
               </div>
             </div>
           </div>
 
-          <ul className="mt-7 grid gap-x-10 gap-y-6 border-t border-[var(--line)] pt-7 text-sm leading-relaxed text-[var(--body)] md:mt-8 md:grid-cols-3 md:pt-8">
-            {syndicateCapabilities.map((cap) => (
-              <li key={cap.lead} className="space-y-1.5">
-                <p className="font-semibold text-[var(--ink)]">
-                  {cap.lead}
-                </p>
-                <p>{cap.rest}</p>
-              </li>
-            ))}
-          </ul>
-
-          <details className="group mt-6 border-t border-[var(--line)] pt-5">
+          <details className="group border-t border-[var(--line)] px-6 py-5 sm:px-8 lg:px-12">
             <summary className="flex cursor-pointer list-none items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent-strong)]">
               <span
                 className="transition-transform duration-200 ease-[var(--ease-out)] group-open:rotate-90"
@@ -330,7 +399,7 @@ export function SideProjects() {
               </span>
               Technical details
             </summary>
-            <ul className="mt-5 grid gap-x-10 gap-y-4 text-sm leading-relaxed text-[var(--body)] md:grid-cols-2">
+            <ul className="mt-5 grid gap-x-10 gap-y-4 pb-2 text-sm leading-relaxed text-[var(--body)] md:grid-cols-2">
               {syndicateHighlights.map((h) => (
                 <li key={h.lead} className="flex gap-3">
                   <span aria-hidden className="mt-1 text-[var(--accent)]">
@@ -346,8 +415,7 @@ export function SideProjects() {
               ))}
             </ul>
           </details>
-        </div>
-      </Reveal>
+        </Reveal>
       </div>
     </section>
   );
