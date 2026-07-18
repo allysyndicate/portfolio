@@ -17,6 +17,9 @@ const securityHeaders = [
     key: "Permissions-Policy",
     value: "camera=(), microphone=(), geolocation=()",
   },
+  // Shared by direct link only: keep every route (pages, images, the PDF)
+  // out of search engines. Complements the robots metadata in layout.tsx.
+  { key: "X-Robots-Tag", value: "noindex, nofollow" },
 ];
 
 const nextConfig: NextConfig = {

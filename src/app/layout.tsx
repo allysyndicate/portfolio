@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   title: siteTitle,
   description: siteDescription,
   alternates: { canonical: "/" },
+  // Intentionally hidden from search engines: the site is shared by direct
+  // link only (job applications). Keep crawlable so bots can SEE the noindex;
+  // do not add a robots.txt Disallow, which would mask this directive.
+  robots: { index: false, follow: false },
   openGraph: {
     title: siteTitle,
     description: siteDescription,
@@ -36,23 +40,6 @@ export const metadata: Metadata = {
   },
 };
 
-const personJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Ally Zach",
-  url: "https://allyzach.com",
-  jobTitle: "Research Engineer",
-  worksFor: { "@type": "Organization", name: "Pantera Capital" },
-  alumniOf: {
-    "@type": "CollegeOrUniversity",
-    name: "University of Illinois at Urbana-Champaign",
-  },
-  sameAs: [
-    "https://twitter.com/0xallyzach",
-    "https://www.linkedin.com/in/alexandra-zach-32714474",
-  ],
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -63,13 +50,7 @@ export default function RootLayout({
       lang="en"
       className={`${sans.variable} ${mono.variable} h-full antialiased`}
     >
-      <body className="min-h-full">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-        />
-        {children}
-      </body>
+      <body className="min-h-full">{children}</body>
     </html>
   );
 }
