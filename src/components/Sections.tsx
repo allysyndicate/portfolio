@@ -337,12 +337,12 @@ export function SideProjects() {
               <p className="mt-6 hidden max-w-[36rem] text-sm leading-relaxed text-[var(--body)] sm:block sm:text-base">
                 I&apos;m the technical cofounder and engineer behind Syndicate;
                 my cofounder leads the business side. We built it because we
-                wanted a tool we&apos;d actually use every day ourselves — and
+                wanted a tool we&apos;d actually use every day ourselves, and
                 we do, at work and on personal projects.
               </p>
               <p className="mt-5 text-sm leading-relaxed text-[var(--body)] sm:hidden">
                 I&apos;m the technical cofounder and engineer behind Syndicate.
-                We built the tool we wanted to use every day — and we do.
+                We built the tool we wanted to use every day, and we do.
               </p>
 
               <ul className="mt-7 space-y-5">

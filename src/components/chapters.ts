@@ -43,7 +43,7 @@ export const chapters: Chapter[] = [
     intro:
       "At Pantera, my role spans research, data engineering, and product. I take open-ended market questions through study design, data collection, analysis, validation, and delivery, building the pipelines, dashboards, datasets, or software each project requires. The work supports published research, investment decisions, and portfolio companies.",
     introShort:
-      "Research, data engineering, and product — open market questions taken all the way to published results.",
+      "Research, data engineering, and product: open market questions taken all the way to published results.",
     projects: [
       {
         title: "Crypto on the Clock",
@@ -127,7 +127,7 @@ export const chapters: Chapter[] = [
     intro:
       "Over two years at Messari I wrote 50+ long-form reports on L1s, L2s, NFTs, DeFi, and consumer apps, specializing in user analytics at the network and application level: questions like whether a chain's growth is sybils, airdrop farmers, or real users. Behind the writing, I built the SQL and Python dashboards and ingestion tools the research team ran on, which is where my research started turning into software.",
     introShort:
-      "50+ research reports on crypto user behavior — plus the SQL and Python tooling behind them.",
+      "50+ research reports on crypto user behavior, plus the SQL and Python tooling behind them.",
     projects: [
       {
         title: "User Behavior and Engagement on Lens",
@@ -191,7 +191,7 @@ export const chapters: Chapter[] = [
     intro:
       "At MKA, I designed and analyzed more than 7 million square feet of high-rise buildings across the U.S. and Southeast Asia, with a focus on seismic and wind performance. Alongside project work, I built office-wide tools in Excel, VBA, and Python to automate recurring design and analysis workflows. That work became my bridge from structural engineering into software and data.",
     introShort:
-      "7M+ sq ft of high-rise design in seismic regions — and the firm-wide tools that automated it.",
+      "7M+ sq ft of high-rise design in seismic regions, and the firm-wide tools that automated it.",
     projects: [
       {
         title: "NuStar Resort & Casino",

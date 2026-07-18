@@ -5,11 +5,7 @@ import Reveal from "./Reveal";
 import { socials } from "./socials";
 
 const supporting =
-  "I began in structural engineering, where I learned to quantify uncertainty and design around failure. Today I apply that discipline across research, engineering, and product, turning real-world data into reproducible analysis, live data products, and working software.";
-
-// Phones get one sentence; the full paragraph renders from sm up.
-const supportingShort =
-  "Structural engineer turned data scientist — I turn real-world data into research, data products, and working software.";
+  "Before moving into research and software, I designed high-rise buildings to withstand earthquakes and typhoons. That work trained me to quantify uncertainty, test assumptions, and plan for failure. I now apply the same discipline across research, engineering, and product.";
 
 const heroSocials = [
   ...socials,
@@ -47,7 +43,7 @@ const stages: Stage[] = [
     num: "02",
     label: "Software",
     title: "Turned recurring work into software.",
-    body: "The same design work kept repeating, so I automated it — first in Excel and VBA, then in Python. The tools spread across the firm, and building them pulled me into software for good.",
+    body: "The same design work kept repeating, so I automated it, first in Excel and VBA, then in Python. The tools spread across the firm, and building them pulled me into software for good.",
     proof: "Adopted across the firm",
   },
   {
@@ -55,7 +51,7 @@ const stages: Stage[] = [
     num: "03",
     label: "Markets & Data",
     title: "Tested models against real markets.",
-    body: "Algorithmic trading was my proving ground: a model either survives live markets or it doesn't. At Messari, I turned that discipline on crypto itself — user behavior, on-chain data, incentive design.",
+    body: "Algorithmic trading was my proving ground: a model either survives live markets or it doesn't. At Messari, I turned that discipline on crypto itself, studying user behavior, on-chain data, and incentive design.",
     proof: "50+ published research reports",
   },
 ];
@@ -583,20 +579,13 @@ export default function Hero() {
             to study financial markets, user networks, and AI systems.
           </Reveal>
 
-          {/* Supporting paragraph - full from sm up, one line on phones */}
+          {/* Supporting paragraph */}
           <Reveal
             as="p"
             delay={140}
-            className="mt-9 hidden max-w-[620px] text-[1.25rem] leading-[1.55] text-[var(--body)] sm:block"
+            className="mt-9 max-w-[620px] text-[1.25rem] leading-[1.55] text-[var(--body)]"
           >
             {supporting}
-          </Reveal>
-          <Reveal
-            as="p"
-            delay={140}
-            className="mt-7 max-w-[620px] text-[1.125rem] leading-[1.5] text-[var(--body)] sm:hidden"
-          >
-            {supportingShort}
           </Reveal>
 
           {/* Current roles */}
