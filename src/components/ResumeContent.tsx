@@ -24,14 +24,11 @@ const work: Entry[] = [
     location: "Remote",
     dates: "April 2024 – Present",
     href: "https://panteraresearchlab.xyz",
-    summary:
-      "Cross-functional research engineer spanning data science, technical writing, portfolio-company advisory, and full-stack development.",
     bullets: [
-      "Led a Kalshi vs. Polymarket prediction-markets study across 282 NFL games using Kyle-style price-impact modeling.",
-      "Co-authored “The State of Tokenization,” tracking 593 tokenized assets worth $320.6B and their value-creation mechanics.",
-      "Built the companion open-source Tokenization Data Portal with on- and off-chain data ingestion.",
-      "Co-authored “Decoding DATs Beyond mNAV,” analyzing the ~$117B digital-asset-treasury sector with a two-part valuation framework.",
-      "Shipped the companion DAT Dashboard built on SEC 10-Q/8-K regex and semantic parsing.",
+      "Worked across research, data engineering, and product, taking open market questions from study design to published results.",
+      "Authored numerous research pieces across digital-asset market structure, user behavior, tokenization, and public companies.",
+      "Built many applications, on-chain and off-chain, to run experiments, assemble novel datasets, and ship research as live data products.",
+      "Developed tools and analysis for both the investment team and portfolio companies, partnering with investors, founders, and data providers on strategy, measurement, and technical diligence.",
     ],
   },
   {
@@ -42,10 +39,10 @@ const work: Entry[] = [
     href: "https://messari.io/research/ally-zach",
     bullets: [
       "Authored 50+ long-form research reports spanning L1s, L2s, NFTs, DeFi, and consumer applications.",
-      "Drove network- and application-level user analytics to surface actionable insights.",
-      "Built SQL and Python dashboards and ingestion tools that automated data analysis and visualization.",
-      "Designed a ChatGPT-powered Slackbot that automated research database creation and boosted team output.",
-      "Partnered with founders and research leads of top projects to enrich technical data and deepen research.",
+      "Specialized in network- and application-level user analytics, from Sybil detection across major L2 ecosystems to a machine-learning model of on-chain behavior across 300K+ users.",
+      "Built SQL and Python data pipelines, dashboards, and visualization tools that automated recurring research workflows.",
+      "Developed internal AI and research-automation tools, including a ChatGPT-powered Slackbot that automated research database creation and boosted team output.",
+      "Partnered with founders and research leads to validate technical data, scope analyses, and strengthen published research.",
     ],
   },
   {
@@ -55,8 +52,9 @@ const work: Entry[] = [
     dates: "July 2018 – March 2022",
     bullets: [
       "Specialized in high-seismic and high-wind foundation design and performance-based design of high-rise towers.",
-      "Designed and coordinated construction of 7M+ sq ft of high-rise residential towers across Southeast Asia.",
-      "Built office-wide design and analysis tools in Excel, Visual Basic, and Python to accelerate project delivery.",
+      "Analyzed, designed, and coordinated 7M+ sq ft of high-rise residential and mixed-use construction in the U.S. and Southeast Asia.",
+      "Built firm-wide design and analysis tools in Excel, Visual Basic, and Python to standardize workflows and improve project efficiency.",
+      "Coordinated with architects, contractors, clients, and multidisciplinary engineering teams from concept through construction.",
     ],
   },
   {
@@ -76,7 +74,7 @@ const work: Entry[] = [
     dates: "May 2016 – August 2016",
     bullets: [
       "Produced load ratings for a Detroit bascule bridge using CSiBridge and gravity load calculations.",
-      "Performed and documented fracture-critical, element-level, and routine inspections on Chicago bridges.",
+      "Conducted and documented fracture-critical, element-level, and routine inspections on Chicago bridges.",
     ],
   },
 ];
@@ -84,15 +82,14 @@ const work: Entry[] = [
 const projects: Entry[] = [
   {
     org: "Syndicate",
-    title: "Technical Founder",
+    title: "Technical Cofounder & Sole Engineer",
+    dates: "January 2026 – Present",
     href: "https://usesyndicate.org",
-    summary:
-      "Friendly, approachable, and efficient desktop app that lets people with or without a software-engineering background build applications, send emails, and run teams of AI agents.",
     bullets: [
-      "Technical founder and sole engineer: built the entire cross-platform Electron/React desktop app, partnering with a cofounder who runs the business side.",
-      "Created the product out of a tool we wanted to use daily ourselves, across work and personal projects.",
-      "Designed an Atlas manager layer that decomposes goals into tasks and dispatches them to specialist agents.",
-      "Built a provider-agnostic runtime combining Claude, OpenAI, and Gemini models on a single team.",
+      "Cofounded a desktop product that made coordinated AI agents accessible to technical and nontechnical users.",
+      "Defined product direction and translated user needs into workflows, features, and release priorities.",
+      "Designed the system architecture for agent planning, task delegation, model coordination, and human oversight.",
+      "Built the cross-platform application, model and tool integrations, and local security as the sole engineer.",
     ],
   },
 ];
