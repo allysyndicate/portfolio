@@ -19,3 +19,23 @@ export const socials = [
     ),
   },
 ] as const;
+
+// Telegram lives outside `socials` so surfaces can opt in (Hero and Contact
+// show it; other uses of `socials` stay Twitter + LinkedIn).
+export const telegram = {
+  label: "Telegram",
+  handle: "allyzach1",
+  href: "https://t.me/allyzach1",
+  icon: (
+    <path d="M9.993 15.675 9.596 21c.568 0 .814-.244 1.109-.537l2.664-2.545 5.522 4.044c1.012.564 1.725.267 1.998-.931l3.622-16.972.001-.001c.321-1.496-.541-2.081-1.527-1.714L1.696 10.497C.243 11.061.265 11.871 1.45 12.239l5.443 1.693L19.53 6.027c.595-.394 1.136-.176.69.218L9.993 15.675Z" />
+  ),
+} as const;
+
+export const email = {
+  label: "Email",
+  handle: "allyzach28@gmail.com",
+  href: "mailto:allyzach28@gmail.com",
+  icon: (
+    <path d="M12 12.713 1.015 5.4A2 2 0 0 1 3 4h18a2 2 0 0 1 1.985 1.4L12 12.713Zm0 2.574L1 7.955V18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V7.955l-11 7.332Z" />
+  ),
+} as const;

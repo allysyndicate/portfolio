@@ -2,7 +2,10 @@ import type { CSSProperties, ReactNode } from "react";
 import ChapterProjects, { type ChapterVariant } from "./ChapterProjects";
 import { chapters, type Chapter } from "./chapters";
 import Reveal from "./Reveal";
-import { socials } from "./socials";
+import { email, socials, telegram } from "./socials";
+
+/** Contact icon row: email plus every social, one consistent set of circles. */
+const contactLinks = [email, ...socials, telegram] as const;
 
 function Section({
   id,
@@ -449,45 +452,24 @@ export function Contact() {
           <h2 className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-[var(--ink)] sm:text-4xl">
             Reach out.
           </h2>
-          {/* Location as quiet metadata: the heading, button, and socials
-              carry the invitation on their own. */}
-          <p className="mt-3 text-sm font-medium tracking-wide text-[var(--muted)]">
-            Portland, Oregon
-          </p>
-          <a
-            href="mailto:allyzach28@gmail.com"
-            aria-label="Email Ally Zach"
-            /* #B25232 = terracotta midpoint between --accent and --accent-strong;
-               white text passes 4.5:1 at rest (plain --accent falls just short). */
-            className="group mt-6 inline-flex items-center gap-1.5 rounded-md bg-[#B25232] px-6 py-3 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
-          >
-            Email me
-            <span
-              aria-hidden
-              className="inline-block transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-1"
-            >
-              →
-            </span>
-          </a>
-          {/* TODO: replace with updated 2026 resume before making resume CTA public.
-              Hidden temporarily - current /Ally Zach Resume.pdf is stale (lists Messari
-              as present role, no Pantera/Syndicate) and exposes a home street address. */}
-          <div className="mt-8 flex items-center gap-4">
-            {socials.map((s) => (
+          <div className="mt-6 flex items-center gap-4">
+            {contactLinks.map((s) => (
               <a
                 key={s.label}
                 href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={s.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={
+                  s.href.startsWith("mailto:") ? undefined : "noopener noreferrer"
+                }
                 aria-label={`${s.label} · ${s.handle}`}
                 title={`${s.label} · ${s.handle}`}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--line-strong)] bg-[var(--paper-elev)] text-[var(--body)] shadow-[var(--shadow-soft)] transition-all duration-200 ease-[var(--ease-out)] hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--line-strong)] bg-[var(--paper-elev)] text-[var(--body)] shadow-[var(--shadow-soft)] transition-all duration-200 ease-[var(--ease-out)] hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
               >
                 <svg
                   viewBox="0 0 24 24"
                   fill="currentColor"
                   aria-hidden
-                  className="h-4 w-4"
+                  className="h-[18px] w-[18px]"
                 >
                   {s.icon}
                 </svg>

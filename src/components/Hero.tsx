@@ -2,22 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import Reveal from "./Reveal";
-import { socials } from "./socials";
+import { socials, telegram } from "./socials";
 
 const supporting =
   "Before moving into research and software, I designed high-rise buildings to withstand earthquakes and typhoons. That work trained me to quantify uncertainty, test assumptions, and plan for failure. I now apply the same discipline across research, engineering, and product.";
 
-const heroSocials = [
-  ...socials,
-  {
-    label: "Telegram",
-    handle: "allyzach1",
-    href: "https://t.me/allyzach1",
-    icon: (
-      <path d="M9.993 15.675 9.596 21c.568 0 .814-.244 1.109-.537l2.664-2.545 5.522 4.044c1.012.564 1.725.267 1.998-.931l3.622-16.972.001-.001c.321-1.496-.541-2.081-1.527-1.714L1.696 10.497C.243 11.061.265 11.871 1.45 12.239l5.443 1.693L19.53 6.027c.595-.394 1.136-.176.69.218L9.993 15.675Z" />
-    ),
-  },
-] as const;
+const heroSocials = [...socials, telegram] as const;
 
 // Past stages carry the reader down one continuous line before it forks.
 // Education opens the story as a compact 00 credential card.
