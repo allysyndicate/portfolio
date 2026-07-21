@@ -446,11 +446,8 @@ export function Contact() {
     <Section id="contact" label="Get in touch" hideHeading>
       <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
         <Reveal>
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--accent-strong)]">
-            Get in touch
-          </p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-[var(--ink)] sm:text-4xl">
-            Reach out.
+          <h2 className="text-2xl font-semibold tracking-[-0.02em] text-[var(--ink)] sm:text-4xl">
+            Get in touch.
           </h2>
           <div className="mt-6 flex items-center gap-4">
             {contactLinks.map((s) => (
