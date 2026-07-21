@@ -70,7 +70,6 @@ type Branch = {
   role: string;
   headline: string;
   body: string;
-  closing: string;
 };
 
 const branches: Branch[] = [
@@ -82,7 +81,6 @@ const branches: Branch[] = [
     headline:
       "I turn market questions into published research and live data products.",
     body: "At Pantera, I work across research, data engineering, and product. I design the study, build the datasets and pipelines, test the analysis, and ship the result as a report, dashboard, open dataset, or internal tool.",
-    closing: "From open question to shipped result",
   },
   {
     id: "syndicate",
@@ -91,7 +89,6 @@ const branches: Branch[] = [
     role: "Technical Cofounder",
     headline: "I build a local-first workspace for teams of AI agents.",
     body: "I designed and built Syndicate end to end, from the multi-model runtime and orchestration layer to the desktop interface. Users can combine Claude, OpenAI, and Gemini agents, delegate work, review progress, and decide how much the system can do without them.",
-    closing: "From agent runtime to desktop app",
   },
 ];
 
@@ -243,10 +240,6 @@ function BranchColumn({ branch }: { branch: Branch }) {
       </p>
       <p className="mt-2 text-[0.9375rem] leading-[1.65] text-[var(--body)]">
         {branch.body}
-      </p>
-      {/* Quiet caption, bottom-aligned so the two cards balance. */}
-      <p className="mt-auto pt-4 text-xs font-medium tracking-wide text-[var(--muted)]">
-        {branch.closing}
       </p>
     </div>
   );
