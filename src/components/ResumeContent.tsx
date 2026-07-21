@@ -25,10 +25,10 @@ const work: Entry[] = [
     dates: "April 2024 – Present",
     href: "https://panteraresearchlab.xyz",
     bullets: [
-      "Worked across research, data engineering, and product, taking open market questions from study design to published results.",
-      "Authored numerous research pieces across digital-asset market structure, user behavior, tokenization, and public companies.",
-      "Built many applications, on-chain and off-chain, to run experiments, assemble novel datasets, and ship research as live data products.",
-      "Developed tools and analysis for both the investment team and portfolio companies, partnering with investors, founders, and data providers on strategy, measurement, and technical diligence.",
+      "Led research projects from study design and data collection through analysis, validation, and publication.",
+      "Analyzed $7.8B in Kalshi and Polymarket trades to study short-term market structure, settlement behavior, and bot activity.",
+      "Built a tokenization dataset covering 593 assets worth $320.6B and a live market map of 500+ assets across nearly 300 platforms.",
+      "Built research, diligence, and data tools for Pantera's investment team and portfolio companies.",
     ],
   },
   {
@@ -39,9 +39,9 @@ const work: Entry[] = [
     href: "https://messari.io/research/ally-zach",
     bullets: [
       "Authored 50+ long-form research reports spanning L1s, L2s, NFTs, DeFi, and consumer applications.",
-      "Specialized in network- and application-level user analytics, from Sybil detection across major L2 ecosystems to a machine-learning model of on-chain behavior across 300K+ users.",
+      "Applied Sybil-detection heuristics across Base, zkSync, and Polygon zkEVM, and modeled on-chain behavior across 300K+ friend.tech users.",
       "Built SQL and Python data pipelines, dashboards, and visualization tools that automated recurring research workflows.",
-      "Developed internal AI and research-automation tools, including a ChatGPT-powered Slackbot that automated research database creation and boosted team output.",
+      "Built a ChatGPT-powered Slackbot that automated the creation of internal research database entries.",
       "Partnered with founders and research leads to validate technical data, scope analyses, and strengthen published research.",
     ],
   },
@@ -53,7 +53,7 @@ const work: Entry[] = [
     bullets: [
       "Specialized in high-seismic and high-wind foundation design and performance-based design of high-rise towers.",
       "Analyzed, designed, and coordinated 7M+ sq ft of high-rise residential and mixed-use construction in the U.S. and Southeast Asia.",
-      "Built firm-wide design and analysis tools in Excel, Visual Basic, and Python to standardize workflows and improve project efficiency.",
+      "Built firm-wide Excel, VBA, and Python tools for recurring design calculations, model checks, and reporting.",
       "Coordinated with architects, contractors, clients, and multidisciplinary engineering teams from concept through construction.",
     ],
   },
@@ -86,10 +86,10 @@ const projects: Entry[] = [
     dates: "January 2026 – Present",
     href: "https://usesyndicate.org",
     bullets: [
-      "Cofounded a desktop product that made coordinated AI agents accessible to technical and nontechnical users.",
-      "Defined product direction and translated user needs into workflows, features, and release priorities.",
-      "Designed the system architecture for agent planning, task delegation, model coordination, and human oversight.",
-      "Built the cross-platform application, model and tool integrations, and local security as the sole engineer.",
+      "Cofounded and built a local-first Electron app for coordinating teams of Claude, OpenAI, and Gemini agents.",
+      "Built a manager-agent workflow that breaks goals into tasks, routes work to specialist agents, and escalates blockers.",
+      "Added configurable approval levels, scoped tool permissions, per-agent project sandboxes, and encrypted local credentials.",
+      "Built Agent Maker, which turns a plain-English role into an installable agent with scoped tools.",
     ],
   },
 ];
