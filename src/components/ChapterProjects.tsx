@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useState } from "react";
 import type { ProjectCard } from "./chapters";
 import Reveal from "./Reveal";
 
@@ -35,28 +35,10 @@ function ArrowUpRight() {
 const CARD_SHELL =
   "group overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--paper-elev)] shadow-[var(--shadow-card)] transition duration-200 ease-[var(--ease-out)] hover:-translate-y-0.5 hover:border-[var(--line-strong)] hover:shadow-[var(--shadow-feature)]";
 
-function ChevronDown() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-      className="h-4 w-4"
-    >
-      <path d="m6 9 6 6 6-6" />
-    </svg>
-  );
-}
-
 /**
  * A single project card: framed thumbnail over title + descriptor. The same card
  * is used by every chapter (Pantera, Messari, MKA); only the surrounding grid
- * changes per employer. On phones the descriptor collapses behind a chevron so
- * the grids scan as photo + title; from sm up it renders inline as before.
+ * changes per employer.
  */
 function ProjectCardLink({
   p,
@@ -66,76 +48,42 @@ function ProjectCardLink({
   /** Featured cards use a taller image frame so near-square charts show fully. */
   featured?: boolean;
 }) {
-  const [showDesc, setShowDesc] = useState(false);
-  const descId = useId();
   return (
-    <div className={`${CARD_SHELL} flex h-full min-w-0 flex-col`}>
-      <a
-        href={p.href}
-        target={p.href.startsWith("http") ? "_blank" : undefined}
-        rel="noreferrer"
-        className="block min-w-0"
-      >
-        {p.img ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={p.img}
-            alt={p.title}
-            loading="lazy"
-            className={`m-2 w-[calc(100%-1rem)] rounded-xl border border-[var(--line)] bg-[var(--paper-elev)] object-contain p-2 shadow-[var(--shadow-soft)] ${
-              featured ? "aspect-[7/6]" : "aspect-[16/10]"
-            }`}
-          />
-        ) : (
-          <div
-            className={`aspect-[16/10] w-full bg-gradient-to-br ${p.thumb} flex items-end p-4`}
-          >
-            <span className="rounded border border-[var(--line)] bg-[var(--paper-elev)]/80 px-2 py-1 text-[10px] font-semibold uppercase tracking-widest text-[var(--muted)] backdrop-blur">
-              Thumbnail
-            </span>
-          </div>
-        )}
-        <div className="p-4 pb-0">
-          <h4 className="flex min-w-0 items-start gap-1.5 font-medium leading-snug text-[var(--ink)] group-hover:text-[var(--accent-strong)]">
-            <span className="min-w-0 [overflow-wrap:anywhere]">{p.title}</span>
-            <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[var(--muted)] transition-all duration-200 ease-[var(--ease-out)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:bg-[var(--accent-tint)] group-hover:text-[var(--accent)]">
-              <ArrowUpRight />
-            </span>
-          </h4>
-          {/* Inline descriptor from sm up (part of the link, as before). */}
-          <p className="mt-2 hidden pb-4 text-sm text-[var(--muted)] sm:block">
-            {p.descriptor}
-          </p>
-        </div>
-      </a>
-      {/* Phone-only: descriptor collapsed behind a chevron toggle. */}
-      <p
-        id={descId}
-        className={`${
-          showDesc ? "block" : "hidden"
-        } px-4 pt-2 text-sm text-[var(--muted)] sm:hidden`}
-      >
-        {p.descriptor}
-      </p>
-      <button
-        type="button"
-        onClick={() => setShowDesc((v) => !v)}
-        aria-expanded={showDesc}
-        aria-controls={descId}
-        aria-label={
-          showDesc ? "Hide project description" : "Show project description"
-        }
-        className="mt-auto flex w-full items-center justify-center py-2.5 text-[var(--muted)] transition-colors duration-150 ease-[var(--ease-out)] hover:text-[var(--accent-strong)] sm:hidden"
-      >
-        <span
-          className={`transition-transform duration-200 ease-[var(--ease-out)] ${
-            showDesc ? "rotate-180" : ""
+    <a
+      href={p.href}
+      target={p.href.startsWith("http") ? "_blank" : undefined}
+      rel="noreferrer"
+      className={`${CARD_SHELL} block h-full min-w-0`}
+    >
+      {p.img ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={p.img}
+          alt={p.title}
+          loading="lazy"
+          className={`m-2 w-[calc(100%-1rem)] rounded-xl border border-[var(--line)] bg-[var(--paper-elev)] object-contain p-2 shadow-[var(--shadow-soft)] ${
+            featured ? "aspect-[7/6]" : "aspect-[16/10]"
           }`}
+        />
+      ) : (
+        <div
+          className={`aspect-[16/10] w-full bg-gradient-to-br ${p.thumb} flex items-end p-4`}
         >
-          <ChevronDown />
-        </span>
-      </button>
-    </div>
+          <span className="rounded border border-[var(--line)] bg-[var(--paper-elev)]/80 px-2 py-1 text-[10px] font-semibold uppercase tracking-widest text-[var(--muted)] backdrop-blur">
+            Thumbnail
+          </span>
+        </div>
+      )}
+      <div className="p-4">
+        <h4 className="flex min-w-0 items-start gap-1.5 font-medium leading-snug text-[var(--ink)] group-hover:text-[var(--accent-strong)]">
+          <span className="min-w-0 [overflow-wrap:anywhere]">{p.title}</span>
+          <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[var(--muted)] transition-all duration-200 ease-[var(--ease-out)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:bg-[var(--accent-tint)] group-hover:text-[var(--accent)]">
+            <ArrowUpRight />
+          </span>
+        </h4>
+        <p className="mt-2 text-sm text-[var(--muted)]">{p.descriptor}</p>
+      </div>
+    </a>
   );
 }
 
