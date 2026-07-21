@@ -11,29 +11,8 @@ function isItemActive(item: NavItem, active: string) {
   return item.id === active;
 }
 
-function MenuIcon({ open }: { open: boolean }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      strokeLinecap="round"
-      aria-hidden
-      className="h-5 w-5"
-    >
-      {open ? (
-        <path d="M6 6l12 12M18 6 6 18" />
-      ) : (
-        <path d="M4 7h16M4 12h16M4 17h16" />
-      )}
-    </svg>
-  );
-}
-
 export default function NavBar() {
   const [active, setActive] = useState<string>(sections[0].id);
-  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -73,7 +52,7 @@ export default function NavBar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-[border-color,background-color,box-shadow] duration-200 ease-[var(--ease-out)] motion-reduce:transition-none ${
-        scrolled || open
+        scrolled
           ? "border-[var(--line)] bg-[var(--paper)]/85 shadow-[var(--shadow-soft)] backdrop-blur"
           : "border-transparent bg-transparent"
       }`}
@@ -126,62 +105,20 @@ export default function NavBar() {
           </Link>
         </nav>
 
-        <button
-          type="button"
-          aria-label="Toggle navigation menu"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-          className="flex h-9 w-9 items-center justify-center rounded-md border border-[var(--line)] text-[var(--ink)] md:hidden"
+        {/* Phones skip the section menu entirely: the page is one scroll, so
+            the only nav that earns header space is the Resume button. */}
+        <Link
+          href="/resume"
+          className="group inline-flex items-center gap-1.5 rounded-md bg-[#B25232] px-4 py-2 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)] md:hidden"
         >
-          <MenuIcon open={open} />
-        </button>
-      </div>
-
-      <div
-        inert={!open}
-        className={`grid transition-[grid-template-rows,opacity,visibility] duration-[250ms] ease-[var(--ease-out)] motion-reduce:transition-none md:hidden ${
-          open
-            ? "visible grid-rows-[1fr] opacity-100"
-            : "invisible grid-rows-[0fr] opacity-0"
-        }`}
-      >
-        <nav
-          className="overflow-hidden border-t border-[var(--line)] bg-[var(--paper)] shadow-[var(--shadow-card)]"
-          aria-label="Sections"
-        >
-          <ul className="space-y-1 px-4 py-4 sm:px-6">
-            {sections.map((s) => (
-              <li key={s.id}>
-                <a
-                  href={`#${s.id}`}
-                  onClick={() => setOpen(false)}
-                  className={`block rounded px-2 py-2 text-sm font-medium transition-colors ${
-                    isItemActive(s, active)
-                      ? "bg-[var(--accent-tint)] text-[var(--accent-strong)]"
-                      : "text-[var(--muted)] hover:text-[var(--ink)]"
-                  }`}
-                >
-                  {s.label}
-                </a>
-              </li>
-            ))}
-            <li className="pt-2">
-              <Link
-                href="/resume"
-                onClick={() => setOpen(false)}
-                className="group flex items-center justify-center gap-1.5 rounded-md bg-[#B25232] px-4 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
-              >
-                Resume
-                <span
-                  aria-hidden
-                  className="inline-block transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-0.5"
-                >
-                  →
-                </span>
-              </Link>
-            </li>
-          </ul>
-        </nav>
+          Resume
+          <span
+            aria-hidden
+            className="inline-block transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-0.5"
+          >
+            →
+          </span>
+        </Link>
       </div>
     </header>
   );
