@@ -57,46 +57,51 @@ const stages: Stage[] = [
     num: "02",
     label: "Software",
     title: "Turned recurring work into software.",
-    body: "The same design work kept repeating, so I automated it, first in Excel and VBA, then in Python. The tools spread across the firm, and building them pulled me into software for good.",
-    proof: "Adopted across the firm",
+    body: "I built Excel, VBA, and Python tools to automate recurring design calculations, model checks, and reporting. Turning engineering logic into reusable software became my path from structural engineering into software and data.",
+    proof: "Adopted firm-wide",
   },
   {
     id: "markets",
     num: "03",
     label: "Markets & Data",
     title: "Tested models against real markets.",
-    body: "Algorithmic trading was my proving ground: a model either survives live markets or it doesn't. At Messari, I turned that discipline on crypto itself, studying user behavior, on-chain data, and incentive design.",
+    body: "Algorithmic trading was my entry point into data science, where I learned to test models against live market behavior. That path led me to Messari, where I used market and on-chain data to study user behavior and incentive design across crypto markets and networks.",
     proof: "50+ published research reports",
   },
 ];
 
-// At NOW the line branches into two parallel, equal-weight current tracks.
+// At NOW the line resolves into the two current roles.
+// Both cards share one structure: company -> role -> what I do -> scope of
+// ownership -> one closing phrase.
 type Branch = {
   id: "pantera" | "syndicate";
-  track: string;
   org: string;
-  title: string;
+  href: string;
+  role: string;
+  headline: string;
   body: string;
-  proof: string;
+  closing: string;
 };
 
-// Both cards share one structure: role, company, scope, ownership, capabilities.
 const branches: Branch[] = [
   {
     id: "pantera",
-    track: "Research Engineer",
     org: "Pantera Capital",
-    title: "Research and data products for crypto markets.",
-    body: "I take projects from an open question to a published result. I source and model market and on-chain data, test hypotheses, validate results, and ship the work as research, dashboards, and interactive tools. I also build the Python and SQL pipelines that keep each analysis reproducible and current.",
-    proof: "From raw market data to published research",
+    href: "https://panteracapital.com",
+    role: "Research Engineer",
+    headline:
+      "I turn market questions into published research and live data products.",
+    body: "At Pantera, I work across research, data engineering, and product. I design the study, build the datasets and pipelines, test the analysis, and ship the result as a report, dashboard, open dataset, or internal tool.",
+    closing: "From open question to shipped result",
   },
   {
     id: "syndicate",
-    track: "Technical Cofounder",
     org: "Syndicate",
-    title: "Product and infrastructure for multi-agent work.",
-    body: "I designed and built Syndicate end to end: a local-first Electron app where users combine Claude, OpenAI, and Gemini agents into teams and control how work is delegated, reviewed, and interrupted. My work spans the provider-agnostic runtime, orchestration layer, MCP integrations, and local security model.",
-    proof: "Built end to end, from runtime to interface",
+    href: "https://usesyndicate.org",
+    role: "Technical Cofounder",
+    headline: "I build a local-first workspace for teams of AI agents.",
+    body: "I designed and built Syndicate end to end, from the multi-model runtime and orchestration layer to the desktop interface. Users can combine Claude, OpenAI, and Gemini agents, delegate work, review progress, and decide how much the system can do without them.",
+    closing: "From agent runtime to desktop app",
   },
 ];
 
@@ -195,49 +200,20 @@ function RolesBlock() {
 
 const clamp01 = (t: number) => Math.min(1, Math.max(0, t));
 
-// Tiny on-palette data motif for the Pantera (research) branch - bars + trend,
-// evidence not decoration.
-function ChartMotif() {
+// External-link glyph shown beside each current-work company name.
+function ExternalLinkIcon() {
   return (
     <svg
-      aria-hidden
-      viewBox="0 0 40 28"
-      className="h-7 w-10 shrink-0 text-[var(--accent)]/60"
+      viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth={2}
       strokeLinecap="round"
-    >
-      <line x1="4" y1="24" x2="4" y2="17" />
-      <line x1="12" y1="24" x2="12" y2="12" />
-      <line x1="20" y1="24" x2="20" y2="19" />
-      <line x1="28" y1="24" x2="28" y2="8" />
-      <line x1="36" y1="24" x2="36" y2="14" />
-      <polyline points="4,15 12,10 20,13 28,5 36,11" strokeOpacity="0.55" />
-    </svg>
-  );
-}
-
-// Tiny on-palette node-network motif for the Syndicate (AI systems) branch.
-function NetworkMotif() {
-  return (
-    <svg
+      strokeLinejoin="round"
       aria-hidden
-      viewBox="0 0 40 28"
-      className="h-7 w-10 shrink-0 text-[var(--accent)]/60"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.2"
+      className="h-4 w-4"
     >
-      <line x1="8" y1="7" x2="20" y2="14" strokeOpacity="0.7" />
-      <line x1="8" y1="21" x2="20" y2="14" strokeOpacity="0.7" />
-      <line x1="20" y1="14" x2="34" y2="8" strokeOpacity="0.7" />
-      <line x1="20" y1="14" x2="34" y2="20" strokeOpacity="0.7" />
-      <circle cx="8" cy="7" r="2.5" fill="currentColor" stroke="none" />
-      <circle cx="8" cy="21" r="2.5" fill="currentColor" stroke="none" />
-      <circle cx="20" cy="14" r="3" fill="currentColor" stroke="none" />
-      <circle cx="34" cy="8" r="2.5" fill="currentColor" stroke="none" />
-      <circle cx="34" cy="20" r="2.5" fill="currentColor" stroke="none" />
+      <path d="M14 5h5v5M19 5l-9 9M19 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4" />
     </svg>
   );
 }
@@ -251,30 +227,36 @@ function ProofLine({ children }: { children: React.ReactNode }) {
   );
 }
 
-// A single track inside the paired NOW box. Both tracks share one container so
-// the fork reads as one resolution, not two competing cards.
+// One current role inside the shared CURRENT WORK box:
+// company -> role -> headline -> scope -> closing caption.
 function BranchColumn({ branch }: { branch: Branch }) {
   return (
     <div className="flex h-full flex-col p-6 sm:p-7">
-      <div className="flex items-start justify-between gap-4">
-        <div className="text-[0.6875rem] font-bold uppercase tracking-[0.2em]">
-          <div className="text-[var(--accent-strong)]">{branch.track}</div>
-          <div className="mt-1 text-[var(--muted)]">{branch.org}</div>
-        </div>
-        {branch.id === "pantera" ? <ChartMotif /> : <NetworkMotif />}
-      </div>
-      <h3 className="mt-4 text-lg font-bold tracking-[-0.01em] text-[var(--ink)] sm:text-xl">
-        {branch.title}
+      <h3 className="text-lg font-bold tracking-[-0.01em] text-[var(--ink)] sm:text-xl">
+        <a
+          href={branch.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex items-center gap-2 transition-colors duration-150 ease-[var(--ease-out)] hover:text-[var(--accent-strong)]"
+        >
+          {branch.org}
+          <span className="text-[var(--muted)] transition-colors duration-150 ease-[var(--ease-out)] group-hover:text-[var(--accent)]">
+            <ExternalLinkIcon />
+          </span>
+        </a>
       </h3>
-      {/* The full role story is sm+ only - on phones the Experience chapters
-          below carry it, so the NOW box stays a compact signpost. */}
-      <p className="mt-2 hidden text-[0.9375rem] leading-[1.65] text-[var(--body)] sm:block">
+      <p className="mt-1 text-[0.6875rem] font-bold uppercase tracking-[0.2em] text-[var(--accent-strong)]">
+        {branch.role}
+      </p>
+      <p className="mt-4 text-base font-semibold leading-snug tracking-[-0.01em] text-[var(--ink)]">
+        {branch.headline}
+      </p>
+      <p className="mt-2 text-[0.9375rem] leading-[1.65] text-[var(--body)]">
         {branch.body}
       </p>
-      {/* Quiet caption, not a tag: a single proof point, bottom-aligned across
-          the equal-height columns via mt-auto. */}
+      {/* Quiet caption, bottom-aligned so the two cards balance. */}
       <p className="mt-auto pt-4 text-xs font-medium tracking-wide text-[var(--muted)]">
-        {branch.proof}
+        {branch.closing}
       </p>
     </div>
   );
@@ -463,7 +445,10 @@ function Timeline() {
         <div
           ref={railRef}
           aria-hidden
-          className="pointer-events-none absolute bottom-0 left-[11px] top-0 w-px -translate-x-1/2 bg-[var(--line)] lg:left-1/2"
+          /* The rail runs dot-center to dot-center, not edge to edge: the top
+             matches the 00 node (stage py + node offset + half node height),
+             and the bottom matches the NOW node the same way per breakpoint. */
+          className="pointer-events-none absolute bottom-12 left-[11px] top-[39px] w-px -translate-x-1/2 bg-[var(--line)] lg:bottom-[64px] lg:left-1/2 lg:top-[47px]"
         >
           <div
             className="absolute inset-x-0 top-0 bg-[var(--accent)] transition-[height] duration-200 ease-[var(--ease-out)]"
@@ -512,7 +497,7 @@ function Timeline() {
         })}
 
         {/* NOW: the fork marker where the spine resolves into the paired box. */}
-        <div className="relative pt-8 lg:pt-12">
+        <div className="relative pt-8">
           <span
             ref={(el) => {
               nodeRefs.current[nowIndex] = el;
@@ -524,7 +509,7 @@ function Timeline() {
                 : "bg-[var(--line-strong)]"
             }`}
           />
-          <div className="pl-10 lg:pl-0 lg:pt-8 lg:text-center">
+          <div className="pl-10 lg:pl-0 lg:pt-4 lg:text-center">
             <span className="text-[0.6875rem] font-bold uppercase tracking-[0.28em] text-[var(--accent-strong)]">
               Current work
             </span>

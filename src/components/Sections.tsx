@@ -333,16 +333,11 @@ export function SideProjects() {
                 Technical Cofounder
               </p>
 
-              {/* Full story from sm up; phones get the short version. */}
-              <p className="mt-6 hidden max-w-[36rem] text-sm leading-relaxed text-[var(--body)] sm:block sm:text-base">
-                I&apos;m the technical cofounder and engineer behind Syndicate;
-                my cofounder leads the business side. We built it because we
-                wanted a tool we&apos;d actually use every day ourselves, and
-                we do, at work and on personal projects.
-              </p>
-              <p className="mt-5 text-sm leading-relaxed text-[var(--body)] sm:hidden">
-                I&apos;m the technical cofounder and engineer behind Syndicate.
-                We built the tool we wanted to use every day, and we do.
+              <p className="mt-6 max-w-[36rem] text-sm leading-relaxed text-[var(--body)] sm:text-base">
+                I&apos;m the technical cofounder and sole engineer behind
+                Syndicate. I built it to solve a problem I faced firsthand:
+                coordinating multiple AI agents across complex work without
+                losing visibility or control.
               </p>
 
               <ul className="mt-7 space-y-5">
@@ -400,14 +395,14 @@ export function SideProjects() {
           </div>
 
           <details className="group border-t border-[var(--line)] px-6 py-5 sm:px-8 lg:px-12">
-            <summary className="flex cursor-pointer list-none items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent-strong)]">
+            <summary className="inline-flex w-fit cursor-pointer select-none list-none items-center gap-1.5 rounded-full border border-[var(--line-strong)] px-4 py-2 text-sm font-semibold text-[var(--ink)] transition-colors duration-150 ease-[var(--ease-out)] hover:border-[var(--accent)] hover:text-[var(--accent-strong)] [&::-webkit-details-marker]:hidden">
+              Technical details
               <span
                 className="transition-transform duration-200 ease-[var(--ease-out)] group-open:rotate-90"
                 aria-hidden
               >
                 →
               </span>
-              Technical details
             </summary>
             <ul className="mt-5 grid gap-x-10 gap-y-4 pb-2 text-sm leading-relaxed text-[var(--body)] md:grid-cols-2">
               {syndicateHighlights.map((h) => (
