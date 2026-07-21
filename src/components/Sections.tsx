@@ -449,10 +449,10 @@ export function Contact() {
           <h2 className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-[var(--ink)] sm:text-4xl">
             Reach out.
           </h2>
-          <p className="mt-4 max-w-[34rem] text-base leading-relaxed text-[var(--body)] sm:text-lg">
-            I&apos;m based just outside Portland, Oregon. Reach out about
-            research, data systems, AI products, or work that crosses those
-            lines.
+          {/* Location as quiet metadata: the heading, button, and socials
+              carry the invitation on their own. */}
+          <p className="mt-3 text-sm font-medium tracking-wide text-[var(--muted)]">
+            Portland, Oregon
           </p>
           <a
             href="mailto:allyzach28@gmail.com"
