@@ -398,7 +398,7 @@ export function SideProjects() {
             {/* Secondary action styled to pair with the solid "Visit
                 usesyndicate.org" CTA above: same rounded-md geometry and
                 padding, outlined in the accent instead of filled. */}
-            <summary className="inline-flex w-fit cursor-pointer select-none list-none items-center gap-1.5 rounded-md border border-[var(--accent)]/40 px-5 py-2.5 text-sm font-semibold text-[var(--accent-strong)] transition-colors duration-150 ease-[var(--ease-out)] hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] [&::-webkit-details-marker]:hidden">
+            <summary className="mx-auto flex w-fit cursor-pointer select-none list-none items-center gap-1.5 rounded-md border border-[var(--accent)]/40 px-5 py-2.5 text-sm font-semibold text-[var(--accent-strong)] transition-colors duration-150 ease-[var(--ease-out)] hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] [&::-webkit-details-marker]:hidden">
               Technical details
               <span
                 className="transition-transform duration-200 ease-[var(--ease-out)] group-open:rotate-90"
