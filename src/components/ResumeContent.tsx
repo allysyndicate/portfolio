@@ -25,8 +25,8 @@ const work: Entry[] = [
     dates: "April 2024 – Present",
     href: "https://panteraresearchlab.xyz",
     bullets: [
-      "Led research projects from study design and data collection through analysis, validation, and publication.",
-      "Analyzed $7.8B in Kalshi and Polymarket trades to study short-term market structure, settlement behavior, and bot activity.",
+      "Led research projects from study design, data collection, and experimentation through statistical analysis, validation, and publication.",
+      "Ran econometric analyses of $7.8B in Kalshi and Polymarket trades to study short-term market structure, settlement behavior, and bot activity.",
       "Built a tokenization dataset covering 593 assets worth $320.6B and a live market map of 500+ assets across nearly 300 platforms.",
       "Built research, diligence, and data tools for Pantera's investment team and portfolio companies.",
     ],
@@ -39,7 +39,7 @@ const work: Entry[] = [
     href: "https://messari.io/research/ally-zach",
     bullets: [
       "Authored 50+ long-form research reports spanning L1s, L2s, NFTs, DeFi, and consumer applications.",
-      "Applied Sybil-detection heuristics across Base, zkSync, and Polygon zkEVM, and modeled on-chain behavior across 300K+ friend.tech users.",
+      "Applied Sybil-detection heuristics across Base, zkSync, and Polygon zkEVM, and built a machine-learning model of on-chain behavior across 300K+ friend.tech users.",
       "Built SQL and Python data pipelines, dashboards, and visualization tools that automated recurring research workflows.",
       "Built a ChatGPT-powered Slackbot that automated the creation of internal research database entries.",
       "Partnered with founders and research leads to validate technical data, scope analyses, and strengthen published research.",
@@ -135,16 +135,21 @@ const honors = [
 
 const skills = [
   "Python",
+  "SQL",
   "PostgreSQL",
   "Snowflake",
-  "NumPy",
   "Pandas",
+  "NumPy",
   "Scikit-Learn",
   "NetworkX",
-  "Figma",
-  "Excel",
   "Plotly",
   "Matplotlib",
+  "React",
+  "TypeScript",
+  "Electron",
+  "AWS",
+  "Excel/VBA",
+  "Figma",
   "GitHub",
 ];
 
