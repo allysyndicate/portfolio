@@ -477,12 +477,13 @@ export function Contact() {
 
         <Reveal delay={120}>
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--accent-strong)]">
-            Outside work
+            Off the clock
           </p>
           <p className="mt-4 text-base leading-relaxed text-[var(--body)] sm:text-lg">
-            Outside work, I&apos;m usually cooking, snowboarding,
-            paddleboarding, following Chicago sports, or at home with my
-            family, a toddler, a Bernese mountain dog, and two Ragdoll cats.
+            When I&apos;m not at a screen, I&apos;m usually cooking,
+            bouldering, snowboarding, paddleboarding, or finding some other
+            excuse to get outside. Otherwise, I&apos;m home with my family,
+            our toddler, a Bernese mountain dog, and two Ragdoll cats.
           </p>
         </Reveal>
       </div>
