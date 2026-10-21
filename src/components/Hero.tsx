@@ -154,10 +154,7 @@ function RolesBlock() {
   return (
     <Reveal delay={210} className="mt-11 max-w-[620px]">
       <div aria-hidden className="h-px w-full bg-[var(--line)]" />
-      <p className="mt-5 text-[0.6875rem] font-bold uppercase tracking-[0.3em] text-[var(--accent-strong)]">
-        Currently
-      </p>
-      <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-0 sm:divide-x sm:divide-[var(--line)]">
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-0 sm:divide-x sm:divide-[var(--line)]">
         {currentRoles.map((r, i) => (
           <div key={r.company} className={i === 0 ? "sm:pr-8" : "sm:pl-8"}>
             <a
