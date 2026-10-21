@@ -39,17 +39,24 @@ export const chapters: Chapter[] = [
     label: "Pantera",
     company: "Pantera",
     role: "Research Engineer",
-    years: "2024 – Present",
+    years: "April 2024 – October 2026",
     intro:
-      "At Pantera, my role spans research, data engineering, and product. I take open-ended market questions through study design, data collection, analysis, validation, and delivery, building the pipelines, dashboards, datasets, or software each project requires. The work supports published research, investment decisions, and portfolio companies.",
+      "At Pantera, my role spanned research, data engineering, and product. I took open-ended market questions through study design, data collection, analysis, validation, and delivery, building the pipelines, dashboards, datasets, or software each project required. The work supported published research, investment decisions, and portfolio companies.",
     introShort:
-      "Research, data engineering, and product: open market questions taken all the way to published results.",
+      "Took open market questions through research, data engineering, and product development to published results.",
     projects: [
       {
         title: "Crypto on the Clock",
         descriptor: "An empirical study of short-term crypto market microstructure on Polymarket and Kalshi: event-time analysis of $7.8B in trade-level data, testing for settlement manipulation and classifying bot flow from trading behavior.",
         href: "https://panteraresearchlab.xyz/research/crypto-on-the-clock/",
         img: "/pantera-prl-crypto-on-the-clock-cover-alt-intraday.webp",
+        thumb: "from-[#EAD9CE] to-[#F2EFE8]",
+      },
+      {
+        title: "The State of Tokenization: September 2026 Report",
+        descriptor: "A follow-up market map tracking 671 tokenized assets and $332B in value, examining where tokenized markets are forming.",
+        href: "https://panteracapital.com/state-of-tokenization-september-2026-pdf/",
+        img: "/pantera-tokenization-september-2026-cover.webp",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {

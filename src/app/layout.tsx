@@ -14,7 +14,7 @@ const mono = JetBrains_Mono({
 
 const siteTitle = "Ally Zach · Research Engineer & Data Scientist";
 const siteDescription =
-  "Empirical research on financial markets, user networks, and AI systems. Research Engineer at Pantera Capital; technical cofounder of Syndicate.";
+  "Empirical research on financial markets, user networks, and AI systems. Technical cofounder of Syndicate, with research engineering experience at Pantera Capital.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://allyzach.com"),

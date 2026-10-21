@@ -22,7 +22,7 @@ const work: Entry[] = [
     org: "Pantera Capital",
     title: "Research Engineer",
     location: "Remote",
-    dates: "April 2024 – Present",
+    dates: "April 2024 – October 2026",
     href: "https://panteraresearchlab.xyz",
     bullets: [
       "Led research projects from study design, data collection, and experimentation through statistical analysis, validation, and publication.",

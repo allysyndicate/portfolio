@@ -9,7 +9,7 @@ const supporting =
 
 const heroSocials = [...socials, telegram] as const;
 
-// Past stages carry the reader down one continuous line before it forks.
+// Past stages carry the reader down one continuous line into current work.
 // Education opens the story as a compact 00 credential card.
 type Stage = {
   id: string;
@@ -58,13 +58,20 @@ const stages: Stage[] = [
     body: "Algorithmic trading was my entry point into data science, where I learned to test models against live market behavior. That path led me to Messari, where I used market and on-chain data to study user behavior and incentive design across crypto markets and networks.",
     proof: "50+ published research reports",
   },
+  {
+    id: "pantera",
+    num: "04",
+    label: "Research Engineering",
+    title: "Turned market questions into data products.",
+    body: "At Pantera, I worked across research, data engineering, and product. I designed studies, built datasets and pipelines, tested the analysis, and shipped reports, dashboards, open datasets, and internal tools.",
+    proof: "Pantera Capital · Apr 2024 – Oct 2026",
+  },
 ];
 
-// At NOW the line resolves into the two current roles.
-// Both cards share one structure: company -> role -> what I do -> scope of
-// ownership -> one closing phrase.
+// At NOW the line resolves into current work.
+// Each card follows company -> role -> headline -> scope of ownership.
 type Branch = {
-  id: "pantera" | "syndicate";
+  id: string;
   org: string;
   href: string;
   role: string;
@@ -73,15 +80,6 @@ type Branch = {
 };
 
 const branches: Branch[] = [
-  {
-    id: "pantera",
-    org: "Pantera Capital",
-    href: "https://panteracapital.com",
-    role: "Research Engineer",
-    headline:
-      "I turn market questions into published research and live data products.",
-    body: "At Pantera, I work across research, data engineering, and product. I design the study, build the datasets and pipelines, test the analysis, and ship the result as a report, dashboard, open dataset, or internal tool.",
-  },
   {
     id: "syndicate",
     org: "Syndicate",
@@ -143,15 +141,8 @@ function SocialLinks() {
   );
 }
 
-// Compact current-roles metadata row: a hairline rule, a CURRENTLY eyebrow, and
-// the two roles side by side with a subtle divider. Plain linked text, not
-// buttons or badges, aligned to the paragraph width.
+// Compact current-roles metadata row, aligned to the paragraph width.
 const currentRoles = [
-  {
-    company: "Pantera Capital",
-    role: "Research Engineer",
-    href: "https://panteracapital.com",
-  },
   {
     company: "Syndicate",
     role: "Technical Cofounder",
@@ -245,9 +236,8 @@ function BranchColumn({ branch }: { branch: Branch }) {
   );
 }
 
-// Staggered story card for a past stage. Prominence varies by `size` so the
-// three stages read as an uneven path (large → small offset → large), not a
-// uniform row. The accent number sits large and quiet behind the copy.
+// Staggered story card for a past stage. The accent number sits large and quiet
+// behind the copy.
 function StageCard({
   stage,
   size,
@@ -315,17 +305,17 @@ function StageCard({
   );
 }
 
-// The load path: one continuous vertical line draws through three past stages,
-// then branches at a NOW node into two parallel current tracks. Motion is
+// The load path: one continuous vertical line draws through past stages,
+// then reaches a NOW node for current work. Motion is
 // restrained and scroll-linked - the line fills as the section enters the
 // viewport and each node lights when the fill reaches it. Under
 // prefers-reduced-motion (and SSR/no-JS) everything renders filled and static,
 // so the structure reads identically without animation.
 function Timeline() {
   const railRef = useRef<HTMLDivElement>(null);
-  // The paired NOW box, so we can guard it against hiding while on screen.
+  // The NOW box, so we can guard it against hiding while on screen.
   const boxRef = useRef<HTMLDivElement>(null);
-  // One ref per node on the trunk: the three stages plus the NOW fork marker.
+  // One ref per node on the trunk: the past stages plus the NOW marker.
   const nodeRefs = useRef<(HTMLElement | null)[]>([]);
   const nodeCount = stages.length + 1;
   const nowIndex = stages.length;
@@ -335,7 +325,7 @@ function Timeline() {
   const [active, setActive] = useState<boolean[]>(() =>
     Array(nodeCount).fill(true),
   );
-  // Pinned true when the paired box is already in the viewport on mount
+  // Pinned true when the current-work box is already in the viewport on mount
   // (scroll restoration, back-navigation, deep links) - mirrors Reveal.tsx's
   // above-the-fold guard so on-screen content never fades out post-hydration.
   const [nowPinned, setNowPinned] = useState(false);
@@ -361,7 +351,7 @@ function Timeline() {
     const rail = railRef.current;
     if (!rail) return;
 
-    // Already in the viewport on mount: pin the paired box visible so it
+    // Already in the viewport on mount: pin the current-work box visible so it
     // never hides while on screen (same rect check as Reveal.tsx).
     const box = boxRef.current;
     if (box) {
@@ -382,7 +372,7 @@ function Timeline() {
         .slice(0, nodeCount)
         .map((el) => (el ? el.getBoundingClientRect().top <= anchor : false));
       setActive(next);
-      // Once revealed, the paired box latches visible (reveal-once, matching
+      // Once revealed, the current-work box latches visible (reveal-once, matching
       // Reveal.tsx) - only the decorative spine nodes stay scroll-linked.
       if (next[nowIndex]) setNowPinned(true);
     };
@@ -400,7 +390,7 @@ function Timeline() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [animate, nodeCount]);
+  }, [animate, nodeCount, nowIndex]);
 
   const nowActive = nowPinned || active[nowIndex];
 
@@ -418,10 +408,8 @@ function Timeline() {
         and AI product development.
       </p>
 
-      {/* Staggered path: three story cards of uneven prominence, alternating
-          left/right of a central spine that draws as you scroll. The rhythm
-          (large → small offset → large) reads as one continuous transformation
-          rather than a row of equal tiles. */}
+      {/* Past stages alternate left/right of a central spine that draws as
+          the reader scrolls. */}
       <div className="relative mt-10 lg:mt-14">
         {/* The spine (unfilled track) + accent draw overlay. Left edge on
             mobile, centered on desktop. */}
@@ -440,7 +428,7 @@ function Timeline() {
         </div>
 
         {stages.map((s, i) => {
-          const isLeft = i % 2 === 0; // 00 left, 01 right, 02 left, 03 right
+          const isLeft = i % 2 === 0;
           return (
             <div key={s.id} className="relative py-5 lg:py-7">
               {/* Spine node for this stage. */}
@@ -479,7 +467,7 @@ function Timeline() {
           );
         })}
 
-        {/* NOW: the fork marker where the spine resolves into the paired box. */}
+        {/* NOW: the marker where the spine resolves into current work. */}
         <div className="relative pt-8">
           <span
             ref={(el) => {
@@ -500,8 +488,7 @@ function Timeline() {
         </div>
       </div>
 
-      {/* The fork resolves into ONE paired box holding both current tracks
-          side by side - a shared frame, divided down the middle. */}
+      {/* Current work follows the completed stages in a shared frame. */}
       <div
         ref={boxRef}
         className={`mt-6 overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--paper-elev)] shadow-[var(--shadow-card)] transition-all duration-700 ease-[var(--ease-out)] lg:mt-8 ${
@@ -509,7 +496,7 @@ function Timeline() {
         }`}
         style={{ transitionDelay: animate && nowActive ? "120ms" : "0ms" }}
       >
-        <div className="grid divide-y divide-[var(--line)] lg:grid-cols-2 lg:divide-x lg:divide-y-0">
+        <div className="grid">
           {branches.map((b) => (
             <BranchColumn key={b.id} branch={b} />
           ))}
