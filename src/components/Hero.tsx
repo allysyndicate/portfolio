@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Reveal from "./Reveal";
 import { socials, telegram } from "./socials";
+import { resumeHref } from "./resume-data";
 
 const supporting =
   "I’m a research engineer with experience in data engineering, statistical modeling, full-stack software development, and multi-agent AI systems. At Pantera Capital, I built onchain data pipelines, researched tokenization and prediction markets, and developed dashboards and automation tools for the investment team. Previously at Messari, I analyzed crypto networks, protocol economics, and user behavior. I’m also the technical cofounder and sole engineer of Syndicate, a local-first desktop app for coordinating teams of AI agents on research, coding, and other multi-step projects.";
@@ -185,7 +186,7 @@ function Timeline() {
           </h2>
         </div>
         <a
-          href="/resume"
+          href={resumeHref}
           className="hidden shrink-0 pb-1 text-xs font-medium text-[var(--muted)] transition-colors hover:text-[var(--accent-strong)] xl:inline"
         >
           Full background →
@@ -262,7 +263,7 @@ function Timeline() {
         </ol>
       </div>
       <div className="mt-4 flex items-center justify-between gap-4 border-t border-[var(--line)] pt-4 xl:hidden">
-        <a href="/resume" className="text-xs font-medium text-[var(--muted)] hover:text-[var(--accent-strong)]">
+        <a href={resumeHref} className="text-xs font-medium text-[var(--muted)] hover:text-[var(--accent-strong)]">
           Full background →
         </a>
         <div className="flex gap-2">
@@ -339,7 +340,7 @@ export default function Hero() {
             </a>
             <span aria-hidden className="text-[var(--line-strong)]">·</span>
             <a
-              href="/resume"
+              href={resumeHref}
               className="rounded-sm text-[var(--ink)] hover:text-[var(--accent-strong)] hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
             >
               Résumé

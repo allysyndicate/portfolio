@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { sections, observedSectionIds } from "./nav-data";
+import { resumeHref } from "./resume-data";
 
 type NavItem = (typeof sections)[number];
 
@@ -11,7 +12,7 @@ function isItemActive(item: NavItem, active: string) {
   return item.id === active;
 }
 
-export default function NavBar() {
+export default function NavBar({ isResumePage = false }: { isResumePage?: boolean }) {
   const [active, setActive] = useState<string>(sections[0].id);
   const [scrolled, setScrolled] = useState(false);
 
@@ -33,6 +34,7 @@ export default function NavBar() {
   }, []);
 
   useEffect(() => {
+    if (isResumePage) return;
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -47,7 +49,7 @@ export default function NavBar() {
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, []);
+  }, [isResumePage]);
 
   return (
     <header
@@ -59,7 +61,7 @@ export default function NavBar() {
     >
       <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-3 sm:px-6 md:px-10 md:py-4">
         <a
-          href="#about"
+          href={isResumePage ? "/#about" : "#about"}
           className="text-base font-bold tracking-tight text-[var(--ink)] sm:text-lg"
         >
           Ally Zach<span className="text-[var(--accent)]">.</span>
@@ -67,11 +69,11 @@ export default function NavBar() {
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Sections">
           {sections.map((s) => {
-            const isActive = isItemActive(s, active);
+            const isActive = !isResumePage && isItemActive(s, active);
             return (
               <a
                 key={s.id}
-                href={`#${s.id}`}
+                href={`${isResumePage ? "/" : ""}#${s.id}`}
                 className={`relative text-sm font-medium transition-colors ${
                   isActive
                     ? "text-[var(--accent-strong)]"
@@ -88,11 +90,10 @@ export default function NavBar() {
               </a>
             );
           })}
-          {/* Resume is a filled button (not a plain tab) to signal it opens a
-              separate page. Links the HTML page, not the PDF, so no address is
-              exposed. #B25232 = terracotta midpoint that keeps white text at 4.5:1. */}
+          {/* Resume opens a page inside the portfolio. */}
           <Link
-            href="/resume"
+            href={resumeHref}
+            aria-current={isResumePage ? "page" : undefined}
             className="group inline-flex items-center gap-1.5 rounded-md bg-[#B25232] px-4 py-2 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
           >
             Resume
@@ -108,7 +109,8 @@ export default function NavBar() {
         {/* Phones skip the section menu entirely: the page is one scroll, so
             the only nav that earns header space is the Resume button. */}
         <Link
-          href="/resume"
+          href={resumeHref}
+          aria-current={isResumePage ? "page" : undefined}
           className="group inline-flex items-center gap-1.5 rounded-md bg-[#B25232] px-4 py-2 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)] md:hidden"
         >
           Resume
