@@ -6,7 +6,7 @@ import { socials, telegram } from "./socials";
 import { resumeHref } from "./resume-data";
 
 const supporting =
-  "I’m a research engineer with experience in data engineering, statistical modeling, full-stack software development, and multi-agent AI systems. At Pantera Capital, I built onchain data pipelines, researched tokenization and prediction markets, and developed dashboards and automation tools for the investment team. Previously at Messari, I analyzed crypto networks, protocol economics, and user behavior. I’m also the technical cofounder and sole engineer of Syndicate, a local-first desktop app for coordinating teams of AI agents on research, coding, and other multi-step projects.";
+  "I started out designing high-rises. Now I build data systems, statistical models, and AI software. At Pantera Capital and Messari, I combined research and engineering to investigate financial markets, understand user behavior, and build tools that automate complex workflows.";
 
 const heroSocials = [...socials, telegram] as const;
 
@@ -205,17 +205,11 @@ function Timeline() {
           {stages.map((stage, i) => (
             <li
               key={stage.id}
-              className={`relative flex min-w-0 snap-start flex-col rounded-2xl px-4 py-4 xl:px-5 ${
-                stage.id === "syndicate" ? "bg-[var(--accent-tint)]" : ""
-              }`}
+              className="relative flex min-w-0 snap-start flex-col rounded-2xl px-4 py-4 xl:px-5"
             >
               <span
                 aria-hidden
-                className={`text-[2.5rem] font-light leading-none tracking-[-0.06em] ${
-                  stage.id === "syndicate"
-                    ? "text-[var(--accent-strong)]"
-                    : "text-[var(--accent-strong)]/30"
-                }`}
+                className="text-[2.5rem] font-light leading-none tracking-[-0.06em] text-[var(--accent-strong)]/30"
               >
                 {stage.num}
               </span>
@@ -224,11 +218,7 @@ function Timeline() {
                   <span className="absolute top-[5px] -right-[2.375rem] left-1.5 h-px bg-[var(--accent)]/25 xl:-right-[2.875rem]" />
                 )}
                 <span
-                  className={`relative h-3 w-3 rounded-full ${
-                    stage.id === "syndicate"
-                      ? "bg-[var(--accent-strong)] ring-4 ring-[var(--accent)]/15"
-                      : "border-2 border-[var(--paper-tint)] bg-[var(--accent)]"
-                  }`}
+                  className="relative h-3 w-3 rounded-full border-2 border-[var(--paper-tint)] bg-[var(--accent)]"
                 />
               </div>
               <div className="flex min-h-[12rem] flex-1 flex-col">
@@ -248,7 +238,7 @@ function Timeline() {
                         href={stage.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-medium text-[var(--accent-strong)] hover:underline hover:underline-offset-4"
+                        className="hover:text-[var(--accent-strong)] hover:underline hover:underline-offset-4"
                       >
                         {stage.proof} <span aria-hidden>↗</span>
                       </a>
