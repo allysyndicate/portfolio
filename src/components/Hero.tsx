@@ -288,7 +288,7 @@ export default function Hero() {
     <section
       id="about"
       aria-label="Introduction"
-      className="relative scroll-mt-24 pt-24 pb-10 sm:pt-28 sm:pb-12 md:pb-14"
+      className="relative scroll-mt-24 pt-24 pb-10 sm:pt-28 sm:pb-12 md:pb-14 lg:pb-0"
     >
       <div className="grid gap-8 lg:grid-cols-[1.4fr_0.6fr] lg:items-center lg:gap-x-14">
         <div className="max-w-[680px]">
@@ -349,9 +349,9 @@ export default function Hero() {
       {/* A compact horizontal career path keeps the work within easy reach. */}
       <div
         id="how-i-got-here"
-        className="band-tint relative mx-[calc(50%-50vw)] mt-12 scroll-mt-24 md:mt-16"
+        className="band-tint relative mx-[calc(50%-50vw)] mt-12 scroll-mt-24 md:mt-16 lg:mt-12"
       >
-        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 md:px-10 lg:py-10">
+        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 md:px-10">
           <Timeline />
         </div>
       </div>

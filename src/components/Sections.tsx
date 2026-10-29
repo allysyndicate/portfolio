@@ -139,7 +139,7 @@ function ChapterMeta({ c }: { c: Chapter }) {
 function ChapterHeader({ c, variant }: { c: Chapter; variant: ChapterVariant }) {
   const first = variant === "pantera";
   return (
-    <Reveal className="mb-12">
+    <Reveal className="mb-12 lg:mb-8">
       <ChapterEyebrowHeading c={c} large={first} />
       <ChapterMeta c={c} />
       {/* Full intro from sm up; phones get the one-line version. */}
@@ -176,7 +176,7 @@ export function Chapters() {
               tinted ? "band-tint" : ""
             }`}
           >
-            <div className="mx-auto max-w-screen-xl px-4 py-14 sm:px-6 sm:py-24 md:px-10 lg:py-[120px]">
+            <div className="mx-auto max-w-screen-xl px-4 py-14 sm:px-6 sm:py-24 md:px-10 lg:py-14">
               {i === 0 && (
                 <Reveal
                   as="h2"
@@ -308,10 +308,10 @@ export function SideProjects() {
          chapters, feature card in the shared card language inside. */
       className="band-tint relative mx-[calc(50%-50vw)] scroll-mt-24"
     >
-      <div className="mx-auto max-w-screen-xl px-4 py-14 sm:px-6 sm:py-24 md:px-10 lg:py-[120px]">
+      <div className="mx-auto max-w-screen-xl px-4 py-14 sm:px-6 sm:py-24 md:px-10 lg:py-14">
         <Reveal
           as="h2"
-          className="mb-8 text-center text-2xl font-semibold tracking-[-0.02em] text-[var(--ink)] sm:mb-10 sm:text-4xl"
+          className="mb-8 text-center text-2xl font-semibold tracking-[-0.02em] text-[var(--ink)] sm:mb-10 sm:text-4xl lg:mb-8"
         >
           What I&apos;m Building
         </Reveal>
