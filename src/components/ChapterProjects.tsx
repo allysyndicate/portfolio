@@ -132,22 +132,17 @@ function ExpandToggle({
   );
 }
 
-/** Static column placements for the three cards in the row beneath the feature. */
-const UNDER_COL = ["lg:col-start-1", "lg:col-start-2", "lg:col-start-3"];
-
 /**
  * Pantera layout: a large featured card on the right with two small cards stacked
- * to its left (mirroring the MKA feature block), then three small cards in a row
- * beneath, and a "View all Pantera work" expander revealing the rest in a uniform
- * three-column grid. Uses the same framed card as Messari and MKA.
+ * to its left, followed by four previews and an expander for the remaining work.
  */
 function PanteraFeatureGrid({ projects }: { projects: ProjectCard[] }) {
   const [expanded, setExpanded] = useState(false);
 
   const featured = projects[0];
   const left = projects.slice(1, 3); // two stacked to the left of the feature
-  const under = projects.slice(3, 6); // three in a row beneath
-  const rest = projects.slice(6);
+  const previews = projects.slice(3, 7);
+  const rest = projects.slice(7);
   const hasMore = rest.length > 0;
   const { label, justify } = VIEW_ALL.pantera;
 
@@ -170,14 +165,13 @@ function PanteraFeatureGrid({ projects }: { projects: ProjectCard[] }) {
             <ProjectCardLink p={p} />
           </Reveal>
         ))}
-        {/* Three small cards in a row beneath everything (sm+ only until
-            expanded). */}
-        {under.map((p, i) => (
+      </div>
+
+      <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {previews.map((p, i) => (
           <Reveal
             key={p.title}
-            className={`min-w-0 lg:row-start-3 ${UNDER_COL[i]} ${
-              expanded ? "" : "hidden sm:block"
-            }`}
+            className="min-w-0"
             delay={cardDelay(i + 3)}
           >
             <ProjectCardLink p={p} />

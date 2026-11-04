@@ -70,13 +70,6 @@ export const chapters: Chapter[] = [
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
-        title: "The State of Tokenization: Q1 2026 Report",
-        descriptor: "Built a classification framework separating wrapped claims from natively on-chain assets, applied across 593 tokenized assets ($320.6B) to show where tokenization actually creates value.",
-        href: "https://panteracapital.com/the-state-of-tokenization/",
-        img: "/pantera-tokenization-report-cover.webp",
-        thumb: "from-[#EAD9CE] to-[#F2EFE8]",
-      },
-      {
         title: "Speculative Swells and the Memecoin Aftermath",
         descriptor: "Treated a memecoin launch as a natural experiment, estimating supply-shock effects with regressions on five months of hourly Base on-chain data; published in the Stanford Blockchain Review.",
         href: "https://review.stanfordblockchain.xyz/p/49-speculative-swells-and-the-memecoin",
@@ -95,6 +88,13 @@ export const chapters: Chapter[] = [
         descriptor: "Fit a quasi-hyperbolic discounting model to airdrop claim timing, estimating users' present bias from survey data and validating against Drift's delayed-claim launch.",
         href: "https://pantera-research-lab.vercel.app/",
         img: "/pantera-prl-airdrops-cover.webp",
+        thumb: "from-[#EAD9CE] to-[#F2EFE8]",
+      },
+      {
+        title: "The State of Tokenization: Q1 2026 Report",
+        descriptor: "Built a classification framework separating wrapped claims from natively on-chain assets, applied across 593 tokenized assets ($320.6B) to show where tokenization actually creates value.",
+        href: "https://panteracapital.com/the-state-of-tokenization/",
+        img: "/pantera-tokenization-report-cover.webp",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
