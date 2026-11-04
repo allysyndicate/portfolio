@@ -129,6 +129,63 @@ function TimelineArrow({ direction }: { direction: "previous" | "next" }) {
   );
 }
 
+function StageProof({ stage }: { stage: Stage }) {
+  return stage.href ? (
+    <a
+      href={stage.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:text-[var(--accent-strong)] hover:underline hover:underline-offset-4"
+    >
+      {stage.proof} <span aria-hidden>↗</span>
+    </a>
+  ) : (
+    stage.proof
+  );
+}
+
+function MobileTimeline() {
+  return (
+    <ol aria-label="Career timeline" className="mt-5 sm:hidden">
+      {stages.map((stage, i) => (
+        <li key={stage.id} className="relative pl-9">
+          {i < stages.length - 1 && (
+            <span aria-hidden className="absolute top-7 -bottom-7 left-[11px] w-px bg-[var(--accent)]/25" />
+          )}
+          <span
+            aria-hidden
+            className="absolute top-4 left-0 grid size-6 place-items-center rounded-full border border-[var(--line-strong)] bg-[var(--paper-subtle)] text-[0.625rem] font-semibold tabular-nums text-[var(--accent-strong)]"
+          >
+            {stage.num}
+          </span>
+          <details name="career-milestones" className="group">
+            <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-3 rounded-md py-2.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] [&::-webkit-details-marker]:hidden">
+              <span className="min-w-0">
+                <span className="block text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-[var(--muted)]">
+                  {stage.label}
+                </span>
+                <span className="mt-0.5 block text-sm font-bold leading-snug text-[var(--ink)]">
+                  {stage.title}
+                </span>
+              </span>
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden className="size-5 shrink-0 text-[var(--accent-strong)]">
+                <path d="M5 10h10" />
+                <path d="M10 5v10" className="group-open:hidden" />
+              </svg>
+            </summary>
+            <div className="space-y-2 pr-6 pb-4 text-sm leading-relaxed text-[var(--body)]">
+              <p>{stage.body}</p>
+              <p className="text-xs font-semibold text-[var(--accent-strong)]">
+                <StageProof stage={stage} />
+              </p>
+            </div>
+          </details>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 function Timeline() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollBack, setCanScrollBack] = useState(false);
@@ -169,7 +226,7 @@ function Timeline() {
   };
 
   const controlClass =
-    "inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--line-strong)] text-[var(--body)] transition-colors hover:border-[var(--accent)] hover:bg-[var(--paper-elev)] hover:text-[var(--accent-strong)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] disabled:cursor-default disabled:opacity-25 sm:h-9 sm:w-9";
+    "inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line-strong)] text-[var(--body)] transition-colors hover:border-[var(--accent)] hover:bg-[var(--paper-elev)] hover:text-[var(--accent-strong)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] disabled:cursor-default disabled:opacity-25";
 
   return (
     <div>
@@ -190,27 +247,29 @@ function Timeline() {
         </a>
       </div>
 
+      <MobileTimeline />
+
       <div
         ref={scrollRef}
         id="career-timeline"
         role="region"
         aria-label="Career timeline"
         tabIndex={0}
-        className="mt-6 snap-x snap-proximity overflow-x-auto overscroll-x-contain rounded-2xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
+        className="mt-6 hidden snap-x snap-proximity overflow-x-auto overscroll-x-contain rounded-2xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] sm:block"
       >
-        <ol className="grid grid-flow-col auto-cols-[85%] sm:auto-cols-[minmax(16rem,1fr)] xl:grid-flow-row xl:grid-cols-5">
+        <ol className="grid grid-flow-col auto-cols-[minmax(16rem,1fr)] xl:grid-flow-row xl:grid-cols-5">
           {stages.map((stage, i) => (
             <li
               key={stage.id}
-              className="relative flex min-w-0 snap-start flex-col rounded-2xl px-4 py-3 sm:py-4 xl:px-5"
+              className="relative flex min-w-0 snap-start flex-col rounded-2xl px-4 py-4 xl:px-5"
             >
               <span
                 aria-hidden
-                className="text-[2rem] font-light leading-none tracking-[-0.06em] text-[var(--accent-strong)]/30 sm:text-[2.5rem]"
+                className="text-[2.5rem] font-light leading-none tracking-[-0.06em] text-[var(--accent-strong)]/30"
               >
                 {stage.num}
               </span>
-              <div aria-hidden className="relative mt-3 mb-3 flex h-3 items-center sm:mt-4 sm:mb-5">
+              <div aria-hidden className="relative mt-4 mb-5 flex h-3 items-center">
                 {i < stages.length - 1 && (
                   <span className="absolute top-[5px] -right-[2.375rem] left-1.5 h-px bg-[var(--accent)]/25 xl:-right-[2.875rem]" />
                 )}
@@ -229,19 +288,8 @@ function Timeline() {
                   {stage.body}
                 </p>
                 <div className="mt-auto pt-5">
-                  <p className="min-h-12 border-t border-[var(--line)] pt-3 text-xs leading-[1.6] text-[var(--muted)] sm:text-[0.6875rem]">
-                    {stage.href ? (
-                      <a
-                        href={stage.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-[var(--accent-strong)] hover:underline hover:underline-offset-4"
-                      >
-                        {stage.proof} <span aria-hidden>↗</span>
-                      </a>
-                    ) : (
-                      stage.proof
-                    )}
+                  <p className="min-h-12 border-t border-[var(--line)] pt-3 text-[0.6875rem] leading-[1.6] text-[var(--muted)]">
+                    <StageProof stage={stage} />
                   </p>
                 </div>
               </div>
@@ -249,11 +297,11 @@ function Timeline() {
           ))}
         </ol>
       </div>
-      <div className="mt-4 flex items-center justify-between gap-4 border-t border-[var(--line)] pt-4 xl:hidden">
+      <div className="mt-2 flex items-center justify-between gap-4 border-t border-[var(--line)] pt-2 sm:mt-4 sm:pt-4 xl:hidden">
         <a href={resumeHref} className="inline-flex min-h-11 items-center text-xs font-medium text-[var(--muted)] hover:text-[var(--accent-strong)] sm:min-h-0">
           Full background →
         </a>
-        <div className="flex gap-2">
+        <div className="hidden gap-2 sm:flex">
           <button
             type="button"
             aria-label="Previous career milestone"
@@ -352,7 +400,7 @@ export default function Hero() {
         </Reveal>
       </div>
 
-      {/* A compact horizontal career path keeps the work within easy reach. */}
+      {/* A compact career path keeps the work within easy reach. */}
       <div
         id="how-i-got-here"
         className="band-tint relative mx-[calc(50%-50vw)] mt-8 scroll-mt-24 sm:mt-12 md:mt-16 lg:mt-12"
