@@ -46,6 +46,20 @@ export const chapters: Chapter[] = [
       "Took open market questions through research, data engineering, and product development to published results.",
     projects: [
       {
+        title: "Tokenization Data Portal",
+        descriptor: "Co-developed the Tokenization Progress Index and built a public analytics portal to compare financial products across 11 asset classes. Reconciled fragmented blockchain and issuer data to distinguish headline growth from changes in how assets were issued, transferred, and used.",
+        href: "https://tokenization.panteraresearchlab.xyz/",
+        img: "/pantera-tokenization-portal.webp",
+        thumb: "from-[#EAD9CE] to-[#F2EFE8]",
+      },
+      {
+        title: "Crypto's Reverse Wage Gap",
+        descriptor: "Tested a compensation-gap hypothesis using 502 survey responses, statistical power analysis, hypothesis testing, and regression controls to distinguish pay differences from experience effects.",
+        href: "https://www.coindesk.com/opinion/2024/07/30/women-in-crypto-earn-more-than-men",
+        img: "/pantera-prl-reverse-wage-gap-cover.webp",
+        thumb: "from-[#EAD9CE] to-[#F2EFE8]",
+      },
+      {
         title: "Crypto on the Clock",
         descriptor: "An empirical study of short-term crypto market microstructure on Polymarket and Kalshi: event-time analysis of $7.8B in trade-level data, testing for settlement manipulation and classifying bot flow from trading behavior.",
         href: "https://panteraresearchlab.xyz/research/crypto-on-the-clock/",
@@ -88,13 +102,6 @@ export const chapters: Chapter[] = [
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
-        title: "Tokenization Data Portal",
-        descriptor: "Open-source ingestion that reconciles on-chain supply with off-chain issuer disclosures, keeping a live market map of 500+ tokenized assets across nearly 300 platforms.",
-        href: "https://tokenization.panteraresearchlab.xyz/",
-        img: "/pantera-tokenization-portal.webp",
-        thumb: "from-[#EAD9CE] to-[#F2EFE8]",
-      },
-      {
         title: "Pantera DATboard",
         descriptor: "Reconstructs digital-asset treasury positions from raw SEC 10-Q/8-K filings via regex and semantic parsing, deriving holdings and valuation metrics for 30 BTC/ETH/SOL companies.",
         href: "https://datboard.panteraresearchlab.xyz/",
@@ -115,13 +122,6 @@ export const chapters: Chapter[] = [
         img: "/pantera-prl-ai-agents-cover.webp",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
-      {
-        title: "Crypto's Reverse Wage Gap",
-        descriptor: "Designed and fielded a 502-respondent compensation survey, normalizing pay across experience, geography, sector, and function to isolate the gender effect in crypto salaries.",
-        href: "https://pantera-research-lab.vercel.app/",
-        img: "/pantera-prl-reverse-wage-gap-cover.webp",
-        thumb: "from-[#EAD9CE] to-[#F2EFE8]",
-      },
     ],
   },
   {
@@ -132,27 +132,27 @@ export const chapters: Chapter[] = [
     role: "Enterprise Research Analyst",
     years: "2022 – 2024",
     intro:
-      "Over two years at Messari I wrote 50+ long-form reports on L1s, L2s, NFTs, DeFi, and consumer apps, specializing in user analytics at the network and application level: questions like whether a chain's growth is sybils, airdrop farmers, or real users. Behind the writing, I built the SQL and Python dashboards and ingestion tools the research team ran on, which is where my research started turning into software.",
+      "At Messari, I investigated how emerging platforms attracted users, what kept them engaged, and how their activity translated into revenue. I used SQL, Python, cohort analysis, and network methods to distinguish sustained adoption from incentive-driven participation. Across more than 50 research reports, I examined user behavior, business models, and competitive positioning, while building reusable pipelines and dashboards to support the analysis.",
     introShort:
-      "50+ research reports on crypto user behavior, plus the SQL and Python tooling behind them.",
+      "Used SQL, Python, and cohort and network analysis to study acquisition, retention, and revenue across 50+ research reports.",
     projects: [
       {
         title: "User Behavior and Engagement on Lens",
-        descriptor: "Built network graphs from Lens's on-chain Polygon activity to trace cross-app user migration, engagement, and retention across profiles.",
+        descriptor: "Built network graphs from Polygon activity to see how Lens users carried their profiles across apps. More than 70% of users in the study were active on multiple apps.",
         href: "https://messari.io/report/user-behavior-and-engagement-on-lens",
         img: "/messari-user-behavior-and-engagement-on-lens.webp",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
         title: "Sybil Account Detection in L2 Ecosystems",
-        descriptor: "Applied Sybil-detection heuristics to on-chain active-address data across major L2s (Base, zkSync, Polygon zkEVM), filtering airdrop farmers to isolate organic adoption.",
+        descriptor: "Applied address-level heuristics across L2 networks to distinguish suspected airdrop farming from organic usage. The analysis flagged suspected Sybil activity on Base even as friend.tech helped drive adoption.",
         href: "https://messari.io/report/sybil-account-detection-in-l2-ecosystems",
         img: "/messari-sybil-account-detection-in-l2-ecosystems.webp",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
       {
         title: "Decoding friend.tech from Metrics to Monetization",
-        descriptor: "Reverse-engineered friend.tech's undisclosed points system with a machine-learning model fit to on-chain Base activity across 300K+ users.",
+        descriptor: "Modeled friend.tech’s undisclosed points allocation from onchain user activity to examine how its incentives rewarded engagement. The analysis suggested the points design penalized attempts to game rewards.",
         href: "https://messari.io/report/decoding-friend-tech-from-metrics-to-monetization",
         img: "/messari-decoding-friend-tech-from-metrics-to-monetization.webp",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
@@ -196,9 +196,9 @@ export const chapters: Chapter[] = [
     location: "Seattle, WA",
     years: "2018 – 2022",
     intro:
-      "At MKA, I designed and analyzed more than 7 million square feet of high-rise buildings across the U.S. and Southeast Asia, with a focus on seismic and wind performance. Alongside project work, I built office-wide tools in Excel, VBA, and Python to automate recurring design and analysis workflows. That work became my bridge from structural engineering into software and data.",
+      "At MKA, I built nonlinear 3D models for performance-based structural design, analyzing simulation results to evaluate building behavior and size structural members. My work covered more than 7 million square feet of high-rise buildings across the U.S. and Southeast Asia. I also developed firm-wide Python and Excel VBA tools to postprocess model outputs and automate recurring design calculations.",
     introShort:
-      "7M+ sq ft of high-rise design in seismic regions, and the firm-wide tools that automated it.",
+      "Modeled high-rises covering 7M+ square feet and built firm-wide Python and Excel VBA tools to analyze simulations and automate design calculations.",
     projects: [
       {
         title: "NuStar Resort & Casino",

@@ -91,7 +91,7 @@ function ChapterEyebrowHeading({ c, large }: { c: Chapter; large?: boolean }) {
             rel="noopener noreferrer"
             aria-label={link.label}
             title={link.label}
-            className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--line-strong)] bg-[var(--paper-elev)] text-[var(--body)] shadow-[var(--shadow-soft)] transition-all duration-200 ease-[var(--ease-out)] hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--line-strong)] bg-[var(--paper-elev)] text-[var(--body)] shadow-[var(--shadow-soft)] transition-all duration-200 ease-[var(--ease-out)] hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] hover:text-[var(--accent)] sm:h-8 sm:w-8"
           >
             <svg
               viewBox="0 0 24 24"
@@ -139,7 +139,7 @@ function ChapterMeta({ c }: { c: Chapter }) {
 function ChapterHeader({ c, variant }: { c: Chapter; variant: ChapterVariant }) {
   const first = variant === "pantera";
   return (
-    <Reveal className="mb-12 lg:mb-8">
+    <Reveal className="mb-8 sm:mb-12 lg:mb-8">
       <ChapterEyebrowHeading c={c} large={first} />
       <ChapterMeta c={c} />
       {/* Full intro from sm up; phones get the one-line version. */}
@@ -176,7 +176,7 @@ export function Chapters() {
               tinted ? "band-tint" : ""
             }`}
           >
-            <div className="mx-auto max-w-screen-xl px-4 py-14 sm:px-6 sm:py-24 md:px-10 lg:py-14">
+            <div className="mx-auto max-w-screen-xl px-4 py-10 sm:px-6 sm:py-16 md:px-10 lg:py-14">
               {i === 0 && (
                 <Reveal
                   as="h2"
@@ -308,17 +308,17 @@ export function SideProjects() {
          chapters, feature card in the shared card language inside. */
       className="band-tint relative mx-[calc(50%-50vw)] scroll-mt-24"
     >
-      <div className="mx-auto max-w-screen-xl px-4 py-14 sm:px-6 sm:py-24 md:px-10 lg:py-14">
+      <div className="mx-auto max-w-screen-xl px-4 py-10 sm:px-6 sm:py-16 md:px-10 lg:py-14">
         <Reveal
           as="h2"
-          className="mb-8 text-center text-2xl font-semibold tracking-[-0.02em] text-[var(--ink)] sm:mb-10 sm:text-4xl lg:mb-8"
+          className="mb-6 text-center text-2xl font-semibold tracking-[-0.02em] text-[var(--ink)] sm:mb-10 sm:text-4xl lg:mb-8"
         >
           What I&apos;m Building
         </Reveal>
         <Reveal className="overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--paper-elev)] shadow-[var(--shadow-feature)]">
           {/* Feature split: pitch column left, product visual right. */}
           <div className="grid md:grid-cols-[1.05fr_0.95fr]">
-            <div className="flex flex-col p-6 sm:p-8 lg:p-12">
+            <div className="flex flex-col p-5 sm:p-8 lg:p-12">
               <h3 className="flex justify-start leading-none">
                 <span className="sr-only">Syndicate</span>
                 <span aria-hidden className="block w-full max-w-[17rem]">
@@ -336,14 +336,14 @@ export function SideProjects() {
                 Technical Cofounder
               </p>
 
-              <p className="mt-6 max-w-[36rem] text-sm leading-relaxed text-[var(--body)] sm:text-base">
+              <p className="mt-5 max-w-[36rem] text-sm leading-relaxed text-[var(--body)] sm:mt-6 sm:text-base">
                 I&apos;m the technical cofounder and sole engineer behind
                 Syndicate. I built it to solve a problem I faced firsthand:
                 coordinating multiple AI agents across complex work without
                 losing visibility or control.
               </p>
 
-              <ul className="mt-7 space-y-5">
+              <ul className="mt-6 space-y-4 sm:mt-7 sm:space-y-5">
                 {syndicateCapabilities.map((cap) => (
                   <li key={cap.lead} className="flex gap-3.5">
                     <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[var(--accent)]/25 bg-[var(--accent-tint)] text-[var(--accent)]">
@@ -362,14 +362,14 @@ export function SideProjects() {
                 ))}
               </ul>
 
-              <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 md:mt-auto md:pt-8">
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 sm:mt-8 md:mt-auto md:pt-8">
                 <a
                   href="https://usesyndicate.org"
                   target="_blank"
                   rel="noopener noreferrer"
                   /* #B25232 = terracotta midpoint between --accent and --accent-strong;
                      white text passes 4.5:1 at rest (plain --accent falls just short). */
-                  className="group inline-flex shrink-0 items-center justify-center rounded-md bg-[#B25232] px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
+                  className="group inline-flex min-h-11 shrink-0 items-center justify-center rounded-md bg-[#B25232] px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)] sm:min-h-0"
                 >
                   Visit usesyndicate.org
                   <span className="ml-1 transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-1">
@@ -381,7 +381,7 @@ export function SideProjects() {
 
             {/* Product visual: app screenshot in a window frame on a soft
                 accent wash, so the flagship build reads as a product shot. */}
-            <div className="relative flex items-center justify-center overflow-hidden border-t border-[var(--line)] p-6 sm:p-8 md:border-l md:border-t-0 lg:p-10">
+            <div className="relative flex items-center justify-center overflow-hidden border-t border-[var(--line)] p-4 sm:p-8 md:border-l md:border-t-0 lg:p-10">
               <div
                 aria-hidden
                 className="absolute inset-0 bg-gradient-to-br from-[var(--accent-tint)] via-transparent to-[var(--accent-tint)]"
@@ -397,11 +397,11 @@ export function SideProjects() {
             </div>
           </div>
 
-          <details className="group border-t border-[var(--line)] px-6 py-5 sm:px-8 lg:px-12">
+          <details className="group border-t border-[var(--line)] px-5 py-4 sm:px-8 sm:py-5 lg:px-12">
             {/* Secondary action styled to pair with the solid "Visit
                 usesyndicate.org" CTA above: same rounded-md geometry and
                 padding, outlined in the accent instead of filled. */}
-            <summary className="mx-auto flex w-fit cursor-pointer select-none list-none items-center gap-1.5 rounded-md border border-[var(--accent)]/40 px-5 py-2.5 text-sm font-semibold text-[var(--accent-strong)] transition-colors duration-150 ease-[var(--ease-out)] hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] [&::-webkit-details-marker]:hidden">
+            <summary className="mx-auto flex min-h-11 w-fit cursor-pointer select-none list-none items-center gap-1.5 rounded-md border border-[var(--accent)]/40 px-5 py-2.5 text-sm font-semibold text-[var(--accent-strong)] transition-colors duration-150 ease-[var(--ease-out)] hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] sm:min-h-0 [&::-webkit-details-marker]:hidden">
               Technical details
               <span
                 className="transition-transform duration-200 ease-[var(--ease-out)] group-open:rotate-90"

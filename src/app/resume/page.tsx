@@ -19,7 +19,7 @@ export default function ResumePage() {
       <main className="relative z-10 mx-auto max-w-screen-xl px-4 pt-24 pb-12 sm:px-6 sm:pt-28 md:px-10">
         <Link
           href="/#about"
-          className="inline-flex items-center gap-2 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--accent-strong)]"
+          className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--accent-strong)] sm:min-h-0"
         >
           <span aria-hidden>←</span> Back to portfolio
         </Link>
@@ -35,7 +35,7 @@ export default function ResumePage() {
           <a
             href={resumePdfHref}
             download="Alexandra_Zach_Resume.pdf"
-            className="inline-flex items-center gap-2 rounded-md bg-[#B25232] px-4 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors hover:bg-[var(--accent-strong)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
+            className="inline-flex min-h-11 items-center gap-2 rounded-md bg-[#B25232] px-4 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors hover:bg-[var(--accent-strong)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] sm:min-h-0"
           >
             Download PDF <span aria-hidden>↓</span>
           </a>

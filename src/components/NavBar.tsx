@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { sections, observedSectionIds } from "./nav-data";
 import { resumeHref } from "./resume-data";
@@ -15,6 +15,19 @@ function isItemActive(item: NavItem, active: string) {
 export default function NavBar({ isResumePage = false }: { isResumePage?: boolean }) {
   const [active, setActive] = useState<string>(sections[0].id);
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setMenuOpen(false);
+      menuButtonRef.current?.focus();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
 
   useEffect(() => {
     let ticking = false;
@@ -54,7 +67,7 @@ export default function NavBar({ isResumePage = false }: { isResumePage?: boolea
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-[border-color,background-color,box-shadow] duration-200 ease-[var(--ease-out)] motion-reduce:transition-none ${
-        scrolled
+        scrolled || menuOpen
           ? "border-[var(--line)] bg-[var(--paper)]/85 shadow-[var(--shadow-soft)] backdrop-blur"
           : "border-transparent bg-transparent"
       }`}
@@ -62,6 +75,7 @@ export default function NavBar({ isResumePage = false }: { isResumePage?: boolea
       <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-3 sm:px-6 md:px-10 md:py-4">
         <a
           href={isResumePage ? "/#about" : "#about"}
+          onClick={() => setMenuOpen(false)}
           className="text-base font-bold tracking-tight text-[var(--ink)] sm:text-lg"
         >
           Ally Zach<span className="text-[var(--accent)]">.</span>
@@ -106,22 +120,59 @@ export default function NavBar({ isResumePage = false }: { isResumePage?: boolea
           </Link>
         </nav>
 
-        {/* Phones skip the section menu entirely: the page is one scroll, so
-            the only nav that earns header space is the Resume button. */}
-        <Link
-          href={resumeHref}
-          aria-current={isResumePage ? "page" : undefined}
-          className="group inline-flex items-center gap-1.5 rounded-md bg-[#B25232] px-4 py-2 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)] md:hidden"
-        >
-          Resume
-          <span
-            aria-hidden
-            className="inline-block transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-0.5"
+        <div className="flex items-center gap-2 md:hidden">
+          <Link
+            href={resumeHref}
+            onClick={() => setMenuOpen(false)}
+            aria-current={isResumePage ? "page" : undefined}
+            className="group inline-flex min-h-11 items-center gap-1.5 rounded-md bg-[#B25232] px-4 py-2 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
           >
-            →
-          </span>
-        </Link>
+            Resume
+            <span
+              aria-hidden
+              className="inline-block transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-0.5"
+            >
+              →
+            </span>
+          </Link>
+          <button
+            ref={menuButtonRef}
+            type="button"
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-section-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-[var(--line-strong)] text-[var(--ink)] transition-colors hover:bg-[var(--paper-tint)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" aria-hidden className="h-5 w-5">
+              <path d={menuOpen ? "M6 6l12 12M6 18 18 6" : "M4 7h16M4 12h16M4 17h16"} />
+            </svg>
+          </button>
+        </div>
       </div>
+      <nav
+        id="mobile-section-menu"
+        aria-label="Mobile sections"
+        hidden={!menuOpen}
+        className="border-t border-[var(--line)] bg-[var(--paper)] px-4 py-2 shadow-[var(--shadow-soft)] sm:px-6 md:hidden"
+      >
+        {sections.map((s) => {
+          const isActive = !isResumePage && isItemActive(s, active);
+          return (
+            <a
+              key={s.id}
+              href={`${isResumePage ? "/" : ""}#${s.id}`}
+              aria-current={isActive ? "location" : undefined}
+              onClick={() => setMenuOpen(false)}
+              className={`flex min-h-11 items-center rounded-md px-3 text-sm font-medium transition-colors hover:bg-[var(--paper-tint)] focus-visible:outline-2 focus-visible:outline-[var(--accent)] ${
+                isActive ? "text-[var(--accent-strong)]" : "text-[var(--body)]"
+              }`}
+            >
+              {s.label}
+            </a>
+          );
+        })}
+      </nav>
     </header>
   );
 }

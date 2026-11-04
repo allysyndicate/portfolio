@@ -62,7 +62,7 @@ function ProjectCardLink({
           alt={p.title}
           loading="lazy"
           className={`m-2 w-[calc(100%-1rem)] rounded-xl border border-[var(--line)] bg-[var(--paper-elev)] object-contain p-2 shadow-[var(--shadow-soft)] ${
-            featured ? "aspect-[7/6]" : "aspect-[16/10]"
+            featured ? "aspect-[16/10] sm:aspect-[7/6]" : "aspect-[16/10]"
           }`}
         />
       ) : (
@@ -109,12 +109,12 @@ function ExpandToggle({
   justify: string;
 }) {
   return (
-    <div className={`mt-8 flex justify-center ${justify}`}>
+    <div className={`mt-6 flex justify-center sm:mt-8 ${justify}`}>
       <button
         type="button"
         onClick={onToggle}
         aria-expanded={expanded}
-        className="group inline-flex items-center gap-1.5 rounded-full border border-[var(--line-strong)] px-4 py-2 text-sm font-semibold text-[var(--ink)] transition-colors duration-150 ease-[var(--ease-out)] hover:border-[var(--accent)] hover:text-[var(--accent-strong)]"
+        className="group inline-flex min-h-11 items-center gap-1.5 rounded-full border border-[var(--line-strong)] px-4 py-2 text-sm font-semibold text-[var(--ink)] transition-colors duration-150 ease-[var(--ease-out)] hover:border-[var(--accent)] hover:text-[var(--accent-strong)] sm:min-h-0"
       >
         {expanded ? "Show fewer" : label}
         <span
@@ -158,15 +158,13 @@ function PanteraFeatureGrid({ projects }: { projects: ProjectCard[] }) {
         <Reveal className="sm:col-span-2 lg:col-span-2 lg:col-start-2 lg:row-start-1 lg:row-end-3">
           <ProjectCardLink p={featured} featured />
         </Reveal>
-        {/* Two small cards stacked to the left of the feature. On phones only
-            the first survives the fold - the rest wait behind "View all" so
-            readers reach Syndicate before card fatigue sets in. */}
+        {/* Keep both supporting studies visible alongside the feature on phones. */}
         {left.map((p, i) => (
           <Reveal
             key={p.title}
             className={`min-w-0 lg:col-start-1 ${
               i === 0 ? "lg:row-start-1" : "lg:row-start-2"
-            } ${i > 0 && !expanded ? "hidden sm:block" : ""}`}
+            }`}
             delay={cardDelay(i + 1)}
           >
             <ProjectCardLink p={p} />

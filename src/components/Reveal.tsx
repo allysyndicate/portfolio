@@ -21,7 +21,8 @@ type RevealProps = {
  * Scroll-entrance reveal: fades/slides content in the first time it scrolls
  * into view. Server-renders VISIBLE so content is never hidden without JS;
  * the hidden state is applied only after hydration, only for elements below
- * the fold, and never under prefers-reduced-motion.
+ * the fold on larger screens, and never under prefers-reduced-motion. Phones
+ * keep content visible so tall cards do not leave blank space while scrolling.
  */
 export default function Reveal({
   children,
@@ -67,7 +68,7 @@ export default function Reveal({
       className={[
         className,
         hidden ? "transition-[opacity,transform] duration-[650ms]" : "",
-        isHidden ? "translate-y-3.5 opacity-0" : "translate-y-0 opacity-100",
+        isHidden ? "sm:translate-y-3.5 sm:opacity-0" : "translate-y-0 opacity-100",
       ]
         .filter(Boolean)
         .join(" ")}

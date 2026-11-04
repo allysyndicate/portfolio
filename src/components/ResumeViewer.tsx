@@ -124,7 +124,7 @@ export default function ResumeViewer() {
   }, [document, width, zoom]);
 
   const zoomButton =
-    "inline-flex h-8 w-8 items-center justify-center rounded-md border border-[var(--line)] bg-[var(--paper-elev)] text-lg text-[var(--ink)] hover:border-[var(--accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] disabled:opacity-30";
+    "inline-flex h-11 w-11 items-center justify-center rounded-md border border-[var(--line)] bg-[var(--paper-elev)] text-lg text-[var(--ink)] hover:border-[var(--accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] disabled:opacity-30 sm:h-8 sm:w-8";
 
   return (
     <>
@@ -137,7 +137,7 @@ export default function ResumeViewer() {
           <button type="button" aria-label="Zoom out" disabled={!document || zoom <= 0.75} onClick={() => setZoom((value) => value - 0.25)} className={zoomButton}>−</button>
           <output className="min-w-12 text-center text-xs tabular-nums text-[var(--muted)]" aria-label="Zoom level">{Math.round(zoom * 100)}%</output>
           <button type="button" aria-label="Zoom in" disabled={!document || zoom >= 4} onClick={() => setZoom((value) => value + 0.25)} className={zoomButton}>+</button>
-          <button type="button" onClick={() => setZoom(1)} disabled={!document} className="ml-1 rounded-sm px-1 text-xs font-medium text-[var(--accent-strong)] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]">Fit width</button>
+          <button type="button" onClick={() => setZoom(1)} disabled={!document} className="ml-1 inline-flex min-h-11 min-w-11 items-center justify-center whitespace-nowrap rounded-sm px-1 text-xs font-medium text-[var(--accent-strong)] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] sm:min-h-0 sm:min-w-0">Fit width</button>
         </div>
       </div>
       {error && (

@@ -5,9 +5,6 @@ import Reveal from "./Reveal";
 import { socials, telegram } from "./socials";
 import { resumeHref } from "./resume-data";
 
-const supporting =
-  "I started out designing high-rises. Now I build data systems, statistical models, and AI software. At Pantera Capital and Messari, I combined research and engineering to investigate financial markets, understand user behavior, and build tools that automate complex workflows.";
-
 const heroSocials = [...socials, telegram] as const;
 
 type Stage = {
@@ -34,16 +31,16 @@ const stages: Stage[] = [
     num: "01",
     label: "Engineering",
     title: "Structural engineer",
-    body: "Designed high-rise buildings for seismic and wind loads. Built Python and Excel/VBA tools to automate engineering workflows.",
-    proof: "7M+ square feet designed · Tools adopted firm-wide",
+    body: "Built nonlinear structural models, analyzed simulation results, and developed firm-wide Python and Excel VBA tools.",
+    proof: "7M+ square feet designed",
   },
   {
     id: "messari",
     num: "02",
     label: "Messari",
     title: "Research analyst",
-    body: "Researched crypto markets, user behavior, and protocol economics. Published reports explaining how networks work and how people use them.",
-    proof: "50+ published research reports",
+    body: "Analyzed acquisition, retention, monetization, and user behavior. Published 50+ reports and built the SQL and Python tools behind them.",
+    proof: "Cohort analysis · Network analysis",
   },
   {
     id: "pantera",
@@ -172,7 +169,7 @@ function Timeline() {
   };
 
   const controlClass =
-    "inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line-strong)] text-[var(--body)] transition-colors hover:border-[var(--accent)] hover:bg-[var(--paper-elev)] hover:text-[var(--accent-strong)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] disabled:cursor-default disabled:opacity-25";
+    "inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--line-strong)] text-[var(--body)] transition-colors hover:border-[var(--accent)] hover:bg-[var(--paper-elev)] hover:text-[var(--accent-strong)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] disabled:cursor-default disabled:opacity-25 sm:h-9 sm:w-9";
 
   return (
     <div>
@@ -201,19 +198,19 @@ function Timeline() {
         tabIndex={0}
         className="mt-6 snap-x snap-proximity overflow-x-auto overscroll-x-contain rounded-2xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
       >
-        <ol className="grid grid-flow-col auto-cols-[minmax(16rem,1fr)] xl:grid-flow-row xl:grid-cols-5">
+        <ol className="grid grid-flow-col auto-cols-[85%] sm:auto-cols-[minmax(16rem,1fr)] xl:grid-flow-row xl:grid-cols-5">
           {stages.map((stage, i) => (
             <li
               key={stage.id}
-              className="relative flex min-w-0 snap-start flex-col rounded-2xl px-4 py-4 xl:px-5"
+              className="relative flex min-w-0 snap-start flex-col rounded-2xl px-4 py-3 sm:py-4 xl:px-5"
             >
               <span
                 aria-hidden
-                className="text-[2.5rem] font-light leading-none tracking-[-0.06em] text-[var(--accent-strong)]/30"
+                className="text-[2rem] font-light leading-none tracking-[-0.06em] text-[var(--accent-strong)]/30 sm:text-[2.5rem]"
               >
                 {stage.num}
               </span>
-              <div aria-hidden className="relative mt-4 mb-5 flex h-3 items-center">
+              <div aria-hidden className="relative mt-3 mb-3 flex h-3 items-center sm:mt-4 sm:mb-5">
                 {i < stages.length - 1 && (
                   <span className="absolute top-[5px] -right-[2.375rem] left-1.5 h-px bg-[var(--accent)]/25 xl:-right-[2.875rem]" />
                 )}
@@ -232,7 +229,7 @@ function Timeline() {
                   {stage.body}
                 </p>
                 <div className="mt-auto pt-5">
-                  <p className="min-h-12 border-t border-[var(--line)] pt-3 text-[0.6875rem] leading-[1.6] text-[var(--muted)]">
+                  <p className="min-h-12 border-t border-[var(--line)] pt-3 text-xs leading-[1.6] text-[var(--muted)] sm:text-[0.6875rem]">
                     {stage.href ? (
                       <a
                         href={stage.href}
@@ -253,7 +250,7 @@ function Timeline() {
         </ol>
       </div>
       <div className="mt-4 flex items-center justify-between gap-4 border-t border-[var(--line)] pt-4 xl:hidden">
-        <a href={resumeHref} className="text-xs font-medium text-[var(--muted)] hover:text-[var(--accent-strong)]">
+        <a href={resumeHref} className="inline-flex min-h-11 items-center text-xs font-medium text-[var(--muted)] hover:text-[var(--accent-strong)] sm:min-h-0">
           Full background →
         </a>
         <div className="flex gap-2">
@@ -288,7 +285,7 @@ export default function Hero() {
     <section
       id="about"
       aria-label="Introduction"
-      className="relative scroll-mt-24 pt-24 pb-10 sm:pt-28 sm:pb-12 md:pb-14 lg:pb-0"
+      className="relative scroll-mt-24 pt-24 pb-0 sm:pt-28"
     >
       <div className="grid gap-8 lg:grid-cols-[1.4fr_0.6fr] lg:items-center lg:gap-x-14">
         <div className="max-w-[680px]">
@@ -303,7 +300,7 @@ export default function Hero() {
               <Reveal
                 as="p"
                 delay={70}
-                className="mt-2 text-base font-semibold leading-relaxed text-[var(--accent-strong)] sm:text-lg"
+                className="mt-2 text-sm font-semibold leading-relaxed text-[var(--accent-strong)] sm:text-lg"
               >
                 Research engineer · Data scientist
               </Reveal>
@@ -314,24 +311,33 @@ export default function Hero() {
           </div>
 
           <Reveal
-            as="p"
             delay={140}
-            className="mt-6 text-base leading-[1.75] text-[var(--body)]"
+            className="mt-6 space-y-3 text-base leading-[1.75] text-[var(--body)]"
           >
-            {supporting}
+            <p>
+              I’m a research engineer studying user behavior, product adoption,
+              and market structure through statistical modeling and software
+              development. At Pantera Capital and Messari, I built SQL and Python
+              pipelines, developed measurement frameworks, and turned complex
+              data into research and public analytics tools.
+            </p>
+            <p>
+              I’m also the technical cofounder and sole engineer of Syndicate, a
+              desktop application for coordinating AI agents.
+            </p>
           </Reveal>
 
-          <Reveal delay={210} className="mt-7 flex items-center gap-4 text-sm font-semibold">
+          <Reveal delay={210} className="mt-5 flex items-center gap-4 text-sm font-semibold sm:mt-7">
             <a
               href="#pantera"
-              className="inline-flex items-center gap-2 rounded-sm text-[var(--accent-strong)] hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
+              className="inline-flex min-h-11 items-center gap-2 rounded-sm text-[var(--accent-strong)] hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] sm:min-h-0"
             >
               View work <span aria-hidden>↓</span>
             </a>
             <span aria-hidden className="text-[var(--line-strong)]">·</span>
             <a
               href={resumeHref}
-              className="rounded-sm text-[var(--ink)] hover:text-[var(--accent-strong)] hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
+              className="inline-flex min-h-11 items-center rounded-sm text-[var(--ink)] hover:text-[var(--accent-strong)] hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] sm:min-h-0"
             >
               Résumé
             </a>
@@ -349,9 +355,9 @@ export default function Hero() {
       {/* A compact horizontal career path keeps the work within easy reach. */}
       <div
         id="how-i-got-here"
-        className="band-tint relative mx-[calc(50%-50vw)] mt-12 scroll-mt-24 md:mt-16 lg:mt-12"
+        className="band-tint relative mx-[calc(50%-50vw)] mt-8 scroll-mt-24 sm:mt-12 md:mt-16 lg:mt-12"
       >
-        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 md:px-10">
+        <div className="mx-auto max-w-screen-xl px-4 py-6 sm:px-6 sm:py-8 md:px-10">
           <Timeline />
         </div>
       </div>
