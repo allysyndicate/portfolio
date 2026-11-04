@@ -25,8 +25,6 @@ export type Chapter = {
   location?: string;
   years: string;
   intro: string;
-  /** One-line intro for phones; the full `intro` renders from sm up. */
-  introShort: string;
   /** Optional bold one-line statement rendered under the intro. */
   tagline?: string;
   projects: ProjectCard[];
@@ -42,8 +40,6 @@ export const chapters: Chapter[] = [
     years: "April 2024 – October 2026",
     intro:
       "At Pantera, my role spanned research, data engineering, and product. I took open-ended market questions through study design, data collection, analysis, validation, and delivery, building the pipelines, dashboards, datasets, or software each project required. The work supported published research, investment decisions, and portfolio companies.",
-    introShort:
-      "Took open market questions through research, data engineering, and product development to published results.",
     projects: [
       {
         title: "Tokenization Data Portal",
@@ -133,8 +129,6 @@ export const chapters: Chapter[] = [
     years: "2022 – 2024",
     intro:
       "At Messari, I investigated how emerging platforms attracted users, what kept them engaged, and how their activity translated into revenue. I used SQL, Python, cohort analysis, and network methods to distinguish sustained adoption from incentive-driven participation. Across more than 50 research reports, I examined user behavior, business models, and competitive positioning, while building reusable pipelines and dashboards to support the analysis.",
-    introShort:
-      "Used SQL, Python, and cohort and network analysis to study acquisition, retention, and revenue across 50+ research reports.",
     projects: [
       {
         title: "User Behavior and Engagement on Lens",
@@ -197,8 +191,6 @@ export const chapters: Chapter[] = [
     years: "2018 – 2022",
     intro:
       "At MKA, I built nonlinear 3D models for performance-based structural design, analyzing simulation results to evaluate building behavior and size structural members. My work covered more than 7 million square feet of high-rise buildings across the U.S. and Southeast Asia. I also developed firm-wide Python and Excel VBA tools to postprocess model outputs and automate recurring design calculations.",
-    introShort:
-      "Modeled high-rises covering 7M+ square feet and built firm-wide Python and Excel VBA tools to analyze simulations and automate design calculations.",
     projects: [
       {
         title: "NuStar Resort & Casino",

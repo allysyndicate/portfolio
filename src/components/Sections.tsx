@@ -142,16 +142,10 @@ function ChapterHeader({ c, variant }: { c: Chapter; variant: ChapterVariant }) 
     <Reveal className="mb-8 sm:mb-12 lg:mb-8">
       <ChapterEyebrowHeading c={c} large={first} />
       <ChapterMeta c={c} />
-      {/* Full intro from sm up; phones get the one-line version. */}
       <p
-        className={`mt-3 hidden max-w-[720px] leading-relaxed text-[var(--body)] sm:block ${
-          first ? "text-base" : "text-sm"
-        }`}
+        className={`mt-3 max-w-[720px] text-sm leading-relaxed text-[var(--body)]${first ? " sm:text-base" : ""}`}
       >
         {c.intro}
-      </p>
-      <p className="mt-3 text-sm leading-relaxed text-[var(--body)] sm:hidden">
-        {c.introShort}
       </p>
       {c.tagline && (
         <p className="mt-4 max-w-[720px] text-sm font-semibold text-[var(--ink)]">
