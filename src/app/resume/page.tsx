@@ -25,7 +25,7 @@ export default function ResumePage() {
         </Link>
         <div className="mt-6 flex flex-wrap items-end justify-between gap-5">
           <div>
-            <h1 className="text-3xl font-semibold tracking-[-0.035em] text-[var(--ink)] sm:text-4xl">
+            <h1 className="text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-4xl">
               Resume
             </h1>
             <p className="mt-2 text-sm text-[var(--body)]">
@@ -35,7 +35,7 @@ export default function ResumePage() {
           <a
             href={resumePdfHref}
             download="Alexandra_Zach_Resume.pdf"
-            className="inline-flex min-h-11 items-center gap-2 rounded-md bg-[var(--accent-button)] px-4 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors hover:bg-[var(--accent-strong)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] sm:min-h-0"
+            className="inline-flex min-h-11 items-center gap-2 rounded-md bg-[var(--accent-button)] px-4 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors hover:bg-[var(--accent-hover)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] sm:min-h-0"
           >
             Download PDF <span aria-hidden>↓</span>
           </a>

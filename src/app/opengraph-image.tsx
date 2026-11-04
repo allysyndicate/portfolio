@@ -5,7 +5,7 @@ export const alt =
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-/* Static share card on the site palette (warm ivory + burgundy),
+/* Static share card on the site palette (cream and wine),
    generated at build time. */
 export default function Image() {
   return new ImageResponse(
@@ -18,9 +18,9 @@ export default function Image() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px 96px",
-          backgroundColor: "#FAF9F5",
+          backgroundColor: "#F9F6F0",
           backgroundImage:
-            "radial-gradient(900px 500px at 85% 0%, rgba(143, 52, 83, 0.12), transparent 70%)",
+            "radial-gradient(900px 500px at 85% 0%, rgba(110, 26, 41, 0.12), transparent 70%)",
           fontFamily: "sans-serif",
         }}
       >
@@ -31,7 +31,7 @@ export default function Image() {
             fontWeight: 700,
             letterSpacing: "0.3em",
             textTransform: "uppercase",
-            color: "#65243C",
+            color: "#6E1A29",
           }}
         >
           Research Engineer · Data Scientist
@@ -43,7 +43,7 @@ export default function Image() {
             fontSize: 88,
             fontWeight: 700,
             letterSpacing: "-0.02em",
-            color: "#1F1E1A",
+            color: "#1A1414",
           }}
         >
           Ally Zach
@@ -55,7 +55,7 @@ export default function Image() {
             maxWidth: 900,
             fontSize: 36,
             lineHeight: 1.4,
-            color: "#504D45",
+            color: "#6B6260",
           }}
         >
           I build data systems to study financial markets, user networks, and
@@ -66,7 +66,7 @@ export default function Image() {
             display: "flex",
             marginTop: 48,
             fontSize: 26,
-            color: "#6E6B63",
+            color: "#6B6260",
           }}
         >
           allyzach.com

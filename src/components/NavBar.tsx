@@ -78,7 +78,7 @@ export default function NavBar({ isResumePage = false }: { isResumePage?: boolea
           onClick={() => setMenuOpen(false)}
           className="text-base font-bold tracking-tight text-[var(--ink)] sm:text-lg"
         >
-          Ally Zach<span className="text-[var(--accent)]">.</span>
+          Ally Zach<span className="text-[var(--accent-strong)]">.</span>
         </a>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Sections">
@@ -108,7 +108,7 @@ export default function NavBar({ isResumePage = false }: { isResumePage?: boolea
           <Link
             href={resumeHref}
             aria-current={isResumePage ? "page" : undefined}
-            className="group inline-flex items-center gap-1.5 rounded-md bg-[var(--accent-button)] px-4 py-2 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
+            className="group inline-flex items-center gap-1.5 rounded-md bg-[var(--accent-button)] px-4 py-2 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-hover)]"
           >
             Resume
             <span
@@ -125,7 +125,7 @@ export default function NavBar({ isResumePage = false }: { isResumePage?: boolea
             href={resumeHref}
             onClick={() => setMenuOpen(false)}
             aria-current={isResumePage ? "page" : undefined}
-            className="group inline-flex min-h-11 items-center gap-1.5 rounded-md bg-[var(--accent-button)] px-4 py-2 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)]"
+            className="group inline-flex min-h-11 items-center gap-1.5 rounded-md bg-[var(--accent-button)] px-4 py-2 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-hover)]"
           >
             Resume
             <span

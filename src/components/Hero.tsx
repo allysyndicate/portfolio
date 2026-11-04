@@ -178,8 +178,8 @@ function Timeline() {
           <p className="text-[0.625rem] font-semibold uppercase tracking-[0.25em] text-[var(--accent-strong)]">
             Experience
           </p>
-          <h2 className="mt-2 text-2xl font-medium tracking-[-0.035em] text-[var(--ink)] sm:text-[1.875rem]">
-            From structures <span className="text-[var(--accent-strong)]">to systems.</span>
+          <h2 className="mt-2 text-2xl font-bold tracking-normal text-[var(--ink)] sm:text-3xl">
+            From structures <span className="font-semibold text-[var(--accent-strong)]">to systems.</span>
           </h2>
         </div>
         <a
@@ -222,7 +222,7 @@ function Timeline() {
                 <p className="text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-[var(--muted)]">
                   {stage.label}
                 </p>
-                <h3 className="mt-2 min-h-[2.75rem] text-[1.0625rem] font-medium leading-[1.3] tracking-[-0.025em] text-[var(--ink)]">
+                <h3 className="mt-2 min-h-[2.75rem] text-[1.0625rem] font-bold leading-[1.3] tracking-tight text-[var(--ink)]">
                   {stage.title}
                 </h3>
                 <p className="mt-2 text-[0.8125rem] leading-[1.65] text-[var(--body)]">
@@ -293,14 +293,14 @@ export default function Hero() {
             <div>
               <Reveal
                 as="h1"
-                className="text-[2.5rem] font-semibold leading-[1.1] tracking-[-0.045em] text-[var(--ink)] sm:text-5xl lg:text-[3.5rem]"
+                className="text-[clamp(2rem,10vw,2.5rem)] font-bold leading-[1.1] tracking-tight text-[var(--ink)] sm:text-6xl lg:text-7xl"
               >
                 Ally Zach
               </Reveal>
               <Reveal
                 as="p"
                 delay={70}
-                className="mt-2 text-sm font-semibold leading-relaxed text-[var(--accent-strong)] sm:text-lg"
+                className="mt-2 text-sm font-semibold leading-relaxed text-[var(--accent-strong)] sm:text-xl"
               >
                 Research engineer · Data scientist
               </Reveal>
@@ -312,7 +312,7 @@ export default function Hero() {
 
           <Reveal
             delay={140}
-            className="mt-6 space-y-3 text-base leading-[1.75] text-[var(--body)]"
+            className="mt-6 space-y-4 text-base leading-relaxed text-[var(--body)] sm:text-lg"
           >
             <p>
               I’m a research engineer studying user behavior, product adoption,

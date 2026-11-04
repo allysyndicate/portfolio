@@ -61,7 +61,7 @@ function ProjectCardLink({
           src={p.img}
           alt={p.title}
           loading="lazy"
-          className={`m-2 w-[calc(100%-1rem)] rounded-xl border border-[var(--line)] bg-[var(--paper-elev)] object-contain p-2 shadow-[var(--shadow-soft)] ${
+          className={`m-2 w-[calc(100%-1rem)] rounded-xl border border-[var(--line)] bg-[var(--paper-subtle)] object-contain p-2 shadow-[var(--shadow-soft)] ${
             featured ? "aspect-[16/10] sm:aspect-[7/6]" : "aspect-[16/10]"
           }`}
         />
@@ -75,7 +75,7 @@ function ProjectCardLink({
         </div>
       )}
       <div className="p-4">
-        <h4 className="flex min-w-0 items-start gap-1.5 font-medium leading-snug text-[var(--ink)] group-hover:text-[var(--accent-strong)]">
+        <h4 className="flex min-w-0 items-start gap-1.5 font-bold leading-snug text-[var(--ink)] group-hover:text-[var(--accent-strong)]">
           <span className="min-w-0 [overflow-wrap:anywhere]">{p.title}</span>
           <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[var(--muted)] transition-all duration-200 ease-[var(--ease-out)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:bg-[var(--accent-tint)] group-hover:text-[var(--accent)]">
             <ArrowUpRight />

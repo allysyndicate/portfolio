@@ -79,7 +79,7 @@ function ChapterEyebrowHeading({ c, large }: { c: Chapter; large?: boolean }) {
         {c.eyebrow ?? c.act}
       </p>
       <h3
-        className={`mt-2 flex items-center gap-2.5 font-semibold tracking-[-0.01em] text-[var(--ink)] ${
+        className={`mt-2 flex items-center gap-2.5 font-bold tracking-tight text-[var(--ink)] ${
           large ? "text-3xl sm:text-4xl" : "text-2xl sm:text-3xl"
         }`}
       >
@@ -367,7 +367,7 @@ export function SideProjects() {
                   href="https://usesyndicate.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex min-h-11 shrink-0 items-center justify-center rounded-md bg-[var(--accent-button)] px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)] sm:min-h-0"
+                  className="group inline-flex min-h-11 shrink-0 items-center justify-center rounded-md bg-[var(--accent-button)] px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-hover)] sm:min-h-0"
                 >
                   Visit usesyndicate.org
                   <span className="ml-1 transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-1">
