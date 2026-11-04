@@ -367,9 +367,7 @@ export function SideProjects() {
                   href="https://usesyndicate.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  /* #B25232 = terracotta midpoint between --accent and --accent-strong;
-                     white text passes 4.5:1 at rest (plain --accent falls just short). */
-                  className="group inline-flex min-h-11 shrink-0 items-center justify-center rounded-md bg-[#B25232] px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)] sm:min-h-0"
+                  className="group inline-flex min-h-11 shrink-0 items-center justify-center rounded-md bg-[var(--accent-button)] px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-soft)] transition-colors duration-150 ease-[var(--ease-out)] hover:bg-[var(--accent-strong)] sm:min-h-0"
                 >
                   Visit usesyndicate.org
                   <span className="ml-1 transition-transform duration-200 ease-[var(--ease-out)] group-hover:translate-x-1">

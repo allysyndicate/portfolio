@@ -45,5 +45,5 @@
 
 .textLayer ::selection {
   color: transparent;
-  background: rgba(193, 95, 60, 0.25);
+  background: color-mix(in srgb, var(--accent) 25%, transparent);
 }

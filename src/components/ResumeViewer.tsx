@@ -78,7 +78,7 @@ export default function ResumeViewer() {
         const sheet = owner.createElement("div");
         sheet.className = styles.page;
         sheet.setAttribute("role", "group");
-        sheet.setAttribute("aria-label", `Résumé page ${number} of ${pdf.numPages}`);
+        sheet.setAttribute("aria-label", `Resume page ${number} of ${pdf.numPages}`);
         sheet.style.width = `${viewport.width}px`;
         sheet.style.height = `${viewport.height}px`;
         sheet.style.setProperty("--total-scale-factor", `${viewport.scale * viewport.userUnit}`);
@@ -146,8 +146,8 @@ export default function ResumeViewer() {
         </p>
       )}
       <div ref={viewportRef} aria-busy={rendering && !error} className="min-w-0 overflow-x-auto bg-[var(--paper-tint)]/40 p-2 sm:p-5">
-        {!document && !error && <p role="status" className="py-20 text-center text-sm text-[var(--muted)]">Loading résumé…</p>}
-        {document && rendering && !error && <span role="status" className="sr-only">Rendering résumé…</span>}
+        {!document && !error && <p role="status" className="py-20 text-center text-sm text-[var(--muted)]">Loading resume…</p>}
+        {document && rendering && !error && <span role="status" className="sr-only">Rendering resume…</span>}
         <div ref={pagesRef} className="min-w-full space-y-5" />
       </div>
     </>

@@ -339,7 +339,7 @@ export default function Hero() {
               href={resumeHref}
               className="inline-flex min-h-11 items-center rounded-sm text-[var(--ink)] hover:text-[var(--accent-strong)] hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] sm:min-h-0"
             >
-              Résumé
+              Resume
             </a>
           </Reveal>
         </div>

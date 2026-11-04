@@ -5,7 +5,7 @@ export const alt =
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-/* Static share card on the site palette (warm ivory + terracotta),
+/* Static share card on the site palette (warm ivory + burgundy),
    generated at build time. */
 export default function Image() {
   return new ImageResponse(
@@ -20,7 +20,7 @@ export default function Image() {
           padding: "80px 96px",
           backgroundColor: "#FAF9F5",
           backgroundImage:
-            "radial-gradient(900px 500px at 85% 0%, rgba(193, 95, 60, 0.12), transparent 70%)",
+            "radial-gradient(900px 500px at 85% 0%, rgba(143, 52, 83, 0.12), transparent 70%)",
           fontFamily: "sans-serif",
         }}
       >
@@ -31,7 +31,7 @@ export default function Image() {
             fontWeight: 700,
             letterSpacing: "0.3em",
             textTransform: "uppercase",
-            color: "#9C4426",
+            color: "#65243C",
           }}
         >
           Research Engineer · Data Scientist
