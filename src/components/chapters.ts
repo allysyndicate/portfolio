@@ -44,7 +44,7 @@ export const chapters: Chapter[] = [
       {
         title: "Tokenization Data Portal",
         descriptor: "Co-developed the Tokenization Progress Index and built a public analytics portal to compare financial products across 11 asset classes. Reconciled fragmented blockchain and issuer data to distinguish headline growth from changes in how assets were issued, transferred, and used.",
-        href: "https://tokenization.panteraresearchlab.xyz/",
+        href: "https://tokenization.panteracapital.com/",
         img: "/pantera-tokenization-portal.webp",
         thumb: "from-[#EAD9CE] to-[#F2EFE8]",
       },
