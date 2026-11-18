@@ -424,61 +424,39 @@ export function SideProjects() {
   );
 }
 
-/**
- * Compact horizontal Education strip near the bottom of the homepage. The full
- * degree detail + honors/scholarships live in the Full Record (/resume).
- */
-/**
- * Two-column closing section: professional contact + email CTA on the left,
- * a single Outside Work paragraph on the right. The contact column stacks
- * first on mobile. (Education moved into the Background section.)
- */
+/** Closing section with professional contact links. */
 export function Contact() {
   return (
     <Section id="contact" label="Get in touch" hideHeading>
-      <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
-        <Reveal>
-          <h2 className="text-2xl font-semibold tracking-[-0.02em] text-[var(--ink)] sm:text-4xl">
-            Get in touch.
-          </h2>
-          <div className="mt-6 flex items-center gap-4">
-            {contactLinks.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target={s.href.startsWith("mailto:") ? undefined : "_blank"}
-                rel={
-                  s.href.startsWith("mailto:") ? undefined : "noopener noreferrer"
-                }
-                aria-label={`${s.label} · ${s.handle}`}
-                title={`${s.label} · ${s.handle}`}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--line-strong)] bg-[var(--paper-elev)] text-[var(--body)] shadow-[var(--shadow-soft)] transition-all duration-200 ease-[var(--ease-out)] hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
+      <Reveal>
+        <h2 className="text-2xl font-semibold tracking-[-0.02em] text-[var(--ink)] sm:text-4xl">
+          Get in touch.
+        </h2>
+        <div className="mt-6 flex items-center gap-4">
+          {contactLinks.map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              target={s.href.startsWith("mailto:") ? undefined : "_blank"}
+              rel={
+                s.href.startsWith("mailto:") ? undefined : "noopener noreferrer"
+              }
+              aria-label={`${s.label} · ${s.handle}`}
+              title={`${s.label} · ${s.handle}`}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--line-strong)] bg-[var(--paper-elev)] text-[var(--body)] shadow-[var(--shadow-soft)] transition-all duration-200 ease-[var(--ease-out)] hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent-tint)] hover:text-[var(--accent)]"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden
+                className="h-[18px] w-[18px]"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden
-                  className="h-[18px] w-[18px]"
-                >
-                  {s.icon}
-                </svg>
-              </a>
-            ))}
-          </div>
-        </Reveal>
-
-        <Reveal delay={120}>
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--accent-strong)]">
-            Off the clock
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-[var(--body)] sm:text-lg">
-            When I&apos;m not at a screen, I&apos;m usually cooking,
-            bouldering, snowboarding, paddleboarding, or finding some other
-            excuse to get outside. Otherwise, I&apos;m home with my family,
-            our toddler, a Bernese mountain dog, and two Ragdoll cats.
-          </p>
-        </Reveal>
-      </div>
+                {s.icon}
+              </svg>
+            </a>
+          ))}
+        </div>
+      </Reveal>
     </Section>
   );
 }
