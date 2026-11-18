@@ -339,8 +339,8 @@ export default function Hero() {
               data into research and public analytics tools.
             </p>
             <p>
-              I’m also the technical cofounder and sole engineer of Syndicate, a
-              desktop application for coordinating AI agents.
+              I’m also the technical cofounder of Syndicate, a desktop application
+              for coordinating AI agents.
             </p>
           </Reveal>
 
