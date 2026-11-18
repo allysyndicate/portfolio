@@ -20,7 +20,7 @@ type Entry = {
 const work: Entry[] = [
   {
     org: "Pantera Capital",
-    title: "Research Engineer",
+    title: "Senior Data Scientist",
     location: "Remote",
     dates: "April 2024 – October 2026",
     href: "https://panteraresearchlab.xyz",
@@ -33,7 +33,7 @@ const work: Entry[] = [
   },
   {
     org: "Messari",
-    title: "Enterprise Research Analyst",
+    title: "Research and Data Analyst",
     location: "Remote",
     dates: "April 2022 – April 2024",
     href: "https://messari.io/research/ally-zach",
@@ -82,7 +82,7 @@ const work: Entry[] = [
 const projects: Entry[] = [
   {
     org: "Syndicate",
-    title: "Technical Cofounder & Sole Engineer",
+    title: "Technical Cofounder",
     dates: "January 2026 – Present",
     href: "https://usesyndicate.org",
     bullets: [
@@ -247,7 +247,7 @@ export default function ResumeContent() {
           Ally Zach
         </h1>
         <p className="mt-2 text-base font-semibold text-[var(--accent-strong)] sm:text-lg">
-          Research Engineer · Data Scientist
+          Data Scientist
         </p>
         <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[var(--muted)]">
           <span>Portland, Oregon</span>

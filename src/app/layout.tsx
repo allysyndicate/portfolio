@@ -8,9 +8,9 @@ const sans = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const siteTitle = "Ally Zach · Research Engineer & Data Scientist";
+const siteTitle = "Ally Zach · Data Scientist";
 const siteDescription =
-  "Empirical research on financial markets, user networks, and AI systems. Technical cofounder of Syndicate, with research engineering experience at Pantera Capital.";
+  "Data scientist specializing in statistical modeling, user behavior, and financial markets. Technical cofounder of Syndicate.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://allyzach.com"),

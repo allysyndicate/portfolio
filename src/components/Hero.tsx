@@ -42,7 +42,7 @@ const stages: Stage[] = [
     num: "03",
     label: "Pantera Capital",
     title: "Senior data scientist",
-    body: "Produced market research and built onchain data pipelines, dashboards, and automation tools for the investment team.",
+    body: "Analyzed financial markets through statistical modeling and built the datasets, pipelines, and dashboards supporting the work.",
   },
   {
     id: "syndicate",
@@ -332,11 +332,11 @@ export default function Hero() {
             className="mt-6 space-y-4 text-base leading-relaxed text-[var(--body)] sm:text-lg"
           >
             <p>
-              I’m a research engineer studying user behavior, product adoption,
-              and market structure through statistical modeling and software
-              development. At Pantera Capital and Messari, I built SQL and Python
-              pipelines, developed measurement frameworks, and turned complex
-              data into research and public analytics tools.
+              I’m a data scientist focused on user behavior, product adoption,
+              and financial markets. At Pantera Capital and Messari, I used
+              statistical modeling, cohort analysis, and SQL and Python pipelines
+              to turn complex data into research, dashboards, and tools that
+              support decisions.
             </p>
             <p>
               I’m also the technical cofounder of Syndicate, a desktop application

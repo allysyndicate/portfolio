@@ -7,7 +7,7 @@ import { resumePdfHref } from "@/components/resume-data";
 
 export const metadata: Metadata = {
   title: "Resume · Ally Zach",
-  description: "Ally Zach’s resume: research engineering, data science, and software development.",
+  description: "Ally Zach’s resume: data science, statistical modeling, and analytics.",
   alternates: { canonical: "/resume" },
 };
 
@@ -29,7 +29,7 @@ export default function ResumePage() {
               Resume
             </h1>
             <p className="mt-2 text-sm text-[var(--body)]">
-              Ally Zach · Research engineer · Data scientist
+              Ally Zach · Data Scientist
             </p>
           </div>
           <a

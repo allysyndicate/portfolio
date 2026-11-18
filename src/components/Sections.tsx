@@ -331,8 +331,8 @@ export function SideProjects() {
               </p>
 
               <p className="mt-5 max-w-[36rem] text-sm leading-relaxed text-[var(--body)] sm:mt-6 sm:text-base">
-                I&apos;m the technical cofounder and sole engineer behind
-                Syndicate. I built it to solve a problem I faced firsthand:
+                I&apos;m the technical cofounder of Syndicate. I built it to
+                solve a problem I faced firsthand:
                 coordinating multiple AI agents across complex work without
                 losing visibility or control.
               </p>

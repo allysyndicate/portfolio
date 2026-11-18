@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "Ally Zach · Research Engineer & Data Scientist. I build data systems to study financial markets, user networks, and AI.";
+  "Ally Zach · Data Scientist. I build data systems to study financial markets, user networks, and AI.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -34,7 +34,7 @@ export default function Image() {
             color: "#6E1A29",
           }}
         >
-          Research Engineer · Data Scientist
+          Data Scientist
         </div>
         <div
           style={{
