@@ -428,11 +428,11 @@ export function SideProjects() {
 export function Contact() {
   return (
     <Section id="contact" label="Get in touch" hideHeading>
-      <Reveal>
+      <Reveal className="text-center">
         <h2 className="text-2xl font-semibold tracking-[-0.02em] text-[var(--ink)] sm:text-4xl">
           Get in touch.
         </h2>
-        <div className="mt-6 flex items-center gap-4">
+        <div className="mt-6 flex items-center justify-center gap-4">
           {contactLinks.map((s) => (
             <a
               key={s.label}

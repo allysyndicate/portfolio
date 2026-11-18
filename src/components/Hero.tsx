@@ -319,7 +319,7 @@ export default function Hero() {
                 delay={70}
                 className="mt-2 text-sm font-semibold leading-relaxed text-[var(--accent-strong)] sm:text-xl"
               >
-                Research engineer · Data scientist
+                Data Scientist
               </Reveal>
             </div>
             <div className="shrink-0 lg:hidden">
