@@ -36,7 +36,7 @@ export const chapters: Chapter[] = [
     act: "Venture Capital",
     label: "Pantera",
     company: "Pantera",
-    role: "Research Engineer",
+    role: "Senior Data Scientist",
     years: "April 2024 – October 2026",
     intro:
       "At Pantera, my role spanned research, data engineering, and product. I took open-ended market questions through study design, data collection, analysis, validation, and delivery, building the pipelines, dashboards, datasets, or software each project required. The work supported published research, investment decisions, and portfolio companies.",
@@ -125,7 +125,7 @@ export const chapters: Chapter[] = [
     act: "Crypto Research",
     label: "Messari",
     company: "Messari",
-    role: "Enterprise Research Analyst",
+    role: "Research and Data Analyst",
     years: "2022 – 2024",
     intro:
       "At Messari, I investigated how emerging platforms attracted users, what kept them engaged, and how their activity translated into revenue. I used SQL, Python, cohort analysis, and network methods to distinguish sustained adoption from incentive-driven participation. Across more than 50 research reports, I examined user behavior, business models, and competitive positioning, while building reusable pipelines and dashboards to support the analysis.",

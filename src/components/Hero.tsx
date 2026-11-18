@@ -13,8 +13,6 @@ type Stage = {
   label: string;
   title: string;
   body: string;
-  proof: string;
-  href?: string;
 };
 
 const stages: Stage[] = [
@@ -24,7 +22,6 @@ const stages: Stage[] = [
     label: "Education",
     title: "Civil & structural engineering",
     body: "B.S. and M.S. in Civil & Environmental Engineering from the University of Illinois Urbana-Champaign.",
-    proof: "Structural engineering · Business minor",
   },
   {
     id: "engineering",
@@ -32,23 +29,20 @@ const stages: Stage[] = [
     label: "Engineering",
     title: "Structural engineer",
     body: "Built nonlinear structural models, analyzed simulation results, and developed firm-wide Python and Excel VBA tools.",
-    proof: "7M+ square feet designed",
   },
   {
     id: "messari",
     num: "02",
     label: "Messari",
-    title: "Research analyst",
+    title: "Research and data analyst",
     body: "Analyzed acquisition, retention, monetization, and user behavior. Published 50+ reports and built the SQL and Python tools behind them.",
-    proof: "Cohort analysis · Network analysis",
   },
   {
     id: "pantera",
     num: "03",
     label: "Pantera Capital",
-    title: "Research engineer",
+    title: "Senior data scientist",
     body: "Produced market research and built onchain data pipelines, dashboards, and automation tools for the investment team.",
-    proof: "2024–2026",
   },
   {
     id: "syndicate",
@@ -56,8 +50,6 @@ const stages: Stage[] = [
     label: "Syndicate",
     title: "Technical cofounder",
     body: "Designed and built a local-first desktop app for managing teams of AI agents across multiple model providers.",
-    proof: "Sole engineer · Gated public beta",
-    href: "https://usesyndicate.org",
   },
 ];
 
@@ -129,21 +121,6 @@ function TimelineArrow({ direction }: { direction: "previous" | "next" }) {
   );
 }
 
-function StageProof({ stage }: { stage: Stage }) {
-  return stage.href ? (
-    <a
-      href={stage.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="hover:text-[var(--accent-strong)] hover:underline hover:underline-offset-4"
-    >
-      {stage.proof} <span aria-hidden>↗</span>
-    </a>
-  ) : (
-    stage.proof
-  );
-}
-
 function MobileTimeline() {
   return (
     <ol aria-label="Career timeline" className="mt-5 sm:hidden">
@@ -173,11 +150,8 @@ function MobileTimeline() {
                 <path d="M10 5v10" className="group-open:hidden" />
               </svg>
             </summary>
-            <div className="space-y-2 pr-6 pb-4 text-sm leading-relaxed text-[var(--body)]">
+            <div className="pr-6 pb-4 text-sm leading-relaxed text-[var(--body)]">
               <p>{stage.body}</p>
-              <p className="text-xs font-semibold text-[var(--accent-strong)]">
-                <StageProof stage={stage} />
-              </p>
             </div>
           </details>
         </li>
@@ -277,7 +251,7 @@ function Timeline() {
                   className="relative h-3 w-3 rounded-full border-2 border-[var(--paper-tint)] bg-[var(--accent)]"
                 />
               </div>
-              <div className="flex min-h-[12rem] flex-1 flex-col">
+              <div>
                 <p className="text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-[var(--muted)]">
                   {stage.label}
                 </p>
@@ -287,11 +261,6 @@ function Timeline() {
                 <p className="mt-2 text-[0.8125rem] leading-[1.65] text-[var(--body)]">
                   {stage.body}
                 </p>
-                <div className="mt-auto pt-5">
-                  <p className="min-h-12 border-t border-[var(--line)] pt-3 text-[0.6875rem] leading-[1.6] text-[var(--muted)]">
-                    <StageProof stage={stage} />
-                  </p>
-                </div>
               </div>
             </li>
           ))}
